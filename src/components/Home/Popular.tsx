@@ -12,8 +12,6 @@ interface Mentor {
     image: string;
   }
 
-  
-
 const Popular =  () => {
 
 
@@ -25,9 +23,9 @@ const Popular =  () => {
 
                   <div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
                     {
-                        mentorData.map((data: Mentor) => (<PopularCard
+                        mentorData?.map((data: Mentor) => (<PopularCard
                         key={data.id}
-                        data ={data}
+                        data={data}
                         ></PopularCard>)) 
                     }
                   </div>
