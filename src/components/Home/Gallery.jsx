@@ -18,19 +18,19 @@ const Gallery = () => {
       <Carousel   >
                 <div>
                     <Image src={img1} alt="Image 1" />
-                    <p className="legend">Image 1</p>
+                    <p className="legend">Graduated they are from EduMentor </p>
                 </div>
                 <div>
                     <Image src={img2} alt="Image 2" />
-                    <p className="legend">Image 2</p>
+                    <p className="legend">Picture of graduated students</p>
                 </div>
                 <div>
                     <Image src={img3} alt="Image 3" />
-                    <p className="legend">Image 3</p>
+                    <p className="legend">Another picture of graduated students</p>
                 </div>
                 <div>
                     <Image src={img4} alt="Image 4" />
-                    <p className="legend">Image 4</p>
+                    <p className="legend">Throwing graduation cap </p>
                 </div>
             </Carousel>
        
