@@ -5,10 +5,10 @@ import "keen-slider/keen-slider.min.css"
 // import '@smastrom/react-rating/style.css'
 // import { Rating } from '@smastrom/react-rating'
 import Image from 'next/image';
-import womenImage1 from "@/assets/images/success/image1.jpg"
-import manImage1 from "@/assets/images/success/image2.jpg"
-import manImage2 from "@/assets/images/success/image3.jpeg"
-import SectionTitle from '../(shared)/SectionTitle/SectionTitle';
+import Image1 from "@/assets/images/success/image1.jpg"
+import Image2 from "@/assets/images/success/image2.jpg"
+import Image3 from "@/assets/images/success/image3.jpg"
+import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 
 const SuccessStory = () => {
 
@@ -50,40 +50,35 @@ const SuccessStory = () => {
     )
 
     return (
-        <div className=' w-[80%] mx-auto my-4'>
+        <section className="max-w-7xl mx-auto mt-12 lg:mt-32 p-4 md:px-0">
             <SectionTitle heading="Success Story" subHeading="Success Story: EduMentor's Impact and Growth"></SectionTitle>
             <div ref={sliderRef} className="keen-slider lg:h-[300px] md:h-[400px] sm:h-[400px] ">
                 <div className="keen-slider__slide number-slide bg-gradient-to-br from-teal-300 to-teal-400 rounded-lg lg:flex ">
 
-                    <Image className='h-[250px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
-                    <div className="w-[60%] mx-auto">
-                        <h1 className='my-6 text-xl font-bold'> Name: Esoheran</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio nesciunt maxime aperiam nihil dolores consectetur, itaque nobis laborum, doloribus non quas, fugiat id magnam. Soluta rerum quidem expedita provident autem.</p>
-                        {/* <Rating
-                            style={{ maxWidth: 180 }}
-                            value={3}
-                            readOnly
-                        /> */}
+                    <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={Image2} alt='' placeholder='blur' width={"200"} />
+                    <div className="w-[80%] mx-auto">
+                        <h1 className='mt-10 mb-5 text-2xl font-bold'>John&apos;s Remarkable Progress</h1>
+                        <p className="text-justify">John Smith, a determined high school student, embarked on his journey to academic excellence with EduMentor. Struggling to grasp advanced calculus concepts, John turned to the platform in search of a qualified tutor. With the help of EduMentor, he found a skilled tutor who not only clarified complex equations but also instilled in him the confidence to tackle challenging math problems. John&apos;s dedication, coupled with personalized guidance, enabled him to excel in calculus and achieve top grades in his exams. Today, John stands as a testament to EduMentor&apos;s commitment to empowering students and fostering success.</p>
                     </div>
                 </div>
                 <div className="keen-slider__slide number-slide bg-gradient-to-br from-teal-300 to-teal-400 rounded-lg lg:flex ">
 
-                    <Image className='h-[250px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={womenImage1} alt='' placeholder='blur' width={"200"} />
-                    <div className="w-[60%] mx-auto">
-                        <h1 className='my-6 text-xl font-bold'> Name: Mahiya</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio nesciunt maxime aperiam nihil dolores consectetur, itaque nobis laborum, doloribus non quas, fugiat id magnam. Soluta rerum quidem expedita provident autem.</p>
+                    <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={Image1} alt='' placeholder='blur' width={"200"} />
+                    <div className="w-[80%] mx-auto">
+                        <h1 className='mt-10 mb-5 text-2xl font-bold'>Susan&apos;s Language Mastery</h1>
+                        <p className="text-justify">Susan Gray, an aspiring globetrotter, set her sights on becoming a multilingual communicator. Through EduMentor&apos;s language tutoring, Susan embarked on an exciting journey of language acquisition. With the guidance of experienced language tutors, she mastered new languages and expanded her cultural horizons. EduMentor&apos;s innovative approach to language learning, including interactive sessions and tailored study materials, transformed Susan from a novice to a confident polyglot. Armed with her newfound language skills, Susan now confidently explores new countries and connects with people from diverse backgrounds.</p>
                     </div>
                 </div>
                 <div className="keen-slider__slide number-slide bg-gradient-to-br from-teal-300 to-teal-400 rounded-lg lg:flex ">
 
-                    <Image className='h-[250px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={manImage2} alt='' placeholder='blur' width={"200"} />
-                    <div className="w-[60%] mx-auto">
-                        <h1 className='my-6 text-xl font-bold'> Name: Frigodin</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio nesciunt maxime aperiam nihil dolores consectetur, itaque nobis laborum, doloribus non quas, fugiat id magnam. Soluta rerum quidem expedita provident autem.</p>
+                    <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={Image3} alt='' placeholder='blur' width={"200"} />
+                    <div className="w-[80%] mx-auto">
+                        <h1 className='mt-10 mb-5 text-2xl font-bold'>James&apos; Academic Resilience</h1>
+                        <p className="text-justify">James Patterson, a diligent college student, faced a challenging semester with complex computer science coursework. Feeling overwhelmed, he turned to EduMentor for assistance. With the platform&apos;s support, James connected with a dedicated tutor who not only clarified intricate programming concepts but also provided valuable study strategies. Through consistent guidance and personalized mentoring, James not only excelled in his computer science projects but also gained a deeper understanding of the subject. EduMentor&apos;s unwavering commitment to helping students overcome obstacles empowered James to navigate his academic journey with confidence and achieve outstanding results.</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
