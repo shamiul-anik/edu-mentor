@@ -13,8 +13,8 @@ export default function Home() {
     <div className="">
       {/* Hello */}
       <HomeBanner />
-      <TuitionTypes />
       <Popular/>
+      <TuitionTypes />
       <Statistics />
       <Testimonial />
       <Newsletter />
