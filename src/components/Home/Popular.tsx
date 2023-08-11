@@ -19,7 +19,7 @@ const Popular =  () => {
 
     return (
         <section className="max-w-7xl mx-auto mt-12 lg:mt-20">
-          <SectionTitle heading="Popular  Instructor" subHeading="Verified by some popular instructors!"></SectionTitle>
+        <SectionTitle heading="Popular Tutors" subHeading="Discover Our Trusted and Popular Tutors!"></SectionTitle>
                   {/* <h3 className='text-center text-3xl font-bold uppercase py-4 '>Popular  Instructor</h3>
                   <p  className='text-center  pb-10 '>Verified by some popular instructors</p> */}
 

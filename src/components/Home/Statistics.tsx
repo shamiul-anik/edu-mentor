@@ -3,7 +3,7 @@ import { GiOpenBook, GiTeacher } from "react-icons/gi";
 import { FaUserAlt } from 'react-icons/fa';
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-// import Counter from "../(shared)/Counter/Counter";
+import Counter from "../(shared)/Counter/Counter";
 // import { BiBookContent } from "react-icons/bi";
 
 // using react component
