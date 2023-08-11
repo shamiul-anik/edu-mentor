@@ -22,11 +22,11 @@ const Gallery = () => {
                 </div>
                 <div>
                     <Image src={img2} alt="Image 2" />
-                    <p className="legend">Picture of graduted students</p>
+                    <p className="legend">Picture of graduated students</p>
                 </div>
                 <div>
                     <Image src={img3} alt="Image 3" />
-                    <p className="legend">Another picture of graduted students</p>
+                    <p className="legend">Another picture of graduated students</p>
                 </div>
                 <div>
                     <Image src={img4} alt="Image 4" />
