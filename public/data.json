@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Kiran Biswas",
+    "email": "kiran@example.com",
+    "subject": "Inquiry about Product",
+    "image": "https://media.licdn.com/dms/image/C5103AQGqMxmTnDistA/profile-displayphoto-shrink_800_800/0/1517450971959?e=2147483647&v=beta&t=gN5B4mt6wPb3Uz11Rtnu3nTzPkfkBX_ghZxhE4G5I3Y",
+    "university": "University of Chittagong",
+    "location": "Chittagong, Bangladesh"
+  },
+  {
+    "id": 2,
+    "name": "Sana Shahid",
+    "email": "sana@example.com",
+    "subject": "Meeting Request",
+    "image": "https://media.licdn.com/dms/image/D5603AQH1GcRp62fRgQ/profile-displayphoto-shrink_800_800/0/1684670368295?e=2147483647&v=beta&t=mXeva_qpbz8i5vUwFtGGQv4nDObNHinOm8jE6MdK9z8",
+    "university": "University of Dhaka",
+    "location": "Dhaka, Bangladesh"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "subject": "Feedback on Service",
+    "image": "https://media.licdn.com/dms/image/C5603AQFy44uP0j87Zg/profile-displayphoto-shrink_800_800/0/1595848090280?e=2147483647&v=beta&t=BVmUay7B7Awa1oeKVDdNghpXF4T8NKXHMtt--DRMDWU",
+    "university": "Rajshahi University",
+    "location": "Rajshahi, Bangladesh"
+  },
+  {
+    "id": 4,
+    "name": "Eva Williams",
+    "email": "eva@example.com",
+    "subject": "Collaboration Proposal",
+    "image": "https://media.licdn.com/dms/image/D4D03AQHixrTIgOSYzQ/profile-displayphoto-shrink_800_800/0/1687766753939?e=2147483647&v=beta&t=yz7h9G4jodacfntGlTgJGOl3djQcB5HVR2Fsk0_zGG4",
+    "university": "Jahangirnagar University",
+    "location": "Savar, Bangladesh"
+  }
+]

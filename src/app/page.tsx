@@ -5,6 +5,7 @@ import Statistics from '@/components/Home/Statistics';
 import Testimonial from '@/components/Home/Testimonial';
 import Newsletter from '@/components/Home/Newsletter';
 import TuitionTypes from '@/components/Home/TuitionTypes';
+import Popular from '@/components/Home/Popular';
 // import AOS from 'aos';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       {/* Hello */}
       <HomeBanner />
       <TuitionTypes />
+      <Popular/>
       <Statistics />
       <Testimonial />
       <Newsletter />
