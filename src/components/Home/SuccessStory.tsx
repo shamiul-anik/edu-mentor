@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 // import '@smastrom/react-rating/style.css'
@@ -9,9 +9,15 @@ import womenImage1 from "@/assets/images/success/image1.jpg"
 import manImage1 from "@/assets/images/success/image2.jpg"
 import manImage2 from "@/assets/images/success/image3.jpeg"
 import SectionTitle from '../(shared)/SectionTitle/SectionTitle';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const SuccessStory = () => {
+const SuccessStory: React.FC = () => {
 
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+      }, []);
 
     const [sliderRef] = useKeenSlider<HTMLDivElement>(
         {
@@ -52,7 +58,7 @@ const SuccessStory = () => {
     return (
         <div className=' w-[80%] mx-auto my-4'>
             <SectionTitle heading="Success Story" subHeading="Success Story: EduMentor's Impact and Growth"></SectionTitle>
-            <div ref={sliderRef} className="keen-slider lg:h-[300px] md:h-[400px] sm:h-[400px] ">
+            <div data-aos="fade-up" ref={sliderRef} className="keen-slider lg:h-[300px] md:h-[400px] sm:h-[400px] ">
                 <div className="keen-slider__slide number-slide bg-gradient-to-br from-teal-300 to-teal-400 rounded-lg lg:flex ">
 
                     <Image className='h-[250px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-l-full rounded-t-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
