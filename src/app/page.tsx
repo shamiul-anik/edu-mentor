@@ -1,11 +1,13 @@
 // import Image from 'next/image'
 // "use client"
 import HomeBanner from '@/components/Home/HomeBanner';
-import Statistics from '@/components/Home/Statistics';
 import Testimonial from '@/components/Home/Testimonial';
 import Newsletter from '@/components/Home/Newsletter';
 import TuitionTypes from '@/components/Home/TuitionTypes';
 import Gallery from '@/components/Home/Gallery';
+import SuccessStory from '@/components/Home/SuccessStory';
+import Statistics from '@/components/Home/Statistics';
+import Popular from '@/components/Home/Popular';
 // import AOS from 'aos';
 
 export default function Home() {
@@ -13,11 +15,13 @@ export default function Home() {
     <div className="">
       {/* Hello */}
       <HomeBanner />
-      <Gallery></Gallery>
+      <Gallery/> 
+      <Popular/>
       <TuitionTypes />
       <Statistics />
       <Testimonial />
-      <Newsletter /> 
+      <SuccessStory />
+      <Newsletter />
     </div>
   )
 }
