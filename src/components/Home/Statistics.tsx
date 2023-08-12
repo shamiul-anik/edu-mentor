@@ -3,7 +3,7 @@ import { GiOpenBook, GiTeacher } from "react-icons/gi";
 import { FaUserAlt } from 'react-icons/fa';
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import Counter from "../(shared)/Counter/Counter";
+// import Counter from "../(shared)/Counter/Counter";
 // import { BiBookContent } from "react-icons/bi";
 
 // using react component
@@ -36,7 +36,10 @@ const Statistics: React.FC = () => {
             <FaUserAlt className='h-14 w-14 text-slate-600 aspect-square' />
           </div>
           <div className="p-2 gap-2 flex flex-col justify-center items-center h-full">
-            <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800"><Counter number={258}/></h2>
+            <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800">
+              258
+              {/* <Counter number={258}/> */}
+            </h2>
             <p className="card-title justify-center text-lg lg:text-xl font-medium text-slate-600">Total Applied</p>
           </div>
         </div>
@@ -48,7 +51,10 @@ const Statistics: React.FC = () => {
             <GiOpenBook className='h-14 w-14 text-slate-600 aspect-square' />
           </div>
           <div className="p-2 gap-2 flex flex-col justify-center items-center h-100">
-          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800"><Counter number={12}/></h2>
+          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800">
+            12
+            {/* <Counter number={12}/> */}
+          </h2>
             <p className="card-title justify-center text-lg lg:text-xl font-medium text-slate-600">Live Tuition Jobs</p>
           </div>
         </div>
@@ -59,7 +65,10 @@ const Statistics: React.FC = () => {
             <GiTeacher className='h-14 w-14 text-slate-600 aspect-square' />
           </div>
           <div className="p-2 gap-2 flex flex-col justify-center items-center h-100">
-          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800"><Counter number={16}/></h2>
+          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800">
+            16
+            {/* <Counter number={16}/> */}
+          </h2>
             <p className="card-title justify-center text-lg lg:text-xl font-medium text-slate-600">Total Tutors</p>
           </div>
         </div>
@@ -70,7 +79,10 @@ const Statistics: React.FC = () => {
             <HiOutlineBuildingOffice2 className='h-14 w-14 text-slate-600 aspect-square' />
           </div>
           <div className="p-2 gap-2 flex flex-col justify-center items-center h-100">
-          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800"><Counter number={4.7}/></h2>
+          <h2 className="card-title justify-center text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800">
+            4.7
+            {/* <Counter number={4.7}/> */}
+          </h2>
             <p className="card-title justify-center text-lg lg:text-xl font-medium text-slate-600">Average Tutor Rating</p>
           </div>
         </div>
