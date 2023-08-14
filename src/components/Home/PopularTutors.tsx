@@ -3,6 +3,7 @@ import mentorData from '../../../public/data.json';
 import PopularCard from './PopularCard';
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 
+
 interface Mentor {
 	id: number | string;
 	name: string;
@@ -15,7 +16,6 @@ interface Mentor {
 
 const PopularTutors = () => {
 
-
 	return (
 		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
 			<SectionTitle heading="Popular Tutors" subHeading="Discover Our Trusted and Popular Tutors!"></SectionTitle>
@@ -25,6 +25,7 @@ const PopularTutors = () => {
 					mentorData?.map((data: Mentor) => (<PopularCard key={data.id} data={data}></PopularCard>))
 				}
 			</div>
+
 		</section>
 	);
 };
