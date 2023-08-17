@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import mentorData from '../../../public/data.json';
+
 import PopularCard from './PopularCard';
 import SectionTitle from '../(shared)/SectionTitle/SectionTitle';
 import getTutors from '@/utils/getTutors'

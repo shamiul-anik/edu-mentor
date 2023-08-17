@@ -1,7 +1,8 @@
 import React from 'react';
-import mentorData from '../../../public/data.json';
+// import mentorData from '../../../public/data.json';
 import PopularCard from './PopularCard';
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
+import getTutors from '@/utils/getTutors';
 
 
 interface Mentor {
@@ -14,8 +15,8 @@ interface Mentor {
 	location: string;
 }
 
-const PopularTutors = () => {
-
+const PopularTutors = async () => {
+	const mentorData = await getTutors()
 	return (
 		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
 			<SectionTitle heading="Popular Tutors" subHeading="Discover Our Trusted and Popular Tutors!"></SectionTitle>

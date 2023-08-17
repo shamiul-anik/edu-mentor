@@ -18,7 +18,7 @@ const DbConnect = async () => {
           }
         });
         db =client.db("eduMentorDemo")
-        await client.db("admin").command({ ping: 1 });
+        client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         return db;
     } catch (error) {
