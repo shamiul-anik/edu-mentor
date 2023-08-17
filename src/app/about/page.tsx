@@ -108,7 +108,7 @@ const About = () => {
               </Accordion.Title>
               <Accordion.Content className='border-b-2 border-teal-200'>
                 <p className="mb-2 text-gray-500 text-sm md:text-base dark:text-gray-400">
-                  Yes, tutors can create detailed profiles showcasing their qualifications, experience, subjects taught, and hourly rates. This allows students to make informed decisions based on the tutor'&apos;s expertise.
+                  Yes, tutors can create detailed profiles showcasing their qualifications, experience, subjects taught, and hourly rates. This allows students to make informed decisions based on the tutor&apos;s expertise.
                 </p>
               </Accordion.Content>
             </Accordion.Panel>

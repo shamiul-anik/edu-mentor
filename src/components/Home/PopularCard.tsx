@@ -20,7 +20,7 @@ console.log('test for button')
 
 const PopularCard: React.FC<PopularCardProps> = ({data}) => {
   // console.log(data)
-  const {name, email, id, image, subject, university, location} = data;
+  const {name, email, _id, image, subject, university, location} = data;
   
     return (
         <div className='my-4 mx-auto relative w-full'>

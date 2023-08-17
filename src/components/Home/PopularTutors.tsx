@@ -6,7 +6,7 @@ import getTutors from '@/utils/getTutors';
 
 
 interface Mentor {
-	id: number | string;
+	_id: number | string;
 	name: string;
 	email: string;
 	subject: string;
@@ -23,7 +23,7 @@ const PopularTutors = async () => {
 
 			<div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
 				{
-					mentorData?.map((data: Mentor) => (<PopularCard key={data.id} data={data}></PopularCard>))
+					mentorData?.map((data: Mentor) => (<PopularCard key={data._id} data={data}></PopularCard>))
 				}
 			</div>
 
