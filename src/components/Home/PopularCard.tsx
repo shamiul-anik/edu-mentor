@@ -6,7 +6,7 @@ interface PopularCardProps {
   data: {
     name: string;
     email: string;
-    id: number | string;
+    _id: number | string;
     image: string; // URL of the image
     subject: string;
     university: string;
