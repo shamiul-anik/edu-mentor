@@ -16,7 +16,7 @@ const Gallery = () => {
 
       <SectionTitle heading="Photo Gallery" subHeading="Empowering Minds through Education: Nurturing Growth with Mentorship"></SectionTitle>
 
-      <Carousel   >
+      <Carousel showThumbs={false}>
         <div>
           <Image src={img1} alt="Image 1" />
           {/* <p className="legend">Preparing Students For Success In Life</p> */}
