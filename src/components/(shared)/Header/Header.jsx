@@ -6,12 +6,14 @@ import { ImProfile } from 'react-icons/im';
 import Image from 'next/image';
 import Logo from '@/assets/images/logo.png';
 import UserImage from '@/assets/images/user.png';
+import useAuth from "@/hooks/useAuth"
 
 
 
 const Header = () => {
 
-	const user = "Shamiul";
+	const { user } = useAuth();
+	console.log(user);
 	const currentUserName = "Shamiul";
 	const currentUserEmail  = "anik.savar.bd@gmail.com";
 	const currentUserPhotoURL = UserImage;

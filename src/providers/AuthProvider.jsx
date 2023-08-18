@@ -1,10 +1,10 @@
-import { createContext } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import app from '../utilities/firebase.config';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import {app} from '@/firebase/firebase.config.js';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AuthContext from "@/providers/AuthContext";
 
-export const AuthContext = createContext(null);
+
 
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
@@ -15,16 +15,16 @@ const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	const [loadingRole, setLoadingRole] = useState(true);
 
-	useEffect(() => {
-		if(user) {
-			axios(`${import.meta.env.VITE_API_URL}/users/${user?.email}`).then(
-				(data) => {
-					setUserRole(data?.data?.role);
-				}
-			);
-			setLoadingRole(false);
-		}
-	}, [user]);
+	// useEffect(() => {
+	// 	if(user) {
+	// 		axios(`${import.meta.env.VITE_API_URL}/users/${user?.email}`).then(
+	// 			(data) => {
+	// 				setUserRole(data?.data?.role);
+	// 			}
+	// 		);
+	// 		setLoadingRole(false);
+	// 	}
+	// }, [user]);
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -50,6 +50,12 @@ const AuthProvider = ({ children }) => {
 		setLoading(true);
 		return signInWithPopup(auth, googleAuthProvider);
 	}
+
+    const updateUserProfile = async(updateUser = {}) => {
+        setLoading(true);
+        await updateProfile(auth, updateUser);
+        setUser((preUser) => ({...preUser, ...updateUser}))
+    }
 	
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -84,6 +90,7 @@ const AuthProvider = ({ children }) => {
 		loading,
 		setLoading,
 		createUser,
+		updateUserProfile,
 		logIn,
 		resetPassword,
 		signInWithGoogle,
