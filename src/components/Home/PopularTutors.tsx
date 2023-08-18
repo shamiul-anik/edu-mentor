@@ -1,34 +1,53 @@
-import React from 'react';
-// import mentorData from '../../../public/data.json';
+"use client"
+import React, { useState, useEffect } from 'react';
 import PopularCard from './PopularCard';
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import getTutors from '@/utils/getTutors';
-
 
 interface Mentor {
-	_id: number | string;
-	name: string;
-	email: string;
-	subject: string;
-	image: string;
-	university: string;
-	location: string;
+  _id: number | string;
+  name: string;
+  email: string;
+  subjects: string[];
+  students: number;
+  photoURL: string;
+  location: string;
+  Education: string;
+  ratings: number;
 }
 
-const PopularTutors = async () => {
-	const mentorData = await getTutors()
-	return (
-		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
-			<SectionTitle heading="Popular Tutors" subHeading="Discover Our Trusted and Popular Tutors!"></SectionTitle>
+const PopularTutors = () => {
+  const [mentorData, setMentorData] = useState<Mentor[]>([]);
 
-			<div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
-				{
-					mentorData?.map((data: Mentor) => (<PopularCard key={data._id} data={data}></PopularCard>))
-				}
-			</div>
+  useEffect(() => {
+    const fetchMentorData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/tutors', {
+          cache: "no-cache"
+        });
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await res.json();
+        setMentorData(data);
+      } catch (error) {
+        console.error("Error fetching mentor data:", error);
+      }
+    };
 
-		</section>
-	);
+    fetchMentorData();
+  }, []);
+
+  return (
+    <section className="max-w-7xl mx-auto mt-12 lg:mt-20">
+      <SectionTitle heading="Popular Tutors" subHeading="Discover Our Trusted and Popular Tutors!" />
+      
+      <div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
+        {mentorData.slice(0, 4).map((data: Mentor) => (
+          <PopularCard key={data._id} data={data} />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default PopularTutors;
