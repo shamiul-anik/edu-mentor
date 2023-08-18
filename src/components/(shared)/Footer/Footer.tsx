@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className='col-span-1'>
           <span className="footer-title text-lg">Quick Links</span>
-          <Link href="" className="link link-hover">Teachers</Link>
+          <Link href="" className="link link-hover">Tutors</Link>
           <Link href="" className="link link-hover">Students</Link>
           <Link href="" className="link link-hover">Contact</Link>
           <Link href="" className="link link-hover">About</Link>
