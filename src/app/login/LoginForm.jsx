@@ -60,7 +60,7 @@ const LoginForm = () => {
         />
         {errors.email && (
           <span className="text-red-500 text-base mt-1">
-            Please enter a valid email address.
+            Please enter a valid email address Please.
           </span>
         )}
       </div>
