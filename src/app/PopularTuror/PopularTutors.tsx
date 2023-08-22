@@ -1,19 +1,11 @@
 import React from 'react';
 // import mentorData from '../../../public/data.json';
-import PopularCard from './PopularCard';
+// import PopularCard from './PopularCard';
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 import getTutors from '@/utils/getTutors';
+import PopularCard from './PopularCard';
+import { Tutor } from '@/scriptType/tutorType';
 
-
-interface Mentor {
-	_id: number | string;
-	name: string;
-	email: string;
-	subject: string;
-	image: string;
-	university: string;
-	location: string;
-}
 
 const PopularTutors = async () => {
 	const mentorData = await getTutors()
@@ -23,7 +15,7 @@ const PopularTutors = async () => {
 
 			<div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
 				{
-					mentorData?.map((data: Mentor) => (<PopularCard key={data._id} data={data}></PopularCard>))
+					mentorData?.map((data: Tutor) => (<PopularCard key={data._id} data={data}></PopularCard>))
 				}
 			</div>
 
