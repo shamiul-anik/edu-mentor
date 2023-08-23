@@ -30,7 +30,7 @@ const SignupForm = () => {
     const toastId = toast.loading("Image uploading...");
     try {
       const res = await fetch(
-        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_imeage_upload}`,
         {
           method: "POST",
           body: formData,

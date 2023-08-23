@@ -44,7 +44,7 @@ import { ReactNode, useEffect, useState } from "react";
   const profileUpdate = async (updateUser = {}) => {
     setLoading(true);
     await updateProfile(auth.currentUser, updateUser);
-    
+    setUser((preUser) => ({ ...preUser, ...updateUser }));
   };
 
   const googleLogin = () => {
