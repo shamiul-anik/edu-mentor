@@ -31,7 +31,7 @@ interface Location {
 }
 
  export interface Tutor {
-	_id: string | number;
+	_id: string;
     id: string | number;
     name: string;
     age: number;
