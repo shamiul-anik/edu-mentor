@@ -18,14 +18,14 @@ import { usePathname, useRouter } from 'next/navigation';
 const Header = () => {
 	const { user, logout } = useAuth();
 
-	const { displayName, email, photoUrl} = user || {};
-	console.log('Header', displayName, email, photoUrl)
+	const { displayName, email, photoURL} = user || {};
+	// console.log(user)
 	const { replace, refresh } = useRouter();
 	const path = usePathname()
 	// const user = "";
 	// const displayName = "Shamiul";
 	// const email  = "anik.savar.bd@gmail.com";
-	// const photoUrl = UserImage;
+	const profilePhoto = photoURL|| "https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" ;
 	const userRole = "student";
 
 	const handleLogout = async () => {
@@ -110,13 +110,13 @@ const Header = () => {
 							<div className="dropdown dropdown-end mt-1">
 								<label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={displayName}>
 									<div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-										<Image className='object-top' src={photoUrl} alt={displayName} />
+										<Image width={40} height={40} className='object-top' src={profilePhoto} alt={displayName} />
 									</div>
 								</label>
 								<ul tabIndex={0} className="mt-1 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 z-10">
 									<div className='w-full flex justify-center'>
 										<div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-											<Image className='h-16 w-full rounded-full object-cover object-center' src={photoUrl} alt={displayName} />
+											<Image width={64} height={64} className='h-16 w-full rounded-full object-cover object-center' src={profilePhoto} alt={displayName} />
 										</div>
 									</div>
 									<li className='mt-1 text-center font-bold'>
@@ -204,13 +204,13 @@ const Header = () => {
 							<div className="dropdown dropdown-end mt-1 ml-6">
 								<label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={displayName}>
 									<div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-										<Image className='object-top' src={photoUrl} alt={displayName} />
+										<Image width={40} height={40} className='object-top' src={profilePhoto} alt={displayName} />
 									</div>
 								</label>
 								<ul tabIndex={0} className="mt-3 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 z-10">
 									<div className='w-full flex justify-center'>
 										<div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-											<Image className='h-16 w-full rounded-full object-cover object-center' src={photoUrl} alt={displayName} />
+											<Image width={64} height={64} className='h-16 w-full rounded-full object-cover object-center' src={profilePhoto} alt={displayName} />
 										</div>
 									</div>
 									<li className='mt-1 text-center font-bold'>
