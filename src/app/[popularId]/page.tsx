@@ -14,7 +14,7 @@ const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: 
 
 <div className="border border-gray-200 rounded-lg shadow">
 <a href="#" className="flex flex-col p-20 w-full  items-center  md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-    <Image width={190} height={256} className="object-cover w-full shadow shadow-2xl md:h-auto " src={image_url} alt=""/>
+    <Image width={190} height={256} className="object-cover w-full shadow-2xl md:h-auto " src={image_url} alt=""/>
     <div className="grid grid-cols-2 justify-between gap-10 p-4 w-full leading-normal">
         <div className="mb-2  ">
             <p>Name:</p>
