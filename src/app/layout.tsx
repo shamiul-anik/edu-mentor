@@ -1,36 +1,37 @@
-import './globals.css'
+import './globals.css';
 import '@smastrom/react-rating/style.css';
-import "aos/dist/aos.css";
-import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
-import Header from '@/components/(shared)/Header/Header'
-import Footer from '@/components/(shared)/Footer/Footer'
-import Providers from "@/providers/index"
-import AuthProvider from '@/providers/AuthProvider';
-// const inter = Inter({ subsets: ['latin'] })
+import 'aos/dist/aos.css';
+import type { Metadata } from 'next';
+import Header from '@/components/(shared)/Header/Header';
+import Footer from '@/components/(shared)/Footer/Footer';
+import Providers from '@/providers/index';
+import { Toaster } from 'react-hot-toast';
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
 
 export const metadata: Metadata = {
   title: 'EduMentor | Home',
   description: 'EduMentor Home Page',
-}
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="en">
       <body className="h-[100dvh] flex flex-col justify-between">
-      {/* <body className={inter.className}> */}
-      <Providers>
-      <Header />
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </Providers>
-       
+        <Providers>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+
+        </Providers>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
+
       </body>
     </html>
   )

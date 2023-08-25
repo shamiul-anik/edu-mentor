@@ -1,31 +1,33 @@
 "use client"
-import { useContext, useState } from 'react';
+import {  useState } from 'react';
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
-// import { useLocation, useNavigate } from 'react-router-dom';
-import { useRouter } from 'next/router';
-import { AuthContext } from "@/providers/AuthContext";
-import { toast } from 'react-toastify';
+import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import Loader from '@/components/(shared)/Loader/Loader';
 import Link from 'next/link';
-// import Loader from '../../shared/Loader/Loader';
+import useAuth from "@/hooks/useAuth.js"
+
 // import { saveUser } from '../../../api/auth';
 
+
+// meta data for title
+export const metadata = {
+	title: 'EduMentor Authentication',
+	description: 'EduMentor Home Page',
+  }
 const Login = () => {
 
 
-	const { loading, logIn, signInWithGoogle } = useContext(AuthContext);
+	const { loading, logIn, signInWithGoogle, setUser } = useAuth();
 	// const setLoading = "";
 	const { register, handleSubmit, formState: { errors } } = useForm();
 
 	const [error, setError] = useState("");
-	// const [showPassword, setShowPassword] = useState(false);
-	
-	// const router = useRouter();
+	const [showPassword, setShowPassword] = useState(false);
 
-	// const location = useLocation();
-	// // console.log('login page location', location)
-	const from = location.state?.from?.pathname || '/';
+	
+	
+
 
 	// // Show Loader when Page is Loading
 	if (loading) {
@@ -41,6 +43,7 @@ const Login = () => {
 			.then(result => {
 				const loggedUser = result.user;
 				console.log(loggedUser);
+				setUser(loggedUser)
 				toast.success("Successfully logged in!");
 				// navigate(from, { replace: true });
 			})
@@ -56,13 +59,15 @@ const Login = () => {
 		signInWithGoogle()
 			.then(result => {
 				const currentUser = result.user;
+				setUser(currentUser)
 				// console.log(currentUser);
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL
 				}
-				saveUser(userInfo);
+				// saveUser(userInfo);
+				
 
 				toast.success("Successfully logged in!");
 				// navigate(from, { replace: true })
@@ -118,7 +123,7 @@ const Login = () => {
 						
 						<div className="text-md">
 							Forgot your password? &nbsp;
-							<Link to="/password-reset" className='link link-error font-semibold transition-all hover:duration-200 text-red-600 hover:text-red-700'>Reset Password</Link>
+							<Link href="/password-reset" className='link link-error font-semibold transition-all hover:duration-200 text-red-600 hover:text-red-700'>Reset Password</Link>
 						</div>
 
 						<div className="form-control mt-6">
@@ -129,7 +134,7 @@ const Login = () => {
 				</form>
 				<div className="p-6 md:p-8 !pb-1 pt-1 md:pt-2 text-center">
 					Don&apos;t have an account? &nbsp;
-					<Link href="/registration" className='link link-primary font-semibold transition-all hover:duration-200 text-blue-600 hover:text-blue-700'>Register</Link>
+					<Link href="/register" className='link link-primary font-semibold transition-all hover:duration-200 text-blue-600 hover:text-blue-700'>Register</Link>
 				</div>
 
 				{/* <div className='border-t border-slate-300 my-4 mx-6 md:mx-8'></div> */}
