@@ -3,7 +3,7 @@ import React from 'react';
 
 const userPost = async (userData) => {
     try {
-        const response = await fetch("http://localhost:3000/api/tutors", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_fetch_data}/api/tutors`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
