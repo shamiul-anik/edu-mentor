@@ -48,6 +48,7 @@
     "@types/aos": "^3.0.4",
     "@types/react": "18.2.20",
     "@types/react-router-dom": "^5.3.3",
-    "daisyui": "^3.5.1"
+    "daisyui": "^3.5.1",
+    "encoding": "^0.1.13"
   }
 }
