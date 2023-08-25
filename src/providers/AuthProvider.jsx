@@ -1,8 +1,9 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import {app} from '@/firebase/firebase.config.js';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import AuthContext from "@/providers/AuthContext";
+// import axios from 'axios';
+
+import AuthContext from "@/contexts/AuthContext"
 
 
 

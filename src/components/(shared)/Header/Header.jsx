@@ -1,4 +1,5 @@
-import React from 'react';
+"use client"
+import React, { startTransition } from 'react';
 import './Header.css';
 import Link from 'next/link';
 import { MdLogin, MdLogout } from 'react-icons/md';
@@ -7,17 +8,39 @@ import Image from 'next/image';
 import Logo from '@/assets/images/logo.png';
 import UserImage from '@/assets/images/user.png';
 import useAuth from "@/hooks/useAuth"
+import { toast } from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 
 
 const Header = () => {
+	const { replace, refresh } = useRouter();
 
-	const { user } = useAuth();
-	console.log(user);
-	const currentUserName = "Shamiul";
-	const currentUserEmail  = "anik.savar.bd@gmail.com";
+
+	const { user, logOut } = useAuth();
+	console.log("logged user", user);
+	const currentUserName = user?.displayName;
+	const currentUserEmail = user?.email;
 	const currentUserPhotoURL = UserImage;
 	const userRole = "student";
+
+	const handleLogOut = async () => {
+		const toastId = toast.loading("Loading...");
+		console.log("log out");
+		try {
+			await logOut();
+			toast.dismiss(toastId);
+			toast.success("Successfully logout!");
+			startTransition(() => {
+				refresh();
+			});
+		} catch (error) {
+			console.log(error.message);
+			toast.error("Error!");
+			toast.dismiss(toastId);
+		}
+	};
 
 	return (
 		<div className="bg-teal-700 py-2">
@@ -27,7 +50,7 @@ const Header = () => {
 						<label tabIndex={0} className="btn btn-ghost text-slate-100 lg:hidden">
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
 						</label>
-						
+
 						<ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow-lg bg-base-100 rounded-box w-52 z-10">
 							<li>
 								<Link href="/">Home</Link>
@@ -53,7 +76,7 @@ const Header = () => {
 							</li>
 							<li className="hover:cursor-pointer">
 								<Link href="/about">About</Link>
-							</li> 
+							</li>
 							{
 								!user && (
 									<>
@@ -110,13 +133,11 @@ const Header = () => {
 											</button>
 										</Link>
 									</li>
-									<li>
-										{/* <Link className='flex p-0' onClick={handleLogOut}> */}
-											<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
-												<MdLogout className='text-xl'></MdLogout>
-												Logout
-											</button>
-										{/* </Link> */}
+									<li className='flex p-0' onClick={handleLogOut}>
+										<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center" >
+											<MdLogout className='text-xl'></MdLogout>
+											Logout
+										</button>
 									</li>
 								</ul>
 							</div>
@@ -202,13 +223,13 @@ const Header = () => {
 											</button>
 										</Link>
 									</li>
-									<li>
+									<li onClick={handleLogOut}>
 										{/* <Link onClick={handleLogOut} className="bg-red-500 hover:bg-red-600 transition hover:delay-200 text-white font-bold py-2 justify-center">Logout</Link> */}
 										{/* <Link className='flex p-0' onClick={handleLogOut}> */}
-											<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
-												<MdLogout className='text-xl'></MdLogout>
-												Logout
-											</button>
+										<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
+											<MdLogout className='text-xl'></MdLogout>
+											Logout
+										</button>
 										{/* </Link> */}
 									</li>
 								</ul>

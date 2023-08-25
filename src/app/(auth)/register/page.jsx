@@ -1,18 +1,18 @@
 "use client"
 import { useState } from 'react';
 import { FaGoogle, FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
-import { useRouter } from 'next/router'; // Import Next.js router
-import { AuthContext } from '@/providers/AuthContext'; // Update path as needed
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
 import Terms from '@/app/(auth)/register/Terms';
+import useAuth from "@/hooks/useAuth.js"
+import Link from 'next/link';
 
 
 const Registration = () => {
 
 
-	const { createUser, logOut, signInWithGoogle } = useContext(AuthContext);
+	const { createUser, logOut, signInWithGoogle } = useAuth();
 	const { register, getValues, handleSubmit, formState: { errors } } = useForm();
 
 	const [error, setError] = useState("");
@@ -21,11 +21,31 @@ const Registration = () => {
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [acceptTerms, setAcceptTerms] = useState(false);
 
+	const saveUser = async (userInfo) => {
+		try {
+			const response = await fetch('http://localhost:3000/api/post-users', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ userInfo }),
+			});
+
+			if (response.ok) {
+				console.log('Post created successfully');
+				toast.success("Your data has been stored.")
+			} else {
+				console.error('Failed to create post');
+				toast.error("Fetch error.")
+			}
+		} catch (error) {
+			console.error('Error creating post:', error);
+			toast.error("Error in post operation.")
+		}
+	}
 	const onSubmit = (userInformation, event) => {
-		// console.log(userInformation);
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
-		// console.log("After Deleting Password Confirmation: ", userInformation);
 
 		createUser(userInformation.email, userInformation.password)
 			.then(result => {
@@ -35,19 +55,20 @@ const Registration = () => {
 					// console.log("inside update condition");
 					updateUserData(currentUser, userInformation.name, userInformation.photoURL);
 				}
-				
+
 				const userInfo = {
 					email: currentUser.email,
 					displayName: userInformation.name,
+					role: "user",
 					photoURL: userInformation.photoURL
 				}
+
 				saveUser(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
 				handleLogOut();
-				event.target.reset(); 
-				navigate("/login");
+				event.target.reset();
 			})
 			.catch(error => {
 				setError(error.message);
@@ -69,7 +90,7 @@ const Registration = () => {
 	// Update User Information
 	const updateUserData = (currentUser, name, photoURL) => {
 		updateProfile(currentUser, {
-			displayName: name, 
+			displayName: name,
 			photoURL: photoURL
 		}).then(() => {
 			console.log("Profile updated!");
@@ -89,9 +110,8 @@ const Registration = () => {
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL
 				}
-				saveUser(userInfo);
+				// saveUser(userInfo);
 				toast.success("Successfully registered!");
-				navigate("/");
 			})
 			.catch(error => {
 				setError(error.message);
@@ -103,7 +123,7 @@ const Registration = () => {
 		event.preventDefault();
 		setShowPassword(!showPassword);
 	};
-	
+
 	// Show/Hide Confirm Password
 	const handleShowConfirmPassword = (event) => {
 		event.preventDefault();
@@ -130,7 +150,7 @@ const Registration = () => {
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="!px-6 md:!px-8 !pt-2 card-body">
-						
+
 						<div className="grid md:grid-cols-2 md:gap-6">
 							<div className="form-control">
 								<label className="label pl-0" htmlFor="name">
@@ -145,21 +165,21 @@ const Registration = () => {
 								</label>
 								<input type="email" {...register("email", { required: true })} id="email" name="email" placeholder="Enter your email address" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
 								{errors?.email && <p className="text-red-500 mt-2">Email is required!</p>} {/* Error Message */}
-							</div>	
+							</div>
 						</div>
-						
+
 						<div className="grid md:grid-cols-2 md:gap-6">
 							<div className="relative form-control">
 								<label className="label pl-0" htmlFor="password">
 									<span className="label-text text-lg">Password</span>
 								</label>
-								<input type={showPassword ? "text" : "password"} 
+								<input type={showPassword ? "text" : "password"}
 									{...register("password", {
 										required: true,
 										minLength: 6,
 										pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/
 									})}
-									id="password" name="password" placeholder="Enter your password" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" autoComplete='true' 
+									id="password" name="password" placeholder="Enter your password" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" autoComplete='true'
 								/>
 								<button onClick={handleShowPassword} className="btn btn-ghost absolute top-11 right-0 rounded-l-none">
 									{
@@ -174,7 +194,7 @@ const Registration = () => {
 								<label className="label pl-0" htmlFor="confirmPassword">
 									<span className="label-text text-lg">Confirm Password</span>
 								</label>
-								<input type={showConfirmPassword ? "text" : "password"} 
+								<input type={showConfirmPassword ? "text" : "password"}
 									{...register("confirmPassword", {
 										required: "Please confirm password!",
 										validate: {
@@ -184,14 +204,14 @@ const Registration = () => {
 											}
 										}
 									})}
-									id="confirmPassword" name="confirmPassword" placeholder="Please confirm your password" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" autoComplete='true' 
+									id="confirmPassword" name="confirmPassword" placeholder="Please confirm your password" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" autoComplete='true'
 								/>
 								<button onClick={handleShowConfirmPassword} className="btn btn-ghost absolute top-11 right-0 rounded-l-none">
 									{
 										showConfirmPassword ? <FaRegEyeSlash className='text-lg md:text-xl font-bold' /> : <FaRegEye className='text-lg md:text-xl font-bold' />
 									}
 								</button>
-								
+
 								{errors?.confirmPassword?.required === 'required' && <p className="text-red-500 mt-2">Passwords should match!</p>}
 								<p className="text-red-500 mt-2">{errors?.confirmPassword?.message}</p>
 							</div>
@@ -223,7 +243,7 @@ const Registration = () => {
 				</form>
 				<div className="p-6 md:p-8 !pb-1 pt-1 md:pt-2 text-center">
 					Already have an account? &nbsp;
-					<Link to="/login" className='link link-primary font-semibold transition-all hover:duration-200 text-blue-600 hover:text-blue-700'>Login</Link>
+					<Link href="/login" className='link link-primary font-semibold transition-all hover:duration-200 text-blue-600 hover:text-blue-700'>Login</Link>
 				</div>
 
 				<div className="divider">OR</div>

@@ -1,7 +1,6 @@
 "use client"
 import { createContext } from "react";
 
-const AuthContext = createContext({});
 
-
+const AuthContext = createContext(null);
 export default AuthContext;
