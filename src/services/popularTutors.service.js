@@ -4,7 +4,17 @@ import 'server-only'
 export const getPopularTutorFromDb = async () => {
     const db = await DbConnect();
     const tutorsCollections = await db.collection('tutors');
-    return tutorsCollections.find({}).toArray();
+    // return tutorsCollections.find({}).toArray();
+    const sortingOptions = { year_completed: -1 }; // Use -1 for descending order
+    const queryOptions = {
+        sort: sortingOptions,
+        limit: 4 // Specify the limit (in your case, 4)
+    };
+    
+    return tutorsCollections.find({}, queryOptions).toArray();
+
+    
+   
 }
 
 export const getSinglePopularTutorData = async (id) => {
