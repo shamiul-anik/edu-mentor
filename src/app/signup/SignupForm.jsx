@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import userPost from '@/utils/userPost'
 
+
 const SignupForm = () => {
   const {
     register,
@@ -60,14 +61,35 @@ const SignupForm = () => {
         photoURL: photo,
       });
       //user Data save mongodb start
-      const userData ={
-        name: name,
-        email: email,
-        role: 'student',
-        photo_URL: photo,
-        registered_at: new Date()
+      // const userData ={
+      //   name: name,
+      //   email: email,
+      //   role: 'student',
+      //   photo_URL: photo,
+      //   registered_at: new Date()
+      // }
+      // updateDatabase(userData)
+
+      try {
+        // ... other code ...
+  
+        //user Data save mongodb start
+        // const userData ={
+        //   name: name,
+        //   email: email,
+        //   role: 'student',
+        //   photo_URL: photo,
+        //   registered_at: new Date()
+        // }
+  
+        // Call the updateDatabase function from here
+        // updateDatabase(userData);
+  
+        // ... other code ...
+      } catch (error) {
+        // ... handle error ...
       }
-      userPost(userData)
+    
       //user Data save mongodb end
       startTransition(() => {
         refresh();
@@ -80,6 +102,7 @@ const SignupForm = () => {
       toast.error(error.message || "User not signed in");
     }
   };
+ 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
