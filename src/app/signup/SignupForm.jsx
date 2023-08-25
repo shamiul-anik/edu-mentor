@@ -61,35 +61,15 @@ const SignupForm = () => {
         photoURL: photo,
       });
       //user Data save mongodb start
-      // const userData ={
-      //   name: name,
-      //   email: email,
-      //   role: 'student',
-      //   photo_URL: photo,
-      //   registered_at: new Date()
-      // }
-      // updateDatabase(userData)
-
-      try {
-        // ... other code ...
-  
-        //user Data save mongodb start
-        // const userData ={
-        //   name: name,
-        //   email: email,
-        //   role: 'student',
-        //   photo_URL: photo,
-        //   registered_at: new Date()
-        // }
-  
-        // Call the updateDatabase function from here
-        // updateDatabase(userData);
-  
-        // ... other code ...
-      } catch (error) {
-        // ... handle error ...
+      const userData ={
+        name: name,
+        email: email,
+        role: 'student',
+        photo_URL: photo,
+        registered_at: new Date()
       }
-    
+      userPost(userData)
+      
       //user Data save mongodb end
       startTransition(() => {
         refresh();
