@@ -10,7 +10,7 @@ import { Tutor } from '@/scriptType/tutorType';
 
 
 const PopularTutors = async  () => {
-	// // const mentorData = await getTutors()
+	const mentorData = await getTutors()
 	// const { mentorData, loading, error } = usePopularDataFetch();
 
 	// if (loading) {
@@ -19,10 +19,10 @@ const PopularTutors = async  () => {
 	 
 	// const mentorData = await getData();
 
-	const res = await fetch(`${process.env.NEXT_PUBLIC_fetch_data}/api/popularTutors`,{
-		cache: 'force-cache'
-	})
-	const mentorData = await res.json();
+	// const res = await fetch(`${process.env.NEXT_PUBLIC_fetch_data}/api/popularTutors`,{
+	// 	cache: 'force-cache'
+	// })
+	// const mentorData = await res.json();
 
 
 	return (
