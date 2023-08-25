@@ -24,3 +24,29 @@ export const getSinglePopularTutorData = async (id) => {
     // return query
     return singleTutorCollection.findOne(query);
 }
+// const userData ={
+//     "name": "hello",
+//     "email": "hello@example.com"
+// }
+export const updateDatabase = async (userData) => {
+
+    const db = await DbConnect();
+    const userCollections = db.collection('users');
+    const existingUser = await userCollections.findOne({ _id: userData._id });
+
+if (existingUser) {
+    // Document with the same _id already exists, handle accordingly
+    console.log('same id')
+} else {
+    // Insert the new document
+    try {
+        const result = await userCollections.insertOne(userData);
+        console.log('Data inserted:', result);
+    } catch (error) {
+        console.error('Error inserting data:', error);
+    }
+}
+    
+    
+   
+}

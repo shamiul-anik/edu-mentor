@@ -10,6 +10,7 @@ const userPost = async (userData) => {
           },
           body: JSON.stringify(userData),
         });
+        
     
         if (response.ok) {
           console.log("User data submitted successfully");
