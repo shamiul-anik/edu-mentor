@@ -7,6 +7,7 @@ import { updateProfile } from 'firebase/auth';
 import Terms from '@/app/(auth)/register/Terms';
 import useAuth from "@/hooks/useAuth.js"
 import Link from 'next/link';
+import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 
 
 const Registration = () => {
@@ -21,28 +22,49 @@ const Registration = () => {
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [acceptTerms, setAcceptTerms] = useState(false);
 
-	const saveUser = async (userInfo) => {
+	const saveUser = async (userData) => {
 		try {
-			const response = await fetch('http://localhost:3000/api/post-users', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ userInfo }),
+			const response = await fetch("http://localhost:3000/api/users", {
+			  method: "POST",
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: JSON.stringify(userData),
 			});
-
+		
 			if (response.ok) {
-				console.log('Post created successfully');
-				toast.success("Your data has been stored.")
+			  console.log("User data submitted successfully");
 			} else {
-				console.error('Failed to create post');
-				toast.error("Fetch error.")
+			  console.error("Failed to submit user data");
 			}
-		} catch (error) {
-			console.error('Error creating post:', error);
-			toast.error("Error in post operation.")
-		}
-	}
+		  } catch (error) {
+			console.error("An error occurred:", error);
+		  }
+	};
+
+	// const saveUser = async (userInfo) => {
+	// 	try {
+	// 		const response = await fetch('http://localhost:3000/api/post-users', {
+	// 			method: 'POST',
+	// 			headers: {
+	// 				'content-type': 'application/json',
+	// 			},
+	// 			body: JSON.stringify({ userInfo }),
+	// 		});
+
+	// 		if (response.ok) {
+	// 			console.log('Post created successfully');
+	// 			toast.success("Your data has been stored.")
+	// 		} else {
+	// 			console.error('Failed to create post');
+	// 			toast.error("Fetch error.")
+	// 			console.log(response);
+	// 		}
+	// 	} catch (error) {
+	// 		console.error('Error creating post:', error);
+	// 		toast.error("Error in post operation.")
+	// 	}
+	// }
 	const onSubmit = (userInformation, event) => {
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
