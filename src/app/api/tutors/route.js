@@ -24,7 +24,7 @@ import { NextResponse } from "next/server";
 
 // Initialize the cors middleware
 const cors = Cors({
-  origin: 'https://edu-mentor-demo.vercel.app', // Replace with your frontend domain
+  origin: 'https://edu-mentor-demo.vercel.app', // Replace with your frontend domain url
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 });
 
