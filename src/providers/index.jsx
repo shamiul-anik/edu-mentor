@@ -2,11 +2,6 @@
 
 import AuthProvider from "./AuthProvider";
 
-
-
-// import AuthProvider from "./AuthProvider";
-// import ThemeProvider from "./ThemeProvider";
-
 const Providers = ({ children }) => {
   return (
     

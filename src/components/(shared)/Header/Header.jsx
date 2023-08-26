@@ -15,6 +15,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 
 
+
 const Header = () => {
 	const { user, logout } = useAuth();
 
@@ -25,7 +26,7 @@ const Header = () => {
 	// const user = "";
 	// const displayName = "Shamiul";
 	// const email  = "anik.savar.bd@gmail.com";
-	const profilePhoto = photoURL|| "https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png" ;
+	const profilePhoto = photoURL|| {UserImage} ;
 	const userRole = "student";
 
 	const handleLogout = async () => {
@@ -57,7 +58,7 @@ const Header = () => {
 								<Link href="/">Home</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/teachers">Teachers</Link>
+								<Link href="/tutors">Tutors</Link>
 							</li>
 							<li className="hover:cursor-pointer">
 								<Link href="/students">Students</Link>
@@ -79,6 +80,9 @@ const Header = () => {
 							<li className="hover:cursor-pointer">
 								<Link href="/about">About</Link>
 							</li> 
+							<li className="nav-item hover:cursor-pointer">
+							<Link href="/signup">Sign Up</Link>
+						</li>
 							{
 								!user && (
 									<>
@@ -98,7 +102,7 @@ const Header = () => {
 						</ul>
 					</div>
 					<Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-slate-700 hover:bg-inherit">
-						<Image className="h-10 w-10" src={Logo} alt="Logo" />
+						<Image height={40} width={40} className="h-10 w-10" src={Logo} alt="Logo" />
 						<span className='flex items-center banner-highlighted-text text-xl md:text-3xl'>EduMentor</span>
 					</Link>
 				</div>
@@ -155,7 +159,7 @@ const Header = () => {
 							<Link href="/">Home</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/teachers">Teachers</Link>
+							<Link href="/tutors">Tutors</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
 							<Link href="/students">Students</Link>
