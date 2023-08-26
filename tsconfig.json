@@ -25,6 +25,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(shared)/Counter/Counter.jsx", "src/hooks/useAuth.js", "src/providers/AuthProvider.jsx", "src/components/(shared)/Header/Header.jsx", "src/app/login/LoginForm.jsx", "src/app/signup/SignupForm.jsx", "src/components/GoogleLogin.jsx", "src/providers/index.jsx", "src/app/[popularId]/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(shared)/Counter/Counter.jsx", "src/hooks/useAuth.js", "src/providers/AuthProvider.jsx", "src/components/(shared)/Header/Header.jsx", "src/app/login/LoginForm.jsx", "src/app/signup/SignupForm.jsx", "src/components/GoogleLogin.jsx", "src/providers/index.jsx", "src/app/popularTutors/[popularId]/page.jsx"],
   "exclude": ["node_modules"]
 }

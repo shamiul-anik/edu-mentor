@@ -17,7 +17,7 @@ const LoginForm = () => {
   } = useForm();
 
   const { signIn } = useAuth();
-  console.log('signIn',signIn);
+  // console.log('signIn',signIn);
   const search = useSearchParams();
   const from = search.get("redirectUrl") || "/";
   const { replace, refresh } = useRouter();

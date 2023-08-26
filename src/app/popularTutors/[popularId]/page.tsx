@@ -7,7 +7,7 @@ import React from 'react';
 const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: {popularId}}) => {
     const singleTutor: Tutor= await getSingleTutor(popularId)
     // console.log(singleTutor)
-    const { image_url, name, id, }= singleTutor;
+    const { image_url, name, id, tuition_info, area_covered}= singleTutor || {};
     return (
         <div className="m-10 w-1/2 bg-white ">
             <h3 className="text-3xl font-bold divide-x-2 divide-neutral-900 mb-4  ">Tutor Profile</h3>
@@ -26,9 +26,25 @@ const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: 
         <div className="mb-2  dark:text-white">
            <p className="font-bold tracking-tight text-gray-900"> {name}</p>
            <p> {id}</p>
-           <p> {name}</p>
-           <p> {name}</p>
-           <p> {name}</p>
+           <p> null</p>
+           <p> {
+                tuition_info?.preferred_areas_to_teach?.map((areas, index)=> <span
+                 key={index}
+                 className="pr-2"
+                 >
+                    
+                    {areas }
+                </span>)
+            }</p>
+           <p> {
+                area_covered?.map((area, index)=> <span
+                key={index}
+                className="pr-2"
+                >
+                   
+                   {area}
+               </span>)
+            }</p>
 
         </div>
     </div>
