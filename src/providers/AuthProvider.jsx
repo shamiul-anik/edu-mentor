@@ -16,7 +16,7 @@ import { ReactNode, useEffect, useState } from "react";
   const [loading, setLoading] = useState(true);
   
 
-  console.log('provider', user)
+  // console.log('provider', user)
 
   const createUser = (email, password) => {
     setLoading(true);

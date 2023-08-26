@@ -11,6 +11,7 @@ import { Tutor } from '@/scriptType/tutorType';
 
 const PopularTutors = async  () => {
 	const mentorData = await getTutors();
+	// console.log(mentorData)
 	// const { mentorData, loading, error } = usePopularDataFetch();
 
 	// if (loading) {
