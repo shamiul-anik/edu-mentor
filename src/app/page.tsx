@@ -3,7 +3,7 @@
 
 import HomeBanner from "@/components/Home/HomeBanner";
 import Gallery from "@/components/Home/Gallery"
-import PopularTutors from "./PopularTuror/PopularTutors";
+import PopularTutors from "./popularTutors/page";
 import TuitionTypes from "@/components/Home/TuitionTypes";
 import Statistics from "@/components/Home/Statistics";
 import Testimonial from "@/components/Home/Testimonial";
@@ -15,7 +15,7 @@ export default function Home() {
     <div className="">
       <HomeBanner />
       <Gallery/>
-      <PopularTutors />
+      <PopularTutors/>
       <TuitionTypes />
       <Statistics />
       <Testimonial />

@@ -8,6 +8,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { startTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import userPost from '@/utils/userPost'
+
 
 const SignupForm = () => {
   const {
@@ -58,6 +60,17 @@ const SignupForm = () => {
         displayName: name,
         photoURL: photo,
       });
+      //user Data save mongodb start
+      // const userData ={
+      //   name: name,
+      //   email: email,
+      //   role: 'student',
+      //   photo_URL: photo,
+      //   registered_at: new Date()
+      // }
+      // userPost(userData)
+      
+      //user Data save mongodb end
       startTransition(() => {
         refresh();
         replace(from);
@@ -69,6 +82,7 @@ const SignupForm = () => {
       toast.error(error.message || "User not signed in");
     }
   };
+ 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
