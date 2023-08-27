@@ -1,3 +1,4 @@
+"use client"
 import './globals.css'
 import '@smastrom/react-rating/style.css';
 import "aos/dist/aos.css";
@@ -31,3 +32,15 @@ export default function RootLayout({
     </html>
   )
 }
+
+
+// "use client"
+
+// import { ThemeProvider } from "flowbite-react/lib/esm/components/Flowbite/ThemeContext";
+// import AuthProvider from "./AuthProvider.js";
+
+// const Providers = ( { childern } ) => {
+//     return  <ThemeProvider><AuthProvider>{childern}</AuthProvider></ThemeProvider>;
+// };
+
+// export default Providers;

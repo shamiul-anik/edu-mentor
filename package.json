@@ -20,6 +20,7 @@
     "countup": "^1.8.2",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "firebase": "^10.2.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.5.0",
     "keen-slider": "^6.8.6",
@@ -39,7 +40,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
-    "daisyui": "^3.5.1",
-    "@types/react": "18.2.20"
+    "@types/react": "18.2.20",
+    "daisyui": "^3.5.1"
   }
 }
