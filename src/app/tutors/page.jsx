@@ -35,10 +35,10 @@ const Tutors = () => {
     <div>
       <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
-        <SectionTitle heading="Instructors" subHeading="Meet Our Exceptional Language Instructors"></SectionTitle>
+        <SectionTitle heading="Tutors" subHeading="Meet Our Exceptional Tutors"></SectionTitle>
 
         <div>
-          <h1 className="text-2xl font-bold text-teal-600 underline underline-offset-8 text-center mb-6">Total Instructors: {mentorData?.length}</h1>
+          <h1 className="text-2xl font-bold text-teal-600 underline underline-offset-8 text-center mb-6">Total Verified Tutors: {mentorData?.length}</h1>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 mt-8">
