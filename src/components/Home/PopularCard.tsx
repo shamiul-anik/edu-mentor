@@ -6,10 +6,10 @@ interface PopularCardProps {
   data: {
     name: string;
     email: string;
-    id: number | string;
-    image: string; // URL of the image
-    subject: string;
-    university: string;
+    _id: number | string;
+    photoURL: string; // URL of the image
+    subjects: string[];
+    Education: string;
     location: string;
   };
 }
@@ -20,7 +20,7 @@ console.log('test for button')
 
 const PopularCard: React.FC<PopularCardProps> = ({data}) => {
   // console.log(data)
-  const {name, email, id, image, subject, university, location} = data;
+  const {name, email, _id, photoURL, subjects, Education, location} = data;
   
     return (
         <div className='my-4 mx-auto relative w-full'>
@@ -28,14 +28,14 @@ const PopularCard: React.FC<PopularCardProps> = ({data}) => {
               <div className='w-2/3 h-2/3 mx-auto  mt-10 mb-0'>
               <Image
               className='border mx-auto border-gray-400 rounded outline outline-1 hover:outline-cyan-500 shadow-lg hover:shadow-cyan-500/50  p-2'
-               width={190} height={190} src={image} alt="tutorImage" />
+               width={190} height={190} src={photoURL} alt="tutorImage" />
 
               </div>
   <div className="card-body text-center">
     <h2 className="card-title justify-center">{name}</h2>
     <p>Email: {email}</p>
-    <p>{university}</p>
-    <p>Subject:  {subject}</p>
+    <p>{Education}</p>
+    <p>Subject:  {subjects.join(', ')}</p>
     <p>{location}</p>
     {/* TODO: Top 'use client' is use for button.  */}
     <div className="card-actions justify-end">

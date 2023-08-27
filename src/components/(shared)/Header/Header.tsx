@@ -19,6 +19,27 @@ const Header = () => {
 	const currentUserPhotoURL = UserImage;
 	const userRole = "student";
 
+
+	// const { user, userRole, logOut, loading, setLoading } = useContext(AuthContext);
+
+	// const navigate = useNavigate();
+
+	// const currentUserName = user?.displayName || "Welcome, User!";
+	// const currentUserPhotoURL = user?.photoURL || UserImage;
+	// const currentUserEmail = user?.email;
+
+	// const handleLogOut = () => {
+	// 	logOut()
+	// 		.then(() => {
+	// 			toast.success("Successfully logged out!");
+	// 			navigate("/");
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error.message);
+	// 			setLoading(false);
+	// 		})
+	// };
+
 	return (
 		<div className="bg-teal-700 py-2">
 			<nav className={`navbar gap-4 ${user ? 'justify-between' : ''} max-w-7xl mx-auto`}>
@@ -33,7 +54,7 @@ const Header = () => {
 								<Link href="/">Home</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/teachers">Teachers</Link>
+								<Link href="/tutors">Tutors</Link>
 							</li>
 							<li className="hover:cursor-pointer">
 								<Link href="/students">Students</Link>
@@ -130,7 +151,7 @@ const Header = () => {
 							<Link href="/">Home</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/teachers">Teachers</Link>
+							<Link href="/tutors">Tutors</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
 							<Link href="/students">Students</Link>

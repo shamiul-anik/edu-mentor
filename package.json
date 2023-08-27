@@ -17,20 +17,27 @@
     "@types/react-scroll": "^1.8.7",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "countup": "^1.8.2",
+    "encoding": "^0.1.13",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
     "firebase": "^10.2.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.5.0",
+    "history": "^5.3.0",
     "keen-slider": "^6.8.6",
     "lottie-react": "^2.4.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.3",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "react": "18.2.0",
+    "react-awesome-reveal": "^4.2.5",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
     "react-responsive-carousel": "^3.2.23",
     "react-scroll-trigger": "^0.6.14",
@@ -41,6 +48,10 @@
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/react": "18.2.20",
+<<<<<<< HEAD
+=======
+    "@types/react-router-dom": "^5.3.3",
+>>>>>>> 9303b390b4369dbdf04fcd1e3129e69ad6f2176f
     "daisyui": "^3.5.1"
   }
 }
