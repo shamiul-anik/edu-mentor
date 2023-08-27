@@ -7,6 +7,9 @@ import { updateProfile } from 'firebase/auth';
 import Terms from '@/app/(auth)/register/Terms';
 import useAuth from "@/hooks/useAuth.js"
 import Link from 'next/link';
+import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
+import { redirect } from 'next/navigation';
+import saveUser from "@/utils/saveUser"
 
 
 const Registration = () => {
@@ -21,28 +24,7 @@ const Registration = () => {
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [acceptTerms, setAcceptTerms] = useState(false);
 
-	const saveUser = async (userInfo) => {
-		try {
-			const response = await fetch('http://localhost:3000/api/post-users', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ userInfo }),
-			});
 
-			if (response.ok) {
-				console.log('Post created successfully');
-				toast.success("Your data has been stored.")
-			} else {
-				console.error('Failed to create post');
-				toast.error("Fetch error.")
-			}
-		} catch (error) {
-			console.error('Error creating post:', error);
-			toast.error("Error in post operation.")
-		}
-	}
 	const onSubmit = (userInformation, event) => {
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
@@ -57,11 +39,12 @@ const Registration = () => {
 				}
 
 				const userInfo = {
-					email: currentUser.email,
 					displayName: userInformation.name,
-					role: "user",
-					photoURL: userInformation.photoURL
+					email: currentUser.email,
+					photoURL: userInformation.photoURL,
+					role: "user"
 				}
+				console.log(userInfo);
 
 				saveUser(userInfo);
 
@@ -110,7 +93,7 @@ const Registration = () => {
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL
 				}
-				// saveUser(userInfo);
+				saveUser(userInfo);
 				toast.success("Successfully registered!");
 			})
 			.catch(error => {
