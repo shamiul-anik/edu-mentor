@@ -1,34 +1,35 @@
 import { NextResponse } from "next/server";
-import connect from "../../../utils/db.js";
-import { Users } from "../../../models/Users.js"; 
+import connect from "@/utils/db.js";
+import { User } from "@/models/Users"; 
 
 export const POST = async (request) => {
   try {
     // Connect to the MongoDB database
-    const { userInfo } = await request.json();
     await connect();
+    
+    // Parse request body
+    const { displayName, email, photoURL, role } = await request.json();
+    console.log(displayName, email, photoURL, role);
 
-
-    // if (!userInfo) {
-    //   return new NextResponse("Missing user information", { status: 400 });
-    // }
-
-    const { displayName, email, role, photoURL } = userInfo;
-
-    // Validate the data before creating a new user
-    // if (!displayName || !email || !role || !photoURL) {
-    //   return new NextResponse("Invalid user data", { status: 400 });
-    // }
+    // check existing users
+    const user = await User.findOne({email});
+    if(user){
+      return new NextResponse.json({error: "User already exists"}, {status: 400})
+    }
 
     // Create a new user instance
-    await Users.create({displayName, email, photoURL, role},  )
+    const newUser = new User({ displayName, email, photoURL, role });
+    console.log(newUser);
 
     // Save the new user to the database
-    // const savedUser = await newUser.save();
+    const savedUser = await newUser.save();
+    console.log(savedUser);
 
-    return NextResponse({message: "User stored"}, { status: 201 });
+    return NextResponse.json({ message: "User stored successfully!",
+                               success: true,
+                               savedUser }, { status: 201 });
   } catch (error) {
-    console.error("Database Error:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    console.error("Database Error:", error.message);
+    return NextResponse("Internal Server Error", { status: 500 });
   }
 };
