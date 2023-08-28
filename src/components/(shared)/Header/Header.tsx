@@ -6,11 +6,13 @@ import { ImProfile } from 'react-icons/im';
 import Image from 'next/image';
 import Logo from '@/assets/images/logo.png';
 import UserImage from '@/assets/images/user.png';
+// import useAuth from '../../../Hooks/useAuth';
+
 
 
 
 const Header = () => {
-
+	
 	const user = "Shamiul";
 	const currentUserName = "Shamiul";
 	const currentUserEmail  = "anik.savar.bd@gmail.com";
@@ -144,7 +146,7 @@ const Header = () => {
 				}
 
 				<div className="navbar-center mx-auto hidden lg:flex">
-					<ul className="flex gap-10 text-xl font-semibold menu-horizontal px-1 z-10">
+					<ul className="flex gap-6 text-xl font-semibold menu-horizontal px-1 z-10">
 						<li className="nav-item hover:cursor-pointer">
 							<Link href="/">Home</Link>
 						</li>
