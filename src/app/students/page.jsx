@@ -22,7 +22,7 @@ const Students = () => {
           throw new Error("Failed to fetch data");
         }
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setStudents(data);
       } catch (error) {
         console.error("Error fetching mentor data:", error);
