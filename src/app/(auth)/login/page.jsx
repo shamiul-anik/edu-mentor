@@ -1,4 +1,4 @@
-"use client"
+
 import {  useState } from 'react';
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
