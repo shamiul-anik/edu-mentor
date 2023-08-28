@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className='col-span-1'>
           <span className="footer-title text-lg">Quick Links</span>
-          <Link href="" className="link link-hover">Teachers</Link>
+          <Link href="" className="link link-hover">Tutors</Link>
           <Link href="" className="link link-hover">Students</Link>
           <Link href="" className="link link-hover">Contact</Link>
           <Link href="" className="link link-hover">About</Link>
@@ -61,7 +61,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="text-sm lg:text-base mx-auto mt-8 py-6 border-t border-t-2 border-teal-600 flex flex-col gap-2 justify-center items-center">
+      <div className="text-sm lg:text-base mx-auto mt-8 py-6 border-t-2 border-teal-600 flex flex-col gap-2 justify-center items-center">
         <p className='text-center px-16'>Copyright © 2023 EduMentor. All Rights Reserved.</p>
       </div>
     </footer>
