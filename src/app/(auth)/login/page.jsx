@@ -6,19 +6,23 @@ import { useForm } from 'react-hook-form';
 import Loader from '@/components/(shared)/Loader/Loader';
 import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
+import { redirect } from 'next/navigation';
+import saveUser from '@/utils/saveUser';
 
-// import { saveUser } from '../../../api/auth';
 
 
 // meta data for title
 export const metadata = {
 	title: 'EduMentor Authentication',
-	description: 'EduMentor Home Page',
+	openGraph: {
+		title: 'Edu Mentor Authentication',
+	  },
   }
+
 const Login = () => {
 
 
-	const { loading, logIn, signInWithGoogle, setUser } = useAuth();
+	const { loading, setLoading, logIn, signInWithGoogle, setUser } = useAuth();
 	// const setLoading = "";
 	const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -36,8 +40,8 @@ const Login = () => {
 
 	const onSubmit = (userInformation) => {
 		console.log(userInformation);
-		// setLoading(true);
-		setError("");
+		setLoading(true);
+		setError("");	 	
 
 		logIn(userInformation.email, userInformation.password)
 			.then(result => {
@@ -45,12 +49,11 @@ const Login = () => {
 				console.log(loggedUser);
 				setUser(loggedUser)
 				toast.success("Successfully logged in!");
-				// navigate(from, { replace: true });
 			})
 			.catch(error => {
-				// setError(error.message);
+				setError(error.message);
 				toast.error("Incorrect email and/or password!");
-				// setLoading(false);
+				setLoading(false);
 			})
 	};
 	
@@ -60,21 +63,20 @@ const Login = () => {
 			.then(result => {
 				const currentUser = result.user;
 				setUser(currentUser)
-				// console.log(currentUser);
+				
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL
 				}
-				// saveUser(userInfo);
+				saveUser(userInfo);
 				
 
 				toast.success("Successfully logged in!");
-				// navigate(from, { replace: true })
 			})
 			.catch(error => {
 				setError(error.message);
-				// setLoading(false);
+				setLoading(false);
 			})
 	};
 
