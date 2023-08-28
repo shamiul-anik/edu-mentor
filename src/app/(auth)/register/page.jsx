@@ -24,7 +24,7 @@ const Registration = () => {
 
 	const saveUser = async (userData) => {
 		try {
-			const response = await fetch("http://localhost:3000/api/users", {
+			const response = await fetch("http://localhost:3000/api/post-users", {
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
