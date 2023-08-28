@@ -30,7 +30,7 @@ const GoogleLogin = ({ from }) => {
     <button
       onClick={handleGoogleLogin}
       type="button"
-      className="btn btn-primary mt-5 mx-auto"
+      className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mt-5 mx-auto"
     >
       <FcGoogle className="text-3xl mr-3" /> Continue with google
     </button>
