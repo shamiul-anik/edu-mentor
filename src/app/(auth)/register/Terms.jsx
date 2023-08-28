@@ -26,7 +26,7 @@ const Terms = () => {
                 <p>You are solely responsible for your use of the Language School website and any content you contribute. It is prohibited to engage in any unlawful, harmful, or harassing activities on the website, including but not limited to the infringement of intellectual property rights or the dissemination of offensive content.</p>
   
                 <p className='font-semibold underline underline-offset-2 mt-2'>5. Disclaimer of Warranties:</p>
-                <p>Language School website and its content are provided "as is" without any warranties, express or implied. We do not guarantee the accuracy, reliability, or availability of the website or its uninterrupted and error-free operation.</p>
+                <p>Language School website and its content are provided as is without any warranties, express or implied. We do not guarantee the accuracy, reliability, or availability of the website or its uninterrupted and error-free operation.</p>
   
                 <p className='font-semibold underline underline-offset-2 mt-2'>6. Limitation of Liability:</p>
                 <p>Language School shall not be liable for any damages arising from your use or inability to use our website, including but not limited to direct, indirect, incidental, consequential, or punitive damages. This limitation applies to all claims, whether based on warranty, contract, tort, or any other legal theory.</p>
