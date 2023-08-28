@@ -1,5 +1,5 @@
+"use client"
 
-import {  useState } from 'react';
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,7 @@ import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
 // import { redirect } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
+import { useState } from 'react';
 
 
 
