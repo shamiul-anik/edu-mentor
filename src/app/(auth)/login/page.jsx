@@ -1,6 +1,6 @@
 "use client"
 
-import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+// import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import Loader from '@/components/(shared)/Loader/Loader';
@@ -8,7 +8,6 @@ import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
 // import { redirect } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
-import { useState } from 'react';
 
 
 
@@ -117,7 +116,7 @@ const Login = () => {
 							<input type={showPassword ? "text" : "password"} {...register("password", { required: true })} id="password" name="password" placeholder="Enter your password" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" autoComplete='true' required />
 							<button onClick={handleShowPassword} className="btn btn-ghost absolute bottom-0 right-0 rounded-l-none">
 								{
-									showPassword ? <FaRegEyeSlash className='text-lg md:text-xl font-bold' /> : <FaRegEye className='text-lg md:text-xl font-bold' />
+									showPassword ? 'show' : 'Hide'
 								}
 							</button>
 						</div>
@@ -156,7 +155,7 @@ const Login = () => {
 
 						<button onClick={handleGoogleLogin} className="relative flex w-100 items-center justify-center p-0.5 overflow-hidden text-lg font-semibold text-blue-700 rounded-lg group bg-gradient-to-br from-blue-600 to-blue-500 group-hover:from-blue-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
 							<span className="flex items-center justify-center w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-								<FaGoogle className="mr-2 self-center" /> Login with Google
+								 Login with Google
 							</span>
 						</button>
 					</div>
