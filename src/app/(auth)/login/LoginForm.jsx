@@ -89,7 +89,7 @@ const LoginForm = () => {
         </label>
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary" type="submit">
+        <button className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg" type="submit">
           Login
         </button>
       </div>
