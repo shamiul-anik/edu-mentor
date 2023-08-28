@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-"use client"
-import './globals.css'
-=======
 import './globals.css';
->>>>>>> 9303b390b4369dbdf04fcd1e3129e69ad6f2176f
 import '@smastrom/react-rating/style.css';
 import 'aos/dist/aos.css';
 import type { Metadata } from 'next';
