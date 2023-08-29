@@ -44,7 +44,7 @@ const Registration = () => {
 					photoURL: userInformation.photoURL,
 					role: "user"
 				}
-				console.log(userInfo);
+				// console.log(userInfo);
 
 				saveUser(userInfo);
 
