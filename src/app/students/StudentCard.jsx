@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 
@@ -6,7 +7,7 @@ const StudentCard = ({ studentsData }) => {
   return (
     <div className="flex card card-compact w-full bg-base-100 box-shadow-custom group" data-aos="zoom-in">
         <figure className='rounded-t-xl'>
-          <img className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt={`${name}'s Image`} />
+          <Image className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt={`${name}'s Image`} />
         </figure>
       <div className='border-t border-slate-300 mb-1'></div>
       <div className="flex-1 p-4 pt-4 pb-0">
