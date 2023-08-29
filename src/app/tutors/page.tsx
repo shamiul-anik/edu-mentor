@@ -1,0 +1,32 @@
+
+
+import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
+
+import { Tutor } from '@/typeScript/tutorType';
+import TutorsCard from './TutorsCard';
+import saveUser from '@/utils/saveUser'
+
+
+const TutorsPage= async  () => {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/tutors`,{
+		cache: 'force-cache'
+	})
+	const allData = await res.json();
+	console.log(allData)
+
+
+	return (
+		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
+			<SectionTitle heading="All Tutors" subHeading="Discover Our Trusted and All Tutors!"></SectionTitle>
+
+			<div className='grid gap-4 col-span-1 md:grid-cols-4 mx-auto'>
+				{
+					allData?.map((tutorData: Tutor) => (<TutorsCard key={tutorData._id} tutorData={tutorData}></TutorsCard>))
+				}
+			</div>
+
+		</section>
+	);
+};
+
+export default TutorsPage;
