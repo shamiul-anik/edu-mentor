@@ -67,7 +67,8 @@ const Login = () => {
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
-					photoURL: currentUser.photoURL
+					photoURL: currentUser.photoURL,
+					role: "user"
 				}
 				saveUser(userInfo);
 				

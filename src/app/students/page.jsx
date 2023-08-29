@@ -15,7 +15,7 @@ const Students = () => {
 
     const setStudentsData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/students', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/students`, {
           cache: "no-cache"
         });
         if (!res.ok) {
