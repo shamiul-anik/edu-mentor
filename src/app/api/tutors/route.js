@@ -9,6 +9,6 @@ export const  GET = async (request) => {
         const tutors = await Tutors.find()
         return new NextResponse(JSON.stringify(tutors), {status: 200})
     } catch (error) {
-        return new NextResponse("Database Error!", {status: 500})
+        return new NextResponse("Database Error message!", {status: 500})
     }
 }

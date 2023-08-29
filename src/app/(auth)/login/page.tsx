@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 
 
 export const metadata = {
-  title: "Login - Easy Shop",
+  title: "Edu-mentor",
 };
 
 const LoginPage = () => {
