@@ -9,7 +9,7 @@ import saveUser from '@/utils/saveUser'
 
 const TutorsPage= async  () => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/tutors`,{
-		cache: 'force-cache'
+		cache: 'no-cache'
 	})
 	const allData = await res.json();
 	console.log(allData)
