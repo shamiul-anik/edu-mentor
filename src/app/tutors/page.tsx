@@ -4,10 +4,9 @@ import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 
 import { Tutor } from '@/typeScript/tutorType';
 import TutorsCard from './TutorsCard';
-import saveUser from '@/utils/saveUser'
-
 
 const TutorsPage= async  () => {
+
 	const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/tutors`,{
 		cache: 'no-cache'
 	})
