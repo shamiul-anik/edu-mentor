@@ -53,7 +53,7 @@ const TuitionTypes = () => {
           <div className="flex-1 p-4 pt-4 pb-4">
             <h3 className='text-center text-2xl text-slate-700 font-bold'>Group Tutoring</h3>
             <h4 className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>Need the Competitive & Affordable experience?</h4>
-            <p className='font-medium text-base text-center mt-2 mb-2 text-slate-600'>Hire ours expert teachers in affordable payment and enhance learning with sharing.</p>
+            <p className='font-medium text-base text-center mt-2 mb-2 text-slate-600'>Hire ours expert tutors in affordable payment and enhance learning with sharing.</p>
           </div>
         </div>
       </div>
