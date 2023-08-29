@@ -13,7 +13,7 @@ const Tutors = () => {
     Aos.init({ duration: 1000 });
     const fetchMentorData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/tutors', {
+        const res = await fetch('https://edu-mentor-main-project.vercel.app/api/tutors', {
           cache: "no-cache"
         });
         if (!res.ok) {
