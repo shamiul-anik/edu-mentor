@@ -1,7 +1,7 @@
 "use client"
 import { useContext, useState } from 'react';
 import { FaGoogle, FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
@@ -9,12 +9,13 @@ import { updateProfile } from 'firebase/auth';
 import { useTitle } from '../../../hooks/useTitle';
 import { saveUser } from '../../../api/auth';
 import Terms from './Terms';
+import Link from 'next/link';
 
 const Registration = () => {
 
 	useTitle("Registration");
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate(); // use a different hook
 	const { createUser, logOut, signInWithGoogle } = useContext(AuthContext);
 	const { register, getValues, handleSubmit, formState: { errors } } = useForm();
 
@@ -50,7 +51,7 @@ const Registration = () => {
 				toast.success("Registration successful!");
 				handleLogOut();
 				event.target.reset(); 
-				navigate("/login");
+				// navigate("/login");
 			})
 			.catch(error => {
 				setError(error.message);
@@ -94,7 +95,7 @@ const Registration = () => {
 				}
 				saveUser(userInfo);
 				toast.success("Successfully registered!");
-				navigate("/");
+				// navigate("/");
 			})
 			.catch(error => {
 				setError(error.message);
