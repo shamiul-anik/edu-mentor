@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/db.js";
-import { User } from "@/models/Users"; 
+import { Users } from "@/models/Users";
+// import { Users } from "@/models/Users"; 
 
 export const POST = async (request) => {
   try {
@@ -12,22 +13,22 @@ export const POST = async (request) => {
     console.log(displayName, email, photoURL, role);
 
     // check existing users
-    const user = await User.findOne({email});
+    const user = await Users.findOne({email});
     if(user){
-      return new NextResponse.json({error: "User already exists"}, {status: 400})
+      return new NextResponse.json({error: "Users already exists"}, {status: 400})
     }
 
     // Create a new user instance
-    const newUser = new User({ displayName, email, photoURL, role });
-    console.log(newUser);
+    const newUsers = new Users({ displayName, email, photoURL, role });
+    console.log(newUsers);
 
     // Save the new user to the database
-    const savedUser = await newUser.save();
-    console.log(savedUser);
+    const savedUsers = await newUsers.save();
+    console.log(savedUsers);
 
-    return NextResponse.json({ message: "User stored successfully!",
+    return NextResponse.json({ message: "Users stored successfully!",
                                success: true,
-                               savedUser }, { status: 201 });
+                               savedUsers }, { status: 201 });
   } catch (error) {
     console.error("Database Error:", error.message);
     return NextResponse("Internal Server Error", { status: 500 });
