@@ -1,3 +1,4 @@
+"use client"
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';

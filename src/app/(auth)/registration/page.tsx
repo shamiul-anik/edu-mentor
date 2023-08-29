@@ -1,3 +1,4 @@
+"use client"
 import { useContext, useState } from 'react';
 import { FaGoogle, FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
