@@ -1,9 +1,10 @@
 "use client"
 import React from "react";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 import StudentCard from "@/app/students/StudentCard";
+import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -22,7 +23,7 @@ const Students = () => {
           throw new Error("Failed to fetch data");
         }
         const data = await res.json();
-        // console.log(data);
+        console.log(data);
         setStudents(data);
       } catch (error) {
         console.error("Error fetching mentor data:", error);
@@ -38,6 +39,7 @@ const Students = () => {
 
   return (
     <div>
+      <CommonBanner bannerHeading="Students"></CommonBanner>
       <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
         <SectionTitle heading="Students" subHeading="Our beloved students"></SectionTitle>
