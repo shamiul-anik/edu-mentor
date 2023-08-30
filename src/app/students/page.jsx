@@ -1,9 +1,10 @@
 "use client"
 import React from "react";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 import StudentCard from "@/app/students/StudentCard";
+import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -15,7 +16,7 @@ const Students = () => {
 
     const setStudentsData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/students', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/students`, {
           cache: "no-cache"
         });
         if (!res.ok) {
@@ -38,6 +39,7 @@ const Students = () => {
 
   return (
     <div>
+      <CommonBanner bannerHeading="Students"></CommonBanner>
       <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
         <SectionTitle heading="Students" subHeading="Our beloved students"></SectionTitle>

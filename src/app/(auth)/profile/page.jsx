@@ -1,24 +1,18 @@
 "use client"
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { updateProfile } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../providers/AuthProvider';
-import { useTitle } from '../../../hooks/useTitle';
 import UserImage from '../../../assets/images/user.png'
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
+import useAuth from "@/hooks/useAuth.js"
+
 
 const Profile = () => {
-
-  useTitle("Profile");
-
-  const navigate = useNavigate();
-
-  const { user, userRole, setLoading } = useContext(AuthContext);
-
+  const { user, userRole, setLoading, updateUserProfile } = useAuth();
   const currentUserName = user?.displayName;
   const currentUserPhotoURL = user?.photoURL;
   const currentUserEmail = user?.email;
 
+  // states
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -30,8 +24,8 @@ const Profile = () => {
 
     setSuccess("");
     setError("");
-    
-    updateProfile(user, {
+
+    updateUserProfile({
       displayName: name,
       photoURL: photoURL
     }).then(() => {
@@ -40,7 +34,7 @@ const Profile = () => {
       toast.success("Profile updated!");
       setLoading(false);
       form.reset();
-      navigate("/profile");
+      // navigate("/profile"); //TO DO: Navigation should be applied
     }).catch((error) => {
       setError(error.message);
       toast.error("Something went wrong!");
@@ -79,7 +73,7 @@ const Profile = () => {
               <label className="label pl-0" htmlFor="name">
                 <span className="label-text text-lg">Name</span>
               </label>
-              <input type="text" id="name" name="name" placeholder="Enter your name" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500 read-only:bg-slate-100" defaultValue={currentUserName} />
+              <input type="text" id="name" name="name" placeholder={currentUserName} className="input input-bordered input-accent focus:ring-0 focus:border-teal-500 read-only:bg-slate-100" defaultValue={currentUserName} />
               <p className="text-red-500 mt-2"></p>
             </div>
             <div className="form-control">
@@ -95,7 +89,7 @@ const Profile = () => {
             </div>
           </div>
         </form>
-        
+
       </div>
     </section>
   );
