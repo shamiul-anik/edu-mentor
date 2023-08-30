@@ -15,7 +15,9 @@ module.exports = {
       "flowbite.s3.amazonaws.com",
       "www.google.com",
       "media.licdn.com",
+      "ibb.co",
       "i.ibb.co",
+     "lh3.googleusercontent.com" 
     ],
   },
 };
