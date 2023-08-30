@@ -2,6 +2,8 @@
     {
         "id": "EM1",
         "name": "Alice",
+        "students": 55,
+        "ratings": 4.5,
         "age": 30,
         "education": "Master's in Mathematics",
         "image_url": "https://media.licdn.com/dms/image/C5103AQGqMxmTnDistA/profile-displayphoto-shrink_800_800/0/1517450971959?e=2147483647&v=beta&t=gN5B4mt6wPb3Uz11Rtnu3nTzPkfkBX_ghZxhE4G5I3Y",
@@ -125,6 +127,8 @@
         "id": "EM2",
         "name": "Bob",
         "age": 28,
+        "students": 55,
+        "ratings": 4.5,
         "education": "Bachelor's in Science",
         "image_url": "https://media.licdn.com/dms/image/D5603AQH1GcRp62fRgQ/profile-displayphoto-shrink_800_800/0/1684670368295?e=2147483647&v=beta&t=mXeva_qpbz8i5vUwFtGGQv4nDObNHinOm8jE6MdK9z8",
         "education_qualification": [
@@ -223,6 +227,8 @@
     {
         "id": "EM3",
         "name": "Catherine",
+        "students": 80,
+        "ratings": 4.5,
         "age": 25,
         "education": "Bachelor's in English Literature",
         "image_url": "https://media.licdn.com/dms/image/C5603AQFy44uP0j87Zg/profile-displayphoto-shrink_800_800/0/1595848090280?e=2147483647&v=beta&t=BVmUay7B7Awa1oeKVDdNghpXF4T8NKXHMtt--DRMDWU",
@@ -311,6 +317,8 @@
     {
         "id": "EM4",
         "name": "David",
+        "students": 20,
+        "ratings": 4,
         "age": 32,
         "education": "Master's in Economics",
         "image_url": "https://media.licdn.com/dms/image/D4D03AQHixrTIgOSYzQ/profile-displayphoto-shrink_800_800/0/1687766753939?e=2147483647&v=beta&t=yz7h9G4jodacfntGlTgJGOl3djQcB5HVR2Fsk0_zGG4",
@@ -404,6 +412,8 @@
         "id": "EM5",
         "name": "Ella",
         "age": 27,
+        "students": 60,
+        "ratings": 4.2,
         "education": "Bachelor's in Computer Science science",
         "image_url": "https://media.licdn.com/dms/image/D5603AQHp9DT2vGOhTA/profile-displayphoto-shrink_800_800/0/1672907875574?e=2147483647&v=beta&t=dS3TwVWrRM_BgXiqvDvBQy4kk8OGyVbJcxD3UP_000Q",
         "education_qualification": [
@@ -489,6 +499,8 @@
     {
         "id": "EM6",
         "name": "Fiona",
+        "students": 30,
+        "ratings": 3.9,
         "age": 29,
         "education": "Master's in History",
         "image_url": "https://media.licdn.com/dms/image/D4D03AQGJUKWvhT9a0A/profile-displayphoto-shrink_800_800/0/1685562819572?e=2147483647&v=beta&t=xYstC94Y9bqO4d4BDZ1sAwv2021VG3Ce2LajJIZSIl8",
@@ -585,6 +597,8 @@
     {
         "id": "EM7",
         "name": "George",
+        "students": 90,
+        "ratings": 4.8,
         "age": 34,
         "education": "Master's in Physics",
         "image_url": "https://media.licdn.com/dms/image/D5603AQGRv_puQnaZAg/profile-displayphoto-shrink_800_800/0/1675106271909?e=2147483647&v=beta&t=SutSrBNexa9r9DxpAIL6QRwqJBu3yThnOOQtj2txeYw",
@@ -668,6 +682,8 @@
     {
         "id": "EM8",
         "name": "Hannah",
+        "students": 42,
+        "ratings": 4.6,
         "age": 26,
         "education": "Bachelor's in Chemistry",
         "image_url": "https://media.licdn.com/dms/image/D4E03AQFCyow19StxFw/profile-displayphoto-shrink_800_800/0/1687619499600?e=2147483647&v=beta&t=qTbO14io-nhyZSO1x8neYc2b5utxbq8DZD-YDQuezaI",
@@ -752,6 +768,8 @@
     {
         "id": "EM9",
         "name": "Isaac",
+        "students": 60,
+        "ratings": 4.8,
         "age": 31,
         "education": "Master's in Engineering",
         "image_url": "https://media.licdn.com/dms/image/C4D03AQEW7wwxurqCig/profile-displayphoto-shrink_800_800/0/1582102207881?e=2147483647&v=beta&t=XLxEoF5mMyLVKZgH1ThugmfnQ1wBUL2COBqneXdwHUI",
@@ -837,6 +855,8 @@
         "id": "EM10",
         "name": "Jack",
         "age": 29,
+        "students": 60,
+        "ratings": 4.6,
         "education": "Master's in Fine Arts",
         "image_url": "https://media.licdn.com/dms/image/C5103AQHQdatemdl_Og/profile-displayphoto-shrink_800_800/0/1553230299376?e=2147483647&v=beta&t=1BJREiOqNdmUoiitPVsL8pDILjEaFc53xK6pgF7-nGM",
         "education_qualification": [
@@ -922,6 +942,8 @@
         "id": "EM11",
         "name": "Kate",
         "age": 28,
+        "students": 80,
+        "ratings": 4.6,
         "education": "Bachelor's in Biology",
         "image_url": "https://media.licdn.com/dms/image/D4E03AQFCyow19StxFw/profile-displayphoto-shrink_800_800/0/1687619499600?e=2147483647&v=beta&t=qTbO14io-nhyZSO1x8neYc2b5utxbq8DZD-YDQuezaI",
         "education_qualification": [
@@ -1006,6 +1028,8 @@
         "id": "EM12",
         "name": "Liam",
         "age": 32,
+        "students": 20,
+        "ratings": 4.5,
         "education": "Master's in Psychology",
         "image_url": "https://media.licdn.com/dms/image/C5603AQGOEsnWCowldg/profile-displayphoto-shrink_800_800/0/1655311349718?e=2147483647&v=beta&t=uRuhYrmQ3UZoxbcFjfFD3PUYRrw3iZwhkXxlfZYh-2w",
         "education_qualification": [
