@@ -158,7 +158,7 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>My Selected Classes</span>
                     </Link> */}
                     <Link
-                      href='/dashboard/hired-tutors'
+                      href='/dashboard/student/hired-tutors'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -166,7 +166,7 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Hired Tutors</span>
                     </Link>
                     <Link
-                      href='/dashboard/payment-history'
+                      href='/dashboard/student/payment-history'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
