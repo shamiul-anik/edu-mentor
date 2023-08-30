@@ -1,0 +1,42 @@
+[
+  {
+    "userName": "Alice Smith",
+    "userImgUrl": "https://example.com/alicesmith.jpg",
+    "postDate": "2023-08-28",
+    "role": "student",
+    "postImgUrl": "https://i.ibb.co/K64Rv6p/what-is-currying.png",
+    "postDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vivaenti. Sed eu tellus non lectus scelerisque semper vel a elit. Praesent fringilla risus nec tortor fringilla, non consequat nunc tincidunt. Sed pellentesque justo nec dui commodo, ac dictum sapien dictum."
+  },
+  {
+    "userName": "John Doe",
+    "userImgUrl": "https://example.com/johndoe.jpg",
+    "postDate": "2023-08-29",
+    "role": "Admin",
+    "postImgUrl": "https://i.ibb.co/K64Rv6p/what-is-currying.png",
+    "postDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend ligula nec libero ultricies, a facilisis ligula elementum. Sed sit aec gravida. Vivamus eu luctus nisl. Suspendisse a dui varius, pharetra libero a, pellentesque quam."
+  },
+  {
+    "userName": "Eva Wilson",
+    "userImgUrl": "https://example.com/evawilson.jpg",
+    "postDate": "2023-08-30",
+    "role": "Instructors",
+    "postImgUrl": "https://i.ibb.co/K64Rv6p/what-is-currying.png",
+    "postDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et quam odio. Praesent dapibus bibendum velit eget condimentum. Nan libero. Fusce in diam in dolor ullamcorper gravida. Sed dignissim vel libero eu euismod."
+  },
+  {
+    "userName": "Bob Johnson",
+    "userImgUrl": "https://example.com/bobjohnson.jpg",
+    "postDate": "2023-08-31",
+    "role": "student",
+    "postImgUrl": "https://i.ibb.co/K64Rv6p/what-is-currying.png",
+    "postDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc malesuada erat vitae efficitur. Proin tristique, dui id iaculis bibendulis arcu urna eu nisl. Fusce in lectus sed tellus dignissim volutpat. Nulla cursus ligula ut euismod posuere."
+  },
+  {
+    "userName": "Admin User",
+    "userImgUrl": "https://example.com/adminuser.jpg",
+    "postDate": "2023-09-01",
+    "role": "Admin",
+    "postImgUrl": "https://i.ibb.co/K64Rv6p/what-is-currying.png",
+    "postDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neendum velit. Sed vulputate bibendum metus, quis scelerisque justo vestibulum sit amet. Nulla facilisi. Suspendisse at libero vitae ex tincidunt malesuada."
+  }
+]
