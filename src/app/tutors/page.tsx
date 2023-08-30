@@ -11,7 +11,7 @@ const TutorsPage= async  () => {
 		cache: 'no-cache'
 	})
 	const allData = await res.json();
-	console.log('tutors page data',allData)
+	// console.log('tutors page data',allData)
 
 
 	return (
