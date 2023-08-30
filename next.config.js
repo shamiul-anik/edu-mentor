@@ -11,7 +11,13 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ["flowbite.s3.amazonaws.com", "www.google.com", "media.licdn.com","example.com", "i.ibb.co"],
-
+    domains: [
+      "flowbite.s3.amazonaws.com",
+      "www.google.com",
+      "media.licdn.com",
+      "ibb.co",
+      "i.ibb.co",
+     "lh3.googleusercontent.com" 
+    ],
   },
 };
