@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 const saveUser = async (userData) => {
 
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/post-users`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/post-users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
