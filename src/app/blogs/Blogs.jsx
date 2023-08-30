@@ -65,7 +65,7 @@ const Blogs = () => {
                 <div className="my-4">
                     <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
                         <div className="">
-                        <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
+                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2">
                             <div className="w-38 text-center flex">
@@ -84,7 +84,7 @@ const Blogs = () => {
                     <div className={`${selectedPerson.name !== "Admin" ? " bg-white  rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1" : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1"
                         }`}>
                         <div className="">
-                        <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
+                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2">
                             <div className="w-38 text-center flex">
@@ -101,7 +101,7 @@ const Blogs = () => {
                 <div className="my-4">
                     <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
                         <div className="">
-                        <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
+                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2">
                             <div className="w-38 text-center flex">
@@ -119,7 +119,7 @@ const Blogs = () => {
                     <div className={`${selectedPerson.name !== "Admin" ? " bg-white  rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1" : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1"
                         }`}>
                         <div className="">
-                        <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
+                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2">
                             <div className="w-38 text-center flex">
