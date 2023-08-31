@@ -77,6 +77,9 @@ const Header = () => {
 							<li className="hover:cursor-pointer">
 								<Link href="/about">About</Link>
 							</li>
+							<li className="hover:cursor-pointer">
+								<Link href="/blogs">Blog</Link>
+							</li>
 							{
 								!user && (
 									<>
@@ -171,6 +174,9 @@ const Header = () => {
 						</li>
 						<li className="nav-item hover:cursor-pointer">
 							<Link href="/about">About</Link>
+						</li>
+						<li className="nav-item hover:cursor-pointer">
+							<Link href="/blogs">Blog</Link>
 						</li>
 					</ul>
 				</div>
