@@ -1,12 +1,10 @@
 import React from 'react';
-import Blogs from './Blogs';
+import Blogs from "./Blogs"
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import SectionTitle from '@/components/(shared)/SectionTitle/SectionTitle';
 
 
 const Blog = () => {
-
-  
 
     return (
         <div>
