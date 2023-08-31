@@ -6,7 +6,7 @@ import Aos from 'aos';
 // import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
-import { BsBookmarkCheckFill } from 'react-icons/bs'
+import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
 // import { toast } from 'react-toastify';
 import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
 import { ImProfile } from 'react-icons/im';
@@ -34,7 +34,8 @@ const Sidebar = () => {
     displayName: "Shamiul",
     email: "shamiul@gmail.com"
   };
-  const userRole = "student";
+  // const userRole = "student";
+  const userRole = "admin";
 
   const { replace, refresh } = useRouter();
 
@@ -206,7 +207,7 @@ const Sidebar = () => {
                   userRole === "admin" &&
                   <>
                     <Link
-                      href='/dashboard/manage-classes'
+                      href='/dashboard/admin/manage-tutors'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -214,7 +215,15 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Manage Tutors</span>
                     </Link>
                     <Link
-                      href='/dashboard/manage-users'
+                      href='/dashboard/admin/manage-students'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <BsBookFill className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>Manage Students</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/admin/manage-users'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
