@@ -21,7 +21,7 @@ const PopularTutors = () => {
   useEffect(() => {
     const fetchMentorData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/tutors', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors`, {
           cache: "no-cache"
         });
         if (!res.ok) {

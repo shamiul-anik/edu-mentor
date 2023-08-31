@@ -35,8 +35,18 @@ const Blogs = () => {
                 <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
                     <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("Type Your Blogs", {})} />
                     <br />
-                    <input type="file" className="file-input file-input-bordered lg:w-[30%] w-full max-w-xs" />
-                    <br />
+                    {/* <input type="file" className="file-input file-input-bordered lg:w-[30%] w-full max-w-xs" />
+                    <br /> */}
+                    <label className='form-label' htmlFor='xmlFile'>
+                        Image Upload
+                    </label>
+                    <input
+                        type='file'
+                        className='form-control rounded-md'
+                        id='xmlFile'
+                        name='image-file'
+                        {...register('image-file')}
+                    />
                     <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
                 </form>
             </div>
@@ -124,8 +134,8 @@ const Blogs = () => {
                     {/* card one*/}
                     <div className={`${selected.name !== "Admin" ? "mx-1 bg-white rounded-xl shadow-2xl lg:grid lg:grid-cols-4 shadow-slate-400 " : "mx-1 bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4"
                         }`}>
-                        <div className="my-2">
-                            <Image className='object-cover mx-auto p-2 rounded-md' src={currying} alt='' placeholder='blur' />
+                        <div className="my-2 lg:col-span-1">
+                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2 ">
                             <div className=" lg:mx-10 text-center flex ">
@@ -147,10 +157,9 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-
-  {/* card One*/}
-  <div className="my-4">
-                    <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4`}>
+                {/* card One*/}
+                <div className="my-4">
+                    <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
                         <div className="my-2 lg:col-span-1">
                             <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
                         </div>
@@ -175,8 +184,8 @@ const Blogs = () => {
                     {/* card one*/}
                     <div className={`${selected.name !== "Admin" ? " bg-white rounded-xl shadow-2xl lg:grid lg:grid-cols-4 shadow-slate-400 " : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4"
                         }`}>
-                        <div className="my-2">
-                            <Image className='object-cover mx-auto p-2 rounded-md' src={currying} alt='' placeholder='blur' />
+                        <div className="my-2 lg:col-span-1">
+                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
                         </div>
                         <div className="lg:col-span-3 md:col-span-3 my-2 ">
                             <div className=" lg:mx-10 text-center flex ">
@@ -198,7 +207,7 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-{/* extra */}
+                {/* extra */}
                 {/* <div className="mx-[15%]">
                     <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 `}>
                         <div className=" h-52">
@@ -284,7 +293,7 @@ const Blogs = () => {
                     </div>
                 </div> */}
 
-{/* extra */}
+                {/* extra */}
             </div>
             <div className=" lg:w-[50%] w-[80%] text-center mx-auto mt-10">
                 <div className="join">

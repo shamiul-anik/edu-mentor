@@ -22,7 +22,7 @@ const Header = () => {
 	console.log("logged user", user);
 	const currentUserName = user?.displayName;
 	const currentUserEmail = user?.email;
-	const currentUserPhotoURL = UserImage;
+	const currentUserPhotoURL = user?.photoURL;
 	const userRole = "student";
 
 	const handleLogOut = async () => {
@@ -77,6 +77,9 @@ const Header = () => {
 							<li className="hover:cursor-pointer">
 								<Link href="/about">About</Link>
 							</li>
+							<li className="hover:cursor-pointer">
+								<Link href="/blogs">Blog</Link>
+							</li>
 							{
 								!user && (
 									<>
@@ -108,13 +111,13 @@ const Header = () => {
 							<div className="dropdown dropdown-end mt-1">
 								<label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={currentUserName}>
 									<div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-										<Image className='object-top' src={currentUserPhotoURL} alt={currentUserName} />
+										<Image className='object-top' width={40} height={40} src={currentUserPhotoURL} alt={currentUserName} />
 									</div>
 								</label>
 								<ul tabIndex={0} className="mt-1 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 z-10">
 									<div className='w-full flex justify-center'>
 										<div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-											<Image className='h-16 w-full rounded-full object-cover object-center' src={currentUserPhotoURL} alt={currentUserName} />
+											<Image className='h-16 w-full rounded-full object-cover object-center' width={64} height={64} src={currentUserPhotoURL} alt={currentUserName} />
 										</div>
 									</div>
 									<li className='mt-1 text-center font-bold'>
@@ -172,6 +175,9 @@ const Header = () => {
 						<li className="nav-item hover:cursor-pointer">
 							<Link href="/about">About</Link>
 						</li>
+						<li className="nav-item hover:cursor-pointer">
+							<Link href="/blogs">Blog</Link>
+						</li>
 					</ul>
 				</div>
 
@@ -197,13 +203,13 @@ const Header = () => {
 							<div className="dropdown dropdown-end mt-1 ml-6">
 								<label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-left" data-tip={currentUserName}>
 									<div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-										<Image className='object-top' src={currentUserPhotoURL} alt={currentUserName} />
+										<Image className='object-top' width={40} height={40} src={currentUserPhotoURL} alt={currentUserName} />
 									</div>
 								</label>
-								<ul tabIndex={0} className="mt-3 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 z-10">
+								<ul tabIndex={0} className="mt-3 p-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box z-10">
 									<div className='w-full flex justify-center'>
 										<div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-											<Image className='h-16 w-full rounded-full object-cover object-center' src={currentUserPhotoURL} alt={currentUserName} />
+											<Image className='h-16 w-full rounded-full object-cover object-center' width={64} height={64} src={currentUserPhotoURL} alt={currentUserName} />
 										</div>
 									</div>
 									<li className='mt-1 text-center font-bold'>
@@ -215,7 +221,6 @@ const Header = () => {
 									}
 									<div className="divider mt-1 mb-2"></div>
 									<li>
-										{/* <Link href="/profile" className="mb-2 bg-blue-500 hover:bg-blue-600 transition hover:delay-200 text-white font-bold py-2 justify-center">Profile</Link> */}
 										<Link className='flex p-0 mb-2' href="/profile">
 											<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-400 to-teal-600 ring-2 ring-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
 												<ImProfile className='text-xl'></ImProfile>
@@ -224,13 +229,10 @@ const Header = () => {
 										</Link>
 									</li>
 									<li onClick={handleLogOut}>
-										{/* <Link onClick={handleLogOut} className="bg-red-500 hover:bg-red-600 transition hover:delay-200 text-white font-bold py-2 justify-center">Logout</Link> */}
-										{/* <Link className='flex p-0' onClick={handleLogOut}> */}
 										<button type="button" className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
 											<MdLogout className='text-xl'></MdLogout>
 											Logout
 										</button>
-										{/* </Link> */}
 									</li>
 								</ul>
 							</div>
