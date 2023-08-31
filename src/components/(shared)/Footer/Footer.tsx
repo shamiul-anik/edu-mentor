@@ -61,7 +61,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="text-sm lg:text-base mx-auto mt-8 py-6 border-t border-t-2 border-teal-600 flex flex-col gap-2 justify-center items-center">
+      <div className="text-sm lg:text-base mx-auto mt-8 py-6 border-t-2 border-teal-600 flex flex-col gap-2 justify-center items-center">
         <p className='text-center px-16'>Copyright © 2023 EduMentor. All Rights Reserved.</p>
       </div>
     </footer>

@@ -1,22 +1,17 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../../providers/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useTitle } from '../../../hooks/useTitle';
+"use client"
+import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 
 const PasswordReset = () => {
-
-  useTitle("Password Reset");
-
-  const navigate = useNavigate();
-
-  const { setLoading, resetPassword } = useContext(AuthContext);
+  const { setLoading, resetPassword } = useAuth();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  // Password Reset
+  // Password Reset Handler
   const handlePasswordReset = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -47,7 +42,7 @@ const PasswordReset = () => {
             toast.success("Please check your email!");
             setLoading(false);
             form.reset();
-            navigate("/login");
+            // navigate("/login"); //To Do: Use redirect f
           })
           .catch(error => {
             setError(error.message);
@@ -88,7 +83,7 @@ const PasswordReset = () => {
           </div>
         </form>
         <div className="p-6 md:p-8 !pb-8 pt-1 md:pt-2 text-center">
-          Go Back to <Link to="/login" className='link link-primary font-semibold transition-all hover:duration-200 text-teal-600 hover:text-teal-700'>Login</Link>
+          Go Back to <Link href="/login" className='link link-primary font-semibold transition-all hover:duration-200 text-teal-600 hover:text-teal-700'>Login</Link>
         </div>
 
       </div>
