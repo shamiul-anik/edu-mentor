@@ -28,6 +28,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/app/students/loading.jsx", "src/app/tutors/loading.jsx", "src/app/tutors/page.tsx", "src/app/students/page.jsx", "src/app/blog/Blogs.jsx"  ],
+, "src/app/students/loading.jsx", "src/app/tutors/loading.jsx", "src/app/tutors/page.tsx", "src/app/students/page.jsx", "src/app/blog/Blogs.jsx", "src/app/blogs/Blogs.jsx"  ],
   "exclude": ["node_modules"]
 }
