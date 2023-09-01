@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-const postBlog = () => {
+const PostBlog = () => {
     const router = useRouter();
     const toDay = () => {
         const today = new Date();
@@ -73,4 +73,4 @@ const postBlog = () => {
     );
 };
 
-export default postBlog;
+export default PostBlog;
