@@ -13,9 +13,9 @@ import Link from 'next/link';
 
 
 const people = [
-    { name: 'All' },
-    { name: 'Admin' },
-    { name: 'Instructors' },
+    { name: 'users' },
+    { name: 'admin' },
+    { name: 'tutor' },
     { name: 'student' },
 ]
 
@@ -44,7 +44,7 @@ const Blogs = () => {
                 // Filter the data based on the selected role
                 let filteredData;
 
-                if (selected.name === 'All') {
+                if (selected.name === 'users') {
                     // If 'all' is selected, show all data
                     filteredData = data;
                 } else {
@@ -61,86 +61,18 @@ const Blogs = () => {
 
     }, [selected]);
 
-    const toDay = () => {
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const year = today.getFullYear();
-        const formattedDate = `${day}-${month}-${year}`;
-        return formattedDate
-    }
-
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        const selectedImageFile = data.imageFile[0];
-        const postImgUrl = data.imageFile[0].name;
-        const postDescription = data.words;
-        const postDate = toDay();
-
-        const allData = {
-            postImgUrl, postDescription, postDate
-        }
-
-        if (selectedImageFile) {
-            const fileName = selectedImageFile.name;
-            const fileExtension = fileName.split('.').pop().toLowerCase();
-
-            // Define allowed extensions
-            const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-
-            if (allowedExtensions.includes(fileExtension)) {
-                //   console.log('Valid file extension: ' + fileExtension);
-                console.log("data", allData);
-
-            } else {
-                // File has an invalid extension
-                toast.error('Invalid Image Extension: ' + fileExtension)
-            }
-        }
-
-    }
 
     return (
-        <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-20 p-4 text-slate-700 text-justify'>
-
-            {
-                user === null ?
-                    <div className=" text-center mb-4">
-                        <p className='mb-4 text-xl font-bold text-[#4d4747]'>Pleas Login or Registration</p>
-                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-4 text-white" href="/login">
-                            Login
-                        </Link>
-                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-white" href="/register">
-                            Register
-                        </Link>
-                    </div>
-                    :
-                    <div className="">
-                        <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
-                            <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("words", {})} />
-                            <br />
-                            <label className='form-label' htmlFor='xmlFile'>
-                                Image Upload
-                            </label>
-                            <input
-                                type='file'
-                                className='form-control rounded-md'
-                                id='xmlFile'
-                                {...register('imageFile')}
-                            />
-                            <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
-                        </form>
-                    </div>
-
-            }
-
-
-            <div className="w-[90%] mx-auto">
-
-
-                <div className=" my-2">
+        <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-4 lg:p-4 p-2 text-slate-700 text-justify'>
+            
+            <div className="lg:w-[90%] w-full mx-auto">
+                <div className=" mb-2">
                     <div className=" rounded-md flex justify-between">
-                        <p></p>
+
+                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-2 text-white" href={` ${user === null ? "/login" : "/postBlog"}`}>
+                            Post  Your  Blogs
+                        </Link>
+
                         <div className="lg:mr-[2%] rounded-md w-44 text-center">
 
                             <Listbox value={selected} onChange={setSelected}>
