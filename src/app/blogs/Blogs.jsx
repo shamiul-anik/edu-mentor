@@ -1,137 +1,160 @@
 "use client"
 import { Select } from 'flowbite-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react'
-import { Listbox } from '@headlessui/react'
-import Image from 'next/image';
-import manImage1 from "@/assets/images/success/image2.jpg"
-
+import { Fragment, useState } from 'react'
+import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import Aos from "aos";
+import BlogCard from './BlogCard';
+import { toast } from 'react-hot-toast';
+import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
 
 
 const people = [
-    { id: 1, name: 'All' },
-    { id: 2, name: 'Admin' },
-    { id: 3, name: 'Instructors' },
-    { id: 4, name: 'Student' },
+    { name: 'users' },
+    { name: 'admin' },
+    { name: 'tutor' },
+    { name: 'student' },
 ]
+
 
 const Blogs = () => {
 
-    const [selectedPerson, setSelectedPerson] = useState(people[0])
+    const { user } = useAuth();
+    console.log("blog page user", user);
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
-        console.log(data)
-    }
+    const [selected, setSelected] = useState(people[0])
+    const [blogs, setBlogs] = useState([])
 
-    // console.log(selectedPerson);
+    useEffect(() => {
+        Aos.init({ duration: 1000 });
+
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
+
+                if (!res.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await res.json();
+
+                // Filter the data based on the selected role
+                let filteredData;
+
+                if (selected.name === 'users') {
+                    // If 'all' is selected, show all data
+                    filteredData = data;
+                } else {
+                    // Filter data for the selected role
+                    filteredData = data.filter(item => item.role === selected.name);
+                }
+
+                setBlogs(filteredData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
+
+    }, [selected]);
 
 
     return (
-        <div>
-            <div className="">
-                <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
-                    <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("Type Your Blogs", {})} />
-                    <br />
-                    <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
-                    <br />
-                    <button className='bg-slate-600 p-2 rounded-md text-white hover:bg-slate-700' type='submit'>Submit</button>
-                </form>
-            </div>
-            <div className="">
-                <div className=" my-2">
+        <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-4 lg:p-4 p-2 text-slate-700 text-justify'>
+            
+            <div className="lg:w-[90%] w-full mx-auto">
+                <div className=" mb-2">
                     <div className=" rounded-md flex justify-between">
-                        <p></p>
-                        <div className="lg:mr-[2%] bg-slate-500 p-2 rounded-md w-28 text-white text-center">
-                            <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-                                <Listbox.Button>{selectedPerson.name}</Listbox.Button>
-                                <Listbox.Options>
-                                    {people.map((person) => (
-                                        <Listbox.Option
-                                            key={person.id}
-                                            value={person}
-                                            disabled={person.unavailable}
-                                        >
-                                            {person.name}
-                                        </Listbox.Option>
-                                    ))}
-                                </Listbox.Options>
+
+                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-2 text-white" href={` ${user === null ? "/login" : "/postBlog"}`}>
+                            Post  Your  Blogs
+                        </Link>
+
+                        <div className="lg:mr-[2%] rounded-md w-44 text-center">
+
+                            <Listbox value={selected} onChange={setSelected}>
+                                <div className="relative mt-1">
+                                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                                        <span className="block truncate">{selected.name}</span>
+                                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                            <ChevronUpDownIcon
+                                                className="h-5 w-5 text-gray-400"
+                                                aria-hidden="true"
+                                            />
+                                        </span>
+                                    </Listbox.Button>
+                                    <Transition
+                                        as={Fragment}
+                                        leave="transition ease-in duration-100"
+                                        leaveFrom="opacity-100"
+                                        leaveTo="opacity-0"
+                                    >
+                                        <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                            {people.map((person, personIdx) => (
+                                                <Listbox.Option
+                                                    key={personIdx}
+                                                    className={({ active }) =>
+                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                                                        }`
+                                                    }
+                                                    value={person}
+                                                >
+                                                    {({ selected }) => (
+                                                        <>
+                                                            <span
+                                                                className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                                                    }`}
+                                                            >
+                                                                {person.name}
+                                                            </span>
+                                                            {selected ? (
+                                                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                                </span>
+                                                            ) : null}
+                                                        </>
+                                                    )}
+                                                </Listbox.Option>
+                                            ))}
+                                        </Listbox.Options>
+                                    </Transition>
+                                </div>
                             </Listbox>
                         </div>
                     </div>
                 </div>
-                {/* card One*/}
-                <div className="my-4">
-                    <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
-                        <div className="">
-                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
+
+                {
+                    blogs.map((blog, index) => <BlogCard key={index} blog={blog} selected={selected} setSelected={setSelected} > </BlogCard>)
+                }
+
+                {/* extra */}
+                {/* <div className="mx-[15%]">
+                    <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 `}>
+                        <div className=" h-52">
+                            <Image className='object-cover h-52 rounded-md' src={currying} alt='' placeholder='blur' />
                         </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2">
-                            <div className="w-38 text-center flex">
-                                <p className='p-2 mx-2 text-white rounded-md  border border-white bg-slate-500'>Name: mnopqerst</p>
-                                <p className='p-2 text-white rounded-md bg-slate-500 border border-white'>Admin</p>
+                        <div className=" my-2 ">
+                            <div className=" lg:mx-10 text-center flex ">
+                                <div className="">
+                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
+                                </div>
+                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white">
+                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
+                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
+                                    <p className='max-sm:col-span-2 mx-1'>date: 28-8-22023</p>
+                                </div>
                             </div>
-                            <p className='my-2 p-2'>Lore
-                                m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem asperna
+                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
                             </p>
                         </div>
                     </div>
-                </div>
-                {/* card two*/}
-                <div className="my-4">
-                    {/* card one*/}
-                    <div className={`${selectedPerson.name !== "Admin" ? " bg-white  rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1" : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1"
-                        }`}>
-                        <div className="">
-                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
-                        </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2">
-                            <div className="w-38 text-center flex">
-                                <p className='p-2 mx-2 text-white  border border-white rounded-md bg-slate-500'>Name: PPrr</p>
-                                <p className='p-2 text-white border border-white rounded-md bg-slate-500'>Instructors</p>
-                            </div>
-                            <p className='my-2 p-2'>Lore
-                                m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem asperna
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* card One*/}
-                <div className="my-4">
-                    <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
-                        <div className="">
-                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
-                        </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2">
-                            <div className="w-38 text-center flex">
-                                <p className='p-2 mx-2 text-white  border border-white rounded-md bg-slate-500'>Name: mnopqerst</p>
-                                <p className='p-2 text-white rounded-md  border border-white bg-slate-500'>Admin</p>
-                            </div>
-                            <p className='my-2 p-2'>Lore
-                                m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem asperna
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* card three*/}
-                <div className="my-4">
-                    <div className={`${selectedPerson.name !== "Admin" ? " bg-white  rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1" : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1"
-                        }`}>
-                        <div className="">
-                            <Image className='object-cover h-[267px] max-sm:mx-auto max-md:mx-auto mx-4 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"200"} />
-                        </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2">
-                            <div className="w-38 text-center flex">
-                                <p className='p-2 mx-2 text-white rounded-md  border border-white bg-slate-500'>Name: mnopqerst</p>
-                                <p className='p-2 text-white rounded-md  border border-white bg-slate-500'>Student</p>
-                            </div>
-                            <p className='my-2 p-2'>Lore
-                                m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem aspernatur asperiores sequi odit velit architecto dicta.m ipsum dolor sit amet consectetur adipisicing elit. Hic atque voluptatibus sunt autem asperna
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                </div>*/}
+
+                {/* extra */}
             </div>
             <div className=" lg:w-[50%] w-[80%] text-center mx-auto mt-10">
                 <div className="join">

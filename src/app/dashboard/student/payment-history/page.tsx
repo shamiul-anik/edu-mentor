@@ -36,9 +36,9 @@ const HiredTutors = () => {
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Salary <br /> (Per Month)
               </th>
-              {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Payment <br /> Status
-              </th> */}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +49,7 @@ const HiredTutors = () => {
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
                   <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
+                    <Image src={class_image} alt={`Image of ${class_name} class`} />
                   </div>
                 </div>
               </td> */}
@@ -65,9 +65,9 @@ const HiredTutors = () => {
               <td className="px-2 py-2 text-center border-r-2">
                 5000
               </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
+              <td className="px-2 py-2 text-center uppercase border-r-2">
                 Paid
-              </td> */}
+              </td>
             </tr>
 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -77,7 +77,7 @@ const HiredTutors = () => {
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
                   <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
+                    <Image src={class_image} alt={`Image of ${class_name} class`} />
                   </div>
                 </div>
               </td> */}
@@ -93,37 +93,9 @@ const HiredTutors = () => {
               <td className="px-2 py-2 text-center border-r-2">
                 8000
               </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
+              <td className="px-2 py-2 text-center uppercase border-r-2">
                 Paid
-              </td> */}
-            </tr>
-
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                1
               </td>
-              {/* <td className="px-2 py-2 text-center border-r-2">
-                <div className="avatar flex items-center justify-center ">
-                  <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
-                  </div>
-                </div>
-              </td> */}
-              <td className="px-2 py-2 border-r-2">
-                Physics
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Masud Rana
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                rana@gmail.com
-              </td>
-              <td className="px-2 py-2 text-center border-r-2">
-                3000
-              </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
-                Pending
-              </td> */}
             </tr>
 
           </tbody>

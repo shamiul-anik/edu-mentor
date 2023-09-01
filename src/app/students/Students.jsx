@@ -5,7 +5,7 @@ import Aos from "aos";
 import { AuthContext } from "../../providers/AuthProvider";
 // import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import TutorCard from "./TutorCard";
+import StudentCard from "./StudentCard";
 
 const Tutors = () => {
 
@@ -43,7 +43,7 @@ const Tutors = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8 mt-8">
           {
-            allTutors?.map((tutorData) => <TutorCard key={tutorData._id} instructorData={tutorData}></TutorCard>)
+            allStudents?.map((studentData) => <StudentCard key={studentData._id} instructorData={studentData}></StudentCard>)
           }
         </div>
       </section>

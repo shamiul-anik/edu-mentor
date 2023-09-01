@@ -12,12 +12,12 @@ import saveUser from '@/utils/saveUser';
 
 
 // meta data for title
-export const metadata = {
-	title: 'EduMentor Authentication',
-	openGraph: {
-		title: 'Edu Mentor Authentication',
-	  },
-  }
+// export const metadata = {
+// 	title: 'EduMentor Authentication',
+// 	openGraph: {
+// 		title: 'Edu Mentor Authentication',
+// 	  },
+//   }
 
 const Login = () => {
 
