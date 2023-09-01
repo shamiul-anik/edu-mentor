@@ -60,6 +60,7 @@ const Blogs = () => {
         fetchData();
 
     }, [selected]);
+    
     const toDay = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
