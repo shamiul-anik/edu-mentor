@@ -1,17 +1,30 @@
-
+'use client'
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 
 import { Tutor } from '@/typeScript/tutorType';
 import TutorsCard from './TutorsCard';
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
+import { useEffect, useState } from "react";
 
-const TutorsPage= async  () => {
+const TutorsPage= () => {
 
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors`,{
-		cache: 'no-cache'
-	})
-	const allData = await res.json();
-	// console.log('tutors page data',allData)
+	const [allData, setAllData] = useState<Tutor[]>([]);
+
+	useEffect(() => {
+	  const fetchAllData = async () => {
+		try {
+		  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors`, {
+			cache: 'no-cache'
+		  });
+		  const data = await res.json();
+		  setAllData(data);
+		} catch (error) {
+		  console.error('Error fetching mentor data:', error);
+		}
+	  };
+  
+	  fetchAllData();
+	}, []);
 
 
 	return (

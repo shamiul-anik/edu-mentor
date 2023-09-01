@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useEffect, useState } from 'react';
 // import mentorData from '../../../public/data.json';
 // import PopularCard from './PopularCard';
@@ -8,7 +8,7 @@ import { Tutor } from '@/typeScript/tutorType';
 
 
 
-const PopularTutors = async  () => {
+const PopularTutors =  () => {
 	// const mentorData = await getTutors();
 	// console.log(mentorData)
 	// const { mentorData, loading, error } = usePopularDataFetch();
@@ -19,10 +19,23 @@ const PopularTutors = async  () => {
 	 
 	// const mentorData = await getData();
 
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/sort-tutors`,{
-		cache: 'no-cache'
-	})
-	const mentorData = await res.json();
+	const [mentorData, setMentorData] = useState<Tutor[]>([]);
+
+	useEffect(() => {
+	  const fetchMentorData = async () => {
+		try {
+		  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/sort-tutors`, {
+			cache: 'no-cache'
+		  });
+		  const data = await res.json();
+		  setMentorData(data);
+		} catch (error) {
+		  console.error('Error fetching mentor data:', error);
+		}
+	  };
+  
+	  fetchMentorData();
+	}, []);
 
 
 	return (
