@@ -1,11 +1,31 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner'
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Students = () => {
+
+  const [studentData, setStudentData] = useState({});
+  
+
+	useEffect(() => {
+	  const fetchStudentData = async () => {
+		try {
+		  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/students`, {
+			cache: 'no-cache'
+		  });
+		  const data = await res.json();
+		  setStudentData(data);
+		} catch (error) {
+		  console.error('Error fetching mentor data:', error);
+		}
+	  };
+  
+	  fetchStudentData();
+	}, []);
+  console.log(studentData)
   return (
     <div>
       <CommonBanner bannerHeading="Students"></CommonBanner>
