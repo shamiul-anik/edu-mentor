@@ -96,7 +96,7 @@ const Header = () => {
               <li className="hover:cursor-pointer">
                 <Link href="/about">About</Link>
               </li>
-              <li className="hover:cursor-pointer text-white ">
+              <li className="hover:cursor-pointer">
                 <Link href="/tutor-request">Tutor Request</Link>
               </li>
               <li className="hover:cursor-pointer">
@@ -230,7 +230,7 @@ const Header = () => {
             <li className="nav-item hover:cursor-pointer">
               <Link href="/about">About</Link>
             </li>
-            <li className="hover:cursor-pointer text-white">
+            <li className="nav-item hover:cursor-pointer">
                 <Link href="/tutor-request">Tutor Request</Link>
               </li>
             <li className="nav-item hover:cursor-pointer">
