@@ -200,70 +200,7 @@ const Blogs = () => {
                             </p>
                         </div>
                     </div>
-                </div>
-                <div className="mx-[15%]">
-                    <div className={` rounded-xl shadow-2xl shadow-slate-400 `}>
-                        <div className=" h-52">
-                            <Image className='object-cover h-52 rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className=" my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] ">
-                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
-                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
-                                    <p className='max-sm:col-span-2 mx-1'>date: 28-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="mx-[15%]">
-                    <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 `}>
-                        <div className=" h-52">
-                            <Image className='object-cover h-52 rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className=" my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white">
-                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
-                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
-                                    <p className='max-sm:col-span-2 mx-1'>date: 28-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="mx-[15%]">
-                    <div className={`rounded-xl shadow-2xl shadow-slate-400 `}>
-                        <div className=" h-52">
-                            <Image className='object-cover h-52 rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className=" my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] ">
-                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
-                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
-                                    <p className='max-sm:col-span-2 mx-1'>date: 28-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div> */}
+                </div>*/}
 
                 {/* extra */}
             </div>
