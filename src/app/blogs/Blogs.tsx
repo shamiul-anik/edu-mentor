@@ -1,42 +1,110 @@
 "use client"
 import { Select } from 'flowbite-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import Image from 'next/image';
-import manImage1 from "@/assets/images/success/image2.jpg"
-import currying from "@/assets/blogimg/what-is-currying.png"
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import Aos from "aos";
+import BlogCard from './BlogCard';
+import { toast } from 'react-hot-toast';
+import useAuth from '@/hooks/useAuth';
 
 
 const people = [
     { name: 'All' },
     { name: 'Admin' },
     { name: 'Instructors' },
-    { name: 'Student' },
+    { name: 'student' },
 ]
+
 
 const Blogs = () => {
 
     const [selected, setSelected] = useState(people[0])
+    const [blogs, setBlogs] = useState([])
+
+    // const [selected, setSelected] = useState('All'); // Default to 'all'
+
+    useEffect(() => {
+        Aos.init({ duration: 1000 });
+
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
+
+                if (!res.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await res.json();
+
+                // Filter the data based on the selected role
+                let filteredData;
+
+                if (selected.name === 'All') {
+                    // If 'all' is selected, show all data
+                    console.log(selected, '47');
+
+                    filteredData = data;
+                } else {
+                    // Filter data for the selected role
+                    filteredData = data.filter(item => item.role === selected.name);
+                }
+
+                setBlogs(filteredData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
+
+    }, [selected]);
+    const toDay = () => {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const year = today.getFullYear(); 
+        const formattedDate = `${day}-${month}-${year}`;
+        return formattedDate
+    }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        const selectedImageFile = data.imageFile[0];
+        const postImgUrl = data.imageFile[0].name;
+        const postDescription = data.words;
+        const postDate = toDay();
+
+        const allData = {
+            postImgUrl, postDescription, postDate
+        }
+
+        if (selectedImageFile) {
+            const fileName = selectedImageFile.name;
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+
+            // Define allowed extensions
+            const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (allowedExtensions.includes(fileExtension)) {
+                //   console.log('Valid file extension: ' + fileExtension);
+                console.log("data", allData);
+
+            } else {
+                // File has an invalid extension
+                toast.error('Invalid Image Extension: ' + fileExtension)
+            }
+        }
+
     }
-
-    console.log(selected);
-
 
     return (
         <div className='text-sm'>
             <div className="">
                 <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
-                    <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("Type Your Blogs", {})} />
+                    <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("words", {})} />
                     <br />
-                    {/* <input type="file" className="file-input file-input-bordered lg:w-[30%] w-full max-w-xs" />
-                    <br /> */}
                     <label className='form-label' htmlFor='xmlFile'>
                         Image Upload
                     </label>
@@ -44,8 +112,7 @@ const Blogs = () => {
                         type='file'
                         className='form-control rounded-md'
                         id='xmlFile'
-                        name='image-file'
-                        {...register('image-file')}
+                        {...register('imageFile')}
                     />
                     <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
                 </form>
@@ -107,106 +174,11 @@ const Blogs = () => {
                         </div>
                     </div>
                 </div>
-                {/* card One*/}
-                <div className="my-4">
-                    <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4`}>
-                        <div className="my-2 lg:col-span-1">
-                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className="lg:col-span-3 my-2 mx-1">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white">
-                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
-                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
-                                    <p className='max-sm:col-span-2 mx-1'>date: 28-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* card two*/}
-                <div className="my-4">
-                    {/* card one*/}
-                    <div className={`${selected.name !== "Admin" ? "mx-1 bg-white rounded-xl shadow-2xl lg:grid lg:grid-cols-4 shadow-slate-400 " : "mx-1 bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4"
-                        }`}>
-                        <div className="my-2 lg:col-span-1">
-                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div
-                                    //  className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-slate-500 "
-                                    className={`${selected.name !== "Admin" ? " grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-slate-600 " : "grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white"
-                                        }`}
-                                >
-                                    <p className='p-2 h-10 sm:text-sm '>Pekachu</p>
-                                    <p className='p-2 h-10 sm:text-sm '>Inestructor</p>
-                                    <p className='max-sm:col-span-2 h-10 mx-1'>date: 24-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry function is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code.code, enhances reusability, and improves code maintainability. It a powerful concept in JavaScript functional programming.  <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* card One*/}
-                <div className="my-4">
-                    <div className={`bg-slate-500 text-white rounded-xl shadow-2xl shadow-slate-400 grid grid-cols-4 max-sm:grid-cols-1`}>
-                        <div className="my-2 lg:col-span-1">
-                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className="lg:col-span-3 my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white">
-                                    <p className='p-2 sm:text-sm mx-2  rounded-md '>Rebold</p>
-                                    <p className='p-2 sm:text-sm rounded-md '>Admin</p>
-                                    <p className='max-sm:col-span-2 mx-1'>date: 20-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry funcFtion is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code. <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {/* card two*/}
-                <div className="my-4">
-                    {/* card one*/}
-                    <div className={`${selected.name !== "Admin" ? " bg-white rounded-xl shadow-2xl lg:grid lg:grid-cols-4 shadow-slate-400 " : "bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4"
-                        }`}>
-                        <div className="my-2 lg:col-span-1">
-                            <Image className='object-cover p-2 mx-auto rounded-md' src={currying} alt='' placeholder='blur' />
-                        </div>
-                        <div className="lg:col-span-3 md:col-span-3 my-2 ">
-                            <div className=" lg:mx-10 text-center flex ">
-                                <div className="">
-                                    <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' placeholder='blur' width={"50"} />
-                                </div>
-                                <div
-                                    //  className="grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-slate-500 "
-                                    className={`${selected.name !== "Admin" ? " grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-slate-600 " : "grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white"
-                                        }`}
-                                >
-                                    <p className='p-2 h-10 sm:text-sm '>Pekachu</p>
-                                    <p className='p-2 h-10 sm:text-sm '>Student</p>
-                                    <p className='max-sm:col-span-2 h-10 mx-1'>date: 18-8-22023</p>
-                                </div>
-                            </div>
-                            <p className='my-2 p-2'>A JavaScript curry function is a powerful tool for function composition and partial application. It allows you to transform a function that takes multiple arguments into a series of functions that each take one argument. This enables you to create reusable and more modular code.code, enhances reusability, and improves code maintainability. It a powerful concept in JavaScript functional programming.  <br /> <span><a className='text-blue-500' href="">Read more...</a></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+                {
+                    blogs.map((blog, index) => <BlogCard key={index} blog={blog} selected={selected} setSelected={setSelected} > </BlogCard>)
+                }
+
                 {/* extra */}
                 {/* <div className="mx-[15%]">
                     <div className={`bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 `}>
