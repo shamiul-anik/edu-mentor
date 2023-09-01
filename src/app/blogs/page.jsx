@@ -10,7 +10,7 @@ const Blog = () => {
         <div>
             {/* bg-teal-700 py-2 */}
             <CommonBanner bannerHeading="Blogs"></CommonBanner>
-            <SectionTitle heading="Blogs" subHeading="Your Thinking!"></SectionTitle>
+            {/* <SectionTitle heading="Blogs" subHeading="Your Thinking!"></SectionTitle> */}
             <Blogs></Blogs>
         </div>
     );
