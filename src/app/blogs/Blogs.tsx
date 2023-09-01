@@ -9,6 +9,7 @@ import Aos from "aos";
 import BlogCard from './BlogCard';
 import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
+import Link from 'next/link';
 
 
 const people = [
@@ -21,10 +22,11 @@ const people = [
 
 const Blogs = () => {
 
+    const { user } = useAuth();
+    console.log("blog page user", user);
+
     const [selected, setSelected] = useState(people[0])
     const [blogs, setBlogs] = useState([])
-
-    // const [selected, setSelected] = useState('All'); // Default to 'all'
 
     useEffect(() => {
         Aos.init({ duration: 1000 });
@@ -44,8 +46,6 @@ const Blogs = () => {
 
                 if (selected.name === 'All') {
                     // If 'all' is selected, show all data
-                    console.log(selected, '47');
-
                     filteredData = data;
                 } else {
                     // Filter data for the selected role
@@ -60,12 +60,12 @@ const Blogs = () => {
         fetchData();
 
     }, [selected]);
-    
+
     const toDay = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
-        const month = String(today.getMonth() + 1).padStart(2, '0'); 
-        const year = today.getFullYear(); 
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = today.getFullYear();
         const formattedDate = `${day}-${month}-${year}`;
         return formattedDate
     }
@@ -101,24 +101,43 @@ const Blogs = () => {
     }
 
     return (
-        <div className='text-sm'>
-            <div className="">
-                <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
-                    <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("words", {})} />
-                    <br />
-                    <label className='form-label' htmlFor='xmlFile'>
-                        Image Upload
-                    </label>
-                    <input
-                        type='file'
-                        className='form-control rounded-md'
-                        id='xmlFile'
-                        {...register('imageFile')}
-                    />
-                    <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
-                </form>
-            </div>
+        <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-20 p-4 text-slate-700 text-justify'>
+
+            {
+                user === null ?
+                    <div className=" text-center mb-4">
+                        <p className='mb-4 text-xl font-bold text-[#4d4747]'>Pleas Login or Registration</p>
+                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-4 text-white" href="/login">
+                            Login
+                        </Link>
+                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-white" href="/register">
+                            Register
+                        </Link>
+                    </div>
+                    :
+                    <div className="">
+                        <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
+                            <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' {...register("words", {})} />
+                            <br />
+                            <label className='form-label' htmlFor='xmlFile'>
+                                Image Upload
+                            </label>
+                            <input
+                                type='file'
+                                className='form-control rounded-md'
+                                id='xmlFile'
+                                {...register('imageFile')}
+                            />
+                            <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
+                        </form>
+                    </div>
+
+            }
+
+
             <div className="w-[90%] mx-auto">
+
+
                 <div className=" my-2">
                     <div className=" rounded-md flex justify-between">
                         <p></p>

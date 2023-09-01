@@ -3,6 +3,7 @@ import React from 'react';
 import currying from "@/assets/blogimg/what-is-currying.png"
 import manImage1 from "@/assets/images/success/image2.jpg"
 
+
 const BlogCard = (  { blog } ) => {
     const blur ="https://i.ibb.co/gSgNWbc/blur.jpg"
 
@@ -15,7 +16,7 @@ const BlogCard = (  { blog } ) => {
             <div className={`${role !== "Admin" ? "mx-1 bg-white rounded-xl shadow-2xl lg:grid lg:grid-cols-4 shadow-slate-400 " : "mx-1 bg-slate-600 text-white rounded-xl shadow-2xl shadow-slate-400 lg:grid lg:grid-cols-4"
                 }`}>
                 <div className="my-2 lg:col-span-1">
-                    <Image className='object-cover p-2 mx-auto rounded-md' width={300} height={300} src={postImgUrl} alt='' placeholder='https://i.ibb.co/gSgNWbc/blur.jpg'/>
+                    <Image className='object-cover p-2 mx-auto rounded-md' width={300} height={300} src={postImgUrl} alt=''/>
                 </div>
                 <div className="lg:col-span-3 md:col-span-3 my-2 ">
                     <div className=" lg:mx-10 text-center flex ">
