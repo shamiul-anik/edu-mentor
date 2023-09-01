@@ -49,7 +49,7 @@ const HiredTutors = () => {
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
                   <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
+                    <Image src={class_image} alt={`Image of ${class_name} class`} />
                   </div>
                 </div>
               </td> */}
@@ -77,7 +77,7 @@ const HiredTutors = () => {
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
                   <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
+                    <Image src={class_image} alt={`Image of ${class_name} class`} />
                   </div>
                 </div>
               </td> */}
@@ -105,7 +105,7 @@ const HiredTutors = () => {
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
                   <div className="w-24 rounded-xl">
-                    <img src={class_image} alt={`Image of ${class_name} class`} />
+                    <Image src={class_image} alt={`Image of ${class_name} class`} />
                   </div>
                 </div>
               </td> */}
