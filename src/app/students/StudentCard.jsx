@@ -2,13 +2,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
-const StudentCard = ({ studentsData }) => {
-  const { email, name, photoURL } = studentsData || {};
+const StudentCard = ({ data }) => {
+  console.log(data);
+  const { email, name, photoURL } = data || {};
   return (
-    <div className="flex card card-compact w-full bg-base-100 box-shadow-custom group" data-aos="zoom-in">
-        <figure className='rounded-t-xl'>
-          <Image height={384} width={384} className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt={`${name}'s Image`} />
-        </figure>
+    
+    <div className=" card card-compact w-full bg-base-100 box-shadow-custom group">
+      {/* <LazyLoad offset={500}> */}
+      {/* <figure className='rounded-t-xl'> */}
+        <Image width={400} height={384} className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt="Tutor" />
+      {/* </figure> */}
+      {/* </LazyLoad> */}
       <div className='border-t border-slate-300 mb-1'></div>
       <div className="flex-1 p-4 pt-4 pb-0">
         <h3 className='text-center text-xl text-slate-700 font-bold'>{name}</h3>
