@@ -5,8 +5,7 @@ import TuitionTypes from '@/components/Home/TuitionTypes';
 import SuccessStory from '@/components/Home/SuccessStory';
 import Statistics from '@/components/Home/Statistics';
 import Gallery from '@/components/Home/Gallery';
-import PopularTutors from '@/components/Home/PopularTutors';
-// import AOS from 'aos';
+import PopularTutors from './popularTutors/page';
 
 export default function Home() {
   return (
