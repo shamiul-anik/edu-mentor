@@ -38,10 +38,10 @@ const TutorRequest = () => {
         Our representative will contact you within 24 hours.
       </p>
       <div className="mx-auto p-4 md:p-8 flex flex-col md:flex-row">
-
+                                
         <form
           onSubmit={handleSubmit}
-          className="shadow-md w-1/2  rounded-lg mr-8 px-8  md:p-8"
+          className="shadow-md w-1/2 p-8  rounded-lg mr-8 px-8  md:p-8"
         >
           <div className="mb-4">
             <label htmlFor="name" className="block text-teal-600 text-lg">
@@ -146,7 +146,7 @@ const TutorRequest = () => {
         </form>
       
 
-      <div className="w-1/2 rounded mx-8">
+      <div className="w-1/2 rounded mx-8 pt-8">
         <FAQAccordion />
       </div>
       </div>
