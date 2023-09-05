@@ -29,7 +29,7 @@ const TutorsPage= () => {
 
 	return (
 		<>
-				<CommonBanner bannerHeading="Tutors"></CommonBanner>
+	<CommonBanner bannerHeading="Tutors"></CommonBanner>
 		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
 			<SectionTitle heading="All Tutors" subHeading="Discover Our Trusted and All Tutors!"></SectionTitle>
 
