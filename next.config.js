@@ -17,7 +17,9 @@ module.exports = {
       "media.licdn.com",
       "ibb.co",
       "i.ibb.co",
-     "lh3.googleusercontent.com" 
+     "lh3.googleusercontent.com",
+    "thumbs.dreamstime.com",
+    "encrypted-tbn0.gstatic.com"
     ],
   },
 };
