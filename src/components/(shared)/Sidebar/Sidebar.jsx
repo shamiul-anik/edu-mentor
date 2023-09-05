@@ -1,13 +1,10 @@
 "use client"
-
 import { useEffect, useState } from 'react'
-// import { Link, Link, useNavigate } from 'react-router-dom'
 import Aos from 'aos';
 // import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
 import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
-// import { toast } from 'react-toastify';
 import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
 import { ImProfile } from 'react-icons/im';
 import { GiTeacher } from 'react-icons/gi';
@@ -19,49 +16,35 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
+import useAuth from '@/hooks/useAuth';
+import useGetUser from "@/hooks/useGetUser"
 
 const Sidebar = () => {
-
-  // const { user, userRole, setUserRole, loading, setLoading, logOut } = useAuth();
-  // const navigate = useNavigate();
-  // const { user, logout } = useAuth();
-
-  // const { displayName, email, photoURL } = user || {};
-
+  const { user, setUserRole, loading, setLoading, logOut } = useAuth();
+  console.log(user);
   const [isActive, setActive] = useState(false);
-
-  const user = {
-    displayName: "Shamiul",
-    email: "shamiul@gmail.com"
-  };
-  // const userRole = "student";
-  const userRole = "admin";
+  const [userData, setUserData] = useState(null);
 
   const { replace, refresh } = useRouter();
+  const userEmail = user?.email;
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
+    const fetchUserData = async () => {
+      const user = await useGetUser(userEmail);
+      setUserData(user);
+    };
+
   }, []);
+  const userRole = userData?.role;
+
+
+
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
-
-  // const handleLogOut = async () => {
-  //   const toastId = toast.loading("Loading...");
-  //   try {
-  //     await logout();
-  //     toast.dismiss(toastId);
-  //     toast.success("Successfully logout!");
-  //     startTransition(() => {
-  //       refresh();
-  //     });
-  //   } catch (error) {
-  //     toast.error("Successfully not logout!");
-  //     toast.dismiss(toastId);
-  //   }
-  // };
 
   return (
     <>
@@ -70,7 +53,7 @@ const Sidebar = () => {
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
             <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-              <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" src={Logo} alt="Logo" />
+              <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
               <span className='animate-pulse flex items-center text-xl md:text-3xl'>
                 {/* <Fade duration={300} triggerOnce={true} cascade>EduMentor</Fade> */}
                 EduMentor
@@ -96,7 +79,7 @@ const Sidebar = () => {
           <div>
             <div className='w-full hidden md:flex py-4 justify-center items-center bg-teal-100 mx-auto'>
               <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-                <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" src={Logo} alt="Logo" />
+                <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
                 <span className='flex items-center text-lg md:text-xl'>
                   {/* <Fade duration={300} triggerOnce={true} cascade>Language School</Fade> */}
                   EduMentor
@@ -113,6 +96,8 @@ const Sidebar = () => {
                       alt='avatar'
                       referrerPolicy='no-referrer'
                       data-aos="zoom-in"
+                      width={40}
+                      height={40}
                     />
                     :
                     <Image
@@ -121,6 +106,8 @@ const Sidebar = () => {
                       alt='avatar'
                       referrerPolicy='no-referrer'
                       data-aos="zoom-in"
+                      width={40}
+                      height={40}
                     />
                 }
               </Link>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
 import Aos from 'aos';
 import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
@@ -20,6 +19,7 @@ import Image from 'next/image';
 const Sidebar = () => {
   
   const { user, userRole, setUserRole, loading, setLoading, logOut } = useAuth();
+  console.log(user);
   const navigate = useNavigate();
   const [isActive, setActive] = useState('false');
 
