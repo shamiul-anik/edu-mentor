@@ -10,10 +10,10 @@ export const GET = async (request) => {
   try {
     await connect();
     // Perform a query to fetch data from the "Tutor_request" collection
-    const tutorRequest = await Tutor_request.find({});
+    const tutorRequest = await Tutor_request.find();
     console.log(tutorRequest)
     // Return the fetched data as a JSON response
-    return NextResponse.json({ tutorRequest }, { status: 200 });
+    return new NextResponse(JSON.stringify(tutorRequest), { status: 200 })
   } catch (error) {
     console.error("Database Error:", error.message);
     // Return an error response if something goes wrong
