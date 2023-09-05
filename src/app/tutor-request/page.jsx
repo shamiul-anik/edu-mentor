@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import FAQAccordion from "@/components/Tutor-Request/FAQ";
+import tutorRequestSave from "@/utils/tutorRequestSave"
 
 const TutorRequest = () => {
   const [name, setName] = useState("");
@@ -15,12 +16,17 @@ const TutorRequest = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted!");
-    console.log(name);
-    console.log(phone);
-    console.log(medium);
-    console.log(classname);
-    console.log(district);
-    console.log(area);
+    const tutorInfor ={
+      name,
+      phone,
+      medium,
+      classname,
+      district,
+      area
+    }
+    console.log(tutorInfor)
+    tutorRequestSave(tutorInfor)
+
   };
 
   return (
