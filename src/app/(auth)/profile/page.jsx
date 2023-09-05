@@ -53,7 +53,7 @@ const Profile = () => {
         </div>
 
         <div className="mx-auto my-2 w-24 aspect-square rounded-full ring-2 ring-offset-2 ring-teal-400">
-          <Image className='rounded-full aspect-square object-cover object-top' src={currentUserPhotoURL ? currentUserPhotoURL : UserImage} alt={currentUserName} />
+          <Image width={96} height={96} className='rounded-full aspect-square object-cover object-top' src={currentUserPhotoURL ? currentUserPhotoURL : UserImage} alt={currentUserName} />
         </div>
         <div className="flex-1 mt-2">
           <h4 className='text-slate-700 text-2xl my-2 font-bold text-center'>{currentUserName ? currentUserName : "Welcome, User!"}</h4>
