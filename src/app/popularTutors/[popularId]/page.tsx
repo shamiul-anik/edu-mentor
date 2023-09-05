@@ -14,10 +14,10 @@ const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: 
         <div className="m-10 w-1/2 bg-white ">
             <h3 className="text-3xl font-bold divide-x-2 divide-neutral-900 mb-4  ">Tutor Profile</h3>
 
-<div className="border w-2/5 border-gray-200 rounded-lg shadow">
-<a href="#" className="flex flex-col w-full  items-center  md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+<div className="border border-gray-200 rounded-lg shadow">
+<a href="#" className="flex flex-col w-full items-center md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
     <Image width={190} height={256} className="object-cover w-full shadow-2xl md:h-auto " src={image_url} alt=""/>
-    <div className="grid grid-cols-2 justify-between gap-10 p-4 w-full leading-normal">
+    <div className="grid grid-cols-3 justify-between gap-10 p-4 w-full leading-normal">
         <div className="mb-2  ">
             <p>Name:</p>
             <p>ID#:</p>
@@ -25,7 +25,7 @@ const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: 
             <p>Area Covered:</p>
             <p>Tutor Location:</p>
              </div>
-        <div className="mb-2  dark:text-white">
+        <div className="mb-2 dark:text-white">
            <p className="font-bold tracking-tight text-gray-900"> {name}</p>
            <p> {id}</p>
            <p> null</p>
