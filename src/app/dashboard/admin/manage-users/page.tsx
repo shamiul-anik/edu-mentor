@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const ManageUsers = () => {
 
-  const role = "admin";
+  const role = "admin" || "tutor";
   // const { user, setUserRole, loading, setLoading } = useAuth();
   // // const [disableInstructorBtn, setDisableInstructorBtn] = useState(false);
   // // const [disableAdminBtn, setDisableAdminBtn] = useState(false);
@@ -138,7 +138,7 @@ const ManageUsers = () => {
               </td>
               <td className="px-2 py-2 text-center">
                 {/* <Link> */}
-                  <button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={role === "tutors"}>
+                  <button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
                     <FaChalkboardTeacher className='w-4 h-4 mr-2' />
                     Make Tutor
                   </button>
