@@ -31,7 +31,7 @@ const TutorRequest = () => {
 
   return (
     <div>
-      <CommonBanner bannerHeading="Tutor Job" />
+      <CommonBanner bannerHeading="Tutor Request" />
       <div className="w-10/12 mx-auto">
 
       <h1 className="text-4xl md:text-7xl py-12 text-teal-500 font-bold">
