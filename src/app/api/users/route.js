@@ -3,11 +3,10 @@ import connect from "@/utils/db"
 import {Users} from "@/models/Users"
 
 export const  GET = async (request) => {
- 
     try {
         await connect()
-        const users = await Users.find()
-        return new NextResponse("ok", {status: 200})
+        const users = await Users.find();
+        return new NextResponse(JSON.stringify(users), {status: 200})
     } catch (error) {
         return new NextResponse("Database Error!", {status: 500})
     }
