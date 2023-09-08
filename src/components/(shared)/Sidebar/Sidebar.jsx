@@ -35,7 +35,7 @@ const Sidebar = () => {
     email: "shamiul@gmail.com"
   };
   // const userRole = "student";
-  const userRole = "admin";
+  const userRole = "tutor";
 
   const { replace, refresh } = useRouter();
 
@@ -183,7 +183,7 @@ const Sidebar = () => {
                   userRole === "tutor" &&
                   <>
                     <Link
-                      href='/dashboard/add-a-tuition'
+                      href='/dashboard/tutor/add-a-tuition'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -191,7 +191,7 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Add a Tuition</span>
                     </Link>
                     <Link
-                      href='/dashboard/my-students'
+                      href='/dashboard/tutor/my-students'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >

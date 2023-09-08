@@ -35,7 +35,7 @@ const Students = () => {
 
       <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
-        <SectionTitle heading="Students" subHeading="Check out our Students!"></SectionTitle>
+        <SectionTitle heading="Students" subHeading="Check out our successful Students!"></SectionTitle>
 
         {/* <div>
           <h1 className="text-2xl font-bold text-teal-600 underline underline-offset-8 text-center mb-6">Total Tutors: 3</h1>
