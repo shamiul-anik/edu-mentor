@@ -1,7 +1,15 @@
 import React from 'react';
 
-const HiredTutors = () => {
+const MyStudents = () => {
   return (
+
+     <>
+      <header>
+        <h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
+          {/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
+          <span>My Students</span>
+        </h1>
+      </header>
     <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
       {/* <div>
@@ -22,14 +30,15 @@ const HiredTutors = () => {
                 Subject <br /> Name
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Tutor <br /> Name
+                Student <br /> Name
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Tutor <br /> Email
+                Student <br /> Email
               </th>
-              {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Available <br /> Seats
+              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                Location
               </th>
+              {/* 
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Enrolled <br /> Students
               </th> */}
@@ -62,6 +71,9 @@ const HiredTutors = () => {
               <td className="px-2 py-2 border-r-2">
                 haidar@gmail.com
               </td>
+              <td className="px-2 py-2 border-r-2">
+                Gulshan-1
+              </td>
               <td className="px-2 py-2 text-center border-r-2">
                 5000
               </td>
@@ -89,6 +101,9 @@ const HiredTutors = () => {
               </td>
               <td className="px-2 py-2 border-r-2">
                 rakib@gmail.com
+              </td>
+              <td className="px-2 py-2 border-r-2">
+                Gulshan-2
               </td>
               <td className="px-2 py-2 text-center border-r-2">
                 8000
@@ -118,6 +133,9 @@ const HiredTutors = () => {
               <td className="px-2 py-2 border-r-2">
                 rana@gmail.com
               </td>
+              <td className="px-2 py-2 border-r-2">
+                Banani
+              </td>
               <td className="px-2 py-2 text-center border-r-2">
                 3000
               </td>
@@ -131,7 +149,8 @@ const HiredTutors = () => {
       </div>
 
     </section>
+    </>
   );
 };
 
-export default HiredTutors;
+export default MyStudents;
