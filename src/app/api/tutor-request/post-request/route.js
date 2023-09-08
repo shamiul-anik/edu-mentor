@@ -12,12 +12,15 @@ export const POST = async (request) => {
     
     // Parse request body
     const { 
-        name,
-        phone,
-        medium,
-        classname,
-        district,
-        area,
+      name,
+      phone,
+      title,
+      tuitionType,
+      salary,
+      medium,
+      classname,
+      district,
+      area,
      } = await request.json();
     // console.log( name,
     //   phone,
@@ -33,12 +36,18 @@ export const POST = async (request) => {
     }
 
     // Create a new user instance
-    const newTutorRequest = new Tutor_request({  name,
+    const newTutorRequest = new Tutor_request({ 
+      name,
       phone,
       medium,
       classname,
       district,
-      area });
+      area,
+      title,
+      tuitionType,
+      salary
+    
+    });
     console.log('newTutor',newTutorRequest);
 
     // Save the new user to the database
