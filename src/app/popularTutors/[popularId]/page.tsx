@@ -28,7 +28,7 @@ const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: 
             <p>Area Covered:</p>
             <p>Tutor Location:</p>
              </div> */}
-        <div className="mb-2 dark:text-white">
+        <div className="mb-2 ml-4 dark:text-white">
             <p>
             <span className='pr-4'>Name:</span>
            <span className="font-bold tracking-tight text-gray-900"> {name}</span>
