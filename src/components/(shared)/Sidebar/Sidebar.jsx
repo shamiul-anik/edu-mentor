@@ -34,9 +34,11 @@ const Sidebar = () => {
       const user = await useGetUser(userEmail);
       setUserData(user);
     };
+    fetchUserData()
 
   }, []);
   const userRole = userData?.role;
+  console.log(userRole);
 
 
 
