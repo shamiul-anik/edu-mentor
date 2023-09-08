@@ -78,9 +78,6 @@ const Header = () => {
                 <Link href="/tutors">Tutors</Link>
               </li>
               <li className="hover:cursor-pointer">
-                <Link href="/tutor-jobs">Tutor-Jobs</Link>
-              </li>
-              <li className="hover:cursor-pointer">
                 <Link href="/students">Students</Link>
               </li>
               <li className="hover:cursor-pointer">
@@ -216,9 +213,6 @@ const Header = () => {
             </li>
             <li className="nav-item hover:cursor-pointer">
               <Link href="/tutors">Tutors</Link>
-            </li>
-            <li className="nav-item hover:cursor-pointer">
-              <Link href="/tutor-jobs">Tutor Jobs</Link>
             </li>
             <li className="nav-item hover:cursor-pointer">
               <Link href="/students">Students</Link>
