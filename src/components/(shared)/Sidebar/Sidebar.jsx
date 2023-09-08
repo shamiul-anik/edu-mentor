@@ -28,15 +28,16 @@ const Sidebar = () => {
   const { replace, refresh } = useRouter();
   const userEmail = user?.email;
 
-  useEffect(() => {
-    Aos.init({ duration: 1000 });
-    const fetchUserData = async () => {
-      const user = await useGetUser(userEmail);
-      setUserData(user);
-    };
+  // useEffect(() => {
+  //   Aos.init({ duration: 1000 });
+  //   const fetchUserData = async () => {
+  //     const user = await useGetUser(userEmail);
+  //     setUserData(user);
+  //   };
 
-  }, []);
-  const userRole = userData?.role;
+  // }, []);
+  // const userRole = userData?.role;
+  const userRole = "tutor";
 
 
 
@@ -184,6 +185,14 @@ const Sidebar = () => {
                     >
                       <FaBook className='w-5 h-5' />
                       <span className='mx-4 font-medium'>My Students</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/tutor/my-bookings'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaBook className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>My Bookings</span>
                     </Link>
                   </>
                 }
