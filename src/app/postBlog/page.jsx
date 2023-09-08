@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 const PostBlog = () => {
     const router = useRouter();
     const { user } = useAuth();
+
     // console.log(user);
     const [blogPostImageUrl, setBlogPostImageUrl] = useState('')
 
