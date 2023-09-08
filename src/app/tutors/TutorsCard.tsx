@@ -25,7 +25,7 @@ const TutorsCard: React.FC<PopularCardProps> = ({tutorData}) => {
                width={512}height={512} src={image_url} alt="tutorImage" />
 
               </div>
-  <div className="card-body h-48 text-center">
+  <div className="card-body h-64 text-center">
     <h2 className=" font-bold card-title justify-center">{name}</h2>
     <p>
       {
