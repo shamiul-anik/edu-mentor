@@ -37,8 +37,8 @@ const FAQAccordion = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-4xl text-teal-500 font-bold">FAQ</h2>
+    <div className="w-10/12 mx-auto">
+      <h2 className="text-4xl  text-teal-500 font-bold">FAQ</h2>
       <div className="mt-4">
         {faqData.map((item, index) => (
           <div key={index} className="mb-4">

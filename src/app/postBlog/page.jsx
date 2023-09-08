@@ -23,6 +23,7 @@ const PostBlog = () => {
         router.push('/blogs');
     }
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
     const onSubmit = data => {
         const selectedImageFile = data.imageFile[0];
         const postImgUrl = data.imageFile[0].name;
@@ -32,7 +33,7 @@ const PostBlog = () => {
         const allData = {
             postImgUrl, postDescription, postDate
         }
-
+        console.log(allData)
         if (selectedImageFile) {
             const fileName = selectedImageFile.name;
             const fileExtension = fileName.split('.').pop().toLowerCase();

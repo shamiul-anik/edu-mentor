@@ -1,13 +1,15 @@
-"use client";
-
+"use client"
 import React, { useState } from "react";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import FAQAccordion from "@/components/Tutor-Request/FAQ";
-import tutorRequestSave from "@/utils/tutorRequestSave"
+import tutorRequestSave from "@/utils/tutorRequestSave";
 
 const TutorRequest = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [title, setTitle] = useState("");
+  const [tuitionType, setTuitionType] = useState("");
+  const [salary, setSalary] = useState("");
   const [medium, setMedium] = useState("");
   const [classname, setClassname] = useState("");
   const [district, setDistrict] = useState("");
@@ -16,49 +18,65 @@ const TutorRequest = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted!");
-    const tutorInfor ={
+    const tutorInfo = {
       name,
       phone,
+      title,
+      tuitionType,
+      salary,
       medium,
       classname,
       district,
-      area
-    }
-    console.log(tutorInfor)
-    tutorRequestSave(tutorInfor)
-
+      area,
+      
+    };
+    console.log(tutorInfo);
+    tutorRequestSave(tutorInfo);
   };
 
   return (
     <div>
       <CommonBanner bannerHeading="Tutor Request" />
       <div className="w-10/12 mx-auto">
+        <h1 className="text-4xl md:text-7xl py-12 text-teal-500 font-bold">
+          Are you looking🔍 for a Tutor?
+        </h1>
 
-      <h1 className="text-4xl md:text-7xl py-12 text-teal-500 font-bold">
-        Are you looking🔍 for a Tutor?
-      </h1>
+        <p className="text-lg md:text-3xl pb-12 text-teal-600">
+          Fill out the form to let us know which class/area you need a tutor for.
+          <br />
+          Our representative will contact you within 24 hours.
+        </p>
 
-      <p className="text-lg md:text-3xl pb-12 text-teal-600">
-        Fill out the form to let us know which class/area you need a tutor for.
-        <br />
-        Our representative will contact you within 24 hours.
-      </p>
-      <div className="mx-auto p-4 md:p-8 flex flex-col md:flex-row">
-                                
         <form
           onSubmit={handleSubmit}
-          className="shadow-md w-1/2 p-8  rounded-lg mr-8 px-8  md:p-8"
+          className="shadow-md w-10/12 p-8 mx-auto rounded-lg m-8 px-8  md:p-8"
         >
           <div className="mb-4">
             <label htmlFor="name" className="block text-teal-600 text-lg">
               Student Name
             </label>
             <input
+              required
               type="text"
               id="name"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-teal-600 text-lg">
+              Tuition Title
+            </label>
+            <input
+              required
+              type="text"
+              id="title"
+              placeholder="Enter the Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             />
           </div>
@@ -68,6 +86,7 @@ const TutorRequest = () => {
               Phone
             </label>
             <input
+              required
               type="tel"
               id="phone"
               placeholder="Enter your phone number"
@@ -75,6 +94,33 @@ const TutorRequest = () => {
               onChange={(e) => setPhone(e.target.value)}
               className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="salary" className="block text-teal-600 text-lg">
+              Salary
+            </label>
+            <input
+              type="number"
+              id="salary"
+              defaultValue="5000Tk"
+              placeholder="Enter your asking salary"
+              value={salary}
+              onChange={(e) => setSalary(e.target.value)}
+              className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="tuitionType" className="block text-teal-600 text-lg">
+              Tuition Type
+            </label>
+            <select
+              value={tuitionType}
+              onChange={(e) => setTuitionType(e.target.value)}
+              className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            >
+              <option value="Home Tutoring">Home Tutoring</option>
+              <option value="Remote Tutoring">Remote Tutoring</option>
+            </select>
           </div>
 
           <div className="mb-4">
@@ -150,12 +196,10 @@ const TutorRequest = () => {
             Submit
           </button>
         </form>
-      
 
-      <div className="w-1/2 rounded mx-8 pt-8">
-        <FAQAccordion />
-      </div>
-      </div>
+        <div className="mt-8">
+          <FAQAccordion />
+        </div>
       </div>
     </div>
   );
