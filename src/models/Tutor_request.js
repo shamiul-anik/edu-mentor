@@ -11,6 +11,15 @@ const tutorRequestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  title: {
+    type: String,
+  },
+  tuitionType: {
+    type: String,
+  },
+  salary: {
+    type: Number,
+  },
   medium: {
     type: String,
   },
