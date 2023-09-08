@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HiredTutors = () => {
+const PaymentHistory = () => {
   return (
     <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
@@ -27,9 +27,8 @@ const HiredTutors = () => {
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Tutor <br /> Email
               </th>
-              {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Available <br /> Seats
-              </th>
+              
+              {/* 
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Enrolled <br /> Students
               </th> */}
@@ -72,7 +71,7 @@ const HiredTutors = () => {
 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                1
+                2
               </td>
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
@@ -106,4 +105,4 @@ const HiredTutors = () => {
   );
 };
 
-export default HiredTutors;
+export default PaymentHistory;
