@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 
 const postBlog = () => {
     const router = useRouter();
+
     const toDay = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
