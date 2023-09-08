@@ -20,25 +20,44 @@ import useAuth from '@/hooks/useAuth';
 import useGetUser from "@/hooks/useGetUser"
 
 const Sidebar = () => {
-  const { user, setUserRole, loading, setLoading, logOut } = useAuth();
+  const { user, loading, setLoading, logOut } = useAuth();
   console.log(user);
   const [isActive, setActive] = useState(false);
-  const [userData, setUserData] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   const { replace, refresh } = useRouter();
   const userEmail = user?.email;
+  console.log(userEmail);
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
-    const fetchUserData = async () => {
-      const user = await useGetUser(userEmail);
-      setUserData(user);
-    };
-    fetchUserData()
+      if (userEmail) {
+        const fetchUserData = async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user?email=${userEmail}`);
+          
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          return data.user;
+        } catch (error) {
+          console.error('Fetch error:', error);
+          return null;
+        }
 
-  }, []);
-  const userRole = userData?.role;
-  console.log(userRole);
+       
+        //   const userData = await useGetUser(userEmail);
+        //   console.log(userData); // This should show the updated value.
+        //   setUserRole(userData?.role)
+        //   console.log(userRole); // This should show the updated value.
+        };
+        const userData = fetchUserData();
+        setUserRole(userData.role)
+      }
+  
+  }, [userEmail]);
+
 
 
 
