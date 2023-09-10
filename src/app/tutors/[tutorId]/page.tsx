@@ -4,9 +4,9 @@ import Image from "next/image";
 import React from 'react';
 import BookingForm from "@/app/popularTutors/BookingForm"
 
-const singlePage: React.FC<{ params: { popularId: string } }> = async ({params: {popularId}}) => {
+const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {tutorId}}) => {
     
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/${popularId}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/${tutorId}`,{
 		cache: 'no-cache'
 	})
 	const singleTutor = await res.json();
