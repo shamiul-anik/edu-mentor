@@ -26,8 +26,8 @@ export const GET = async (request) => {
       filter.gender = gender;
     }
 
-    if (premium === "done") {
-      filter.premium = premium;
+    if (premium === "true") {
+      filter.premium = true;
     }
     console.log(filter)
     // Check if both gender and premium are not provided in the query parameters

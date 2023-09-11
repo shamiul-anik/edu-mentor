@@ -73,7 +73,7 @@ const TutorsPage= () => {
     const { name, value, checked } = e.target;
     setSearchCriteria((prevCriteria) => ({
       ...prevCriteria,
-      [name]: checked ? value : '',
+      [name]: checked ? value : "",
     }));
   };
 
@@ -106,8 +106,8 @@ const TutorsPage= () => {
           <input 
             type="checkbox"
             name="premium"
-            value="done"
-            checked={searchCriteria.premium === 'done'}
+			value= "true"
+            checked={searchCriteria.premium === 'true'}
             onChange={handleInputChange}
 			className="focus:outline-none"
 			

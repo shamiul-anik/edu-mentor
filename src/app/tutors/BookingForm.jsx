@@ -21,26 +21,23 @@ const BookingForm = () => {
 
 
   const onSubmit = async (data, event) => {
-    const { name, email, password } = data;
+    const { name, email, phoneNumber, subject, location, salary, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
+    toast.dismiss(toastId);
     // try {
-    //   await createUser(email, password);
-    // //   await createJWT({ email });
-    //   await profileUpdate({
-    //     displayName: name,
-    //     photoURL: photo,
-    //   });
-      //user Data save mongodb start
-      // const userData ={
-      //   name: name,
-      //   email: email,
-      //   role: 'student',
-      //   photo_URL: photo,
-      //   registered_at: new Date()
-      // }
-      // userPost(userData)
-      
-      //user Data save mongodb end
+      // Booking Data save mongodb start
+      const booking ={
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        subject:  subject,
+        location: location,
+        salary: salary,
+        detailsInfo:  detailsInfo,
+        bookingDate: new Date()
+      }
+      // Booking Data save mongodb start
+
     //   startTransition(() => {
     //     refresh();
     //     replace(from);
@@ -52,12 +49,16 @@ const BookingForm = () => {
     //   toast.error(error.message || "User not signed in");
     // }
   };
+  
  
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card-body m-10">
-        <h3 className="text-2xl text-black">Contact with This tutor</h3>
-      <div className="form-control">
+    <>
+            <h3 className="text-3xl text-white p-1 font-bold divide-x-2 divide-neutral-900 mb-4  bg-gradient-to-r from-[#29A2AA] to-[#c0332e]  ">Contact with This tutor</h3>
+    <form onSubmit={handleSubmit(onSubmit)} className="card-body  border  border-gray-200">
+    <div className="flex gap-4 justify-between">
+    <div className="w-full">
+    <div className="form-control">
         <label htmlFor="name" className="label label-text">
           Name
         </label>
@@ -104,33 +105,78 @@ const BookingForm = () => {
           Phone Number
         </label>
         <input
-          type="text"
-          placeholder="Your phone Number"
-          id="phone"
-          name="phone"
-          className="input input-bordered"
-          {...register("phone")}
+        type="tel"
+        placeholder="Phone number" 
+        {...register("phoneNumber", {required: true, maxLength: 11})}
+        className="input input-bordered"
         />
       </div>
+    </div>
+    <div className="w-full">
+    <div className="form-control">
+          <label 
+          htmlFor="subject"
+          className="label label-text"
+          >Subject</label>
+          <input
+          type="text"
+          id="subject"
+          placeholder="Type subject"
+          name= "subject"
+          className="input input-bordered"
+          {...register("subject")}
+          />
+      </div>
       <div className="form-control">
-        <label htmlFor="writeText" className="label label-text">
+          <label 
+          htmlFor="location"
+          className="label label-text"
+          >Location</label>
+          <input
+          type="text"
+          placeholder="Type location"
+          id="location"
+          name= "location"
+          className="input input-bordered"
+          {...register("location")}
+          />
+      </div>
+      <div className="form-control">
+          <label 
+          htmlFor="salary"
+          className="label label-text"
+          >Salary</label>
+          <input
+          type="text"
+          id="salary"
+          placeholder="expected tuition fees"
+          name= "subject"
+          className="input input-bordered"
+          {...register("salary")}
+          />
+      </div>
+    </div>
+    </div>
+      <div className="form-control">
+        <label htmlFor="detailsInfo" className="label label-text">
         Details Information
         </label>
-        <textarea placeholder='Type Your Thinking' className=' w-full h-28 rounded-lg mt-2' 
-          {...register("writeText")}
+        <textarea placeholder='Type Your Available days' className=' w-full h-28 rounded-lg mt-2' 
+          {...register("detailsInfo")}
         />
         {errors.name && (
           <span className="text-red-500 text-base mt-1">
-            Please enter your name.
+            Your Available days
           </span>
         )}
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary" type="submit">
+        <button className="btn btn-primary bg-gradient-to-r from-[#29A2AA] to-[#c0332e] hover:from-[#c0332e] hover:to-[#29A2AA]" type="submit">
           Submit
         </button>
       </div>
     </form>
+    </>
   );
 };
 
