@@ -2,7 +2,7 @@
 import { Tutor } from '@/typeScript/tutorType';
 import Image from "next/image";
 import React from 'react';
-import BookingForm from "@/app/popularTutors/BookingForm"
+import BookingForm from "@/app/tutors/BookingForm"
 
 const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {tutorId}}) => {
     
@@ -12,9 +12,9 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
 	const singleTutor = await res.json();
     const { image_url, name, id, tuition_info, area_covered, gender}= singleTutor || {};
     return (
-        <div className='flex '>
+        <div className=' md:flex flex-row   justify-center'>
         <div className="m-10 w-1/2 bg-white ">
-            <h3 className="text-3xl font-bold divide-x-2 divide-neutral-900 mb-4  ">Tutor Profile</h3>
+            <h3 className="text-3xl text-white p-1 font-bold divide-x-2 divide-neutral-900 mb-4  bg-gradient-to-r from-[#29A2AA] to-[#c0332e] ">Tutor Profile</h3>
 
 <div className="border border-gray-200 rounded-lg shadow">
 <a href="#" className="flex flex-col w-full items-center md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -75,7 +75,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
 </div>
 
         </div>
-        <div className= "m-10 w-1/2 border  border-gray-200">
+        <div className= " mt-10 mb-10 w-1/2">
         <BookingForm/>
         </div>
         </div>
