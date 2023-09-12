@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
+    tutorId: {
+      type: String,
+    
+    },
     name: {
       type: String,
       required: true,
@@ -17,9 +21,6 @@ const bookingSchema = new mongoose.Schema({
     location: String,
     salary: String,
     detailsInfo: String,
-    bookingDate: {
-      type: Date,
-      default: Date.now,
-    },
-  });
-  export const BookingForm = mongoose.models.BookingForm || mongoose.model('BookingForm', bookingSchema) ;
+  }
+  );
+  export const Bookings = mongoose.models.Bookings || mongoose.model('Bookings', bookingSchema) ;
