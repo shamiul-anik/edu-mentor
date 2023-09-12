@@ -26,7 +26,7 @@ export const  POST = async (request) => {
          return NextResponse.json({ error: "Booking allready exists" }, { status: 404 });
         }
 
-        const newBooking = new Booking({
+        const newBooking = new Bookings({
             tutorId,
             name,
             email,
