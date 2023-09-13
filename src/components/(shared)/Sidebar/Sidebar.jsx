@@ -17,44 +17,21 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
-import useGetUser from "@/hooks/useGetUser"
 
 const Sidebar = () => {
-  const { user, loading, setLoading, logOut } = useAuth();
+  const { user, loading, setLoading, logOut, userRole } = useAuth();
   console.log(user);
   const [isActive, setActive] = useState(false);
-  const [userRole, setUserRole] = useState(null);
-
   const { replace, refresh } = useRouter();
+
   const userEmail = user?.email;
   console.log(userEmail);
+  console.log(userRole);
 
   useEffect(async () => {
     Aos.init({ duration: 1000 });
-        // const fetchUserData = async () => {
-        // try {
-        //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user?email=${userEmail}`);
-          
-        //   if (!response.ok) {
-        //     throw new Error('Network response was not ok');
-        //   }
-        //   const data = await response.json();
-        //   return data.user;
-        // } catch (error) {
-        //   console.error('Fetch error:', error);
-        //   return null;
-        // }
-
-       
-        //   const userData = await useGetUser(userEmail);
-        //   console.log(userData); // This should show the updated value.
-        //   setUserRole(userData?.role)
-        //   console.log(userRole); // This should show the updated value.
-        };
-        const userData = await fetchUserData();
-        setUserRole(userData.role)
-  
-  }, [userEmail]);
+     
+  }, []);
 
 
 
@@ -113,8 +90,8 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={user?.photoURL}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
                       width={40}
                       height={40}
                     />
@@ -123,8 +100,8 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={UserImage}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
                       width={40}
                       height={40}
                     />

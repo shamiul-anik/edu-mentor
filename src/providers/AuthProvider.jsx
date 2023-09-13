@@ -15,11 +15,11 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userRole, setUserRole] = useState("");
   const [loading, setLoading] = useState(true);
-  const [loadingRole, setLoadingRole] = useState(true);
 
   useEffect(() => {
-    if (user !== null) {
+    if (user) {
       const fetchUserData = async () => {
+        console.log(user?.email);
         const userData = await useGetUser(user?.email);
         console.log(userData); // This should show the updated value.
         setUserRole(userData?.role);
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
       };
       fetchUserData()
     }
-  }, [user, userRole]);
+  }, [user]);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -77,7 +77,6 @@ const AuthProvider = ({ children }) => {
     setUser,
     userRole,
     setUserRole,
-    loadingRole,
     loading,
     setLoading,
     createUser,
