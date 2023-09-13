@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="winter">
       <body className="h-[100dvh] flex flex-col justify-between">
         <Providers>
           <Header />
