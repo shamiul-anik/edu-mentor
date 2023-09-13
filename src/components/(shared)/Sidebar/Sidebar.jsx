@@ -29,22 +29,21 @@ const Sidebar = () => {
   const userEmail = user?.email;
   console.log(userEmail);
 
-  useEffect(() => {
+  useEffect(async () => {
     Aos.init({ duration: 1000 });
-      if (userEmail) {
-        const fetchUserData = async () => {
-        try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user?email=${userEmail}`);
+        // const fetchUserData = async () => {
+        // try {
+        //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user?email=${userEmail}`);
           
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          const data = await response.json();
-          return data.user;
-        } catch (error) {
-          console.error('Fetch error:', error);
-          return null;
-        }
+        //   if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        //   }
+        //   const data = await response.json();
+        //   return data.user;
+        // } catch (error) {
+        //   console.error('Fetch error:', error);
+        //   return null;
+        // }
 
        
         //   const userData = await useGetUser(userEmail);
@@ -52,9 +51,8 @@ const Sidebar = () => {
         //   setUserRole(userData?.role)
         //   console.log(userRole); // This should show the updated value.
         };
-        const userData = fetchUserData();
+        const userData = await fetchUserData();
         setUserRole(userData.role)
-      }
   
   }, [userEmail]);
 
