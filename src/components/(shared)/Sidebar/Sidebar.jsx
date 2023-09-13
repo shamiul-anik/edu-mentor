@@ -17,27 +17,25 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
-import useGetUser from "@/hooks/useGetUser"
 
 const Sidebar = () => {
-  const { user, setUserRole, loading, setLoading, logOut } = useAuth();
+  const { user, loading, setLoading, logOut, userRole } = useAuth();
   console.log(user);
   const [isActive, setActive] = useState(false);
-  const [userData, setUserData] = useState(null);
-
   const { replace, refresh } = useRouter();
-  const userEmail = user?.email;
 
-  // useEffect(() => {
-  //   Aos.init({ duration: 1000 });
-  //   const fetchUserData = async () => {
-  //     const user = await useGetUser(userEmail);
-  //     setUserData(user);
-  //   };
+  const userEmail = user?.email;
+  console.log(userEmail);
+  console.log(userRole);
+
+  useEffect(async () => {
+    Aos.init({ duration: 1000 });
+     
+  }, []);
 
   // }, []);
   // const userRole = userData?.role;
-  const userRole = "tutor";
+  // const userRole = "tutor";
 
 
 
@@ -95,8 +93,8 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={user?.photoURL}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
                       width={40}
                       height={40}
                     />
@@ -105,8 +103,8 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={UserImage}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
                       width={40}
                       height={40}
                     />
