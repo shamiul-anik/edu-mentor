@@ -78,10 +78,13 @@ const Header = () => {
                 <Link href="/tutors">Tutors</Link>
               </li>
               <li className="hover:cursor-pointer">
-                <Link href="/tutor-jobs">Tutor-Jobs</Link>
+                <Link href="/students">Students</Link>
               </li>
               <li className="hover:cursor-pointer">
-                <Link href="/students">Students</Link>
+                <Link href="/tutor-request">Tutor Request</Link>
+              </li>
+              <li className="hover:cursor-pointer">
+                <Link href="/tutor-jobs">Tutor Jobs</Link>
               </li>
               {/* <li className="hover:cursor-pointer">
 								<Link href="/courses">Courses</Link>
@@ -98,9 +101,6 @@ const Header = () => {
               </li>
               <li className="hover:cursor-pointer">
                 <Link href="/about">About</Link>
-              </li>
-              <li className="hover:cursor-pointer text-white">
-                <Link href="/tutor-request">Tutor Request</Link>
               </li>
               <li className="hover:cursor-pointer">
                 <Link href="/blogs">Blog</Link>
@@ -207,7 +207,7 @@ const Header = () => {
         )}
 
         <div className="navbar-center mx-auto hidden lg:flex">
-          <ul className="flex gap-10 text-xl font-semibold menu-horizontal px-1 z-10">
+          <ul className="flex gap-4 text-xl font-semibold menu-horizontal px-1 z-10">
             <li className="nav-item hover:cursor-pointer">
               <Link href="/">Home</Link>
             </li>
@@ -215,10 +215,13 @@ const Header = () => {
               <Link href="/tutors">Tutors</Link>
             </li>
             <li className="nav-item hover:cursor-pointer">
-              <Link href="/tutor-jobs">Tutor Jobs</Link>
+              <Link href="/students">Students</Link>
             </li>
             <li className="nav-item hover:cursor-pointer">
-              <Link href="/students">Students</Link>
+              <Link href="/tutor-request">Tutor Request</Link>
+            </li>
+            <li className="nav-item hover:cursor-pointer">
+              <Link href="/tutor-jobs">Tutor Jobs</Link>
             </li>
             {/* <li className="nav-item hover:cursor-pointer">
 							<Link href="/courses">Courses</Link>
@@ -236,9 +239,6 @@ const Header = () => {
             <li className="nav-item hover:cursor-pointer">
               <Link href="/about">About</Link>
             </li>
-            <li className="nav-item hover:cursor-pointer">
-                <Link href="/tutor-request">Tutor Request</Link>
-              </li>
             <li className="nav-item hover:cursor-pointer">
               <Link href="/blogs">Blog</Link>
             </li>

@@ -25,7 +25,7 @@ const TutorsCard: React.FC<PopularCardProps> = ({tutorData}) => {
                width={512}height={512} src={image_url} alt="tutorImage" />
 
               </div>
-  <div className="card-body h-48 text-center">
+  <div className="card-body h-64 text-center">
     <h2 className=" font-bold card-title justify-center">{name}</h2>
     <p>
       {
@@ -37,7 +37,7 @@ const TutorsCard: React.FC<PopularCardProps> = ({tutorData}) => {
     <p className='font-bold'>{education}</p>
     {/* TODO: Top 'use client' is use for button.  */}
     <div className=" w-full">
-      <Link href={`/popularTutors/${_id}`}>
+      <Link href={`/tutors/${_id}`}>
       <button onClick={()=>TestForButton(_id)} className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Details</button>
       </Link>
     </div>

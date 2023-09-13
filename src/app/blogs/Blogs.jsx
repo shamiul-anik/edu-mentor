@@ -10,6 +10,7 @@ import BlogCard from './BlogCard';
 import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
+import { FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
 
 
 const people = [
@@ -21,9 +22,9 @@ const people = [
 
 
 const Blogs = () => {
-
     const { user } = useAuth();
-    console.log("blog page user", user);
+    const blogsPerPage = 3;
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [selected, setSelected] = useState(people[0])
     const [blogs, setBlogs] = useState([])
@@ -41,6 +42,9 @@ const Blogs = () => {
 
                 const data = await res.json();
 
+                const startIndex = (currentPage - 1) * blogsPerPage;
+                const endIndex = startIndex + blogsPerPage;
+
                 // Filter the data based on the selected role
                 let filteredData;
 
@@ -51,20 +55,27 @@ const Blogs = () => {
                     // Filter data for the selected role
                     filteredData = data.filter(item => item.role === selected.name);
                 }
+                const paginatedData = filteredData.slice(startIndex, endIndex);
 
-                setBlogs(filteredData);
+                setBlogs(paginatedData);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
         fetchData();
 
-    }, [selected]);
+    }, [selected, currentPage]);
 
+    const nextPage = () => {
+        setCurrentPage(currentPage + 1)
+    }
+    const previousPage = () => {
+        setCurrentPage(currentPage - 1)
+    }
 
     return (
         <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-4 lg:p-4 p-2 text-slate-700 text-justify'>
-            
+
             <div className="lg:w-[90%] w-full mx-auto">
                 <div className=" mb-2">
                     <div className=" rounded-md flex justify-between">
@@ -158,11 +169,21 @@ const Blogs = () => {
             </div>
             <div className=" lg:w-[50%] w-[80%] text-center mx-auto mt-10">
                 <div className="join">
-                    <button className="join-item btn">1</button>
-                    <button className="join-item btn">2</button>
-                    <button className="join-item btn btn-disabled">...</button>
-                    <button className="join-item btn">99</button>
-                    <button className="join-item btn">100</button>
+                    <button className="join-item btn pointer-events-none">{currentPage - 1}</button>
+                    <button onClick={previousPage} className="join-item btn"><FiChevronsLeft></FiChevronsLeft></button>
+                    <button className="join-item btn btn-disabled max-sm:hidden">...</button>
+                    {Array.from({ length: Math.ceil(blogs.length / blogsPerPage) }).map((_, index) => (
+                        <button
+                            key={index}
+                            className={`join-item btn ${currentPage === index + 1 ? 'btn-active' : ''}`}
+                            onClick={() => setCurrentPage(index + 1)}
+                        >
+                            {currentPage}
+                        </button>
+                    ))}
+                    <span className="join-item btn btn-disabled max-sm:hidden">...</span>
+                    <button onClick={nextPage} className="join-item btn"><FiChevronsRight></FiChevronsRight></button>
+                    <span className="join-item btn pointer-events-none">{currentPage + 1}</span>
                 </div>
             </div>
         </div>
