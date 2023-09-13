@@ -17,6 +17,6 @@ export const GET = async (request) => {
        }
     } catch (error) {
         console.error("Database Error:", error.message);
-        return NextResponse.error("Internal Server Error", { status: 500 });
+        return new NextResponse.error("Internal Server Error", { status: 500 });
     }
 }
