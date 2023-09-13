@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
@@ -10,6 +10,11 @@ import { useRouter } from 'next/navigation';
 
 const PostBlog = () => {
     const router = useRouter();
+    const { user } = useAuth();
+
+    // console.log(user);
+    const [blogPostImageUrl, setBlogPostImageUrl] = useState('')
+
     const toDay = () => {
         const today = new Date();
         const day = String(today.getDate()).padStart(2, '0');
@@ -19,41 +24,90 @@ const PostBlog = () => {
         return formattedDate
     }
 
-    const navigate = () =>{
+    const navigate = () => {
         router.push('/blogs');
     }
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    
-    const onSubmit = data => {
-        const selectedImageFile = data.imageFile[0];
-        const postImgUrl = data.imageFile[0].name;
-        const postDescription = data.words;
-        const postDate = toDay();
 
-        const allData = {
-            postImgUrl, postDescription, postDate
-        }
-        console.log(allData)
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+
+
+    const uploadImage = async (event) => {
+        const formData = new FormData();
+        // if (!event.target.files[0]) return;
+
+        const selectedImageFile = event.target.files[0]
         if (selectedImageFile) {
             const fileName = selectedImageFile.name;
             const fileExtension = fileName.split('.').pop().toLowerCase();
-
             // Define allowed extensions
             const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
             if (allowedExtensions.includes(fileExtension)) {
                 //   console.log('Valid file extension: ' + fileExtension);
-                console.log("data", allData);
-                toast.success('Thank Your Blogs')
-                navigate()
             } else {
                 // File has an invalid extension
-                toast.error('Invalid Image Extension: ' + fileExtension)
+                return toast.error('Invalid Image Extension: ' + fileExtension)
             }
         }
 
-    }
+        formData.append("image", event.target.files[0]);
+        const toastId = toast.loading("Progressing Image...");
+        try {
+            const res = await fetch(
+                `https://api.imgbb.com/1/upload?key=1cc8373b2b72da27fdf6f46447e5d7a8`,
+                {
+                    method: "POST",
+                    body: formData,
+                }
+            );
+            if (!res.ok) throw new Error("😞 Failed to upload image");
 
+            const data = await res.json();
+            toast.dismiss(toastId);
+            toast.success("Progressing Image successfully!");
+            setValue("photo", data.data.url);
+            setBlogPostImageUrl(data.data.url)
+            console.log('49', data.data.url);
+
+        } catch (error) {
+            toast.error(`Progressing !😞! Error `);
+            toast.dismiss(toastId);
+        }
+    };
+
+    const onSubmit = data => {
+        const postImgUrl = blogPostImageUrl;
+        const postDescription = data.words;
+        const postDate = toDay();
+        const userName = "Midharula";
+        const userRole = "student";
+        const allData = {
+            postImgUrl, postDescription, postDate, userName, userRole
+        }
+
+        toast.success('Thank Your Blogs')
+        // navigate()
+        console.log(allData);
+
+            try {
+                const res = fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`,
+                    {
+                        method: "POST",
+                        body: allData,
+                    }
+                );
+                if (!res.ok) throw new Error("😞 Failed Post");
+
+                const data = res.json();
+                toast.success("Blog Post successfully!");
+                console.log('49', data.data);
+
+            } catch (error) {
+                toast.error(`Blog Post !😞! Error `);
+            }
+        
+    }
     return (
         <div>
             <form className='w-[95%] mx-auto' onSubmit={handleSubmit(onSubmit)}>
@@ -66,7 +120,8 @@ const PostBlog = () => {
                     type='file'
                     className='form-control rounded-md'
                     id='xmlFile'
-                    {...register('imageFile')}
+                    // {...register('imageFile')}
+                    onChange={uploadImage}
                 />
                 <button className='bg-slate-600 py-2 px-4 max-sm:ml-[65%] ml-1 rounded-md my-2 text-white hover:bg-slate-700' type='submit'>Submit</button>
             </form>
