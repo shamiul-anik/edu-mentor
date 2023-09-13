@@ -6,18 +6,23 @@ export const GET = async (request) => {
   try {
     // Connect to the MongoDB database
     await connect();
-    
+
     // Get the email parameter from the query string
-    const { email } = request.query;
-    console.log(email);
+    const { searchParams } = new URL(request.url);
+    const email = searchParams.get("email");
+    const query = { email };
+
 
     // Find the user by email
-    const user = await Users.findOne({ email });
-    if (!user) {
+    if (query.email !== null) {
+      const user = await Users.findOne(query);
+      console.log(user);
+      return new NextResponse(JSON.stringify(user), { status: 200 });
+    }
+    else if(query.email === null) {
       return new NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ user }, { status: 200 });
   } catch (error) {
     console.error("Database Error:", error.message);
     return NextResponse("Internal Server Error", { status: 500 });

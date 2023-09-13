@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import {app} from '@/firebase/firebase.config.js';
 import { useState, useEffect } from 'react';
+import useGetUser from "@/hooks/useGetUser";
 // import axios from 'axios';
 
 import AuthContext from "@/contexts/AuthContext"
@@ -11,21 +12,22 @@ const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(null);
-	const [userRole, setUserRole] = useState("");
-	const [loading, setLoading] = useState(true);
-	const [loadingRole, setLoadingRole] = useState(true);
+  const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState("");
+  const [loading, setLoading] = useState(true);
 
-	// useEffect(() => {
-	// 	if(user) {
-	// 		axios(`${import.meta.env.VITE_API_URL}/users/${user?.email}`).then(
-	// 			(data) => {
-	// 				setUserRole(data?.data?.role);
-	// 			}
-	// 		);
-	// 		setLoadingRole(false);
-	// 	}
-	// }, [user]);
+  useEffect(() => {
+    if (user) {
+      const fetchUserData = async () => {
+        console.log(user?.email);
+        const userData = await useGetUser(user?.email);
+        console.log(userData); // This should show the updated value.
+        setUserRole(userData?.role);
+        console.log(userRole); // This should show the updated value.
+      };
+      fetchUserData()
+    }
+  }, [user]);
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -87,7 +89,6 @@ const AuthProvider = ({ children }) => {
 		setUser,
 		userRole, 
 		setUserRole,
-		loadingRole,
 		loading,
 		setLoading,
 		createUser,
