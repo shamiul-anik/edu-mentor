@@ -17,17 +17,17 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [loadingRole, setLoadingRole] = useState(true);
 
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     const fetchUserData = async () => {
-  //       const userData = await useGetUser(user?.email);
-  //       console.log(userData); // This should show the updated value.
-  //       setUserRole(userData?.role);
-  //       console.log(userRole); // This should show the updated value.
-  //     };
-  //     fetchUserData()
-  //   }
-  // }, [user, userRole]);
+  useEffect(() => {
+    if (user !== null) {
+      const fetchUserData = async () => {
+        const userData = await useGetUser(user?.email);
+        console.log(userData); // This should show the updated value.
+        setUserRole(userData?.role);
+        console.log(userRole); // This should show the updated value.
+      };
+      fetchUserData()
+    }
+  }, [user, userRole]);
 
   const createUser = (email, password) => {
     setLoading(true);
