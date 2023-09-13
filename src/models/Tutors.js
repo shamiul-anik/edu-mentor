@@ -1,45 +1,58 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
+const educationQualificationSchema = new mongoose.Schema({
+  degree: String,
+  institution: String,
+  year_completed: Number,
+  subjects: [String],
+});
 
-const tutorSchema = new Schema({
-    name: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    subjects: {
-        type: Array,
-        required: true
-    },
-    students: {
-        type: Number,
-        required: true
-    },
-    photoURL: {
-        type: String,
-        required: true
-    },
-    
-    location: {
-        type: String,
-        required: true
-    },
-    Education: {
-        type: String,
-        required: true
-    },
-    ratings:{
-        type: Number,
-        required: true
-    }
-},
-    { timestamps: true }
-)
+const tuitionInfoSchema = new mongoose.Schema({
+  expected_salary: String,
+  current_status: String,
+  days_per_week: [String],
+  preferred_tuition_style: [String],
+  place_of_learning: String,
+  extra_facilities: [String],
+  preferred_medium_of_instruction: String,
+  preferred_class: [String],
+  preferred_subjects: [String],
+  preferred_time: [String],
+  preferred_areas_to_teach: [String],
+});
 
+const contactSchema = new mongoose.Schema({
+  email: String,
+  phone: String,
+});
+
+const locationSchema = new mongoose.Schema({
+  latitude: Number,
+  longitude: Number,
+  address: String,
+});
+
+const tutorSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  premium: Boolean,
+  gender: String,
+  age: Number,
+  students: Number,
+  ratings: Number,
+  education: String,
+  image_url: String,
+  education_qualification: [educationQualificationSchema],
+  tuition_info: tuitionInfoSchema,
+  contact: contactSchema,
+  experience: String,
+  languages_spoken: [String],
+  additional_info: String,
+  area_covered: [String],
+  location: locationSchema,
+  subjects: [String],
+  updatedAt: Date,
+});
+
+// Export the Tutors model
 export const Tutors = mongoose.models.Tutors || mongoose.model('Tutors', tutorSchema);
