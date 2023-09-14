@@ -113,10 +113,10 @@ const AddATuition = () => {
               <div className="grid gap-x-4 gap-y-2 md:grid-cols-2">
                 <div className="form-control">
                   <label className="label pl-0" htmlFor="mobile">
-                    <span className="label-text text-md md:text-[16px]">Mobile No.</span>
+                    <span className="label-text text-md md:text-[16px]">Mobile Number</span>
                   </label>
-                  <input type="text" id="mobile" {...register("mobile", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="mobile" placeholder="Enter your mobile no." className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
-                  {errors?.mobile?.type === 'required' && <p className="text-red-500 mt-2">Mobile no. is required!</p>}
+                  <input type="text" id="mobile" {...register("mobile", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="mobile" placeholder="Enter your mobile number" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                  {errors?.mobile?.type === 'required' && <p className="text-red-500 mt-2">Mobile number is required!</p>}
                   {errors?.mobile?.type === 'pattern' && <p className="text-red-500 mt-2">Only numbers are allowed!</p>}
                 </div>
 
