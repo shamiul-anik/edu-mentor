@@ -8,12 +8,15 @@ import { Fade } from "react-awesome-reveal";
 // import useAuth from "../../../../hooks/useAuth";
 import Link from "next/link";
 import { GrUserAdmin } from 'react-icons/gr';
+import { GrValidate } from "react-icons/gr";
+import { LuShieldClose } from "react-icons/lu";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import Image from "next/image";
 
 const ManageUsers = () => {
 
   const role = "admin" || "tutor";
+  const isVerified = false;
   // const { user, setUserRole, loading, setLoading } = useAuth();
   // // const [disableInstructorBtn, setDisableInstructorBtn] = useState(false);
   // // const [disableAdminBtn, setDisableAdminBtn] = useState(false);
@@ -114,6 +117,18 @@ const ManageUsers = () => {
                   Email
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Mobile No.
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Gender
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Qualification
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Location
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Role
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2">
@@ -143,11 +158,31 @@ const ManageUsers = () => {
                   {/* {email} */}
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
                   {/* {role} */}
                 </td>
                 <td className="px-2 py-2 text-center">
+                  <button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={isVerified} >
+                    <GrValidate className='gr-icon w-4 h-4 mr-2' />
+                    Approve
+                  </button>
+                  <button type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={isVerified}>
+                    <LuShieldClose className='gr-icon w-4 h-4 mr-2' />
+                    Deny
+                  </button>
                   {/* <Link> */}
-                    <button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
+                  <button type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
                       <FaChalkboardTeacher className='w-4 h-4 mr-2' />
                       Make Tutor
                     </button>

@@ -124,10 +124,10 @@ const ManageStudents = () => {
                   Student&apos;s <br /> Image
                 </th> */}
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s <br /> Name
+                  User<br /> Name
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s <br /> Email
+                  User<br /> Email
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Tuition <br /> Title
@@ -145,7 +145,10 @@ const ManageStudents = () => {
                   Medium
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Subject <br /> / Class
+                  Subject
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Class
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   District
@@ -196,6 +199,9 @@ const ManageStudents = () => {
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
                   {/* ${class_price} */}
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
                   
