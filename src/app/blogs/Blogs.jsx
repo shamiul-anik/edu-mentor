@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
 import { FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
+import { useTitle } from '@/hooks/useTitle';
 
 
 const people = [
@@ -22,6 +23,7 @@ const people = [
 
 
 const Blogs = () => {
+    useTitle("Blogs");
     const { user } = useAuth();
     const blogsPerPage = 3;
     const [currentPage, setCurrentPage] = useState(1);
@@ -88,7 +90,7 @@ const Blogs = () => {
                     <div className=" rounded-md flex justify-between">
 
                         <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-2 text-white" href={` ${user === null ? "/login" : "/postBlog"}`}>
-                            Post  Your  Blogs
+                            Add Blog Post
                         </Link>
 
                         <div className="lg:mr-[2%] rounded-md w-44 text-center">
