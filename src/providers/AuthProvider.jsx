@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
     if (user) {
       const fetchUserData = async () => {
         console.log(user?.email);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const userData = await useGetUser(user?.email);
         console.log(userData); // This should show the updated value.
         setUserRole(userData?.role);
@@ -27,7 +28,7 @@ const AuthProvider = ({ children }) => {
       };
       fetchUserData()
     }
-  }, [user]);
+  }, [user, userRole]);
 
   const createUser = (email, password) => {
     setLoading(true);

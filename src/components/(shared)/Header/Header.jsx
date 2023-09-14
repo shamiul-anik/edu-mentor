@@ -2,7 +2,7 @@
 import React, { startTransition } from "react";
 import "./Header.css";
 import Link from "next/link";
-import { MdLogin, MdLogout } from "react-icons/md";
+import { MdDashboard, MdLogin, MdLogout } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import Image from "next/image";
 import Logo from "@/assets/images/logo.png";
@@ -74,9 +74,9 @@ const Header = () => {
               <li className="hover:cursor-pointer">
                 <Link href="/tutors">Tutors</Link>
               </li>
-              <li className="hover:cursor-pointer">
+              {/* <li className="hover:cursor-pointer">
                 <Link href="/students">Students</Link>
-              </li>
+              </li> */}
               <li className="hover:cursor-pointer">
                 <Link href="/tutor-request">Tutor Request</Link>
               </li>
@@ -86,13 +86,13 @@ const Header = () => {
               {/* <li className="hover:cursor-pointer">
 								<Link href="/courses">Courses</Link>
 							</li> */}
-              {user && (
+              {/* {user && (
                 <>
                   <li className="hover:cursor-pointer">
                     <Link href="/dashboard">Dashboard</Link>
                   </li>
                 </>
-              )}
+              )} */}
               <li className="hover:cursor-pointer">
                 <Link href="/contact">Contact</Link>
               </li>
@@ -186,7 +186,7 @@ const Header = () => {
                   <Link className="flex p-0 mb-2" href="/profile">
                     <button
                       type="button"
-                      className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
+                      className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-600 to-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
                     >
                       <ImProfile className="text-xl"></ImProfile>
                       Profile
@@ -199,11 +199,12 @@ const Header = () => {
                       type="button"
                       className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
                     >
-                      <ImProfile className="text-xl"></ImProfile>
+                      <MdDashboard className="text-xl text-white"></MdDashboard>
                       Dashboard
                     </button>
                   </Link>
                 </li>
+                
                 <li className="flex p-0" onClick={handleLogOut}>
                   <button
                     type="button"
@@ -219,16 +220,16 @@ const Header = () => {
         )}
 
         <div className="navbar-center mx-auto hidden lg:flex">
-          <ul className="flex gap-4 text-xl font-semibold menu-horizontal px-1 z-10">
+          <ul className="flex gap-6 text-xl font-semibold menu-horizontal px-1 z-10">
             <li className="nav-item hover:cursor-pointer">
               <Link href="/">Home</Link>
             </li>
             <li className="nav-item hover:cursor-pointer">
               <Link href="/tutors">Tutors</Link>
             </li>
-            <li className="nav-item hover:cursor-pointer">
+            {/* <li className="nav-item hover:cursor-pointer">
               <Link href="/students">Students</Link>
-            </li>
+            </li> */}
             <li className="nav-item hover:cursor-pointer">
               <Link href="/tutor-request">Tutor Request</Link>
             </li>
@@ -238,13 +239,13 @@ const Header = () => {
             {/* <li className="nav-item hover:cursor-pointer">
 							<Link href="/courses">Courses</Link>
 						</li> */}
-            {user && (
+            {/* {user && (
               <>
                 <li className="nav-item hover:cursor-pointer">
                   <Link href="/dashboard">Dashboard</Link>
                 </li>
               </>
-            )}
+            )} */}
             <li className="nav-item hover:cursor-pointer">
               <Link href="/contact">Contact</Link>
             </li>
@@ -334,10 +335,21 @@ const Header = () => {
                     </button>
                   </Link>
                 </li>
+                <li>
+                  <Link className="flex p-0 mb-2" href="/dashboard">
+                    <button
+                      type="button"
+                      className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-400 to-blue-600 ring-2 ring-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
+                    >
+                      <MdDashboard className="text-xl text-white"></MdDashboard>
+                      Dashboard
+                    </button>
+                  </Link>
+                </li>
                 <li onClick={handleLogOut}>
                   <button
                     type="button"
-                    className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
+                    className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center !text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white"
                   >
                     <MdLogout className="text-xl"></MdLogout>
                     Logout
