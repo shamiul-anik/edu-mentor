@@ -106,10 +106,39 @@ const AddATuition = () => {
                 </div>
               </div>
 
+              <div className="form-control">
+                <label className="label pl-0" htmlFor="availableSeats">
+                  <span className="label-text text-md md:text-[16px]">Service Location</span>
+                </label>
+                <input type="text" id="availableSeats" {...register("available_seats", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="available_seats" placeholder="Enter area information" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                {/* {errors?.available_seats?.type === 'required' && <p className="text-red-500 mt-2">Area Covered is required!</p>} */}
+                {/* {errors?.available_seats?.type === 'pattern' && <p className="text-red-500 mt-2"> Area Covered value must be a number!</p>} */}
+              </div>
+              
               <div className="grid gap-x-4 gap-y-2 md:grid-cols-2">
                 <div className="form-control">
                   <label className="label pl-0" htmlFor="availableSeats">
-                    <span className="label-text text-md md:text-[16px]">Area Covered</span>
+                    <span className="label-text text-md md:text-[16px]">Subject</span>
+                  </label>
+                  <input type="text" id="availableSeats" {...register("available_seats", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="available_seats" placeholder="Enter area information" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                  {/* {errors?.available_seats?.type === 'required' && <p className="text-red-500 mt-2">Area Covered is required!</p>} */}
+                  {/* {errors?.available_seats?.type === 'pattern' && <p className="text-red-500 mt-2"> Area Covered value must be a number!</p>} */}
+                </div>
+                
+                <div className="form-control">
+                  <label className="label pl-0" htmlFor="availableSeats">
+                    <span className="label-text text-md md:text-[16px]">Class</span>
+                  </label>
+                  <input type="text" id="availableSeats" {...register("available_seats", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="available_seats" placeholder="Enter area information" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                  {/* {errors?.available_seats?.type === 'required' && <p className="text-red-500 mt-2">Area Covered is required!</p>} */}
+                  {/* {errors?.available_seats?.type === 'pattern' && <p className="text-red-500 mt-2"> Area Covered value must be a number!</p>} */}
+                </div>
+              </div>
+              
+              <div className="grid gap-x-4 gap-y-2 md:grid-cols-2">
+                <div className="form-control">
+                  <label className="label pl-0" htmlFor="availableSeats">
+                    <span className="label-text text-md md:text-[16px]">Mobile No.</span>
                   </label>
                   <input type="text" id="availableSeats" {...register("available_seats", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="available_seats" placeholder="Enter area information" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
                   {/* {errors?.available_seats?.type === 'required' && <p className="text-red-500 mt-2">Area Covered is required!</p>} */}

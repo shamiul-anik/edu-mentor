@@ -13,6 +13,7 @@ export const POST = async (request) => {
     // Parse request body
     const { 
       name,
+      email,
       phone,
       title,
       tuitionType,
@@ -38,6 +39,7 @@ export const POST = async (request) => {
     // Create a new user instance
     const newTutorRequest = new Tutor_request({ 
       name,
+      email,
       phone,
       medium,
       classname,
