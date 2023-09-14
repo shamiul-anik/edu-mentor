@@ -28,6 +28,7 @@ const Registration = () => {
 	const onSubmit = (userInformation, event) => {
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
+		
 
 		createUser(userInformation.email, userInformation.password)
 			.then(result => {
@@ -42,11 +43,16 @@ const Registration = () => {
 					displayName: userInformation.name,
 					email: currentUser.email,
 					photoURL: userInformation.photoURL,
-					role: "user"
+					gender: userInformation.gender,
+					mobileNumber: userInformation.mobileNumber,
+					qualification: userInformation.qualification,
+					location: userInformation.location,
+					role: "student"
 				}
 				// console.log(userInfo);
 
 				saveUser(userInfo);
+				console.log(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
@@ -91,9 +97,15 @@ const Registration = () => {
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
-					photoURL: currentUser.photoURL
+					photoURL: currentUser.photoURL,
+					gender: "null",
+					mobileNumber: "null",
+					qualification: "null",
+					location: "null",
+					role: "student"
 				}
 				saveUser(userInfo);
+				console.log(userInfo);
 				toast.success("Successfully registered!");
 			})
 			.catch(error => {
@@ -200,6 +212,36 @@ const Registration = () => {
 							</div>
 						</div>
 
+						<div className="grid md:grid-cols-2 md:gap-6">
+						<div className="form-control">
+								<label className="label pl-0" htmlFor="mobileNumber">
+									<span className="label-text text-lg">Mobile Number</span>
+								</label>
+								<input type="text" {...register("mobileNumber")} id="mobileNumber" name="mobileNumber" placeholder="Enter your mobileNumber" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+							</div>
+							<div className="form-control">
+								<label className="label pl-0" htmlFor="gender">
+									<span className="label-text text-lg">Gender</span>
+								</label>
+								<input type="text" {...register("gender")} id="gender" name="gender" placeholder="Enter your gender" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+							</div>
+
+							</div>
+						
+						<div className="grid md:grid-cols-2 md:gap-6">
+						<div className="form-control">
+								<label className="label pl-0" htmlFor="location">
+									<span className="label-text text-lg">Location</span>
+								</label>
+								<input type="text" {...register("location")} id="location" name="location" placeholder="Enter your location" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+							</div>
+						<div className="form-control">
+								<label className="label pl-0" htmlFor="qualification">
+									<span className="label-text text-lg">Qualification</span>
+								</label>
+								<input type="text" {...register("qualification")} id="qualification" name="qualification" placeholder="Enter your qualification" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+							</div>
+						</div>
 						<div className="form-control">
 							<label className="label pl-0" htmlFor="photoURL">
 								<span className="label-text text-lg">Photo URL</span>
