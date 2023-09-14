@@ -32,7 +32,7 @@ const TutorRequest = () => {
       area,
       
     };
-    console.log(tutorInfo);
+    // console.log(tutorInfo);
     tutorRequestSave(tutorInfo);
   };
 

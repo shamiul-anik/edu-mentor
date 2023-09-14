@@ -103,7 +103,7 @@ const ManageTutors = () => {
     <>
       <header>
         <h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
-          <Fade duration={200} triggerOnce={true} cascade>Manage Tutors</Fade>
+          <Fade duration={200} triggerOnce={true} cascade>Manage Tuitions</Fade>
         </h1>
       </header>
       <section className="max-w-full mx-auto mt-6 lg:mt-12 p-4 md:px-0">
@@ -129,13 +129,22 @@ const ManageTutors = () => {
                   Tutor&apos;s <br/> Email
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Mobile No.
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Gender
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Qualification
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Service <br /> Location
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Available <br/> Seats
+                  Subject
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Enrolled <br/> Students
+                  Class
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Salary <br /> (Monthly)
@@ -183,6 +192,15 @@ const ManageTutors = () => {
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
                   {/* {class_status} */}
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center uppercase border-r-2">
+                  
                 </td>
                 <td className="px-2 py-2 border-r-2">
                   {/* {admin_feedback} */}

@@ -20,7 +20,7 @@ const TutorRequest = () => {
   });
 
   const { user}:any = useAuth();
-  console.log("logged user", user);
+  // console.log("logged user", user);
   const currentUserName = user?.displayName;
   const currentUserEmail = user?.email;
   const currentUserPhotoURL = user?.photoURL;
