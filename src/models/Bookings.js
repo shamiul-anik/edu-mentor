@@ -5,6 +5,9 @@ const bookingSchema = new mongoose.Schema({
       type: String,
     
     },
+    tutorEmail: {
+      type: String,
+    },
     name: {
       type: String,
       required: true,
