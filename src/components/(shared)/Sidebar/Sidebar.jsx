@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react'
-import Aos from 'aos';
+// import Aos from 'aos';
 // import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
@@ -28,10 +28,9 @@ const Sidebar = () => {
   console.log(userEmail);
   console.log(userRole);
 
-  useEffect(async () => {
-    Aos.init({ duration: 1000 });
-     
-  }, []);
+  // useEffect(async () => {
+  //   Aos.init({ duration: 1000 });
+  // }, []);
 
 
 
@@ -118,7 +117,8 @@ const Sidebar = () => {
                 </p>
               </Link>
               {
-                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
+                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl">{userRole}</p>
+                // userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
               }
             </div>
           </div>
@@ -206,12 +206,12 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Manage Tutors</span>
                     </Link>
                     <Link
-                      href='/dashboard/admin/manage-students'
+                      href='/dashboard/admin/manage-tutor-request'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Students</span>
+                      <span className='mx-4 font-medium'>Manage Tutor Request</span>
                     </Link>
                     <Link
                       href='/dashboard/admin/manage-users'

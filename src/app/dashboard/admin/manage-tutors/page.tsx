@@ -1,3 +1,6 @@
+"use client"
+import { Fade } from "react-awesome-reveal";
+
 import Image from "next/image";
 // import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
@@ -98,7 +101,12 @@ const ManageTutors = () => {
   
   return (
     <>
-      <section className="max-w-full mx-auto mt-4 lg:mt-8 p-4 md:px-0">
+      <header>
+        <h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
+          <Fade duration={200} triggerOnce={true} cascade>Manage Tutors</Fade>
+        </h1>
+      </header>
+      <section className="max-w-full mx-auto mt-6 lg:mt-12 p-4 md:px-0">
 
         {/* <div>
           <h1 className="text-3xl font-bold text-center mb-6">Total Classes: {allClassData?.length}</h1>

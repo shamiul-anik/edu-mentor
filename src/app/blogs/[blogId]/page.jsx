@@ -70,6 +70,7 @@ const page = async ({ params }) => {
         };
 
         fetchCommentData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toDay = () => {
