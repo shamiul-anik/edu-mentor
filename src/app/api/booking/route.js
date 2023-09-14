@@ -7,6 +7,7 @@ export const  POST = async (request) => {
        await connect()
        const {
         tutorId,
+        tutorEmail,
         name,
         email,
         phoneNumber,
@@ -28,7 +29,7 @@ export const  POST = async (request) => {
 
         const newBooking = new Bookings({
             tutorId,
-            name,
+            tutorEmail,
             email,
             phoneNumber,
             subject, 
