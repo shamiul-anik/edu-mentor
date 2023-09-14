@@ -6,7 +6,6 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import Image from "next/image";
 import Logo from "@/assets/images/logo.png";
-import UserImage from "@/assets/images/user.png";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,12 +13,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Header = () => {
   const { replace, refresh } = useRouter();
 
-  const { user, logOut } = useAuth();
+  const { user, logOut, userRole } = useAuth();
   console.log("logged user", user);
   const currentUserName = user?.displayName;
   const currentUserEmail = user?.email;
   const currentUserPhotoURL = user?.photoURL;
-  const userRole = "student";
 
   const handleLogOut = async () => {
     const toastId = toast.loading("Loading...");
@@ -41,9 +39,8 @@ const Header = () => {
   return (
     <div className="bg-teal-700 py-2">
       <nav
-        className={`navbar gap-4 ${
-          user ? "justify-between" : ""
-        } max-w-7xl mx-auto`}
+        className={`navbar gap-4 ${user ? "justify-between" : ""
+          } max-w-7xl mx-auto`}
       >
         <div className="navbar-start w-auto">
           <div className="dropdown">
@@ -80,6 +77,12 @@ const Header = () => {
               <li className="hover:cursor-pointer">
                 <Link href="/students">Students</Link>
               </li>
+              <li className="hover:cursor-pointer">
+                <Link href="/tutor-request">Tutor Request</Link>
+              </li>
+              <li className="hover:cursor-pointer">
+                <Link href="/tutor-jobs">Tutor Jobs</Link>
+              </li>
               {/* <li className="hover:cursor-pointer">
 								<Link href="/courses">Courses</Link>
 							</li> */}
@@ -95,9 +98,6 @@ const Header = () => {
               </li>
               <li className="hover:cursor-pointer">
                 <Link href="/about">About</Link>
-              </li>
-              <li className="hover:cursor-pointer">
-                <Link href="/tutor-request">Tutor Request</Link>
               </li>
               <li className="hover:cursor-pointer">
                 <Link href="/blogs">Blog</Link>
@@ -142,13 +142,16 @@ const Header = () => {
                 data-tip={currentUserName}
               >
                 <div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-                  <Image
-                    className="object-top"
-                    width={40}
-                    height={40}
-                    src={currentUserPhotoURL}
-                    alt={currentUserName}
-                  />
+                  {
+                    currentUserPhotoURL &&
+                    <Image
+                      className="object-top"
+                      width={40}
+                      height={40}
+                      src={currentUserPhotoURL}
+                      alt={currentUserName}
+                    />
+                  }
                 </div>
               </label>
               <ul
@@ -157,13 +160,14 @@ const Header = () => {
               >
                 <div className="w-full flex justify-center">
                   <div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-                    <Image
-                      className="h-16 w-full rounded-full object-cover object-center"
-                      width={64}
-                      height={64}
-                      src={currentUserPhotoURL}
-                      alt={currentUserName}
-                    />
+                    {currentUserPhotoURL &&
+                      <Image
+                        className="h-16 w-full rounded-full object-cover object-center"
+                        width={64}
+                        height={64}
+                        src={currentUserPhotoURL}
+                        alt={currentUserName}
+                      />}
                   </div>
                 </div>
                 <li className="mt-1 text-center font-bold">
@@ -189,6 +193,17 @@ const Header = () => {
                     </button>
                   </Link>
                 </li>
+                <li>
+                  <Link className="flex p-0 mb-2" href="/dashboard">
+                    <button
+                      type="button"
+                      className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
+                    >
+                      <ImProfile className="text-xl"></ImProfile>
+                      Dashboard
+                    </button>
+                  </Link>
+                </li>
                 <li className="flex p-0" onClick={handleLogOut}>
                   <button
                     type="button"
@@ -204,7 +219,7 @@ const Header = () => {
         )}
 
         <div className="navbar-center mx-auto hidden lg:flex">
-          <ul className="flex gap-10 text-xl font-semibold menu-horizontal px-1 z-10">
+          <ul className="flex gap-4 text-xl font-semibold menu-horizontal px-1 z-10">
             <li className="nav-item hover:cursor-pointer">
               <Link href="/">Home</Link>
             </li>
@@ -213,6 +228,12 @@ const Header = () => {
             </li>
             <li className="nav-item hover:cursor-pointer">
               <Link href="/students">Students</Link>
+            </li>
+            <li className="nav-item hover:cursor-pointer">
+              <Link href="/tutor-request">Tutor Request</Link>
+            </li>
+            <li className="nav-item hover:cursor-pointer">
+              <Link href="/tutor-jobs">Tutor Jobs</Link>
             </li>
             {/* <li className="nav-item hover:cursor-pointer">
 							<Link href="/courses">Courses</Link>
@@ -231,12 +252,9 @@ const Header = () => {
               <Link href="/about">About</Link>
             </li>
             <li className="nav-item hover:cursor-pointer">
-                <Link href="/tutor-request">Tutor Request</Link>
-              </li>
-            <li className="nav-item hover:cursor-pointer">
               <Link href="/blogs">Blog</Link>
             </li>
-           
+
           </ul>
         </div>
 
@@ -266,13 +284,14 @@ const Header = () => {
                 data-tip={currentUserName}
               >
                 <div className="w-10 rounded-full ring-2 ring-offset-2 ring-teal-400">
-                  <Image
-                    className="object-top"
-                    width={40}
-                    height={40}
-                    src={currentUserPhotoURL}
-                    alt={currentUserName}
-                  />
+                  {currentUserPhotoURL &&
+                    <Image
+                      className="object-top"
+                      width={40}
+                      height={40}
+                      src={currentUserPhotoURL}
+                      alt={currentUserName}
+                    />}
                 </div>
               </label>
               <ul
@@ -281,13 +300,15 @@ const Header = () => {
               >
                 <div className="w-full flex justify-center">
                   <div className="mt-2 mb-3 h-16 w-16 rounded-full ring-2 ring-offset-2 ring-slate-400">
-                    <Image
-                      className="h-16 w-full rounded-full object-cover object-center"
-                      width={64}
-                      height={64}
-                      src={currentUserPhotoURL}
-                      alt={currentUserName}
-                    />
+                    {currentUserPhotoURL &&
+                      <Image
+                        className="h-16 w-full rounded-full object-cover object-center"
+                        width={64}
+                        height={64}
+                        src={currentUserPhotoURL}
+                        alt={currentUserName}
+                      />
+                    }
                   </div>
                 </div>
                 <li className="mt-1 text-center font-bold">

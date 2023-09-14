@@ -21,20 +21,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="h-[100dvh] flex flex-col justify-between">
-        <Providers>
-          <div className='relative min-h-screen md:flex'>
-            <Sidebar />
-            <div className='flex-1 md:ml-72'>
-              <div className='p-5'>
-                {children}
-              </div>
+    <div className="h-[100dvh] flex flex-col justify-between">
+      <Providers>
+        <div className='relative min-h-screen md:flex'>
+          <Sidebar />
+          <div className='flex-1 md:ml-72'>
+            <div className='p-5'>
+              {children}
             </div>
           </div>
-        </Providers>
-        <Toaster />
-      </body>
-    </html>
+        </div>
+      </Providers>
+      <Toaster />
+    </div>
   );
 }

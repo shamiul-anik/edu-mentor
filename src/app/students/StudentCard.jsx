@@ -10,7 +10,7 @@ const StudentCard = ({ data }) => {
     <div className=" card card-compact w-full bg-base-100 box-shadow-custom group">
       {/* <LazyLoad offset={500}> */}
       {/* <figure className='rounded-t-xl'> */}
-        <Image width={400} height={384} className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt="Tutor" />
+        <Image width={400} height={384} className='overflow-hidden h-96 w-full object-cover rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt="Student" />
       {/* </figure> */}
       {/* </LazyLoad> */}
       <div className='border-t border-slate-300 mb-1'></div>
