@@ -1,3 +1,6 @@
+"use client"
+import { Fade } from "react-awesome-reveal";
+
 import Image from "next/image";
 // import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
@@ -10,15 +13,15 @@ import { VscFeedback } from "react-icons/vsc";
 // import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 // import useAuth from "../../../../hooks/useAuth";
 
-const ManageTutors = () => {
+const ManageStudents = () => {
 
   // Sample Data
   const admin_feedback = "Good work!"
   const isVerified = false;
-  
+
   // const { user, loading, setLoading } = useAuth();
   // const [axiosSecure] = useAxiosSecure();
-  
+
   // // Feedback Modal Open/Close State
   // const [isOpen, setIsOpen] = useState(false);
 
@@ -68,7 +71,7 @@ const ManageTutors = () => {
   //     );
   //   }
   // };
-  
+
   // const handleDeny = (classData) => {
   //   console.log("Inside Deny: ", classData._id);
   //   if (classData) {
@@ -95,10 +98,16 @@ const ManageTutors = () => {
   //   // console.log("Feedback ID: ", classData._id);
   //   setFeedbackID(classData._id);
   // };
-  
+
   return (
     <>
-      <section className="max-w-full mx-auto mt-4 lg:mt-8 p-4 md:px-0">
+      <header>
+        <h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
+          <Fade duration={200} triggerOnce={true} cascade>Manage Tutor Request</Fade>
+        </h1>
+      </header>
+
+      <section className="max-w-full mx-auto mt-6 lg:mt-12 p-4 md:px-0">
 
         {/* <div>
           <h1 className="text-3xl font-bold text-center mb-6">Total Classes: {allClassData?.length}</h1>
@@ -111,27 +120,48 @@ const ManageTutors = () => {
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   #
                 </th>
+                {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Student&apos;s <br /> Image
+                </th> */}
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Tutor&apos;s <br/> Image
+                  User<br /> Name
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Tutor&apos;s <br/> Name
+                  User<br /> Email
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Tutor&apos;s <br/> Email
+                  Tuition <br /> Title
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Service <br /> Location
-                </th>
-                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Available <br/> Seats
-                </th>
-                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Enrolled <br/> Students
+                  Mobile No.
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Salary <br /> (Monthly)
                 </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Tuition <br /> Type
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Medium
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Subject
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Class
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  District
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Area
+                </th>
+                
+                
+                {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Enrolled <br /> Students
+                </th> */}
+                
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Verification <br /> Status
                 </th>
@@ -148,13 +178,13 @@ const ManageTutors = () => {
                 <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
                   1
                 </td>
-                <td className="px-2 py-2 text-center border-r-2">
+                {/* <td className="px-2 py-2 text-center border-r-2">
                   <div className="avatar flex items-center justify-center ">
                     <div className="w-24 rounded-xl">
                       <Image src="" alt={`Image of Tutor`} />
                     </div>
                   </div>
-                </td>
+                </td> */}
                 <td className="px-2 py-2 whitespace-nowrap border-r-2">
                   {/* {class_name} */}
                 </td>
@@ -168,10 +198,25 @@ const ManageTutors = () => {
                   {/* {available_seats} */}
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* {enrolled_students} */}
+                  {/* ${class_price} */}
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* ${class_price} */}
+                  
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
                   {/* {class_status} */}
@@ -214,4 +259,4 @@ const ManageTutors = () => {
   );
 };
 
-export default ManageTutors;
+export default ManageStudents;
