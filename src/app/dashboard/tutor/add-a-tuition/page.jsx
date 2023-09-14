@@ -171,7 +171,7 @@ const AddATuition = () => {
                 <label className="label pl-0" htmlFor="serviceLocation">
                   <span className="label-text text-md md:text-[16px]">Service Location</span>
                 </label>
-                <input type="text" id="serviceLocation" {...register("service_location", { required: true })} name="service_location" placeholder="Enter service location information" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                <input type="text" id="serviceLocation" {...register("service_location", { required: true })} name="service_location" placeholder="Enter service location" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
                 {errors?.service_location?.type === 'required' && <p className="text-red-500 mt-2">Service Location is required!</p>}
               </div>
 
