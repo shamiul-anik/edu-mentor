@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react'
-import Aos from 'aos';
+// import Aos from 'aos';
 // import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
+import { MdArticle } from 'react-icons/md';
 
 const Sidebar = () => {
   const { user, loading, setLoading, logOut, userRole } = useAuth();
@@ -28,11 +29,13 @@ const Sidebar = () => {
   console.log(userEmail);
   console.log(userRole);
 
-  useEffect(async () => {
-    Aos.init({ duration: 1000 });
-     
-  }, []);
+  // useEffect(async () => {
+  //   Aos.init({ duration: 1000 });
+  // }, []);
 
+  // }, []);
+  // const userRole = userData?.role;
+  // const userRole = "tutor";
 
 
 
@@ -118,7 +121,8 @@ const Sidebar = () => {
                 </p>
               </Link>
               {
-                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
+                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl">{userRole}</p>
+                // userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
               }
             </div>
           </div>
@@ -198,20 +202,20 @@ const Sidebar = () => {
                   userRole === "admin" &&
                   <>
                     <Link
-                      href='/dashboard/admin/manage-tutors'
+                      href='/dashboard/admin/manage-tuitions'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookmarkCheckFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Tutors</span>
+                      <span className='mx-4 font-medium'>Manage Tuitions</span>
                     </Link>
                     <Link
-                      href='/dashboard/admin/manage-students'
+                      href='/dashboard/admin/manage-tutor-request'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Students</span>
+                      <span className='mx-4 font-medium'>Manage Tutor Request</span>
                     </Link>
                     <Link
                       href='/dashboard/admin/manage-users'
@@ -248,12 +252,20 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Tutors</span>
           </Link>
           <Link
-            href='/students'
+            href='/tutor-request'
             className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
             }
           >
             <GiTeacher className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Students</span>
+            <span className='mx-4 font-medium'>Tutor Request</span>
+          </Link>
+          <Link
+            href='/tutor-jobs'
+            className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+            }
+          >
+            <GiTeacher className='w-5 h-5' />
+            <span className='mx-4 font-medium'>Tutor Jobs</span>
           </Link>
           <Link
             href='/contact'
@@ -270,6 +282,14 @@ const Sidebar = () => {
           >
             <BiDetail className='w-5 h-5' />
             <span className='mx-4 font-medium'>About</span>
+          </Link>
+          <Link
+            href='/blogs'
+            className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+            }
+          >
+            <MdArticle className='w-5 h-5' />
+            <span className='mx-4 font-medium'>Blogs</span>
           </Link>
           {/* <Link
             href='/profile'

@@ -1,6 +1,7 @@
 export interface TutorData {
     _id: string;
     name: string;
+    email: string;
     phone: string;
     title: string;
     tuitionType: string;

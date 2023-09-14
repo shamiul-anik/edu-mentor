@@ -6,6 +6,7 @@ import tutorRequestSave from "@/utils/tutorRequestSave";
 
 const TutorRequest = () => {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [title, setTitle] = useState("");
   const [tuitionType, setTuitionType] = useState("");
@@ -20,6 +21,7 @@ const TutorRequest = () => {
     console.log("Form submitted!");
     const tutorInfo = {
       name,
+      email,
       phone,
       title,
       tuitionType,
@@ -30,7 +32,7 @@ const TutorRequest = () => {
       area,
       
     };
-    console.log(tutorInfo);
+    // console.log(tutorInfo);
     tutorRequestSave(tutorInfo);
   };
 
@@ -63,6 +65,20 @@ const TutorRequest = () => {
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-teal-600 text-lg">
+              Email
+            </label>
+            <input
+              required
+              type="text"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             />
           </div>
@@ -128,6 +144,7 @@ const TutorRequest = () => {
               Medium
             </label>
             <select
+              defaultValue={"English"}
               value={medium}
               onChange={(e) => setMedium(e.target.value)}
               className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
