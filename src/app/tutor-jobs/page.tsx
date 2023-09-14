@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import { TutorData } from '@/typeScript/tutorJobsType';
 import { MdLocationPin } from 'react-icons/md';
+import useAuth from "@/hooks/useAuth";
+
+
+
+
+
 
 const TutorRequest = () => {
   const [allData, setAllData] = useState<TutorData[]>([]);
@@ -12,6 +18,12 @@ const TutorRequest = () => {
     medium: '',
     area: ''
   });
+
+  const { user}:any = useAuth();
+  console.log("logged user", user);
+  const currentUserName = user?.displayName;
+  const currentUserEmail = user?.email;
+  const currentUserPhotoURL = user?.photoURL;
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -84,7 +96,10 @@ const TutorRequest = () => {
               >
                 <option value="">All</option>
                 {/* Add options based on available mediums */}
-                {/* For example: <option value="Hindi">Hindi</option> */}
+                
+                <option value="Hindi">Hindi</option> 
+                <option value="English">English</option> 
+                
               </select>
             </div>
             <div>
@@ -111,6 +126,7 @@ const TutorRequest = () => {
                   Job Posted by <span className="text-teal-800 text-xl">{item.name}</span>
                 </p>
                 <p className="py-2">📞 {item.phone}</p>
+                <p className="py-2">Email: {item.email}</p>
                 <p className="py-2">Category: {item.tuitionType}</p>
                 <p className="py-2">Salary: TK {item.salary !== null ? item.salary : 'Discussion Needed'}</p>
                 <p className="py-2">Medium: {item.medium}</p>
