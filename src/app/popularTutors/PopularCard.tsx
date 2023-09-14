@@ -37,7 +37,7 @@ const PopularCard: React.FC<PopularCardProps> = ({data}) => {
     <p className='font-bold'>{education}</p>
     {/* TODO: Top 'use client' is use for button.  */}
     <div className=" w-full">
-      <Link href={`/popularTutors/${_id}`}>
+      <Link href={`/tutors/${_id}`}>
       <button onClick={()=>TestForButton(_id)} className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Details</button>
       </Link>
     </div>
