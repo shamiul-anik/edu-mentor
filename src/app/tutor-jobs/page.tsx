@@ -3,9 +3,27 @@ import React, { useEffect, useState } from "react";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import { TutorData } from '@/typeScript/tutorJobsType';
 import { MdLocationPin } from 'react-icons/md';
+import useAuth from "@/hooks/useAuth";
+
+
+
+
+
 
 const TutorRequest = () => {
-  const [allData, setAllData] = useState<TutorData[]>([]); // Set the type of allData
+  const [allData, setAllData] = useState<TutorData[]>([]);
+  const [filteredData, setFilteredData] = useState<TutorData[]>([]);
+  const [filterOptions, setFilterOptions] = useState({
+    tuitionType: '',
+    medium: '',
+    area: ''
+  });
+
+  const { user}:any = useAuth();
+  // console.log("logged user", user);
+  const currentUserName = user?.displayName;
+  const currentUserEmail = user?.email;
+  const currentUserPhotoURL = user?.photoURL;
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -13,8 +31,9 @@ const TutorRequest = () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request`, {
           cache: 'no-cache'
         });
-        const data: TutorData[] = await res.json(); // Set the type of data
+        const data: TutorData[] = await res.json();
         setAllData(data);
+        setFilteredData(data);
       } catch (error) {
         console.error('Error fetching mentor data:', error);
       }
@@ -22,30 +41,104 @@ const TutorRequest = () => {
     fetchAllData();
   }, []);
 
+  useEffect(() => {
+    // Apply filters based on user selections
+    const filtered = allData.filter(item => {
+      return (
+        (filterOptions.tuitionType === '' || item.tuitionType === filterOptions.tuitionType) &&
+        (filterOptions.medium === '' || item.medium === filterOptions.medium) &&
+        (filterOptions.area === '' || item.area === filterOptions.area)
+      );
+    });
+    setFilteredData(filtered);
+  }, [filterOptions, allData]);
+
+  const handleFilterChange = (event:any) => {
+    const { name, value } = event.target;
+    setFilterOptions((prevOptions) => ({
+      ...prevOptions,
+      [name]: value
+    }));
+  };
+
   return (
     <div>
       <CommonBanner bannerHeading="Tutor Jobs" />
 
       <div className="p-4">
-        <h2 className="text-5xl font-semibold mb-4 text-teal-600 py-12">Choose your job as a tutor as you want! </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {allData.map((item) => (
-            <div key={item._id} className="bg-teal-200 rounded-lg shadow-lg p-6 relative">
-            <h3 className="text-4xl text-teal-600">{item.title}</h3>
-            <p>Job Posted by <span className="text-teal-800">{item.name}</span></p>
-            <p>📞 {item.phone}</p>
-            <p>Category: {item.tuitionType}</p>
-            <p>Salary: TK {item.salary !== null ? item.salary : 'Discussion Needed'}</p>
-            <p>Medium: {item.medium}</p>
-            <p>Class: {item.classname}</p>
-            <p>District: {item.district}</p>
-            <div className="flex items-center">
-              <MdLocationPin /> {item.area !== null ? <p>{item.area}</p> : 'Area was not provided'}
+        <h2 className="text-4xl font-semibold mb-4 text-teal-600 py-12">
+          Choose your job as a tutor as you want!{" "}
+        </h2>
+        <div className="space-y-4">
+          <div className="flex space-x-4">
+            <div>
+              <label htmlFor="tuitionType">Tuition Type:</label>
+              <select
+                id="tuitionType"
+                name="tuitionType"
+                value={filterOptions.tuitionType}
+                onChange={handleFilterChange}
+                className="border border-gray-400 rounded px-2 py-1"
+              >
+                <option value="">All</option>
+                <option value="Remote Tutoring">Remote Tutoring</option>
+                <option value="Home Tutoring">Remote Tutoring</option>
+              </select>
             </div>
-            <button className="btn bg-teal-600 text-white absolute bottom-2 right-2">Knock Tutor Seeker</button>
+            <div>
+              <label htmlFor="medium">Medium:</label>
+              <select
+                id="medium"
+                name="medium"
+                value={filterOptions.medium}
+                onChange={handleFilterChange}
+                className="border border-gray-400 rounded px-2 py-1"
+              >
+                <option value="">All</option>
+                {/* Add options based on available mediums */}
+                
+                <option value="Hindi">Hindi</option> 
+                <option value="English">English</option> 
+                
+              </select>
+            </div>
+            <div>
+              <label htmlFor="area">Area:</label>
+              <select
+                id="area"
+                name="area"
+                value={filterOptions.area}
+                onChange={handleFilterChange}
+                className="border border-gray-400 rounded px-2 py-1"
+              >
+                <option value="">All</option>
+                {/* Add options based on available areas */}
+                {/* For example: <option value="Banani">Banani</option> */}
+              </select>
+            </div>
           </div>
-          
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {filteredData.map((item) => (
+              <div key={item._id} className="bg-teal-200 rounded-lg shadow-lg p-6 relative">
+                <h3 className="text-2xl text-teal-600">{item.title}</h3>
+                <hr className="border-b border-teal-600" />
+                <p className="py-2">
+                  Job Posted by <span className="text-teal-800 text-xl">{item.name}</span>
+                </p>
+                <p className="py-2">📞 {item.phone}</p>
+                <p className="py-2">Email: {item.email}</p>
+                <p className="py-2">Category: {item.tuitionType}</p>
+                <p className="py-2">Salary: TK {item.salary !== null ? item.salary : 'Discussion Needed'}</p>
+                <p className="py-2">Medium: {item.medium}</p>
+                <p className="py-2">Class: {item.classname}</p>
+                <p className="py-2">District: {item.district}</p>
+                <div className="flex items-center">
+                  <MdLocationPin /> {item.area !== null ? <p>{item.area}</p> : 'Area was not provided'}
+                </div>
+                <button className="btn bg-teal-600 text-white absolute bottom-2 right-2">Knock Tutor Seeker</button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
