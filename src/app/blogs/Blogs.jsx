@@ -31,16 +31,22 @@ const Blogs = () => {
 
     useEffect(() => {
         Aos.init({ duration: 1000 });
-
-        const fetchData = async () => {
+                const fetchData = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`);
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`,{
+                    cache: "no-cache"
+                });
 
                 if (!res.ok) {
                     throw new Error("Failed to fetch data");
                 }
 
                 const data = await res.json();
+
+                data.sort((a, b) => {
+                    // Change 'publishedAt' to the actual field name you want to use for sorting
+                    return new Date(b.postDate) - new Date(a.postDate);
+                });
 
                 const startIndex = (currentPage - 1) * blogsPerPage;
                 const endIndex = startIndex + blogsPerPage;
@@ -69,6 +75,7 @@ const Blogs = () => {
     const nextPage = () => {
         setCurrentPage(currentPage + 1)
     }
+
     const previousPage = () => {
         setCurrentPage(currentPage - 1)
     }
@@ -169,9 +176,16 @@ const Blogs = () => {
             </div>
             <div className=" lg:w-[50%] w-[80%] text-center mx-auto mt-10">
                 <div className="join">
-                    <button className="join-item btn pointer-events-none">{currentPage - 1}</button>
-                    <button onClick={previousPage} className="join-item btn"><FiChevronsLeft></FiChevronsLeft></button>
+                    {
+                        currentPage !== 1 || 0 ?
+                            <>
+                                <button className="join-item btn pointer-events-none">{currentPage - 1}</button>
+                                <button onClick={previousPage} className="join-item btn"><FiChevronsLeft></FiChevronsLeft></button>
+                            </>
+                            : ""
+                    }
                     <button className="join-item btn btn-disabled max-sm:hidden">...</button>
+
                     {Array.from({ length: Math.ceil(blogs.length / blogsPerPage) }).map((_, index) => (
                         <button
                             key={index}
@@ -182,8 +196,18 @@ const Blogs = () => {
                         </button>
                     ))}
                     <span className="join-item btn btn-disabled max-sm:hidden">...</span>
-                    <button onClick={nextPage} className="join-item btn"><FiChevronsRight></FiChevronsRight></button>
-                    <span className="join-item btn pointer-events-none">{currentPage + 1}</span>
+                    {
+                        blogs.length == 2 || 0 ?
+                            "" :
+                            <button onClick={nextPage} className="join-item btn"><FiChevronsRight></FiChevronsRight></button>
+                    }
+                    {
+                        blogs.length == 2 || 0 ?
+                            "" :
+                            <span className="join-item btn pointer-events-none">{currentPage + 1}</span>
+                    }
+
+
                 </div>
             </div>
         </div>

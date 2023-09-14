@@ -5,15 +5,16 @@ import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/router';
-
-
+import blogPostApi from "@/utils/blogPostApi"
 
 const PostBlog = () => {
     const router = useRouter();
     const { user } = useAuth();
 
-    // console.log(user);
+    // console.log(" post blog page 17", user.email);
     const [blogPostImageUrl, setBlogPostImageUrl] = useState('')
+    const [storeUserData, setStoreUserData] = useState([])
+
 
     const toDay = () => {
         const today = new Date();
@@ -75,38 +76,22 @@ const PostBlog = () => {
         }
     };
 
-    const onSubmit = data => {
+    const onSubmit = async (data) => {
         const postImgUrl = blogPostImageUrl;
         const postDescription = data.words;
         const postDate = toDay();
-        const userName = "Midharula";
-        const userRole = "student";
+        const userName = user.displayName;
+        const userRole = "student"
+        const userEmail = user.email
+
         const allData = {
             postImgUrl, postDescription, postDate, userName, userRole
         }
-
-        toast.success('Thank Your Blogs')
-        // navigate()
-        console.log(allData);
-
-            try {
-                const res = fetch(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`,
-                    {
-                        method: "POST",
-                        body: allData,
-                    }
-                );
-                if (!res.ok) throw new Error("😞 Failed Post");
-
-                const data = res.json();
-                toast.success("Blog Post successfully!");
-                console.log('49', data.data);
-
-            } catch (error) {
-                toast.error(`Blog Post !😞! Error `);
-            }
         
+        // console.log("91",allData);
+        blogPostApi(allData)
+        // navigate()
+
     }
     return (
         <div>
