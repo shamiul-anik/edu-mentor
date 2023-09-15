@@ -11,7 +11,6 @@ import { useForm } from 'react-hook-form';
 import { FaUserTimes } from "react-icons/fa";
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import useGetUser from "@/hooks/useGetUser";
-import { revalidateTag } from 'next/cache';
 import SingleBlogCommentCard from './SingleBlogCommentCard';
 
 
@@ -52,7 +51,9 @@ const page = async ({ params }) => {
     useEffect(() => {
         const fetchCommentData = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/blog-comments-get`, { next: { tags: ['collection'] } });
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/blog-comments-get`, { 
+                    cache: "no-cache"
+                });
 
                 if (!res.ok) {
                     throw new Error("Failed to fetch data");
@@ -125,10 +126,8 @@ const page = async ({ params }) => {
             }
         } catch (error) {
             console.error(error);
-            toast.error("An error occurred:", error);
+            toast.error("129An error occurred:", error);
         }
-        revalidateTag(tag)
-
         console.log(postCommentData)
 
     }
