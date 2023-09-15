@@ -20,10 +20,7 @@ import saveUser from '@/utils/saveUser';
 //   }
 
 const Login = () => {
-
-
 	const { loading, setLoading, logIn, signInWithGoogle, setUser } = useAuth();
-	// const setLoading = "";
 	const { register, handleSubmit, formState: { errors } } = useForm();
 
 	const [error, setError] = useState("");
@@ -68,6 +65,10 @@ const Login = () => {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
+					gender: "N/A",
+					location: "N/A",
+					mobileNumber: "N/A",
+					qualification: "N/A",
 					role: "student"
 				}
 				saveUser(userInfo);

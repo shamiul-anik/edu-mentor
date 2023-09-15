@@ -98,10 +98,10 @@ const Registration = () => {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					gender: "null",
-					mobileNumber: "null",
-					qualification: "null",
-					location: "null",
+					gender: "N/A",
+					location: "N/A",
+					mobileNumber: "N/A",
+					qualification: "N/A",
 					role: "student"
 				}
 				saveUser(userInfo);
