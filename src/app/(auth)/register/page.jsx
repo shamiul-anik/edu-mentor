@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaGoogle, FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -8,7 +8,7 @@ import Terms from '@/app/(auth)/register/Terms';
 import useAuth from "@/hooks/useAuth.js"
 import Link from 'next/link';
 import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import saveUser from "@/utils/saveUser"
 
 
@@ -17,6 +17,8 @@ const Registration = () => {
 
 	const { createUser, logOut, signInWithGoogle } = useAuth();
 	const { register, getValues, handleSubmit, formState: { errors } } = useForm();
+	const router = useRouter();
+
 
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -25,10 +27,16 @@ const Registration = () => {
 	const [acceptTerms, setAcceptTerms] = useState(false);
 
 
+	const fetchUserData = async (email) => {
+		const userData = await useGetUser(email);
+		return userData;
+	};
+
+
 	const onSubmit = (userInformation, event) => {
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
-		
+
 
 		createUser(userInformation.email, userInformation.password)
 			.then(result => {
@@ -58,6 +66,8 @@ const Registration = () => {
 				toast.success("Registration successful!");
 				handleLogOut();
 				event.target.reset();
+				router.push('/login')
+
 			})
 			.catch(error => {
 				setError(error.message);
@@ -70,6 +80,7 @@ const Registration = () => {
 		logOut()
 			.then(() => {
 				console.log("Successfully logged out!");
+				router.push('/login')
 			})
 			.catch((error) => {
 				console.log(error.message);
@@ -93,20 +104,23 @@ const Registration = () => {
 		signInWithGoogle()
 			.then(result => {
 				const currentUser = result.user;
+				const userData = fetchUserData(currentUser?.email)
+
 				// console.log(currentUser);
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					gender: "null",
-					mobileNumber: "null",
-					qualification: "null",
-					location: "null",
-					role: "student"
+					gender: userData?.gender || "N/A",
+					location: userData?.location || "N/A",
+					mobileNumber: userData?.mobileNumber || "N/A",
+					qualification: userData?.qualification || "N/A",
+					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
 				console.log(userInfo);
 				toast.success("Successfully registered!");
+				router.push('/')
 			})
 			.catch(error => {
 				setError(error.message);
@@ -213,7 +227,7 @@ const Registration = () => {
 						</div>
 
 						<div className="grid md:grid-cols-2 md:gap-6">
-						<div className="form-control">
+							<div className="form-control">
 								<label className="label pl-0" htmlFor="mobileNumber">
 									<span className="label-text text-lg">Mobile Number</span>
 								</label>
@@ -226,16 +240,16 @@ const Registration = () => {
 								<input type="text" {...register("gender")} id="gender" name="gender" placeholder="Enter your gender" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
 							</div>
 
-							</div>
-						
+						</div>
+
 						<div className="grid md:grid-cols-2 md:gap-6">
-						<div className="form-control">
+							<div className="form-control">
 								<label className="label pl-0" htmlFor="location">
 									<span className="label-text text-lg">Location</span>
 								</label>
 								<input type="text" {...register("location")} id="location" name="location" placeholder="Enter your location" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
 							</div>
-						<div className="form-control">
+							<div className="form-control">
 								<label className="label pl-0" htmlFor="qualification">
 									<span className="label-text text-lg">Qualification</span>
 								</label>
