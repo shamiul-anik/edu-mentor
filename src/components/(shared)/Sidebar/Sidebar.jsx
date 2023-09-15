@@ -15,7 +15,7 @@ import { AiOutlineBars } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
 import { MdArticle } from 'react-icons/md';
 
@@ -29,14 +29,15 @@ const Sidebar = () => {
   console.log(userEmail);
   console.log(userRole);
 
-  // useEffect(async () => {
-  //   Aos.init({ duration: 1000 });
-  // }, []);
-
-  // }, []);
-  // const userRole = userData?.role;
-  // const userRole = "tutor";
-
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {
+				console.log("Successfully logged out!");
+			})
+			.catch((error) => {
+				console.log(error.message);
+			})
+	};
 
 
 
@@ -301,7 +302,7 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Profile</span>
           </Link> */}
           <button
-            className='flex w-full items-center px-4 py-2 mt-2 text-red-600 hover:bg-red-200 hover:text-red-700 transition-colors duration-300 transform'
+            className='flex w-full items-center px-4 py-2 mt-2 text-red-600 hover:bg-red-200 hover:text-red-700 transition-colors duration-300 transform' onClick={handleLogOut}
           >
             <BiLogOut className='w-5 h-5' />
             <span className='mx-4 font-medium'>Logout</span>

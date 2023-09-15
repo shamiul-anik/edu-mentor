@@ -1,7 +1,7 @@
 import React from 'react';
-import Blogs from "./Blogs"
+import Blogs from "@/app/blogs/Blogs"
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
-import SectionTitle from '@/components/(shared)/SectionTitle/SectionTitle';
+// import SectionTitle from '@/components/(shared)/SectionTitle/SectionTitle';
 
 
 const Blog = () => {
