@@ -14,7 +14,7 @@ export const  GET = async (request) => {
         }
         console.log(query)
         if(query.email !== null){
-            console.log("query block")
+            // console.log("query block")
             const users = await Users.findOne(query);
             return new NextResponse(JSON.stringify(users), {status: 200})
         }

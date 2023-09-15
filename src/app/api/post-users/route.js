@@ -9,27 +9,21 @@ export const POST = async (request) => {
     await connect();
     
     // Parse request body
-    const { displayName, email, photoURL, role } = await request.json();
-    console.log(displayName, email, photoURL, role);
+    const { displayName,mobileNumber, location, gender,qualification, isVerified, email, photoURL, role } = await request.json();
 
-
-  
     // check existing users
     const query = {email};
 
     const user = await Users.findOne(query);
     if(user){
-      console.log(user);
       return new NextResponse({status: 400})
     }
 
     // Create a new user instance
-    const newUsers = new Users({ displayName, email, photoURL, role });
-    console.log(newUsers);
+    const newUsers = new Users({  displayName,mobileNumber, location, gender,qualification, isVerified, email, photoURL, role });
 
     // Save the new user to the database
     const savedUsers = await newUsers.save();
-    console.log(savedUsers);
 
     return new NextResponse({ message: "Users stored successfully!",
                                success: true,
