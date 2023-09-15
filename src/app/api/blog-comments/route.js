@@ -12,7 +12,7 @@ export const POST = async (request) => {
         const {
             searchId, comment, date, bloggerName, time
         } = await request.json();
-        const newBlogCommentPostRequest = new Blog_Post({ searchId, comment, date, bloggerName, time });
+        const newBlogCommentPostRequest = new Blog_Post({ searchId, comment, date, bloggerName, time, userImgUrl });
         console.log('newBlogCommentPost', newBlogCommentPostRequest);
 
         const savedBlogCommentPostRequest = await newBlogCommentPostRequest.save();
