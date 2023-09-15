@@ -6,7 +6,7 @@ import useAuth from "@/hooks/useAuth.js"
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import saveUser from '@/utils/saveUser';
-import useGetUser from '@/hooks/useGetUser';
+import getUser from '@/utils/getUser';
 
 
 const Profile = () => {
@@ -19,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     if (user?.email) {
       const fetchUserData = async () => {
-        const userData = await useGetUser(user?.email);
+        const userData = await getUser(user?.email);
         setUserData(userData);
       };
       fetchUserData()

@@ -3,8 +3,8 @@ import { Fade } from "react-awesome-reveal";
 import { useForm } from 'react-hook-form';
 import useAuth from '@/hooks/useAuth';
 import { useEffect, useState } from "react";
-import useGetUser from "@/hooks/useGetUser";
 import saveTuition from "@/utils/saveTuition"
+import getUser from "@/utils/getUser";
 
 
 const AddATuition = () => {
@@ -20,7 +20,7 @@ const AddATuition = () => {
   useEffect(() => {
     if (currentUserEmail) {
       const fetchUserData = async () => {
-        const userData = await useGetUser(user?.email);
+        const userData = await getUser(user?.email);
         setUserData(userData);
       };
       fetchUserData()
