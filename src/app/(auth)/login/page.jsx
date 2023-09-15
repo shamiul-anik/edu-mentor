@@ -8,7 +8,7 @@ import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
-import useGetUser from '@/hooks/useGetUser';
+import getUser from '../../../utils/getUser';
 
 
 
@@ -31,7 +31,7 @@ const Login = () => {
 
 
 	const fetchUserData = async (email) => {
-		const userData = await useGetUser(email);
+		const userData = await getUser(email);
 		return userData
 	};
 

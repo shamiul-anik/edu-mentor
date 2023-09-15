@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from "@/utils/saveUser"
+import getUser from '../../../utils/getUser';
 
 
 const Registration = () => {
@@ -28,7 +29,7 @@ const Registration = () => {
 
 
 	const fetchUserData = async (email) => {
-		const userData = await useGetUser(email);
+		const userData = await getUser(email);
 		return userData;
 	};
 
