@@ -72,7 +72,7 @@ const HiredTutors = () => {
 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                1
+                2
               </td>
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">
@@ -100,7 +100,7 @@ const HiredTutors = () => {
 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                1
+                3
               </td>
               {/* <td className="px-2 py-2 text-center border-r-2">
                 <div className="avatar flex items-center justify-center ">

@@ -1,13 +1,10 @@
 "use client"
-
 import { useEffect, useState } from 'react'
-// import { Link, Link, useNavigate } from 'react-router-dom'
-import Aos from 'aos';
+// import Aos from 'aos';
 // import { Fade } from "react-awesome-reveal";
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
 import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
-// import { toast } from 'react-toastify';
 import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
 import { ImProfile } from 'react-icons/im';
 import { GiTeacher } from 'react-icons/gi';
@@ -19,49 +16,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
+import useAuth from '@/hooks/useAuth';
 
 const Sidebar = () => {
-
-  // const { user, userRole, setUserRole, loading, setLoading, logOut } = useAuth();
-  // const navigate = useNavigate();
-  // const { user, logout } = useAuth();
-
-  // const { displayName, email, photoURL } = user || {};
-
+  const { user, loading, setLoading, logOut, userRole } = useAuth();
+  console.log(user);
   const [isActive, setActive] = useState(false);
-
-  const user = {
-    displayName: "Shamiul",
-    email: "shamiul@gmail.com"
-  };
-  // const userRole = "student";
-  const userRole = "admin";
-
   const { replace, refresh } = useRouter();
 
-  useEffect(() => {
-    Aos.init({ duration: 1000 });
-  }, []);
+  const userEmail = user?.email;
+  console.log(userEmail);
+  console.log(userRole);
+
+  // useEffect(async () => {
+  //   Aos.init({ duration: 1000 });
+  // }, []);
+
+
+
+
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
-
-  // const handleLogOut = async () => {
-  //   const toastId = toast.loading("Loading...");
-  //   try {
-  //     await logout();
-  //     toast.dismiss(toastId);
-  //     toast.success("Successfully logout!");
-  //     startTransition(() => {
-  //       refresh();
-  //     });
-  //   } catch (error) {
-  //     toast.error("Successfully not logout!");
-  //     toast.dismiss(toastId);
-  //   }
-  // };
 
   return (
     <>
@@ -70,7 +48,7 @@ const Sidebar = () => {
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
             <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-              <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" src={Logo} alt="Logo" />
+              <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
               <span className='animate-pulse flex items-center text-xl md:text-3xl'>
                 {/* <Fade duration={300} triggerOnce={true} cascade>EduMentor</Fade> */}
                 EduMentor
@@ -96,7 +74,7 @@ const Sidebar = () => {
           <div>
             <div className='w-full hidden md:flex py-4 justify-center items-center bg-teal-100 mx-auto'>
               <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-                <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" src={Logo} alt="Logo" />
+                <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
                 <span className='flex items-center text-lg md:text-xl'>
                   {/* <Fade duration={300} triggerOnce={true} cascade>Language School</Fade> */}
                   EduMentor
@@ -111,16 +89,20 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={user?.photoURL}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
+                      width={40}
+                      height={40}
                     />
                     :
                     <Image
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={UserImage}
                       alt='avatar'
-                      referrerPolicy='no-referrer'
-                      data-aos="zoom-in"
+                      // referrerPolicy='no-referrer'
+                      // data-aos="zoom-in"
+                      width={40}
+                      height={40}
                     />
                 }
               </Link>
@@ -135,7 +117,8 @@ const Sidebar = () => {
                 </p>
               </Link>
               {
-                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
+                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl">{userRole}</p>
+                // userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
               }
             </div>
           </div>
@@ -183,7 +166,7 @@ const Sidebar = () => {
                   userRole === "tutor" &&
                   <>
                     <Link
-                      href='/dashboard/add-a-tuition'
+                      href='/dashboard/tutor/add-a-tuition'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -191,12 +174,20 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Add a Tuition</span>
                     </Link>
                     <Link
-                      href='/dashboard/my-students'
+                      href='/dashboard/tutor/my-students'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaBook className='w-5 h-5' />
                       <span className='mx-4 font-medium'>My Students</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/tutor/my-bookings'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaBook className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>My Bookings</span>
                     </Link>
                   </>
                 }
@@ -215,12 +206,12 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Manage Tutors</span>
                     </Link>
                     <Link
-                      href='/dashboard/admin/manage-students'
+                      href='/dashboard/admin/manage-tutor-request'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Students</span>
+                      <span className='mx-4 font-medium'>Manage Tutor Request</span>
                     </Link>
                     <Link
                       href='/dashboard/admin/manage-users'
