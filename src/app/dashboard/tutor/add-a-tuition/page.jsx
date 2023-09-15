@@ -25,7 +25,7 @@ const AddATuition = () => {
       };
       fetchUserData()
     }
-  }, [user]);
+  }, [currentUserEmail, user]);
 
   const onSubmit = (tuitionInformation, event) => {
     const tuitionData = {

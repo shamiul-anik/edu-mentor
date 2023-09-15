@@ -9,6 +9,11 @@ import { toast } from "react-hot-toast";
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaUserTimes } from "react-icons/fa";
+import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
+import useGetUser from "@/hooks/useGetUser";
+import { revalidateTag } from 'next/cache';
+import SingleBlogCommentCard from './SingleBlogCommentCard';
+
 
 const page = async ({ params }) => {
 
@@ -47,9 +52,7 @@ const page = async ({ params }) => {
     useEffect(() => {
         const fetchCommentData = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/blog-comments_get`, {
-                    cache: 'no-cache'
-                });
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/blog-comments-get`, { next: { tags: ['collection'] } });
 
                 if (!res.ok) {
                     throw new Error("Failed to fetch data");
@@ -70,7 +73,7 @@ const page = async ({ params }) => {
         };
 
         fetchCommentData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const toDay = () => {
@@ -85,7 +88,6 @@ const page = async ({ params }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        const postId = searchId
         const bloggerName = user.displayName;
         const comment = data.blogComment;
         const date = toDay();
@@ -93,10 +95,14 @@ const page = async ({ params }) => {
         const hours = currentTime.getHours();
         const minutes = currentTime.getMinutes();
         const seconds = currentTime.getSeconds();
-        const time = `${hours}:${minutes}:${seconds}`
+        const time = `${hours}:${minutes}:${seconds}`;
+
+
+        const userData = await useGetUser(user?.email);
+        const userImgUrl = userData.photoURL;
 
         const postCommentData = {
-            searchId, comment, date, bloggerName, time
+            searchId, comment, date, bloggerName, time, userImgUrl
         }
 
         try {
@@ -121,6 +127,7 @@ const page = async ({ params }) => {
             console.error(error);
             toast.error("An error occurred:", error);
         }
+        revalidateTag(tag)
 
         console.log(postCommentData)
 
@@ -129,9 +136,10 @@ const page = async ({ params }) => {
 
     return (
         <div className='text-sm max-w-7xl mx-auto mt-12 lg:mt-4 lg:p-4 p-2 text-slate-700 text-justify'>
+            <CommonBanner bannerHeading="Post Details"></CommonBanner>
             {
                 blog.map((item, index) => <div key={index}  >
-                    <SectionTitle heading={item.userName} subHeading=""></SectionTitle>
+                    {/* <SectionTitle heading={item.userName} subHeading=""></SectionTitle> */}
                     <div className=" lg:w-[80%] w-[95%] mx-auto shadow-lg lg:p-8 p-4 rounded-md bg-slate-100 shadow-slate-500 items-center">
                         <div className=" grid lg:grid-cols-4 grid-cols-2 items-center my-2">
                             <Image className='object-cover max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={item.userImgUrl} alt='' width={60} height={60} />
@@ -147,7 +155,7 @@ const page = async ({ params }) => {
                     </div>
                 </div>)
             }
-            <div className=" border border-5 mt-4 border-slate-600 lg:w-[80%] w-[95%] mx-auto shadow-lg lg:p-8 p-4 rounded-md bg-slate-100 shadow-slate-500">
+            <div className=" border border-5 mt-4 border-slate-600 lg:w-[80%] w-[95%] mx-auto shadow-lg lg:p-8 p-4 rounded-md bg-slate-100 shadow-slate-500 ">
                 <div className="lg:flex md:flex ">
                     <div className="mx-1 ">
                         {
@@ -169,17 +177,19 @@ const page = async ({ params }) => {
                         }
                     </form>
                 </div>
-                <div className=" overflow-y-auto h-64">
+                <div className=" overflow-y-auto h-64 ">
                     {
-                        comments.map((item, index) =>
-                            <div key={index} item={item} className="">
-                                <div className="grid grid-cols-3 gap-3">
-                                    <p className='m-1'>Name:{item.bloggerName}</p>
-                                    <p className='m-1'>Time: {item.time}</p>
-                                    <p className='m-1'>Date: {item.date}</p>
-                                </div>
-                                <p className='border rounded-md border-slate-700/5 p-2 text-base '>{item.comment}</p>
-                            </div>
+                        comments.map((item, index) => <SingleBlogCommentCard key={index} item={item}></SingleBlogCommentCard>
+                            // <div key={index} item={item} className="">
+                            //     <div className="grid grid-cols-4 gap-3 items-center py-2">
+                            //         {/* userImgUrl */}
+                            //         <Image className='object-cover  mx-2 my-4 rounded-full' src={item.userImgUrl} alt='' width={50} height={50} />
+                            //         <p className='m-1'>Name:{item.bloggerName}</p>
+                            //         <p className='m-1'>Time: {item.time}</p>
+                            //         <p className='m-1'>Date: {item.date}</p>
+                            //     </div>
+                            //     <p className='border bg-slate-400 lg:ml-4 ml-4 rounded-md border-slate-700/5 p-2 text-base '>{item.comment}</p>
+                            // </div>
                         )
                     }
                 </div>
