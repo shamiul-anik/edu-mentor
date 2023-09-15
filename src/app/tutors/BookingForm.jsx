@@ -5,9 +5,14 @@ import useAuth from "@/hooks/useAuth";
 // import createJWT from "@/utils/createJWT";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import bookingPost from "@/utils/bookingPost";
+import { startTransition } from "react";
+import { useRouter } from "next/navigation";
 
 
-const BookingForm = () => {
+
+const BookingForm = (data) => {
+  const {id} = data
   const {
     register,
     handleSubmit,
@@ -17,16 +22,17 @@ const BookingForm = () => {
   } = useForm();
 
   const { user } = useAuth();
+  const { refresh } = useRouter();
 
 
 
   const onSubmit = async (data, event) => {
     const { name, email, phoneNumber, subject, location, salary, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
-    toast.dismiss(toastId);
-    // try {
+    try {
       // Booking Data save mongodb start
-      const booking ={
+      const bookingData ={
+        tutorId: id,
         name: name,
         email: email,
         phoneNumber: phoneNumber,
@@ -34,20 +40,23 @@ const BookingForm = () => {
         location: location,
         salary: salary,
         detailsInfo:  detailsInfo,
-        bookingDate: new Date()
+      }
+      
+      if(bookingData){
+        bookingPost(bookingData)
+        startTransition(() => {
+          refresh();
+          toast.dismiss(toastId);
+          toast.success("booking data save in successfully");
+        });
       }
       // Booking Data save mongodb start
 
-    //   startTransition(() => {
-    //     refresh();
-    //     replace(from);
-    //     toast.dismiss(toastId);
-    //     toast.success("User signed in successfully");
-    //   });
-    // } catch (error) {
-    //   toast.dismiss(toastId);
-    //   toast.error(error.message || "User not signed in");
-    // }
+
+    } catch (error) {
+      toast.dismiss(toastId);
+      toast.error(error.message || "Booking Data not saved successfully");
+    }
   };
   
  
@@ -66,6 +75,7 @@ const BookingForm = () => {
           type="text"
           placeholder="name"
           defaultValue={user?.displayName}
+          
           id="name"
           name="name"
           className="input input-bordered"
@@ -87,6 +97,7 @@ const BookingForm = () => {
           id="email"
           name="email"
           defaultValue={user?.email}
+          
           className="input input-bordered"
           autoComplete="email"
           {...register("email", {

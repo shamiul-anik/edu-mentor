@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from 'react';
 import BookingForm from "@/app/tutors/BookingForm"
 
+
+
 const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {tutorId}}) => {
     
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/${tutorId}`,{
@@ -76,7 +78,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
 
         </div>
         <div className= " mt-10 mb-10 w-1/2">
-        <BookingForm/>
+        <BookingForm id={id}/>
         </div>
         </div>
     );

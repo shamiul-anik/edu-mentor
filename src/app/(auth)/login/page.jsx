@@ -1,13 +1,14 @@
 "use client"
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import Loader from '@/components/(shared)/Loader/Loader';
 import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
+import getUser from '../../../utils/getUser';
 
 
 
@@ -20,17 +21,22 @@ import saveUser from '@/utils/saveUser';
 //   }
 
 const Login = () => {
-
-
-	const { loading, setLoading, logIn, signInWithGoogle, setUser } = useAuth();
-	// const setLoading = "";
+	const { loading, setLoading, logIn, signInWithGoogle, setUser, user } = useAuth();
 	const { register, handleSubmit, formState: { errors } } = useForm();
+	const router = useRouter();
+
 
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 
-	
-	
+
+	const fetchUserData = async (email) => {
+		const userData = await getUser(email);
+		return userData
+	};
+
+
+
 
 
 	// // Show Loader when Page is Loading
@@ -41,7 +47,7 @@ const Login = () => {
 	const onSubmit = (userInformation) => {
 		console.log(userInformation);
 		setLoading(true);
-		setError("");	 	
+		setError("");
 
 		logIn(userInformation.email, userInformation.password)
 			.then(result => {
@@ -49,6 +55,7 @@ const Login = () => {
 				console.log(loggedUser);
 				setUser(loggedUser)
 				toast.success("Successfully logged in!");
+				router.push('/profile')
 			})
 			.catch(error => {
 				setError(error.message);
@@ -56,24 +63,30 @@ const Login = () => {
 				setLoading(false);
 			})
 	};
-	
+
 	// // Google Login
 	const handleGoogleLogin = () => {
 		signInWithGoogle()
 			.then(result => {
 				const currentUser = result.user;
-				setUser(currentUser)
-				
+				setUser(currentUser);
+				const userData = fetchUserData(currentUser?.email)
+
 				const userInfo = {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					role: "user"
+					gender: userData?.gender || "N/A",
+					location: userData?.location || "N/A",
+					mobileNumber: userData?.mobileNumber || "N/A",
+					qualification: userData?.qualification || "N/A",
+					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
-				
+
 
 				toast.success("Successfully logged in!");
+				router.push('/profile')
 			})
 			.catch(error => {
 				setError(error.message);
@@ -90,15 +103,15 @@ const Login = () => {
 	return (
 		<section className="max-w-lg mx-auto mt-4 lg:mt-20 p-4">
 			<div className="flex card card-compact w-full bg-base-100 shadow-xl border-2 border-teal-400">
-				
+
 				<div className="flex-1 p-6 md:p-8 pt-5 pb-1 md:pb-2">
 					<h3 className='text-slate-700 text-2xl my-2 font-bold text-center'>Login to your Account</h3>
 				</div>
-				
+
 				<div className='border-t border-slate-300 my-4 mx-6 md:mx-8'></div>
 
 				{/* <p className="!px-6 md:!px-8 text-red-500 mt-2 text-center">{error}</p> */}
-				
+
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="!px-6 md:!px-8 !pt-2 card-body">
 						<div className="form-control">
@@ -109,7 +122,7 @@ const Login = () => {
 							{/* <p className="text-red-500 mt-2"></p> */}
 							{errors?.email && <p className="text-red-500 mt-2">Email is required!</p>} {/* Error Message */}
 						</div>
-						
+
 						<div className="relative form-control">
 							<label className="label pl-0" htmlFor="password">
 								<span className="label-text text-lg">Password</span>
@@ -123,7 +136,7 @@ const Login = () => {
 						</div>
 						{/* <p className="text-red-500 mt-2"></p> */}
 						{errors?.password && <p className="text-red-500 mt-2">Password is required!</p>} {/* Error Message */}
-						
+
 						<div className="text-md">
 							Forgot your password? &nbsp;
 							<Link href="/password-reset" className='link link-error font-semibold transition-all hover:duration-200 text-red-600 hover:text-red-700'>Reset Password</Link>
@@ -147,7 +160,7 @@ const Login = () => {
 					<h4 className='mb-2 text-slate-500 text-xl font-bold text-center'> ----------- OR ----------- </h4>
 					<h4 className='text-slate-700 text-xl font-bold text-center'>Login with</h4>
 				</div> */}
-				
+
 				<div className="grid md:grid-cols-1 gap-2 !px-6 md:!px-8 !pt-3 card-body">
 					<div className="form-control mb-5">
 						{/* <button onClick={handleGoogleLogin} className="btn btn-outline btn-accent text-lg">
@@ -161,7 +174,7 @@ const Login = () => {
 						</button>
 					</div>
 				</div>
-				
+
 			</div>
 		</section>
 	);
