@@ -6,6 +6,10 @@ import Image from "next/image";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
+import { useEffect, useState } from "react";
+import useAuth from "@/hooks/useAuth";
+import Swal from "sweetalert2";
+
 // import FeedbackModal from "./FeedbackModal";
 // import SingleClass from "./SingleClass";
 // import { useQuery } from "@tanstack/react-query";
@@ -14,10 +18,70 @@ import { VscFeedback } from "react-icons/vsc";
 // import useAuth from "../../../../hooks/useAuth";
 
 const ManageTutors = () => {
+  const [allTuitions, setAllTuitions] = useState([]);
+  const { user, loading, userRole } = useAuth();
+	
+	useEffect(() => {
+		const fetchAllTuitions = async () => {
+		  try {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-tuitions`,
+			{
+			  cache: 'no-cache'
+			});
+			const data = await res.json();
+			setAllTuitions(data);
+		  } catch (error) {
+			console.error('Error fetching mentor data:', error);
+		   
+		  }
+		};
+	
+		fetchAllTuitions();
+	  }, []);
 
+
+
+    // console.log(allTuitions);
   // Sample Data
   const admin_feedback = "Good work!"
-  const isVerified = false;
+  // const isVerified = false;
+
+ const  handleAdminBtn = (tuition, value) =>{
+  console.log(tuition?._id, value);
+  const fetchAdminBtn = async () => {
+    try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/tuitionStatus?id=${tuition?._id}&controlAdminBtn=${value}`, {
+      method: "PATCH",
+    },
+    {
+      cache: 'no-store'
+    });
+    if (res.status === 200) {
+      // Successful response, handle data accordingly
+      // setAllUsers(data);
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: "User Action successfully",
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log("User admin action successfully")
+      
+    }
+    const data = await res.json();
+    console.log(data)
+
+    
+    } catch (error) {
+    console.error('Error fetching All userdata:', error);
+     
+    }
+  };
+
+  fetchAdminBtn();
+    
+ }
   
   // const { user, loading, setLoading } = useAuth();
   // const [axiosSecure] = useAxiosSecure();
@@ -119,9 +183,9 @@ const ManageTutors = () => {
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   #
                 </th>
-                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Tutor&apos;s <br/> Image
-                </th>
+                </th> */}
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Tutor&apos;s <br/> Name
                 </th>
@@ -161,56 +225,62 @@ const ManageTutors = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+             {
+              allTuitions.map((tuition, index) => (
+                <tr
+                key={tuition?._id} 
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                  1
+                  {index + 1}
                 </td>
-                <td className="px-2 py-2 text-center border-r-2">
+                {/* <td className="px-2 py-2 text-center border-r-2">
                   <div className="avatar flex items-center justify-center ">
                     <div className="w-24 rounded-xl">
-                      <Image src="" alt={`Image of Tutor`} />
+                      <Image src="" alt={tuition?.} />
                     </div>
                   </div>
-                </td>
+                </td> */}
                 <td className="px-2 py-2 whitespace-nowrap border-r-2">
-                  {/* {class_name} */}
+                  {tuition?.tutor_name}
                 </td>
                 <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                  {/* {instructor_name} */}
+                {tuition?.tutor_email}
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* {instructor_email} */}
+                {tuition?.mobile}
+
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* {available_seats} */}
+                {tuition?.gender}
+
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* {enrolled_students} */}
+                {tuition?.qualification}
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
-                  {/* ${class_price} */}
+                {tuition?.service_location}
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
-                  {/* {class_status} */}
+                {tuition?.subject}
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
-                  
+                {tuition?.class_name}
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
-                  
+                {tuition?.salary}
                 </td>
                 <td className="px-2 py-2 text-center uppercase border-r-2">
-                  
+                {(tuition?.isVerified == true) ? <span className= "text-green-700">true</span> : <span className="text-red-700"> false</span>}
                 </td>
                 <td className="px-2 py-2 border-r-2">
-                  {/* {admin_feedback} */}
+                 update running
                 </td>
                 <td className="px-2 py-2 text-center">
-                  <button type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={isVerified} >
+                  <button onClick={()=>handleAdminBtn(tuition, 'approve')} type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(tuition?.isVerified == true) ? true : false} >
                     <GrValidate className='gr-icon w-4 h-4 mr-2' />
                     Approve
                   </button>
-                  <button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={isVerified}>
+                  <button onClick={()=>handleAdminBtn(tuition, 'deny')} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(tuition?.isVerified == true) ? false : true}>
                     <LuShieldClose className='gr-icon w-4 h-4 mr-2' />
                     Deny
                   </button>
@@ -228,6 +298,9 @@ const ManageTutors = () => {
                   }
                 </td>
               </tr>
+              ))
+            }
+
             </tbody>
           </table>
         </div>

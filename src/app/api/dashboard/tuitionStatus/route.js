@@ -1,5 +1,6 @@
 import connect from "@/utils/db.js";
-import { Users } from "@/models/Users"
+// import { Tuitions } from "@/models/Users"
+import {Tuitions} from "@/models/Tuitions";
 import { NextResponse } from "next/server";
 export const PATCH = async (request) => {
   try {
@@ -16,20 +17,12 @@ export const PATCH = async (request) => {
     // all admin btn action
     console.log("query",query);
     if (controlAdminBtn == "approve") {
-        const users = await Users.findByIdAndUpdate( id,
+        const users = await Tuitions.findByIdAndUpdate( id,
             { isVerified: true },);
       return NextResponse.json({ users }, { status: 200 });
     }else if (controlAdminBtn == "deny") {
-        const users = await Users.findByIdAndUpdate( id,
+        const users = await Tuitions.findByIdAndUpdate( id,
             { isVerified: false },);
-      return NextResponse.json({ users }, { status: 200 });
-    }else if(controlAdminBtn == "tutor"){
-        const users = await Users.findByIdAndUpdate( id,
-            { role: controlAdminBtn },);
-      return NextResponse.json({ users }, { status: 200 });
-    }else if(controlAdminBtn == "admin"){
-        const users = await Users.findByIdAndUpdate( id,
-            { role: controlAdminBtn },);
       return NextResponse.json({ users }, { status: 200 });
     }
   } catch (error) {
