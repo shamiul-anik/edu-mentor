@@ -9,15 +9,17 @@ import { useTitle } from '@/hooks/useTitle';
 import blogPostApi from "@/utils/blogPostApi"
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import Image from 'next/image';
+import useGetUser from "@/hooks/useGetUser";
+
 
 const PostBlog = () => {
-    
+
     useTitle("Add Blog Post");
 
     const router = useRouter();
     const { user } = useAuth();
 
-    // console.log(" post blog page 17", user.email);
+    // console.log(" post blog page 22", user);
     const [blogPostImageUrl, setBlogPostImageUrl] = useState('')
     const [storeUserData, setStoreUserData] = useState([])
 
@@ -86,17 +88,20 @@ const PostBlog = () => {
         const postImgUrl = blogPostImageUrl;
         const postDescription = data.words;
         const postDate = toDay();
-        const userName = user.displayName;
-        const userRole = "student"
         const userEmail = user.email
+        const userName = user.displayName;
+        const userData = await useGetUser(user?.email);
+        console.log(userData.role,userData.photoURL, userEmail);
+        const userRole = userData.role;
+        const userImgUrl = userData.photoURL
 
         const allData = {
-            postImgUrl, postDescription, postDate, userName, userRole
+            postImgUrl, postDescription, postDate, userName, userRole, userImgUrl
         }
-        
-        // console.log("91",allData);
+
+        // console.log("91", allData);
         blogPostApi(allData)
-        // navigate()
+        navigate()
 
     }
     return (
@@ -105,9 +110,9 @@ const PostBlog = () => {
 
             <section className='text-sm max-w-7xl mx-auto mt-6 lg:mt-12 lg:p-4 p-2 text-slate-700 text-justify'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    
+
                     {blogPostImageUrl ? <Image src={blogPostImageUrl} className="mb-6 object-cover object-center" width={1280} height={500} alt="Blog Image" /> : ""}
-                    
+
                     <label className='form-label text-xl' htmlFor='xmlFile'>
                         Image Upload
                     </label>
@@ -118,9 +123,9 @@ const PostBlog = () => {
                         // {...register('imageFile')}
                         onChange={uploadImage}
                     />
-                    
+
                     <textarea placeholder='Type Your Thinking' className='my-4 w-full h-28 rounded-lg mt-2' {...register("words", {})} />
-                    
+
                     <button className='bg-slate-600 py-4 px-8 rounded-md text-white hover:bg-slate-700' type='submit'>Submit</button>
                 </form>
             </section>

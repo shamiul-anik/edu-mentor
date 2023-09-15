@@ -8,10 +8,11 @@ import Image from "next/image";
 import Logo from "@/assets/images/logo.png";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "next/navigation";
 
 const Header = () => {
-  const { replace, refresh } = useRouter();
+  const { replace} = useRouter();
+
 
   const { user, logOut, userRole } = useAuth();
   console.log("logged user", user);
@@ -26,9 +27,6 @@ const Header = () => {
       await logOut();
       toast.dismiss(toastId);
       toast.success("Successfully logout!");
-      startTransition(() => {
-        refresh();
-      });
     } catch (error) {
       console.log(error.message);
       toast.error("Error!");

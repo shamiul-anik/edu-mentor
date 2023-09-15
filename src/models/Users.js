@@ -6,6 +6,19 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: false
     },
+    location: {
+        type: String,
+    },
+    gender: {
+        type: String,
+    },
+    mobileNumber: {
+        type: String,
+    },
+    qualification: {
+        type: String,
+        
+    },
     email: {
         type: String,
         required: true
@@ -19,6 +32,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: false
     },
+    isVerified: {
+        type: Boolean,
+        default: false, // Set the default value to false
+      },
 
 },
     { timestamps: true }

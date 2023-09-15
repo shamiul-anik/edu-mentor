@@ -26,28 +26,31 @@ const MyStudents = () => {
               {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Class <br /> Image
               </th> */}
+              
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Subject <br /> Name
+                Student&apos;s <br /> Name
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Student <br /> Name
+                Student&apos;s <br /> Email
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Student <br /> Email
+                Mobile <br /> Number
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Location
               </th>
-              {/* 
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Enrolled <br /> Students
-              </th> */}
+                Subject <br /> Name
+              </th>
+              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                Class <br /> Name
+              </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Salary <br /> (Per Month)
               </th>
-              {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Payment <br /> Status
-              </th> */}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -63,85 +66,29 @@ const MyStudents = () => {
                 </div>
               </td> */}
               <td className="px-2 py-2 border-r-2">
-                English
-              </td>
-              <td className="px-2 py-2 border-r-2">
                 Abu Haidar
               </td>
               <td className="px-2 py-2 border-r-2">
                 haidar@gmail.com
               </td>
               <td className="px-2 py-2 border-r-2">
+                01712345678
+              </td>
+              <td className="px-2 py-2 border-r-2">
                 Gulshan-1
               </td>
-              <td className="px-2 py-2 text-center border-r-2">
-                5000
-              </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
-                Paid
-              </td> */}
-            </tr>
-
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                2
-              </td>
-              {/* <td className="px-2 py-2 text-center border-r-2">
-                <div className="avatar flex items-center justify-center ">
-                  <div className="w-24 rounded-xl">
-                    <Image src={class_image} alt={`Image of ${class_name} class`} />
-                  </div>
-                </div>
-              </td> */}
               <td className="px-2 py-2 border-r-2">
                 Math
               </td>
               <td className="px-2 py-2 border-r-2">
-                Rakib Hasan
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                rakib@gmail.com
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Gulshan-2
+                10
               </td>
               <td className="px-2 py-2 text-center border-r-2">
-                8000
+                5000
               </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
+              <td className="px-2 py-2 text-center uppercase border-r-2">
                 Paid
-              </td> */}
-            </tr>
-
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                3
               </td>
-              {/* <td className="px-2 py-2 text-center border-r-2">
-                <div className="avatar flex items-center justify-center ">
-                  <div className="w-24 rounded-xl">
-                    <Image src={class_image} alt={`Image of ${class_name} class`} />
-                  </div>
-                </div>
-              </td> */}
-              <td className="px-2 py-2 border-r-2">
-                Physics
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Masud Rana
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                rana@gmail.com
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Banani
-              </td>
-              <td className="px-2 py-2 text-center border-r-2">
-                3000
-              </td>
-              {/* <td className="px-2 py-2 text-center uppercase border-r-2">
-                Pending
-              </td> */}
             </tr>
 
           </tbody>

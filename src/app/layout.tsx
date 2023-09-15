@@ -2,7 +2,7 @@
 import './globals.css';
 import '@smastrom/react-rating/style.css';
 import 'aos/dist/aos.css';
-import type { Metadata } from 'next';
+// import type { Metadata } from 'next';
 import Header from '@/components/(shared)/Header/Header';
 import { useTitle } from '@/hooks/useTitle';
 import Footer from '@/components/(shared)/Footer/Footer';
@@ -15,10 +15,10 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export const metadata: Metadata = {
-  title: 'EduMentor | Home',
-  description: 'EduMentor Home Page',
-};
+// export const metadata: Metadata = {
+//   title: 'EduMentor | Home',
+//   description: 'EduMentor Home Page',
+// };
 
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
 

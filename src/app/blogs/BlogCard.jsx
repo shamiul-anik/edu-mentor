@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import currying from "@/assets/blogimg/what-is-currying.png"
-import manImage1 from "@/assets/images/success/image2.jpg"
 import Link from 'next/link';
 
 
@@ -26,7 +24,7 @@ const BlogCard = ({ blog }) => {
                 <div className="lg:col-span-3 md:col-span-3 my-2 ">
                     <div className="mx-4 text-center flex ">
                         <div className="">
-                            <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={manImage1} alt='' width={50} />
+                            <Image className='object-cover h-[50px] max-sm:mx-auto max-md:mx-auto mx-2 my-4 rounded-full' src={userImgUrl} alt='' height={50} width={50} />
                         </div>
                         <div
                             className={`${role !== "admin" ? " grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-slate-700 " : "grid grid-cols-3 max-sm:grid-cols-2 gap-2 py-[3%] text-white"
