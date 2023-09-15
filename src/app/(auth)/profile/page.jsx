@@ -6,21 +6,38 @@ import useAuth from "@/hooks/useAuth.js"
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import saveUser from '@/utils/saveUser';
+import useGetUser from '@/hooks/useGetUser';
 
 
 const Profile = () => {
   const { user, userRole, setLoading, updateUserProfile } = useAuth();
 
   const { register, getValues, handleSubmit, formState: { errors } } = useForm();
+  const [userData, setUserData] = useState([]);
+
+
+  useEffect(() => {
+    if (user?.email) {
+      const fetchUserData = async () => {
+        const userData = await useGetUser(user?.email);
+        setUserData(userData);
+      };
+      fetchUserData()
+      console.log(userData);
+    }
+  }, [user]);
+
+
 
   const currentUserName = user?.displayName;
   const currentUserPhotoURL = user?.photoURL;
-  const currentUserEmail = user?.email;
-  const gender = user?.gender;
-  const mobileNumber = user?.mobileNumber;
-  const qualification = user?.qualification;
-  const location = user?.location;
-  const role = user?.role;
+  const currentUserEmail = userData?.email;
+  const gender = userData?.gender;
+  const mobileNumber = userData?.mobileNumber;
+  const qualification = userData?.qualification;
+  const location = userData?.location;
+  const role = userData?.role;
+
 
 
 
@@ -30,13 +47,13 @@ const Profile = () => {
 
   const onSubmit = async (userInformation, event) => {
     event.preventDefault();
-  
+
     // Perform form validation here if necessary
     if (!userInformation.name || !currentUserEmail) {
       setError("Invalid data. Please fill in all required fields.");
       return;
     }
-  
+
     // get information
     const userInfo = {
       displayName: userInformation.name,
@@ -48,18 +65,18 @@ const Profile = () => {
       location: userInformation.location,
       role: role,
     };
-  
+
     console.log(userInfo);
-  
+
     try {
       setLoading(true);
-  
+
       // Update the user profile
       await updateUserProfile({
         displayName: userInfo?.displayName,
         photoURL: userInfo?.photoURL,
       });
-  
+
       // Save the user information and provide feedback
       saveUser(userInfo);
       console.log(userInfo);
@@ -67,7 +84,7 @@ const Profile = () => {
       setSuccess("Profile updated!");
       toast.success("Profile updated!");
       setLoading(false);
-  
+
       // Uncomment the following line when you're ready to navigate to the profile page
       // navigate("/profile");
     } catch (error) {
@@ -76,7 +93,7 @@ const Profile = () => {
       setLoading(false);
     }
   };
-  
+
 
   return (
     <section className="max-w-5xl mx-auto mt-4 lg:mt-20 p-4">
