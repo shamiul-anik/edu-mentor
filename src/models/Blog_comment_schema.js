@@ -22,6 +22,10 @@ const blogCommentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userImgUrl: {
+        type: String,
+        required: true
+    }
 }, {
     versionKey: false,
 });
