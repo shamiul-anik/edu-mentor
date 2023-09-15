@@ -12,6 +12,7 @@ import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
 import { FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
 import { useTitle } from '@/hooks/useTitle';
+import useGetUser from "@/hooks/useGetUser";
 
 
 const people = [
@@ -33,9 +34,9 @@ const Blogs = () => {
 
     useEffect(() => {
         Aos.init({ duration: 1000 });
-                const fetchData = async () => {
+        const fetchData = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`,{
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
                     cache: "no-cache"
                 });
 
@@ -64,6 +65,7 @@ const Blogs = () => {
                     filteredData = data.filter(item => item.role === selected.name);
                 }
                 const paginatedData = filteredData.slice(startIndex, endIndex);
+                console.log(paginatedData);
 
                 setBlogs(paginatedData);
             } catch (error) {
@@ -89,7 +91,7 @@ const Blogs = () => {
                 <div className=" mb-2">
                     <div className=" rounded-md flex justify-between">
 
-                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-2 text-white" href={` ${user === null ? "/login" : "/postBlog"}`}>
+                        <Link className="btn bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg mx-2 text-white" href={` ${user === null ? "/login" : "/blogs/post-blog"}`}>
                             Add Blog Post
                         </Link>
 

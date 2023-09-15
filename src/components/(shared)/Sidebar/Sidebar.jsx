@@ -15,8 +15,9 @@ import { AiOutlineBars } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
+import { MdArticle } from 'react-icons/md';
 
 const Sidebar = () => {
   const { user, loading, setLoading, logOut, userRole } = useAuth();
@@ -28,11 +29,15 @@ const Sidebar = () => {
   console.log(userEmail);
   console.log(userRole);
 
-  // useEffect(async () => {
-  //   Aos.init({ duration: 1000 });
-  // }, []);
-
-
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {
+				console.log("Successfully logged out!");
+			})
+			.catch((error) => {
+				console.log(error.message);
+			})
+	};
 
 
 
@@ -198,12 +203,12 @@ const Sidebar = () => {
                   userRole === "admin" &&
                   <>
                     <Link
-                      href='/dashboard/admin/manage-tutors'
+                      href='/dashboard/admin/manage-tuitions'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookmarkCheckFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Tutors</span>
+                      <span className='mx-4 font-medium'>Manage Tuitions</span>
                     </Link>
                     <Link
                       href='/dashboard/admin/manage-tutor-request'
@@ -248,12 +253,20 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Tutors</span>
           </Link>
           <Link
-            href='/students'
+            href='/tutor-request'
             className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
             }
           >
             <GiTeacher className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Students</span>
+            <span className='mx-4 font-medium'>Tutor Request</span>
+          </Link>
+          <Link
+            href='/tutor-jobs'
+            className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+            }
+          >
+            <GiTeacher className='w-5 h-5' />
+            <span className='mx-4 font-medium'>Tutor Jobs</span>
           </Link>
           <Link
             href='/contact'
@@ -271,6 +284,14 @@ const Sidebar = () => {
             <BiDetail className='w-5 h-5' />
             <span className='mx-4 font-medium'>About</span>
           </Link>
+          <Link
+            href='/blogs'
+            className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+            }
+          >
+            <MdArticle className='w-5 h-5' />
+            <span className='mx-4 font-medium'>Blogs</span>
+          </Link>
           {/* <Link
             href='/profile'
             className={({ isActive }) =>
@@ -281,7 +302,7 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Profile</span>
           </Link> */}
           <button
-            className='flex w-full items-center px-4 py-2 mt-2 text-red-600 hover:bg-red-200 hover:text-red-700 transition-colors duration-300 transform'
+            className='flex w-full items-center px-4 py-2 mt-2 text-red-600 hover:bg-red-200 hover:text-red-700 transition-colors duration-300 transform' onClick={handleLogOut}
           >
             <BiLogOut className='w-5 h-5' />
             <span className='mx-4 font-medium'>Logout</span>
