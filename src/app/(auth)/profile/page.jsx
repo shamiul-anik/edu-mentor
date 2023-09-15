@@ -15,7 +15,6 @@ const Profile = () => {
   const { register, getValues, handleSubmit, formState: { errors } } = useForm();
   const [userData, setUserData] = useState([]);
 
-
   useEffect(() => {
     if (user?.email) {
       const fetchUserData = async () => {
@@ -23,12 +22,10 @@ const Profile = () => {
         setUserData(userData);
       };
       fetchUserData()
-      console.log(userData);
+      // console.log(userData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-
 
   const currentUserName = user?.displayName;
   const currentUserPhotoURL = user?.photoURL;
@@ -38,9 +35,6 @@ const Profile = () => {
   const qualification = userData?.qualification;
   const location = userData?.location;
   const role = userData?.role;
-
-
-
 
   // states
   const [error, setError] = useState("");
@@ -128,14 +122,14 @@ const Profile = () => {
                 <label className="label pl-0" htmlFor="name">
                   <span className="label-text text-lg">Name</span>
                 </label>
-                <input type="text" {...register("name", { required: true })} defaultValue={currentUserName || 'N/A'} id="name" name="name" placeholder="Enter your name" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" readOnly {...register("name", { required: true })} defaultValue={currentUserName || 'N/A'} id="name" name="name" placeholder="Enter your name" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
                 {errors?.name && <p className="text-red-500 mt-2">Name is required!</p>} {/* Error Message */}
               </div>
               <div className="form-control">
                 <label className="label pl-0" htmlFor="email">
                   <span className="label-text text-lg">Email</span>
                 </label>
-                <input type="email" {...register("email")} disabled={true} defaultValue={currentUserEmail} id="email" name="email" placeholder="Enter your email address" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="email" readOnly {...register("email")} defaultValue={currentUserEmail} id="email" name="email" placeholder="Enter your email address" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
                 {errors?.email && <p className="text-red-500 mt-2">Email is required!</p>} {/* Error Message */}
               </div>
             </div>
@@ -153,7 +147,6 @@ const Profile = () => {
                 </label>
                 <input type="text" {...register("gender")} defaultValue={gender || "N/A"} id="gender" name="gender" placeholder="Enter your gender" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               </div>
-
             </div>
 
             <div className="grid md:grid-cols-2 md:gap-6">
@@ -174,14 +167,9 @@ const Profile = () => {
               <label className="label pl-0" htmlFor="photoURL">
                 <span className="label-text text-lg">Photo URL</span>
               </label>
-              <input type="text" {...register("photoURL", { required: true })} defaultValue={currentUserPhotoURL || "N/A"} id="photoURL" name="photoURL" placeholder="Enter your photo url" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
-              {/* <input type="file" id="image" name="image" accept="image/*" className="file-input file-input-bordered file-input-accent w-full" /> */}
-              {/* <p className="text-red-500 mt-2">{imageError}</p> */}
+              <input type="text" {...register("photoURL")} defaultValue={currentUserPhotoURL || "N/A"} id="photoURL" name="photoURL" placeholder="Enter your photo url" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               {errors?.photoURL && <p className="text-red-500 mt-2">Photo URL is required!</p>} {/* Error Message */}
             </div>
-
-
-
             <div className="form-control mt-1">
               <button type="submit" className="flex gap-3 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-offset-1 ring-teal-400 disabled:ring-slate-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-lg px-8 py-2 text-center disabled:from-slate-300 disabled:to-slate-400 disabled:text-slate-600 tooltip tooltip-bottom">Update Profile</button>
             </div>
