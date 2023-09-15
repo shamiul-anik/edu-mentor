@@ -25,6 +25,7 @@ const Profile = () => {
       fetchUserData()
       console.log(userData);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
 
