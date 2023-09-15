@@ -1,25 +1,25 @@
-// import {  NextRequest, NextResponse } from "next/server";
-// import connect from "../../../utils/db";
-// import { Users } from "../../../models/Users";
+import {  NextRequest, NextResponse } from "next/server";
+import connect from "@/utils/db";
+import {Tuitions} from "@/models/Tuitions";
 
-// export const GET = async (request) => {
-//   try {
-//     await connect()
+export const GET = async (request) => {
+  try {
+    await connect()
 
-//     const {searchParams} = new URL(request.url);
-//     const email = (searchParams.get('email'));
-//     const query = {
-//         email
-//     }
-//     console.log(query)
-//     if(query.email !== null){
-//         // console.log("query block")
-//         const users = await Users.findOne(query);
-//         return new NextResponse(JSON.stringify(users), {status: 200})
-//     }
-//     const users = await Users.find();
-//     return new NextResponse(JSON.stringify(users), {status: 200})
-// } catch (error) {
-//     return new NextResponse("Database Error!", {status: 500})
-// }
-// };
+    const {searchParams} = new URL(request.url);
+    const email = (searchParams.get('email'));
+    const query = {
+        tutor_email: email
+    }
+    console.log(query)
+    if(query.tutor_email !== null){
+        console.log("query block")
+        const tuitions = await Tuitions.findOne(query);
+        return new NextResponse(JSON.stringify(tuitions), {status: 200})
+    }
+    const tuitions = await Tuitions.find();
+    return new NextResponse(JSON.stringify(tuitions), {status: 200})
+} catch (error) {
+    return new NextResponse("Database Error!", {status: 500})
+}
+};

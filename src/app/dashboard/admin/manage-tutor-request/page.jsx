@@ -8,6 +8,7 @@ import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import useAuth from "@/hooks/useAuth";
+import Swal from "sweetalert2";
 // import FeedbackModal from "./FeedbackModal";
 // import SingleClass from "./SingleClass";
 // import { useQuery } from "@tanstack/react-query";
@@ -25,7 +26,7 @@ const ManageStudents = () => {
 		  try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request`,
 			{
-			  cache: 'no-cache'
+			  cache: 'no-store'
 			});
 			const data = await res.json();
 			setAllRequest(data);
@@ -42,6 +43,43 @@ const ManageStudents = () => {
   // Sample Data
   const admin_feedback = "Good work!"
   const isVerified = false;
+
+  const  handleAdminBtn = (request, value) =>{
+    console.log(request?._id, value);
+    const fetchAdminBtn = async () => {
+      try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${request?._id}&controlAdminBtn=${value}`, {
+        method: "PATCH",
+      },
+      {
+        cache: 'no-store'
+      });
+      if (res.status === 200) {
+        // Successful response, handle data accordingly
+        // setAllUsers(data);
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: "User Action successfully",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log("User admin action successfully")
+        
+      }
+      // const data = await res.json();
+      // console.log(data)
+  
+      
+      } catch (error) {
+      console.error('Error fetching All manageRequest:', error);
+       
+      }
+    };
+  
+    fetchAdminBtn();
+      
+   }
 
   // const { user, loading, setLoading } = useAuth();
   // const [axiosSecure] = useAxiosSecure();
@@ -253,11 +291,11 @@ const ManageStudents = () => {
                    continue work
                   </td>
                   <td className="px-2 py-2 text-center">
-                    <button type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={request?.isVerified} >
+                    <button onClick={()=>handleAdminBtn(request, 'approve')} type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(request?.isVerified == true) ? true : false} >
                       <GrValidate className='gr-icon w-4 h-4 mr-2' />
                       Approve
                     </button>
-                    <button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={isVerified}>
+                    <button onClick={()=>handleAdminBtn(request, 'deny')} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(request?.isVerified == true) ? false : true}>
                       <LuShieldClose className='gr-icon w-4 h-4 mr-2' />
                       Deny
                     </button>

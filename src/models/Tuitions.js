@@ -35,7 +35,11 @@ const tuitionSchema = new Schema({
     },
     service_location: {
         type: String,
-    }
+    },
+    isVerified: {
+        type: Boolean,
+        default: false, // Set the default value to false
+      },
 },
     { timestamps: true }
 );
