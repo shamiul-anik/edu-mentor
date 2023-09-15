@@ -1,10 +1,8 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import {app} from '@/firebase/firebase.config.js';
 import { useState, useEffect } from 'react';
-import useGetUser from "@/hooks/useGetUser";
-// import axios from 'axios';
-
 import AuthContext from "@/contexts/AuthContext"
+import getUser from "@/utils/getUser";
 
 
 
@@ -21,7 +19,7 @@ const AuthProvider = ({ children }) => {
       const fetchUserData = async () => {
         console.log(user?.email);
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const userData = await useGetUser(user?.email);
+        const userData = await getUser(user?.email);
         console.log(userData); // This should show the updated value.
         setUserRole(userData?.role);
         console.log(userRole); // This should show the updated value.
