@@ -1,6 +1,15 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 
 const MyBookings = () => {
+  const [bookingData, setBookingData] = useState([])
+  useEffect(()=>{
+    const getBookingData = async () =>{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
+      const data = res.json();
+      console.log(data);
+    }
+  }, [])
   return (
     <>
       <header>

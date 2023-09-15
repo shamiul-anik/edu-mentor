@@ -4,27 +4,24 @@ import { Users } from "../../../models/Users";
 
 export const GET = async (request, response) => {
   try {
-    // Connect to the MongoDB database
-    await connect();
+    await connect()
 
-    // Get the email parameter from the query string
-    const { searchParams } = new URL(request.url);
-    const email = searchParams.get("email");
-    const query = { email };
-
-
-    // Find the user by email
-    if (query.email !== null) {
-      const user = await Users.findOne(query);
-      console.log(user);
-      return new NextResponse(JSON.stringify(user), { status: 200 });
+    const {searchParams} = new URL(request.url);
+    const email = (searchParams.get('email'));
+    
+    const query = {
+        email
     }
-    else if(query.email === null) {
-      return new NextResponse.json({ error: "User not found" }, { status: 404 });
+    console.log(query)
+    if(query.email !== null){
+        // console.log("query block")
+        const users = await Users.findOne(query);
+        return new NextResponse(JSON.stringify(users), {status: 200})
     }
 
-  } catch (error) {
-    console.error("Database Error:", error.message);
-    return new NextResponse("Internal Server Error", { status: 500 });
-  }
+    const users = await Users.find();
+    return new NextResponse(JSON.stringify(users), {status: 200})
+} catch (error) {
+    return new NextResponse("Database Error!", {status: 500})
+}
 };
