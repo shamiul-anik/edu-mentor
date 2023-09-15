@@ -56,6 +56,7 @@ const AuthProvider = ({ children }) => {
 	}
 
     const updateUserProfile = async(updateUser = {}) => {
+		console.log(updateUser);
         setLoading(true);
         await updateProfile(auth, updateUser);
         setUser((preUser) => ({...preUser, ...updateUser}))
