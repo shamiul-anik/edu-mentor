@@ -10,12 +10,13 @@ export const GET = async (request) => {
       students: -1, // Sort by students in descending order
       ratings: -1, // Then sort by ratings in descending order
     };
-    
+
     const limit = 6;
     const tutors = await Tutors.find().sort(sortingOptions).limit(limit);
 
     return new NextResponse(JSON.stringify(tutors), { status: 200 });
-  } catch (error) {
+  } 
+  catch (error) {
     return new NextResponse("Error in database!", { status: 500 });
   }
 };

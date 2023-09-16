@@ -15,7 +15,7 @@ const Newsletter = () => {
         <p className='content-description text-center mt-2 mb-6'>Subscribe to the EduMentor newsletter today and embark on a journey of continuous learning!</p>
         <div className="relative mt-6 mb-3 md:mb-7 max-w-xl mx-auto">
           <input type="text" placeholder="Enter your email address" className="input input-bordered input-accent focus:border-teal-500 focus:ring-teal-500 outline:border-teal-500 w-full pr-16" />
-          <button className="btn absolute btn-accent top-0 right-0 rounded-l-none">
+          <button className="btn absolute !bg-teal-300 hover:!bg-teal-400 top-0 right-0 rounded-l-none">
             <BsFillSendFill className='text-lg md:text-xl font-bold' />
             <span className='hidden md:block ml-1'>Subscribe</span>
           </button>

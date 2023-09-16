@@ -1,5 +1,5 @@
-// "use client"
-// import { Rating } from "@smastrom/react-rating";
+"use client"
+import { Rating } from "@smastrom/react-rating";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 import Image from "next/image";
 
@@ -22,7 +22,7 @@ const Testimonial = () => {
                 <div className="space-y-0.5 font-medium dark:text-white text-left">
                   <div>Jese Leos</div>
                   {/* <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">Spanish Course Student</div> */}
-                  {/* <Rating style={{ maxWidth: 90 }} value="5" readOnly /> */}
+                  <Rating style={{ maxWidth: 90 }} value="5" readOnly />
                 </div>
             </figcaption>
           </figure>
@@ -36,7 +36,7 @@ const Testimonial = () => {
                 <div className="space-y-0.5 font-medium dark:text-white text-left">
                   <div>Joseph McFall</div>
                   {/* <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">German Course Student</div> */}
-                  {/* <Rating style={{ maxWidth: 90 }} value="5" readOnly /> */}
+                  <Rating style={{ maxWidth: 90 }} value="5" readOnly />
                 </div>
             </figcaption>
           </figure>
