@@ -95,7 +95,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 						<div className="flex-1 p-4 pt-4 pb-4">
 							<h3 className='text-center text-2xl text-slate-700 font-bold'>Subject: Dynamic Data</h3>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
-								Class: abc@gmail.com
+								Class: Dynamic Class
 							</p>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Service Location: Dynamic Data
@@ -103,7 +103,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Available Days: Dynamic Data
 							</p>
-							<p className='font-bold text-base text-center mt-2 mb-2 text-slate-600'>BSc in CSE</p>
+							<p className='font-medium text-base text-center mt-2 mb-2 text-slate-600'>Expected Salary: Dynamic BDT</p>
 						</div>
 						<div className='border-t border-slate-300 mb-4'></div>
 						<div className=" w-full">
@@ -122,7 +122,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 						<div className="flex-1 p-4 pt-4 pb-4">
 							<h3 className='text-center text-2xl text-slate-700 font-bold'>Subject: Dynamic Data</h3>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
-								Class: abc@gmail.com
+								Class: Dynamic Class
 							</p>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Service Location: Dynamic Data
@@ -130,7 +130,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Available Days: Dynamic Data
 							</p>
-							<p className='font-bold text-base text-center mt-2 mb-2 text-slate-600'>BSc in CSE</p>
+							<p className='font-medium text-base text-center mt-2 mb-2 text-slate-600'>Expected Salary: Dynamic BDT</p>
 						</div>
 						<div className='border-t border-slate-300 mb-4'></div>
 						<div className=" w-full">
@@ -149,7 +149,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 						<div className="flex-1 p-4 pt-4 pb-4">
 							<h3 className='text-center text-2xl text-slate-700 font-bold'>Subject: Dynamic Data</h3>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
-								Class: abc@gmail.com
+								Class: Dynamic Class
 							</p>
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Service Location: Dynamic Data
@@ -157,7 +157,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 							<p className='font-medium text-sm text-center mt-3 mb-3 text-slate-600'>
 								Available Days: Dynamic Data
 							</p>
-							<p className='font-bold text-base text-center mt-2 mb-2 text-slate-600'>BSc in CSE</p>
+							<p className='font-medium text-base text-center mt-2 mb-2 text-slate-600'>Expected Salary: Dynamic BDT</p>
 						</div>
 						<div className='border-t border-slate-300 mb-4'></div>
 						<div className=" w-full">
