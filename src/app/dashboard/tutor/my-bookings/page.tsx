@@ -1,5 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import { GrValidate } from 'react-icons/gr';
+import { LuShieldClose } from 'react-icons/lu';
 
 const MyBookings = () => {
   const [bookingData, setBookingData] = useState([])
@@ -62,6 +64,9 @@ const MyBookings = () => {
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Details <br /> Information
                 </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2">
+                  Action
+                </th>
                 {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Payment <br /> Status
               </th> */}
@@ -100,6 +105,16 @@ const MyBookings = () => {
                 </td>
                 <td className="px-2 py-2 text-center border-r-2">
                   Available days are Monday, Wednesday and Friday.
+                </td>
+                <td className="px-2 py-2 text-center border-r-2">
+                  <button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
+                    <GrValidate className='gr-icon w-4 h-4 mr-2' />
+                    Approve
+                  </button>
+                  <button type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
+                    <LuShieldClose className='gr-icon w-4 h-4 mr-2' />
+                    Deny
+                  </button>
                 </td>
               </tr>
 
