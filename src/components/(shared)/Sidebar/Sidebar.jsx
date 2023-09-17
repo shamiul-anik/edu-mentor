@@ -184,7 +184,7 @@ const Sidebar = () => {
                       }
                     >
                       <FaBook className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Students</span>
+                      <span className='mx-4 font-medium'>My Tuitions</span>
                     </Link>
                     <Link
                       href='/dashboard/tutor/my-students'
