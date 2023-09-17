@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
-import FAQAccordion from "@/components/Tutor-Request/FAQ";
+import FAQAccordion from "@/components/TutorRequest/FAQ";
 import tutorRequestSave from "@/utils/tutorRequestSave";
 
 const TutorRequest = () => {

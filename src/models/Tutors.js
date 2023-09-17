@@ -52,6 +52,10 @@ const tutorSchema = new mongoose.Schema({
   location: locationSchema,
   subjects: [String],
   updatedAt: Date,
+  isVerified: {
+    type: Boolean,
+    default: false, // Set the default value to false
+  },
 });
 
 // Export the Tutors model
