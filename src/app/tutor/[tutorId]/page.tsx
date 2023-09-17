@@ -14,7 +14,8 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
 	const singleTutor = await res.json();
     const { image_url, name, id, tuition_info, area_covered, gender}= singleTutor || {};
     return (
-        <div className=' md:flex flex-row   justify-center'>
+        <>
+                <div className=' md:flex flex-row   justify-center'>
         <div className="m-10 w-1/2 bg-white ">
             <h3 className="text-3xl text-white p-1 font-bold divide-x-2 divide-neutral-900 mb-4  bg-gradient-to-r from-[#29A2AA] to-[#c0332e] ">Tutor Profile</h3>
 
@@ -31,45 +32,45 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
             <p>Tutor Location:</p>
              </div> */}
         <div className="mb-2 ml-4 dark:text-white">
-            <p>
+            <div>
             <span className='pr-4'>Name:</span>
            <span className="font-bold tracking-tight text-gray-900"> {name}</span>
-            </p>
+            </div>
            
-           <p>
+           <div>
            <span  className='pr-8'>ID#:</span>
            <span className="font-bold tracking-tight text-gray-900"> {id}</span>
-           </p>
-             <p>
+           </div>
+             <div>
              <span className='pr-4'>Gender:</span>
            <span className="font-bold tracking-tight text-gray-900">{gender}</span>
-             </p>
+             </div>
              <hr className="mt-4 mb-4 border-1 border-slate-900" />
-           <p>
+           <div>
            <span className="font-bold tracking-tight text-gray-900">Area Covered:</span>
-           <span> {
-                tuition_info?.preferred_areas_to_teach?.map((areas:any, index:any)=> <span
+           <div> {
+                tuition_info?.preferred_areas_to_teach?.map((areas:any, index:any)=> <p
                  key={index}
-                 className="pr-2"
+                 className="pr-2 inline-block"
                  >
                     
                     {areas }
-                </span>)
-            }</span>
-           </p>
-            <p>
+                </p>)
+            }</div>
+           </div>
+            <div>
             <span className="font-bold tracking-tight text-gray-900">Tutor Location:</span>
-           <span> {
-                area_covered?.map((area:any, index:any)=> <span
+           <div> {
+                area_covered?.map((area:any, index:any)=> <p
                 key={index}
-                className="pr-2"
+                className="pr-2 inline-block"
                 >
                    
                    {area}
-               </span>)
-            }</span>
+               </p>)
+            }</div>
 
-            </p>
+            </div>
         </div>
     </div>
 </a>
@@ -81,6 +82,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({params: {t
         <BookingForm id={id}/>
         </div>
         </div>
+        </>
     );
 };
 
