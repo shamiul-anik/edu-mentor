@@ -34,10 +34,10 @@ const MyBookings = () => {
 									#
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student <br /> Name
+									Student&apos;s <br /> Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student <br /> Email
+									Student&apos;s <br /> Email
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Phone <br /> Number
@@ -49,13 +49,13 @@ const MyBookings = () => {
 									Class <br /> Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Location
+									Student&apos;s Location
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Salary <br /> (Per Month)
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Details <br /> Information
+									Tuition <br /> Days
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Verification <br /> Status
