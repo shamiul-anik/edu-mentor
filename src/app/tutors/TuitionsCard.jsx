@@ -1,13 +1,42 @@
+"use client"
 import React from 'react';
 import {Tuition} from "@/typeScript/tuitionsType"
 import useAuth from '@/hooks/useAuth';
+import bookingPost from '@/utils/bookingPost';
 
 
 
-const TuitionsCard = (data) => {
-	const {subject, class_name, service_location, available_days, salary } = data
-	console.log(data)
-	const { user } = useAuth();
+const TuitionsCard = ({data}) => {
+	const {_id, tutor_name, tutor_email, subject, class_name, service_location, available_days, salary, mobile, gender, qualification, location } = data
+
+
+	// console.log(data)
+	// console.log(data.subject)
+	const { userData } = useAuth();
+	// console.log("userDAta",userData)
+	const bookingData = {
+		tuitionId: _id,
+		subject,
+		class_name,
+		service_location,
+		available_days,
+		salary,
+		mobile,
+		tutor_name,
+		tutor_email,
+		student_name: userData?.displayName,
+		student_location: userData?.location,
+		student_gender: userData?.gender ,
+		student_mobile_number: userData?.mobileNumber ,
+		student_qualification: userData?.qualification,
+		student_email: userData?.email ,
+		student_photoURL: userData?.photoURL,
+	}
+	// console.log("34",bookingData)
+	const onHandlebooking = () => {
+		console.log("hellobtn")
+		bookingPost(bookingData)
+	}
     return (
         <div
 						className="flex card card-compact w-full bg-base-100 custom-box-shadow group p-4">
@@ -31,7 +60,7 @@ const TuitionsCard = (data) => {
 						<div className='border-t border-slate-300 mb-4'></div>
 						<div className=" w-full">
 							{/* <Link href={`/tutor/${_id}`}> */}
-							<button className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Book Now</button>
+							<button onClick={()=>onHandlebooking()} className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Book Now</button>
 							{/* </Link> */}
 						</div>
 					</div>
