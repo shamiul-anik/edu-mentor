@@ -1,12 +1,18 @@
 import React from 'react';
+import { FiDelete } from 'react-icons/fi';
+import { LuDelete } from 'react-icons/lu';
+import { VscFeedback } from 'react-icons/vsc';
 
-const MyMessages = () => {
+const MyInbox = () => {
+  
+  const admin_feedback = "Good work!" // TODO: Make it dynamic
+
   return (
     <>
       <header>
         <h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
           {/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
-          <span>My Messages</span>
+          <span>My Inbox</span>
         </h1>
       </header>
       <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
@@ -23,19 +29,19 @@ const MyMessages = () => {
                   #
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s Name
+                  Name
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s Email
+                  Email
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s Mobile No.
+                  Mobile No.
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Gender
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Student&apos;s Location
+                  Location
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                   Subject
@@ -44,10 +50,13 @@ const MyMessages = () => {
                   Class
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Detail&apos;s Information
+                  Details
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  Tutor&apos;s Feedback
+                  My Feedback
+                </th>
+                <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -83,6 +92,24 @@ const MyMessages = () => {
                 <td className="px-2 py-2 border-r-2">
                   Dynamic Feedback
                 </td>
+                <td className="px-2 py-2 border-r-2">
+                  <button type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
+                    <FiDelete className='gr-icon w-4 h-4 mr-2' />
+                    Delete
+                  </button>
+                  {
+                    admin_feedback ?
+                    <button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+                      <VscFeedback className='gr-icon w-4 h-4 mr-2' />
+                      Update Feedback
+                    </button>
+                    :
+                    <button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-blue-500 to-blue-600 transition-all hover:duration-300 hover:from-blue-600 hover:to-blue-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+                      <VscFeedback className='gr-icon w-4 h-4 mr-2' />
+                      Send Feedback
+                    </button>
+                  }
+                </td>
               </tr>
             </tbody>
           </table>
@@ -93,4 +120,4 @@ const MyMessages = () => {
   );
 };
 
-export default MyMessages;
+export default MyInbox;
