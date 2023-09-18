@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react';
 import AuthContext from "@/contexts/AuthContext"
 import getUser from "@/utils/getUser";
 
-
-
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 
@@ -18,10 +16,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       const fetchUserData = async () => {
-        console.log(user?.email);
-        // eslint-disable-next-line react-hooks/rules-of-hooks
+        // console.log(user?.email);
         const userData = await getUser(user?.email);
-        console.log(userData); // This should show the updated value.
+        // console.log(userData); // This should show the updated value.
         setUserRole(userData?.role);
         console.log(userRole); // This should show the updated value.
       };
@@ -63,21 +60,9 @@ const AuthProvider = ({ children }) => {
 	
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-			console.log('Auth Change Observer', currentUser)
+			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
-			// get and set token
-			// if (currentUser) {
-			// 	axios.post(`${import.meta.env.VITE_API_URL}/jwt`, { email: currentUser.email })
-			// 		.then(data => {
-			// 			// console.log(data.data.token)
-			// 			localStorage.setItem('access-token', data?.data?.token)
-			// 			setLoading(false);
-			// 		})
-			// }
-			// else {
-			// 	localStorage.removeItem('access-token');
-				setLoading(false);
-			// }
+			setLoading(false);
 		});
 
 		return () => {

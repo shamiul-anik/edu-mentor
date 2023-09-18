@@ -25,9 +25,9 @@ const Sidebar = () => {
   const [isActive, setActive] = useState(false);
   const { replace, refresh } = useRouter();
 
-  const userEmail = user?.email;
-  console.log(userEmail);
-  console.log(userRole);
+  // const userEmail = user?.email;
+  // console.log(userEmail);
+  // console.log(userRole);
 
 	const handleLogOut = () => {
 		logOut()
@@ -38,8 +38,6 @@ const Sidebar = () => {
 				console.log(error.message);
 			})
 	};
-
-
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
