@@ -5,7 +5,7 @@ import React from 'react';
 const error = () => {
   return (
     // <ErrorPage></ErrorPage>
-    <div>Error!</div>
+    <div className='text-2xl text-red-500'>Error!</div>
   );
 };
 
