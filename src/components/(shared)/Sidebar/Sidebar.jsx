@@ -9,7 +9,7 @@ import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
 import { ImProfile } from 'react-icons/im';
 import { GiTeacher } from 'react-icons/gi';
 import { LuContact } from 'react-icons/lu';
-import { FaBook, FaBookMedical, FaChalkboardTeacher, FaCheckDouble, FaMoneyCheck, FaUserCheck, FaWallet } from 'react-icons/fa';
+import { FaBook, FaBookMedical, FaCalendar, FaChalkboardTeacher, FaCheckDouble, FaGraduationCap, FaInbox, FaMoneyCheck, FaSave, FaUserCheck, FaWallet } from 'react-icons/fa';
 import { AiOutlineBars } from 'react-icons/ai';
 // import useAuth from '@/hooks/useAuth';
 import Image from 'next/image';
@@ -175,7 +175,7 @@ const Sidebar = () => {
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaBookMedical className='w-5 h-5' />
+                      <FaSave className='w-5 h-5' />
                       <span className='mx-4 font-medium'>Add a Tuition</span>
                     </Link>
                     <Link
@@ -183,7 +183,7 @@ const Sidebar = () => {
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaBook className='w-5 h-5' />
+                      <FaGraduationCap className='w-5 h-5' />
                       <span className='mx-4 font-medium'>My Tuitions</span>
                     </Link>
                     <Link
@@ -199,7 +199,7 @@ const Sidebar = () => {
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaBook className='w-5 h-5' />
+                      <FaCalendar className='w-5 h-5' />
                       <span className='mx-4 font-medium'>My Bookings</span>
                     </Link>
                     <Link
@@ -207,8 +207,16 @@ const Sidebar = () => {
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaBook className='w-5 h-5' />
+                      <FaWallet className='w-5 h-5' />
                       <span className='mx-4 font-medium'>Payment History</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/tutor/my-messages'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaInbox className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>My Messages</span>
                     </Link>
                   </>
                 }
