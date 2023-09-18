@@ -19,7 +19,7 @@ const bookingSchema = new mongoose.Schema({
 	student_photoURL: String,
 	isAccepted: {
 		type: Boolean,
-		default: false, // Set the default value to false
+		default: null, // Set the default value to null
 	}
 },
 	{ timestamps: true },
