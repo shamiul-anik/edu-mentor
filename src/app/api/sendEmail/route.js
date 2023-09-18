@@ -16,10 +16,10 @@ export async function POST(request) {
         const mailOption = {
             from,
             to,            
-            subject: "PSend Email Tutorial",
+            subject: "EduMentor",
             html: `              
                 <h1> title: ${subject}</h1>
-                <p> message: ${message}</p> 
+                <h3> message: ${message}</h3> 
                 <p>This is the message from your tutor </p>
                 <p>Fell free to contact me with your requirement</p>                
                 `
