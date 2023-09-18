@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connect from "../../../utils/db";
 import { Users } from "../../../models/Users";
-import { useRouter } from "next/navigation";
 
 export const GET = async (request) => {
 	try {
