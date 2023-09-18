@@ -51,10 +51,10 @@ const AuthProvider = ({ children }) => {
 		return signInWithPopup(auth, googleAuthProvider);
 	}
 
-    const updateUserProfile = async(updateUser = {}) => {
+    const updateUserProfile =  (updateUser) => {
 		console.log(updateUser);
         setLoading(true);
-        await updateProfile(auth, updateUser);
+        updateProfile(auth.currentUser, updateUser);
         setUser((preUser) => ({...preUser, ...updateUser}))
     }
 	
