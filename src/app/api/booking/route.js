@@ -6,19 +6,27 @@ export const  POST = async (request) => {
     try {
        await connect()
        const {
-        tutorId,
-        tutorEmail,
-        name,
-        email,
-        phoneNumber,
-        subject, 
-        location, 
-        salary, 
-        detailsInfo} = await request.json()
+        tuitionId,
+        subject,
+        class_name,
+        service_location,
+        available_days,
+        salary,
+        mobile,
+        tutor_name,
+        tutor_email,
+        student_name,
+        student_location,
+        student_gender,
+        student_mobile_number,
+        student_qualification,
+        student_email,
+        student_photoURL,
+        isAccepted} = await request.json()
 
         const query={
-            email,
-            tutorId
+            student_email,
+            tuitionId
         }
         const bookingExists = await Bookings.findOne(query);
         console.log("api",bookingExists)
@@ -28,14 +36,23 @@ export const  POST = async (request) => {
         }
 
         const newBooking = new Bookings({
-            tutorId,
-            tutorEmail,
-            email,
-            phoneNumber,
-            subject, 
-            location, 
-            salary, 
-            detailsInfo});
+            tuitionId,
+            subject,
+            class_name,
+            service_location,
+            available_days,
+            salary,
+            mobile,
+            tutor_name,
+            tutor_email,
+            student_name,
+            student_location,
+            student_gender,
+            student_mobile_number,
+            student_qualification,
+            student_email,
+            student_photoURL,
+            isAccepted});
 
             const savedBooking = await newBooking.save();
             return NextResponse.json({ message: "Booking stored successfully!",

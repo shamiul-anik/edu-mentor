@@ -9,7 +9,7 @@ export const POST = async (request) => {
     await connect();
     
     // Parse request body
-    const { displayName,mobileNumber, location, gender,qualification, isVerified, email, photoURL, role } = await request.json();
+    const { displayName,mobileNumber, location, gender,qualification, isVerified, email,students, ratings, photoURL, role } = await request.json();
 
     // check existing users
     const query = {email};
@@ -20,7 +20,7 @@ export const POST = async (request) => {
     }
 
     // Create a new user instance
-    const newUsers = new Users({  displayName,mobileNumber, location, gender,qualification, isVerified, email, photoURL, role });
+    const newUsers = new Users({  displayName, mobileNumber, location, gender,qualification, isVerified, students, ratings, email, photoURL, role });
 
     // Save the new user to the database
     const savedUsers = await newUsers.save();
