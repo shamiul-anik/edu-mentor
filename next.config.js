@@ -20,7 +20,8 @@ module.exports = {
      "lh3.googleusercontent.com",
     "thumbs.dreamstime.com",
     "encrypted-tbn0.gstatic.com",
-    "example.com"
+    "example.com",
+    "avatars.githubusercontent.com"
     ],
   },
 };

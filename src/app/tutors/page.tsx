@@ -1,35 +1,35 @@
 'use client'
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import { Tutor } from '@/typeScript/tutorType';
+import { User } from '@/typeScript/userType';
 import TutorCard from './TutorCard';
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import { useEffect, useState } from "react";
 type tutors = {
 	_id: string; // Replace with the actual type of _id
 	gender: string; // Replace with the actual type of gender
-	premium: string;
+	isVerified: string;
 }
 
 const TutorsPage = () => {
 
-	const [allData, setAllData] = useState<Tutor[]>([]);
+	const [allData, setAllData] = useState<User[]>([]);
 	const [searchCriteria, setSearchCriteria] = useState<{
-		premium: string;
+		isVerified: string;
 		gender: string;
 	}>({
-		premium: '',
+		isVerified: '',
 		gender: '',
 	}); // Initialize with an empty string.
 	// const {all, premium, allGender, male, female } = searchCriteria
 	// console.log(all, premium, allGender, male , female);
 	// console.log(searchCriteria)
 
-	const { premium, gender } = searchCriteria;
-	console.log(premium, gender)
+	const { isVerified , gender } = searchCriteria;
+	console.log(isVerified, gender)
 	useEffect(() => {
 		const fetchAllData = async () => {
 			try {
-				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?premium=${premium}&gender=${gender}`,
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?isVerified=${isVerified}&gender=${gender}`,
 					{
 						cache: 'no-cache'
 					});
@@ -42,7 +42,7 @@ const TutorsPage = () => {
 		};
 
 		fetchAllData();
-	}, [premium, gender]);
+	}, [isVerified, gender]);
 
 	// Function to handle radio button changes.
 	//   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,9 +75,9 @@ const TutorsPage = () => {
 							<label>
 								<input
 									type="checkbox"
-									name="premium"
+									name="isVerified"
 									value="all"
-									checked={searchCriteria.premium === 'all'}
+									checked={searchCriteria.isVerified === 'all'}
 									onChange={handleInputChange}
 								/> All
 							</label>
@@ -85,13 +85,13 @@ const TutorsPage = () => {
 							<label>
 								<input
 									type="checkbox"
-									name="premium"
+									name="isVerified"
 									value="true"
-									checked={searchCriteria.premium === 'true'}
+									checked={searchCriteria.isVerified === 'true'}
 									onChange={handleInputChange}
 									className="focus:outline-none"
 
-								/> Premium
+								/> Verified
 							</label>
 						</div>
 						<div className="p-4">
@@ -134,7 +134,7 @@ const TutorsPage = () => {
 
 					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8'>
 						{
-							allData?.map((tutorData: Tutor) => (<TutorCard key={tutorData._id} tutorData={tutorData}></TutorCard>))
+							allData?.map((tutorData: User) => (<TutorCard key={tutorData._id} tutorData={tutorData}></TutorCard>))
 						}
 					</div>
 				</div>
