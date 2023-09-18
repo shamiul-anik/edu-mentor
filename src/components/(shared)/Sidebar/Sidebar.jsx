@@ -94,8 +94,8 @@ const Sidebar = () => {
                       alt='avatar'
                       // referrerPolicy='no-referrer'
                       // data-aos="zoom-in"
-                      width={40}
-                      height={40}
+                      width={96}
+                      height={96}
                     />
                     :
                     <Image
@@ -104,8 +104,8 @@ const Sidebar = () => {
                       alt='avatar'
                       // referrerPolicy='no-referrer'
                       // data-aos="zoom-in"
-                      width={40}
-                      height={40}
+                      width={96}
+                      height={96}
                     />
                 }
               </Link>
@@ -153,7 +153,7 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Hired Tutors</span>
                     </Link>
                     <Link
-                      href='/dashboard/student/payment-history'
+                      href='/dashboard/student/payment-history-student'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -201,7 +201,7 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>My Bookings</span>
                     </Link>
                     <Link
-                      href='/dashboard/tutor/payment-history'
+                      href='/dashboard/tutor/payment-history-tutor'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
@@ -209,12 +209,12 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Payment History</span>
                     </Link>
                     <Link
-                      href='/dashboard/tutor/my-messages'
+                      href='/dashboard/tutor/my-inbox'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaInbox className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Messages</span>
+                      <span className='mx-4 font-medium'>My Inbox</span>
                     </Link>
                   </>
                 }
