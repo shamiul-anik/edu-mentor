@@ -5,14 +5,14 @@ import useAuth from "@/hooks/useAuth";
 // import createJWT from "@/utils/createJWT";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import bookingPost from "@/utils/bookingPost";
+// import bookingPost from "@/utils/bookingPost";
 import { startTransition } from "react";
 import { useRouter } from "next/navigation";
 
 
 
-const BookingForm = (data) => {
-  const {id} = data
+const BookingForm = ({tutorEmail}) => {
+  
   const {
     register,
     handleSubmit,
@@ -27,22 +27,24 @@ const BookingForm = (data) => {
 
 
   const onSubmit = async (data, event) => {
-    const { name, email, phoneNumber, subject, location, salary, detailsInfo } = data;
+    const { name, email, className,  phoneNumber, subject, location, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
     try {
       // Booking Data save mongodb start
-      const bookingData ={
-        tutorId: id,
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
-        subject:  subject,
-        location: location,
-        salary: salary,
-        detailsInfo:  detailsInfo,
+      const studentMessage ={
+        tutor_email: tutorEmail,
+        student_name: name,
+        student_email: email,
+        student_mobile_no: phoneNumber,
+        subject_name:  subject,
+        student_location: location,
+        student_gender: gender,
+        class_name: className,
+        details:  detailsInfo,
       }
+      console.log("StudentMessage", studentMessage);
       
-      if(bookingData){
+      if(studentMessage){
         // bookingPost(bookingData)
         startTransition(() => {
           refresh();
@@ -112,15 +114,19 @@ const BookingForm = (data) => {
         )}
       </div>
       <div className="form-control">
-        <label htmlFor="phone" className="label label-text">
-          Phone Number
+        <label htmlFor="gender" className="label label-text">
+          Gender
         </label>
-        <input
-        type="tel"
-        placeholder="Phone number" 
-        {...register("phoneNumber", {required: true, maxLength: 11})}
-        className="input input-bordered"
-        />
+        <select
+    {...register("gender", { required: true })}
+    className="input input-bordered"
+  >
+    <option value="" disabled selected>
+      Select gender
+    </option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
       </div>
     </div>
     <div className="w-full">
@@ -140,34 +146,45 @@ const BookingForm = (data) => {
       </div>
       <div className="form-control">
           <label 
-          htmlFor="location"
+          htmlFor="className"
           className="label label-text"
-          >Location</label>
+          >Class</label>
           <input
           type="text"
-          placeholder="Type location"
+          placeholder="Type Class name"
+          id="className"
+          name= "className"
+          className="input input-bordered"
+          {...register("className")}
+          />
+      </div>
+      <div className="form-control">
+          <label 
+          htmlFor="location"
+          className="label label-text"
+          >location</label>
+          <input
+          type="text"
           id="location"
+          placeholder="Type location name"
           name= "location"
           className="input input-bordered"
           {...register("location")}
           />
       </div>
-      <div className="form-control">
-          <label 
-          htmlFor="salary"
-          className="label label-text"
-          >Salary</label>
-          <input
-          type="text"
-          id="salary"
-          placeholder="expected tuition fees"
-          name= "subject"
-          className="input input-bordered"
-          {...register("salary")}
-          />
+    </div>
+    </div>
+    <div className="form-control">
+        <label htmlFor="phone" className="label label-text">
+          Phone Number
+        </label>
+        <input
+        type="tel"
+        placeholder="Phone number" 
+        {...register("phoneNumber", {required: true, maxLength: 11})}
+        className="input input-bordered"
+        />
       </div>
-    </div>
-    </div>
       <div className="form-control">
         <label htmlFor="detailsInfo" className="label label-text">
         Details Information

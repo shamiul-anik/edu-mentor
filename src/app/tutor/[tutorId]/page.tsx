@@ -66,7 +66,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 
 				</div>
 				<div className=" mt-10 mb-10 w-1/2">
-					<BookingForm id={_id} />
+					<BookingForm tutorEmail={email} />
 				</div>
 			</div>
 
