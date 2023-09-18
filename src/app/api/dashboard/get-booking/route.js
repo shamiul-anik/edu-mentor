@@ -10,7 +10,7 @@ export const GET = async (request) => {
     const query = {
       tutorId,
     };
-    console.log(query);
+    // console.log(query);
     if (query) {
       const bookingData = await Bookings.find(query);
       return NextResponse.json({ bookingData }, { status: 200 });

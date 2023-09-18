@@ -36,6 +36,10 @@ const tutorRequestSchema = new mongoose.Schema({
   area: {
     type: String,
   },
+  isVerified: {
+    type: Boolean,
+    default: false, // Set the default value to false
+  },
 
 },{
   versionKey: false, // Disable the __v field
