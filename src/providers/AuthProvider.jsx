@@ -10,6 +10,7 @@ const googleAuthProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+	const [userData, setUserData] = useState([]);
   const [userRole, setUserRole] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }) => {
         // console.log(user?.email);
         const userData = await getUser(user?.email);
         // console.log(userData); // This should show the updated value.
+				setUserData(userData);
         setUserRole(userData?.role);
         console.log(userRole); // This should show the updated value.
       };
@@ -72,6 +74,7 @@ const AuthProvider = ({ children }) => {
 
 	const authInfo = {
 		user,
+		userData,
 		setUser,
 		userRole, 
 		setUserRole,
