@@ -32,6 +32,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: false
     },
+    students: {
+        type: Number,
+        default: 0,
+    },
+    ratings: {
+        type: Number,
+        default: 0,
+    },
     isVerified: {
         type: Boolean,
         default: false, // Set the default value to false

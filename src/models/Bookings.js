@@ -1,29 +1,27 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
-    tutorId: {
-      type: String,
-    
-    },
-    tutorEmail: {
-      type: String,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    phoneNumber: {
-      type: String,
-      required: true,
-    },
-    subject: String,
-    location: String,
-    salary: String,
-    detailsInfo: String,
+  tuitionId: String,
+  subject: String,
+  class_name: String,
+  service_location: String,
+  available_days: Number,
+  salary: Number,
+  mobile: String,
+  tutor_name: String,
+  tutor_email: String,
+  student_name: String,
+  student_location: String,
+  student_gender: String,
+  student_mobile_number: String,
+  student_qualification: String,
+  student_email: String,
+  student_photoURL: String,
+  isAccepted: {
+    type: Boolean,
+    default: false, // Set the default value to false
   }
+},
+{ timestamps: true },
   );
   export const Bookings = mongoose.models.Bookings || mongoose.model('Bookings', bookingSchema) ;
