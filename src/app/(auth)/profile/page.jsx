@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import UserImage from '../../../assets/images/user.png'
+import UserImage from '@/assets/images/user.png'
 import { toast } from 'react-hot-toast';
 import useAuth from "@/hooks/useAuth.js"
 import Image from 'next/image';
@@ -23,7 +23,6 @@ const Profile = () => {
       };
       fetchUserData()
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const currentUserName = user?.displayName;
@@ -121,7 +120,7 @@ const Profile = () => {
                 <label className="label pl-0" htmlFor="name">
                   <span className="label-text text-lg">Name</span>
                 </label>
-                <input type="text" readOnly {...register("name", { required: true })} defaultValue={currentUserName || 'N/A'} id="name" name="name" placeholder="Enter your name" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" readOnly {...register("name")} defaultValue={currentUserName} id="name" name="name" placeholder="Enter your name" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
                 {errors?.name && <p className="text-red-500 mt-2">Name is required!</p>} {/* Error Message */}
               </div>
               <div className="form-control">
@@ -138,13 +137,13 @@ const Profile = () => {
                 <label className="label pl-0" htmlFor="mobileNumber">
                   <span className="label-text text-lg">Mobile Number</span>
                 </label>
-                <input type="text" {...register("mobileNumber")} defaultValue={mobileNumber || "N/A"} id="mobileNumber" name="mobileNumber" placeholder="Enter your mobileNumber" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" {...register("mobileNumber")} defaultValue={mobileNumber} id="mobileNumber" name="mobileNumber" placeholder="Enter your mobileNumber" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               </div>
               <div className="form-control">
                 <label className="label pl-0" htmlFor="gender">
                   <span className="label-text text-lg">Gender(F/M)</span>
                 </label>
-                <input type="text" {...register("gender")} defaultValue={gender || "N/A"} id="gender" name="gender" placeholder="Enter your gender" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" {...register("gender")} defaultValue={gender} id="gender" name="gender" placeholder="Enter your gender" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               </div>
             </div>
 
@@ -153,20 +152,20 @@ const Profile = () => {
                 <label className="label pl-0" htmlFor="location">
                   <span className="label-text text-lg">Location</span>
                 </label>
-                <input type="text" {...register("location")} defaultValue={location || "N/A"} id="location" name="location" placeholder="Enter your location" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" {...register("location")} defaultValue={location} id="location" name="location" placeholder="Enter your location" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               </div>
               <div className="form-control">
                 <label className="label pl-0" htmlFor="qualification">
                   <span className="label-text text-lg">Qualification</span>
                 </label>
-                <input type="text" {...register("qualification")} defaultValue={qualification || "N/A"} id="qualification" name="qualification" placeholder="Enter your qualification" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+                <input type="text" {...register("qualification")} defaultValue={qualification} id="qualification" name="qualification" placeholder="Enter your qualification" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               </div>
             </div>
             <div className="form-control">
               <label className="label pl-0" htmlFor="photoURL">
                 <span className="label-text text-lg">Photo URL</span>
               </label>
-              <input type="text" {...register("photoURL")} defaultValue={currentUserPhotoURL || "N/A"} id="photoURL" name="photoURL" placeholder="Enter your photo url" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
+              <input type="text" {...register("photoURL")} defaultValue={currentUserPhotoURL} id="photoURL" name="photoURL" placeholder="Enter your photo url" className="input input-bordered input-accent focus:ring-0 focus:border-teal-500" />
               {errors?.photoURL && <p className="text-red-500 mt-2">Photo URL is required!</p>} {/* Error Message */}
             </div>
             <div className="form-control mt-1">
