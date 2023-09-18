@@ -9,7 +9,6 @@ import bookingPost from '@/utils/bookingPost';
 const TuitionsCard = ({data}) => {
 	const {_id, tutor_name, tutor_email, subject, class_name, service_location, available_days, salary, mobile, gender, qualification, location } = data
 
-
 	// console.log(data)
 	// console.log(data.subject)
 	const { userData } = useAuth();
