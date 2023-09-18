@@ -10,20 +10,20 @@ import getUser from '@/utils/getUser';
 
 
 const Profile = () => {
-  const { user, userRole, setLoading, updateUserProfile } = useAuth();
+  const { user, userData, userRole, setLoading, updateUserProfile } = useAuth();
 
   const { register, getValues, handleSubmit, formState: { errors } } = useForm();
-  const [userData, setUserData] = useState([]);
+  // const [userData, setUserData] = useState([]);
 
-  useEffect(() => {
-    if (user?.email) {
-      const fetchUserData = async () => {
-        const userData = await getUser(user?.email);
-        setUserData(userData);
-      };
-      fetchUserData()
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.email) {
+  //     const fetchUserData = async () => {
+  //       const userData = await getUser(user?.email);
+  //       setUserData(userData);
+  //     };
+  //     fetchUserData()
+  //   }
+  // }, [user]);
 
   const currentUserName = user?.displayName;
   const currentUserPhotoURL = user?.photoURL;
