@@ -1,6 +1,8 @@
 import React from 'react';
+import { FaMoneyBill } from 'react-icons/fa';
 
-const HiredTutors = () => {
+const MyPayments = () => {
+
 	return (
 		<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
@@ -16,13 +18,10 @@ const HiredTutors = () => {
 								#
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Name
+								Tutor&apos;s <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Email
-							</th>
-							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Mobile Number
+								Tutor&apos;s <br /> Email
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Subject <br /> Name
@@ -31,13 +30,16 @@ const HiredTutors = () => {
 								Class <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Location
-							</th>
-							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Salary <br /> (Per Month)
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Tuition <br /> Days
+								Payment <br /> Status
+							</th>
+							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+								Month <br /> Name
+							</th>
+							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+								Action
 							</th>
 						</tr>
 					</thead>
@@ -47,13 +49,10 @@ const HiredTutors = () => {
 								1
 							</td>
 							<td className="px-2 py-2 border-r-2">
-								Abu Haidar
+								James Patterson
 							</td>
 							<td className="px-2 py-2 border-r-2">
-								haidar@gmail.com
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								01712345678
+								patterson@gmail.com
 							</td>
 							<td className="px-2 py-2 border-r-2">
 								English
@@ -61,14 +60,34 @@ const HiredTutors = () => {
 							<td className="px-2 py-2 border-r-2">
 								Ten
 							</td>
-							<td className="px-2 py-2 border-r-2">
-								Gulshan-1
-							</td>
 							<td className="px-2 py-2 text-center border-r-2">
 								5000
 							</td>
+							<td className="px-2 py-2 text-center uppercase border-r-2">
+								Unpaid
+							</td>
 							<td className="px-2 py-2 text-center border-r-2">
-								Available days are Monday, Wednesday and Friday.
+								<select className="select select-sm !h-9 py-0 leading-none select-accent w-full min-w-[192px] max-w-[280px]">
+									<option disabled selected>Select Month</option>
+									<option value="January">January</option>
+									<option value="February">February</option>
+									<option value="March">March</option>
+									<option value="April">April</option>
+									<option value="May">May</option>
+									<option value="June">June</option>
+									<option value="July">July</option>
+									<option value="August">August</option>
+									<option value="September">September</option>
+									<option value="October">October</option>
+									<option value="November">November</option>
+									<option value="December">December</option>
+								</select>
+							</td>
+							<td className="px-2 py-2 text-center border-r-2">
+								<button type="button" className="flex w-28 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
+									<FaMoneyBill className='gr-icon w-4 h-4 mr-2' />
+									Pay Now
+								</button>
 							</td>
 						</tr>
 					</tbody>
@@ -79,4 +98,4 @@ const HiredTutors = () => {
 	);
 };
 
-export default HiredTutors;
+export default MyPayments;
