@@ -11,7 +11,7 @@ const TuitionsCard = ({data}) => {
 
 	// console.log(data)
 	// console.log(data.subject)
-	const { userData } = useAuth();
+	const { userData, userRole } = useAuth();
 	// console.log("userDAta",userData)
 	const bookingData = {
 		tuitionId: _id,
@@ -59,7 +59,11 @@ const TuitionsCard = ({data}) => {
 						<div className='border-t border-slate-300 mb-4'></div>
 						<div className=" w-full">
 							{/* <Link href={`/tutor/${_id}`}> */}
-							<button onClick={()=>onHandlebooking()} className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Book Now</button>
+							<button onClick={()=>onHandlebooking()} className={`btn w-full text-gray-300  ${userRole === "tutor" || userRole === "admin" ? "bg-gray-600" : "bg-cyan-700 hover:bg-cyan-800 hover:text-white"}`}
+							 disabled={(userRole === "tutor" || userRole === "admin") ? true : false}
+							>
+								{(userRole === "tutor" || userRole === "admin") ? "Disabled only student use" : "Book Now"}
+							</button>
 							{/* </Link> */}
 						</div>
 					</div>
