@@ -47,9 +47,6 @@ const MyStudents = () => {
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Tuition <br /> Days
 							</th>
-							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Payment <br /> Status
-							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -80,9 +77,6 @@ const MyStudents = () => {
 							</td>
 							<td className="px-2 py-2 text-center border-r-2">
 								Available days are Monday, Wednesday and Friday.
-							</td>
-							<td className="px-2 py-2 text-center uppercase border-r-2">
-								Paid
 							</td>
 						</tr>
 
