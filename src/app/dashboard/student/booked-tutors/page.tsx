@@ -1,12 +1,23 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
+import { GrValidate } from 'react-icons/gr';
+import { LuShieldClose } from 'react-icons/lu';
 
-const PaymentHistoryTutor = () => {
+const BookedTutors = () => {
+	// const [bookingData, setBookingData] = useState([])
+	// useEffect(()=>{
+	// 	const getBookingData = async () =>{
+	// 		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
+	// 		const data = res.json();
+	// 		console.log(data);
+	// 	}
+	// }, [])
 	return (
 		<>
 			<header>
 				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
 					{/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
-					<span>Payment History</span>
+					<span>Booked Tutors</span>
 				</h1>
 			</header>
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
@@ -23,10 +34,13 @@ const PaymentHistoryTutor = () => {
 									#
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student&apos;s <br /> Name
+									Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student&apos;s <br /> Email
+									Email
+								</th>
+								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+									Mobile Number
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Subject <br /> Name
@@ -35,13 +49,16 @@ const PaymentHistoryTutor = () => {
 									Class <br /> Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Month <br /> Name
+									Location
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Salary <br /> (Per Month)
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Payment <br /> Status
+									Tuition <br /> Days
+								</th>
+								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+									Verification <br /> Status
 								</th>
 							</tr>
 						</thead>
@@ -57,19 +74,26 @@ const PaymentHistoryTutor = () => {
 									haidar@gmail.com
 								</td>
 								<td className="px-2 py-2 border-r-2">
+									01712345678
+								</td>
+								<td className="px-2 py-2 border-r-2">
 									English
 								</td>
 								<td className="px-2 py-2 border-r-2">
 									Ten
 								</td>
-								<td className="px-2 py-2 text-center border-r-2">
-									August
+								<td className="px-2 py-2 border-r-2">
+									Gulshan-1
 								</td>
 								<td className="px-2 py-2 text-center border-r-2">
 									5000
 								</td>
-								<td className="px-2 py-2 text-center uppercase border-r-2">
-									Paid
+								<td className="px-2 py-2 text-center border-r-2">
+									Available days are Monday, Wednesday and Friday.
+								</td>
+								<td className="px-2 py-2 text-center border-r-2">
+									Pending 
+									{/* If isAccepted == null, then the status is pending. If isAccepted == false, then the status is Rejected. If isAccepted == true, then Accepted. */}
 								</td>
 							</tr>
 
@@ -78,8 +102,10 @@ const PaymentHistoryTutor = () => {
 				</div>
 
 			</section>
+			
 		</>
+		
 	);
 };
 
-export default PaymentHistoryTutor;
+export default BookedTutors;
