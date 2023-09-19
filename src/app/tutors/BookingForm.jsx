@@ -5,7 +5,7 @@ import useAuth from "@/hooks/useAuth";
 // import createJWT from "@/utils/createJWT";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-// import bookingPost from "@/utils/bookingPost";
+import studentMessagePost from "@/utils/studentMessagePost";
 import { startTransition } from "react";
 import { useRouter } from "next/navigation";
 
@@ -27,7 +27,7 @@ const BookingForm = ({tutorEmail}) => {
 
 
   const onSubmit = async (data, event) => {
-    const { name, email, className,  phoneNumber, subject, location, detailsInfo } = data;
+    const { name, email, className,  phoneNumber, gender, subject, location, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
     try {
       // Booking Data save mongodb start
@@ -45,7 +45,7 @@ const BookingForm = ({tutorEmail}) => {
       console.log("StudentMessage", studentMessage);
       
       if(studentMessage){
-        // bookingPost(bookingData)
+        studentMessagePost(studentMessage)
         startTransition(() => {
           refresh();
           toast.dismiss(toastId);
@@ -141,7 +141,7 @@ const BookingForm = ({tutorEmail}) => {
           placeholder="Type subject"
           name= "subject"
           className="input input-bordered"
-          {...register("subject")}
+          {...register("subject", { required: true })}
           />
       </div>
       <div className="form-control">
@@ -155,7 +155,7 @@ const BookingForm = ({tutorEmail}) => {
           id="className"
           name= "className"
           className="input input-bordered"
-          {...register("className")}
+          {...register("className", { required: true })}
           />
       </div>
       <div className="form-control">
@@ -169,7 +169,7 @@ const BookingForm = ({tutorEmail}) => {
           placeholder="Type location name"
           name= "location"
           className="input input-bordered"
-          {...register("location")}
+          {...register("location", { required: true })}
           />
       </div>
     </div>

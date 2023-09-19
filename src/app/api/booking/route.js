@@ -29,7 +29,7 @@ export const  POST = async (request) => {
             tuitionId
         }
         const bookingExists = await Bookings.findOne(query);
-        console.log("api",bookingExists)
+        // console.log("api",bookingExists)
         if(bookingExists) {
             
          return NextResponse.json({ error: "Booking allready exists" }, { status: 404 });
