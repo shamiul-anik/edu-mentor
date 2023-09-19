@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PaymentHistory = () => {
+const PaymentHistoryStudent = () => {
   return (
     <section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
@@ -105,4 +105,4 @@ const PaymentHistory = () => {
   );
 };
 
-export default PaymentHistory;
+export default PaymentHistoryStudent;

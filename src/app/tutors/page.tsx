@@ -1,172 +1,145 @@
 'use client'
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-
-import { Tutor } from '@/typeScript/tutorType';
-import TutorsCard from './TutorsCard';
+import { User } from '@/typeScript/userType';
+import TutorCard from './TutorCard';
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import { useEffect, useState } from "react";
-type tutors ={
+type tutors = {
 	_id: string; // Replace with the actual type of _id
 	gender: string; // Replace with the actual type of gender
-	premium: string;
+	isVerified: string;
 }
 
-const TutorsPage= () => {
+const TutorsPage = () => {
 
-	const [allData, setAllData] = useState<Tutor[]>([]);
+	const [allData, setAllData] = useState<User[]>([]);
 	const [searchCriteria, setSearchCriteria] = useState<{
-		premium: string;
+		isVerified: string;
 		gender: string;
-	  }>({
-	premium: '',
-    gender: '',
+	}>({
+		isVerified: '',
+		gender: '',
 	}); // Initialize with an empty string.
 	// const {all, premium, allGender, male, female } = searchCriteria
 	// console.log(all, premium, allGender, male , female);
 	// console.log(searchCriteria)
 
-	const {premium, gender} = searchCriteria;
-	console.log(premium, gender)
+	const { isVerified , gender } = searchCriteria;
+	console.log(isVerified, gender)
 	useEffect(() => {
-	  const fetchAllData = async () => {
-		try {
-		  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?premium=${premium}&gender=${gender}`,
-		  {
-			cache: 'no-cache'
-		  });
-		  const data = await res.json();
-		          // Filter data based on gender and premium criteria
-        // const filteredData = data.filter((tutor: Tutor) => {
-          // Check gender criteria
-		//   const filteredDatas = []
-        //   if (gender !== '' && tutor.gender !== gender) {
-			
-        //     return false;
-        //   }
+		const fetchAllData = async () => {
+			try {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?isVerified=${isVerified}&gender=${gender}`,
+					{
+						cache: 'no-cache'
+					});
+				const data = await res.json();
+				setAllData(data);
+			} 
+			catch (error) {
+				console.error('Error fetching mentor data:', error);
+			}
+		};
 
-        //   // Check premium criteria
-        //   if (premium !== '' && tutor.premium !== premium) {
-        //     return false;
-        //   }
+		fetchAllData();
+	}, [isVerified, gender]);
 
-        //   return true; // Include this tutor in the filtered data
-        // });
-
-        // setAllData(filteredData);
-		  
-		  setAllData(data);
-		} catch (error) {
-		  console.error('Error fetching mentor data:', error);
-		 
-		}
-	  };
-  
-	  fetchAllData();
-	}, [premium, gender ]);
-
-  // Function to handle radio button changes.
-//   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const selectedOption = event.target.value;
-//     setSortingOption(selectedOption);
-//   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = e.target;
-    setSearchCriteria((prevCriteria) => ({
-      ...prevCriteria,
-      [name]: checked ? value : "",
-    }));
-  };
-
-	  
+	// Function to handle radio button changes.
+	//   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	//     const selectedOption = event.target.value;
+	//     setSortingOption(selectedOption);
+	//   };
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value, checked } = e.target;
+		setSearchCriteria((prevCriteria) => ({
+			...prevCriteria,
+			[name]: checked ? value : "",
+		}));
+	};
 
 	return (
 		<>
-	<CommonBanner bannerHeading="Tutors"></CommonBanner>
-		<section className="max-w-7xl mx-auto mt-12 lg:mt-20">
-			<SectionTitle heading="All Tutors" subHeading="Discover Our Trusted and All Tutors!"></SectionTitle>
-			<div className="flex gap-4">
-				        {/* Add checkbox for sorting options */}
-		<div className="basis-1/3">
-			<h3 className="text-2xl">Advance filter</h3>
-			<hr className="mt-4 border-1 border-slate-900" />
-		<div className="p-4">
-		<h3 className="pb-4">Tutor Type</h3>
+			<CommonBanner bannerHeading="Tutors"></CommonBanner>
 
-		<label>
-          <input
-            type="checkbox"
-            name="premium"
-            value="all"
-            checked={searchCriteria.premium === 'all'}
-            onChange={handleInputChange}
-          /> All
-        </label>
-		<br />
-		<label>
-          <input 
-            type="checkbox"
-            name="premium"
-			value= "true"
-            checked={searchCriteria.premium === 'true'}
-            onChange={handleInputChange}
-			className="focus:outline-none"
-			
-          /> Premium
-        </label>
+			<section className="max-w-7xl mx-auto mt-12 lg:mt-32 p-4 md:px-0">
+				
+				<SectionTitle heading="All Tutors" subHeading="Discover Our Trusted and All Tutors!"></SectionTitle>
+				
+				<div className="flex flex-col md:flex-row gap-4">
+					{/* Add checkbox for sorting options */}
+					<div className="basis-1/3">
+						<h3 className="mx-4 text-2xl">Advance Filter</h3>
+						<hr className="mx-4 mt-4 border-1 border-slate-900" />
+						<div className="p-4">
+							<h3 className="pb-4">Tutor Type</h3>
+							<label>
+								<input
+									type="checkbox"
+									name="isVerified"
+									value="all"
+									checked={searchCriteria.isVerified === 'all'}
+									onChange={handleInputChange}
+								/> All
+							</label>
+							<br />
+							<label>
+								<input
+									type="checkbox"
+									name="isVerified"
+									value="true"
+									checked={searchCriteria.isVerified === 'true'}
+									onChange={handleInputChange}
+									className="focus:outline-none"
 
-		</div>
-		<div className="p-4">
-		<hr className="mt-4 border-1 border-slate-900" />
-		<h3 className="pb-4 pt-4">Gender</h3>
-		<label>
-          <input
-            type="checkbox"
-            name="gender"
-            value="allGender"
-            checked={searchCriteria.gender === 'allGender'}
-            onChange={handleInputChange}
-          /> All
-        </label>
-		<br />
-		<label>
-          <input 
-            type="checkbox"
-            name="gender"
-            value="male"
-            checked={searchCriteria.gender === 'male'}
-            onChange={handleInputChange}
-			className="focus:outline-none"
-			
-          /> Male
-        </label>
-		<br />
-		<label>
-          <input 
-            type="checkbox"
-            name="gender"
-            value="female"
-            checked={searchCriteria.gender === 'female'}
-            onChange={handleInputChange}
-			className="focus:outline-none"
-			
-          /> Female
-        </label>
+								/> Verified
+							</label>
+						</div>
+						<div className="p-4">
+							<hr className="mt-4 border-1 border-slate-900" />
+							<h3 className="pb-4 pt-4">Gender</h3>
+							<label>
+								<input
+									type="checkbox"
+									name="gender"
+									value="allGender"
+									checked={searchCriteria.gender === 'allGender'}
+									onChange={handleInputChange}
+								/> All
+							</label>
+							<br />
+							<label>
+								<input
+									type="checkbox"
+									name="gender"
+									value="male"
+									checked={searchCriteria.gender === 'male'}
+									onChange={handleInputChange}
+									className="focus:outline-none"
 
-		</div>
-       
-        
+								/> Male
+							</label>
+							<br />
+							<label>
+								<input
+									type="checkbox"
+									name="gender"
+									value="female"
+									checked={searchCriteria.gender === 'female'}
+									onChange={handleInputChange}
+									className="focus:outline-none"
+								/> Female
+							</label>
+						</div>
+					</div>
 
-		</div>
+					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8'>
+						{
+							allData?.map((tutorData: User) => (<TutorCard key={tutorData._id} tutorData={tutorData}></TutorCard>))
+						}
+					</div>
+				</div>
 
-			<div className='grid gap-4 col-span-1 md:grid-cols-3 mx-auto'>
-
-				{
-					allData?.map((tutorData: Tutor) => (<TutorsCard key={tutorData._id} tutorData={tutorData}></TutorsCard>))
-				}
-			</div>
-			</div>
-
-		</section>
+			</section>
 		</>
 	);
 };

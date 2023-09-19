@@ -2,32 +2,19 @@
 import { Fade } from "react-awesome-reveal";
 import { useForm } from 'react-hook-form';
 import useAuth from '@/hooks/useAuth';
-import { useEffect, useState } from "react";
 import saveTuition from "@/utils/saveTuition"
-import getUser from "@/utils/getUser";
 
 
 const AddATuition = () => {
 
-  const [userData, setUserData] = useState([]);
-  const { user } = useAuth();
+  const { user, userData } = useAuth();
 
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
   const currentUserName = user?.displayName;
   const currentUserEmail = user?.email;
 
-  useEffect(() => {
-    if (currentUserEmail) {
-      const fetchUserData = async () => {
-        const userData = await getUser(user?.email);
-        setUserData(userData);
-      };
-      fetchUserData()
-    }
-  }, [currentUserEmail, user]);
-
-  const onSubmit = (tuitionInformation, event) => {
+  const onSubmit = (tuitionInformation) => {
     const tuitionData = {
       tutor_name: currentUserName,
       tutor_email: currentUserEmail,
@@ -153,9 +140,8 @@ const AddATuition = () => {
                   <label className="label pl-0" htmlFor="availableDays">
                     <span className="label-text text-md md:text-[16px]">Available Days</span>
                   </label>
-                  <input type="text" id="availableDays" {...register("available_days", { required: true, pattern: { value: /^(\d+\.?\d*|\.\d+)$/ } })} name="available_days" placeholder="Enter your available days" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
+                  <input type="text" id="availableDays" {...register("available_days", { required: true })} name="available_days" placeholder="Enter your available days" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
                   {errors?.available_days?.type === 'required' && <p className="text-red-500 mt-2">Available Days are required!</p>} {/* Error Message */}
-                  {errors?.available_days?.type === 'pattern' && <p className="text-red-500 mt-2">Only numbers are allowed!</p>}
                 </div>
               </div>
 
@@ -166,7 +152,6 @@ const AddATuition = () => {
                 <input type="text" id="serviceLocation" {...register("service_location", { required: true })} name="service_location" placeholder="Enter service location" className="input input-bordered input-sm py-5 text-[14px] focus:ring-teal-400 focus:border-teal-400 focus:outline-teal-300" />
                 {errors?.service_location?.type === 'required' && <p className="text-red-500 mt-2">Service Location is required!</p>}
               </div>
-
 
               <div className="form-control mt-3">
                 <button type="submit" className="text-white bg-gradient-to-br from-teal-500 to-teal-600 ring-2 ring-offset-1 ring-teal-500 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-teal-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Add a Tuition</button>
