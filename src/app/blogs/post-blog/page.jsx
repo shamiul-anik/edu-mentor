@@ -5,11 +5,11 @@ import { toast } from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import { useTitle } from '@/hooks/useTitle';
-// import { useRouter } from 'next/router';
 import blogPostApi from "@/utils/blogPostApi"
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import Image from 'next/image';
-import useGetUser from "@/hooks/useGetUser";
+// import useGetUser from "@/hooks/useGetUser";
+import getUser from '@/utils/getUser';
 
 
 const PostBlog = () => {
@@ -90,8 +90,8 @@ const PostBlog = () => {
         const postDate = toDay();
         const userEmail = user.email
         const userName = user.displayName;
-        const userData = await useGetUser(user?.email);
-        console.log(userData.role,userData.photoURL, userEmail);
+        const userData = await getUser(user?.email);
+        // console.log(userData.role,userData.photoURL, userEmail);
         const userRole = userData.role;
         const userImgUrl = userData.photoURL
 

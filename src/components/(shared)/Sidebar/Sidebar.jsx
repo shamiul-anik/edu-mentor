@@ -6,10 +6,9 @@ import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
 import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
 import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
-import { ImProfile } from 'react-icons/im';
 import { GiTeacher } from 'react-icons/gi';
 import { LuContact } from 'react-icons/lu';
-import { FaBook, FaBookMedical, FaCalendar, FaChalkboardTeacher, FaCheckDouble, FaGraduationCap, FaInbox, FaMoneyCheck, FaSave, FaUserCheck, FaWallet } from 'react-icons/fa';
+import { FaBook, FaCalendar, FaChalkboardTeacher, FaGraduationCap, FaHistory, FaInbox, FaMoneyBill, FaMoneyCheck, FaSave, FaUserCheck, FaWallet } from 'react-icons/fa';
 import { AiOutlineBars } from 'react-icons/ai';
 // import useAuth from '@/hooks/useAuth';
 import Image from 'next/image';
@@ -92,20 +91,16 @@ const Sidebar = () => {
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={user?.photoURL}
                       alt='avatar'
-                      // referrerPolicy='no-referrer'
-                      // data-aos="zoom-in"
-                      width={96}
-                      height={96}
+                      width={192}
+                      height={192}
                     />
                     :
                     <Image
                       className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={UserImage}
                       alt='avatar'
-                      // referrerPolicy='no-referrer'
-                      // data-aos="zoom-in"
-                      width={96}
-                      height={96}
+                      width={192}
+                      height={192}
                     />
                 }
               </Link>
@@ -153,12 +148,36 @@ const Sidebar = () => {
                       <span className='mx-4 font-medium'>Hired Tutors</span>
                     </Link>
                     <Link
+                      href='/dashboard/student/booked-tutors'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaCalendar className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>Booked Tutors</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/student/my-payments'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaMoneyBill className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>My Payments</span>
+                    </Link>
+                    <Link
                       href='/dashboard/student/payment-history-student'
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaWallet className='w-5 h-5' />
+                      <FaHistory className='w-5 h-5' />
                       <span className='mx-4 font-medium'>Payment History</span>
+                    </Link>
+                    <Link
+                      href='/dashboard/student/my-messages'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      }
+                    >
+                      <FaInbox className='w-5 h-5' />
+                      <span className='mx-4 font-medium'>My Messages</span>
                     </Link>
                   </>
                 }
@@ -205,7 +224,7 @@ const Sidebar = () => {
                       className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
-                      <FaWallet className='w-5 h-5' />
+                      <FaHistory className='w-5 h-5' />
                       <span className='mx-4 font-medium'>Payment History</span>
                     </Link>
                     <Link
