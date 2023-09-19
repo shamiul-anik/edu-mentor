@@ -48,7 +48,7 @@ const MyMessages = () => {
                   Details
                 </th>
                 <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                  My Feedback
+                  Tutor&apos;s Feedback
                 </th>
               </tr>
             </thead>
