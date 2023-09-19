@@ -11,7 +11,7 @@ const bookingPost = async (bookingData) => {
             body: JSON.stringify(bookingData)
         })
         if (res.ok) {
-            console.log(res);
+            // console.log(res);
             toast.success("Booking data stored successfully");
         } else if (res.status === 404) {
 

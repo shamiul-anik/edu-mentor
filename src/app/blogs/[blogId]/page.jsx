@@ -37,7 +37,7 @@ const page = async ({ params }) => {
 
                 let filteredData;
                 filteredData = data.filter(item => item._id === searchId);
-                console.log(filteredData);
+                // console.log(filteredData);
                 setBlog(filteredData)
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -60,13 +60,13 @@ const page = async ({ params }) => {
                 }
 
                 const data = await res.json();
-                console.log("58", data);
+                // console.log("58", data);
 
                 let filteredData;
                 filteredData = data.filter(item => item.searchId === searchId);
 
                 setComments(filteredData);
-                console.log("comments", filteredData);
+                // console.log("comments", filteredData);
 
             } catch (error) {
                 console.error('Error fetching mentor data:', error);
@@ -114,10 +114,10 @@ const page = async ({ params }) => {
                 },
                 body: JSON.stringify(postCommentData),
             });
-            console.log(response);
+            // console.log(response);
 
             if (response.ok) {
-                console.log(response.status);
+                // console.log(response.status);
             }
             else {
                 const responseData = await response.json();
@@ -128,7 +128,7 @@ const page = async ({ params }) => {
             console.error(error);
             toast.error("129An error occurred:", error);
         }
-        console.log(postCommentData)
+        // console.log(postCommentData)
 
     }
 

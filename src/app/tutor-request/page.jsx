@@ -18,7 +18,7 @@ const TutorRequest = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted!");
+    // console.log("Form submitted!");
     const tutorInfo = {
       name,
       email,

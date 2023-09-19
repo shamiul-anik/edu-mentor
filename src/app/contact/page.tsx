@@ -15,10 +15,10 @@ const Contact = () => {
   });
 
   const sendEmail = async () => {
-    console.log('Name:', data.name);
-    console.log('subject:', data.subject);
-    console.log('Email:', data.email);
-    console.log('Message:', data.message);
+    // console.log('Name:', data.name);
+    // console.log('subject:', data.subject);
+    // console.log('Email:', data.email);
+    // console.log('Message:', data.message);
 
 
     // You can proceed to send the email here.

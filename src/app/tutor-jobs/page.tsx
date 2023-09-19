@@ -18,9 +18,9 @@ const TutorRequest = () => {
   });
 
   const { user}:any = useAuth();
-  console.log("user in tutor-jobs page", user);
+  // console.log("user in tutor-jobs page", user);
   const currentUserMail = user?.email;
-  console.log(currentUserMail);
+  // console.log(currentUserMail);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -58,7 +58,7 @@ const TutorRequest = () => {
   };
 
   const sendEmail = async (toEmail: string) => {
-    console.log(toEmail);
+    // console.log(toEmail);
     const emailData = {
       to: toEmail, 
       from: "mamun.bbn.bd@gmail.com", 

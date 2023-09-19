@@ -38,7 +38,7 @@ const ManageStudents = () => {
 	
 		fetchAllTutorRequest();
 	  }, []);
-    console.log(allRequest);
+    // console.log(allRequest);
 
   // Sample Data
   const admin_feedback = "Good work!"

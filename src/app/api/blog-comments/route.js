@@ -13,10 +13,10 @@ export const POST = async (request) => {
             searchId, comment, date, bloggerName, time, userImgUrl
         } = await request.json();
         const newBlogCommentPostRequest = new Blog_Post({ searchId, comment, date, bloggerName, time, userImgUrl });
-        console.log('newBlogCommentPost', newBlogCommentPostRequest);
+        // console.log('newBlogCommentPost', newBlogCommentPostRequest);
 
         const savedBlogCommentPostRequest = await newBlogCommentPostRequest.save();
-        console.log('SaveRequestComment', savedBlogCommentPostRequest);
+        // console.log('SaveRequestComment', savedBlogCommentPostRequest);
         return NextResponse.json({
             message: "Comment stored successfully!",
             success: true,
