@@ -16,8 +16,6 @@ export const GET = async (request) => {
         console.log("query block")
         const tuitions = await Tuitions.find(query);
         return new NextResponse(JSON.stringify(tuitions), {status: 200})
-    }else{
-        return new NextResponse({message: "tuitions not found"}, {status: 404})
     }
     const tuitions = await Tuitions.find();
     return new NextResponse(JSON.stringify(tuitions), {status: 200})
