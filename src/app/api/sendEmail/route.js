@@ -14,7 +14,7 @@ export async function POST(request) {
         })
 
         const mailOption = {
-            from,
+            from: "mamun.bbn.bd@gmail.com",
             to,            
             subject: "EduMentor",
             html: `              
