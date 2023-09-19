@@ -32,9 +32,7 @@
 
 *::-webkit-scrollbar-thumb {
   background: #cbd1d6;
-  /* background: linear-gradient(90deg, #bfc5ca 0%, #a2a8ac 61%, #949a9e 100%); */
   background: linear-gradient(90deg, #02aaad 0%, #01b1b4 61%, #027f81 100%);
-  /* background: linear-gradient(117.42deg, #6932ff -8.66%, #B6EBFE 89.98%); */
   border-radius: 10px;
   transition: all 0.3s;
 }
@@ -42,7 +40,6 @@
 *::-webkit-scrollbar-thumb:hover {
   background: #cbd1d6;
   background: linear-gradient(90deg, #00878a 0%, #047779 61%, #06acae 100%);
-  /* background: linear-gradient(90deg, #989da0 0%, #888e92 61%, #858b8f 100%); */
 }
 /* ===== Scrollbar CSS End ===== */
 
@@ -105,11 +102,6 @@
   );
 }
 
-/* Tooltip */
-/* .tooltip {
-  --tooltip-color: #054d4f;
-} */
-
 /* Custom Text Color */
 .custom-text {
   text-align: justify;
@@ -164,38 +156,6 @@
 .navbar-box-shadow {
   box-shadow: 0 0 8px 6px rgba(0 0 0 / 0.1);
 }
-
-/* Question Image */
-/* .question-img > img {
-  height: 400px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-} */
-
-/* Question Text */
-/* .question-text {
-  font-weight: 800;
-  font-size: 20px;
-  line-height: 1.5;
-  color: #343131;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-} */
-
-/* Answer Text */
-/* .answer-container {
-  font-size: 16px;
-  text-align: justify;
-  line-height: 1.5;
-} */
-
-/* Answer */
-/* .answer {
-  font-weight: 600;
-  font-size: 18px;
-  color: #046004;
-  text-decoration: underline;
-} */
 
 /* Readonly Input Field Design */
 .input[readonly] {
@@ -255,15 +215,4 @@
     font-size: 14px;
     line-height: 20px;
   }
-
-  /* Blog Image */
-  /* .question-img > img {
-    height: 200px;
-    object-position: right;
-  } */
-
-  /* Tab Section Design Update */
-  /* .react-tabs__tab-list {
-    flex-direction: column !important;
-  } */
 }
