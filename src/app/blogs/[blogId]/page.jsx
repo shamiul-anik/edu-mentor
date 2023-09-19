@@ -10,8 +10,9 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaUserTimes } from "react-icons/fa";
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
-import useGetUser from "@/hooks/useGetUser";
+// import useGetUser from "@/hooks/useGetUser";
 import SingleBlogCommentCard from './SingleBlogCommentCard';
+import getUser from '@/utils/getUser';
 
 
 const page = async ({ params }) => {
@@ -99,7 +100,7 @@ const page = async ({ params }) => {
         const time = `${hours}:${minutes}:${seconds}`;
 
 
-        const userData = await useGetUser(user?.email);
+        const userData = await getUser(user?.email);
         const userImgUrl = userData.photoURL;
 
         const postCommentData = {
@@ -178,18 +179,7 @@ const page = async ({ params }) => {
                 </div>
                 <div className=" overflow-y-auto h-64 ">
                     {
-                        comments.map((item, index) => <SingleBlogCommentCard key={index} item={item}></SingleBlogCommentCard>
-                            // <div key={index} item={item} className="">
-                            //     <div className="grid grid-cols-4 gap-3 items-center py-2">
-                            //         {/* userImgUrl */}
-                            //         <Image className='object-cover  mx-2 my-4 rounded-full' src={item.userImgUrl} alt='' width={50} height={50} />
-                            //         <p className='m-1'>Name:{item.bloggerName}</p>
-                            //         <p className='m-1'>Time: {item.time}</p>
-                            //         <p className='m-1'>Date: {item.date}</p>
-                            //     </div>
-                            //     <p className='border bg-slate-400 lg:ml-4 ml-4 rounded-md border-slate-700/5 p-2 text-base '>{item.comment}</p>
-                            // </div>
-                        )
+                        comments.map((item, index) => <SingleBlogCommentCard key={index} item={item}></SingleBlogCommentCard>)
                     }
                 </div>
             </div>
