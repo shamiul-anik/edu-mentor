@@ -12,7 +12,6 @@ import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
 import { FiChevronsRight, FiChevronsLeft } from "react-icons/fi";
 import { useTitle } from '@/hooks/useTitle';
-import useGetUser from "@/hooks/useGetUser";
 
 
 const people = [
