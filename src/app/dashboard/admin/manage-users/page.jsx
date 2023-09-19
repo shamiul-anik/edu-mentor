@@ -38,7 +38,7 @@ const ManageUsers = () => {
 	
 		fetchAllUsers ();
 	  }, []);
-    console.log(allUsers);
+    // console.log(allUsers);
 
   const role ={userRole};
   const isVerified = false;

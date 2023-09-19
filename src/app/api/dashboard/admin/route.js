@@ -8,13 +8,13 @@ export const PATCH = async (request) => {
     const id = searchParams.get("id");
     const controlAdminBtn = searchParams.get("controlAdminBtn");
     // const role = searchParams.get("role");
-    console.log("admin route",id, controlAdminBtn);
+    // console.log("admin route",id, controlAdminBtn);
 
     const query = {
       id
     };
     // all admin btn action
-    console.log("query",query);
+    // console.log("query",query);
     if (controlAdminBtn == "approve") {
         const users = await Users.findByIdAndUpdate( id,
             { isVerified: true },);

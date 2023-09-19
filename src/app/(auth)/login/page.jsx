@@ -45,14 +45,14 @@ const Login = () => {
 	}
 
 	const onSubmit = (userInformation) => {
-		console.log(userInformation);
+		// console.log(userInformation);
 		setLoading(true);
 		setError("");
 
 		logIn(userInformation.email, userInformation.password)
 			.then(result => {
 				const loggedUser = result.user;
-				console.log(loggedUser);
+				// console.log(loggedUser);
 				setUser(loggedUser)
 				toast.success("Successfully logged in!");
 				router.push('/profile')

@@ -9,7 +9,7 @@ const MyBookings = () => {
 		const getBookingData = async () =>{
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
 			const data = res.json();
-			console.log(data);
+			// console.log(data);
 		}
 	}, [])
 	return (

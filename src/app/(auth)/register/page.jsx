@@ -61,7 +61,7 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
-				console.log(userInfo);
+				// console.log(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
@@ -94,7 +94,7 @@ const Registration = () => {
 			displayName: name,
 			photoURL: photoURL
 		}).then(() => {
-			console.log("Profile updated!");
+			// console.log("Profile updated!");
 		}).catch((error) => {
 			setError(error.message);
 		});
@@ -119,7 +119,7 @@ const Registration = () => {
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
-				console.log(userInfo);
+				// console.log(userInfo);
 				toast.success("Successfully registered!");
 				router.push('/')
 			})

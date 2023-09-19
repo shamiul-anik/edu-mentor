@@ -9,7 +9,7 @@ const saveTuition = async (tuitionData) => {
       },
       body: JSON.stringify(tuitionData), // Stringify the object
     });
-    console.log(response);
+    // console.log(response);
 
 
     if (response.ok) {
