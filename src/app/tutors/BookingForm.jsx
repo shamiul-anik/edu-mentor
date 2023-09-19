@@ -21,7 +21,7 @@ const BookingForm = ({tutorEmail}) => {
     setValue,
   } = useForm();
 
-  const { user } = useAuth();
+  const { user, userRole } = useAuth();
   const { refresh } = useRouter();
 
 
@@ -30,7 +30,7 @@ const BookingForm = ({tutorEmail}) => {
     const { name, email, className,  phoneNumber, gender, subject, location, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
     try {
-      // Booking Data save mongodb start
+      // student_message collection save mongodb start
       const studentMessage ={
         tutor_email: tutorEmail,
         student_name: name,
@@ -199,8 +199,10 @@ const BookingForm = ({tutorEmail}) => {
         )}
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary bg-gradient-to-r from-[#29A2AA] to-[#c0332e] hover:from-[#c0332e] hover:to-[#29A2AA]" type="submit">
-          Submit
+        <button className={`btn   type="submit text-gray-300 ${userRole === "tutor" || userRole === "admin" ? "bg-gray-600" : "bg-cyan-700 hover:bg-cyan-800 hover:text-white"}`}
+         disabled={(userRole === "tutor" || userRole === "admin") ? true : false}
+         >
+          {(userRole === "tutor" || userRole === "admin") ? "Disabled only student use" : "Send Message"}
         </button>
       </div>
     </form>
