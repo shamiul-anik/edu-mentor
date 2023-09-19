@@ -22,6 +22,7 @@ module.exports = {
 			"encrypted-tbn0.gstatic.com",
 			"example.com",
 			"avatars.githubusercontent.com",
+			"mumbaimirror.indiatimes.com"
 		],
 	},
 };
