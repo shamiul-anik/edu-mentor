@@ -4,9 +4,9 @@ import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import Lottie from 'lottie-react';
 import ContactUsLottie from '@/assets/lottie/contact-us.json';
 import { BsSend } from 'react-icons/bs';
+import useAuth from "@/hooks/useAuth";
 
 const Contact = () => {
-  const [emailAddress, setEmailAddress] = useState('');
   const [data, setData] = useState({
     name: '',
     subject: '',
@@ -14,17 +14,18 @@ const Contact = () => {
     message: '',
   });
 
+  const { user }: any = useAuth();
+  console.log("logged user", user);
+  const currentUserEmail = user?.email;
+
   const sendEmail = async () => {
     console.log('Name:', data.name);
-    console.log('subject:', data.subject);
-    console.log('Email:', data.email);
+    console.log('Subject:', data.subject);
+    console.log('Email:', currentUserEmail);
     console.log('Message:', data.message);
 
-
-    // You can proceed to send the email here.
     const emailData = {
-      to: data.email, 
-      from: process.env.NODEMAILER_EMAIL, 
+      to: currentUserEmail,
       subject: data.subject,
       message: data.message,
     };
@@ -46,8 +47,6 @@ const Contact = () => {
     } catch (error) {
       console.error("Error sending email:", error);
     }
-
-    
   };
 
   return (
@@ -111,7 +110,8 @@ const Contact = () => {
                   name="email"
                   placeholder="Enter your email address"
                   className="input input-bordered focus:outline-teal-500 focus:border-teal-200 focus:ring-teal-400 input-sm py-5 text-[14px]"
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  value={currentUserEmail}
+                  
                 />
               </div>
 
