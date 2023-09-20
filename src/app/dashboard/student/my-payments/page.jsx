@@ -102,7 +102,9 @@ const MyPayments = () => {
 								Unpaid
 								</td>
 								<td className="px-2 py-2 text-center border-r-2">
-									<select className="select select-sm !h-9 py-0 leading-none select-accent w-full min-w-[192px] max-w-[280px]">
+									<select className="select select-sm !h-9 py-0 leading-none select-accent w-full min-w-[192px] max-w-[280px]"
+									defaultValue="" 
+									>
 										<option value="">Select Month</option>
 										<option value="January">January</option>
 										<option value="February">February</option>

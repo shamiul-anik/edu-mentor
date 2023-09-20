@@ -1,15 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import getMessages from "@/utils/dashboard/getMessages";
 import useAuth from "@/hooks/useAuth";
 
 const MyMessages = () => {
   const { user } = useAuth();
   // console.log(user)
   console.log(user?.email);
-  // const fetchMyMessages = async () => {
-  //   const messages = await getMessages("student_email", user?.email);
-  //   console.log(messages)
 
   const [messages, setMessages] = useState([]);
 
