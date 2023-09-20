@@ -6,7 +6,6 @@ import Image from "next/image";
 const Testimonial = () => {
 	return (
 		<div>
-			{/* <section className="max-w-7xl mx-auto mt-12 lg:mt-32 p-4 md:px-0" data-aos="flip-right"> */}
 			<section className="max-w-7xl mx-auto mt-12 lg:mt-32 p-4 md:px-0">
 
 				<SectionTitle heading="Our Happy Students" subHeading="Check out what our students says about us."></SectionTitle>
