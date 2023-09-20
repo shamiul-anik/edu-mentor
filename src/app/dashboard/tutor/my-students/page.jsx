@@ -1,6 +1,30 @@
-import React from 'react';
+"use client"
+import useAuth from '@/hooks/useAuth';
+import React, { useEffect, useState } from 'react';
 
 const MyStudents = () => {
+	const { user } = useAuth();
+	const [myStudent, setMyStudent] = useState([]);
+	useEffect(() => {
+		const fetchMyStudent = async () => {
+			try {
+				const res = await fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-booking?tutor_email=${user?.email}&is_accepted=true`,
+					{
+						cache: "no-store",
+					}
+				);
+				const data = await res.json();
+				console.log(data);
+				setMyStudent(data);
+			} catch (error) {
+				console.error("Error fetchStudentBooking data:", error);
+			}
+		};
+
+		fetchMyStudent();
+	}, [user?.email]);
+	console.log(myStudent)
 	return (
 
 		 <>
@@ -50,35 +74,43 @@ const MyStudents = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-							<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-								1
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Abu Haidar
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								haidar@gmail.com
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								01712345678
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								English
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Ten
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Gulshan-1
-							</td>
-							<td className="px-2 py-2 text-center border-r-2">
-								5000
-							</td>
-							<td className="px-2 py-2 text-center border-r-2">
-								Available days are Monday, Wednesday and Friday.
-							</td>
-						</tr>
+						{
+							myStudent?.map((student, index) => (
+								<tr
+								key={student?._id}
+								className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+								<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
+									{index + 1}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.student_name}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.student_email}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.student_mobile_number}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.subject}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.student_class}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+									{student?.student_location}
+								</td>
+								<td className="px-2 py-2 text-center border-r-2">
+									{student?.student_salary}
+								</td>
+								<td className="px-2 py-2 text-center border-r-2">
+									{student?.available_days
+}
+								</td>
+							</tr>
+							))
+						}
+
 
 					</tbody>
 				</table>

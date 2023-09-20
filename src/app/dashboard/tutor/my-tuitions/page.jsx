@@ -1,6 +1,30 @@
-import React from 'react';
+"use client"
+import useAuth from '@/hooks/useAuth';
+import React, { useEffect, useState } from 'react';
 
 const MyTuitions = () => {
+  const { user } = useAuth();
+	const [myTuitions, setMyTuitions] = useState([]);
+	useEffect(() => {
+		const fetchMyTuitions = async () => {
+			try {
+				const res = await fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-tuitions?email=${user?.email}`,
+					{
+						cache: "no-store",
+					}
+				);
+				const data = await res.json();
+				console.log(data);
+				setMyTuitions(data);
+			} catch (error) {
+				console.error("Error fetchStudentBooking data:", error);
+			}
+		};
+
+		fetchMyTuitions();
+	}, [user?.email]);
+	console.log(myTuitions)
   return (
 
      <>
@@ -41,26 +65,34 @@ const MyTuitions = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-                1
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Math
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Ten
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Dhaka
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                5000-8000
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Monday, Wednesday, Friday
-              </td>
-            </tr>
+            {
+              myTuitions?.map((tuition, index)=> (
+                <tr
+                key={tuition?._id}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
+                  {index + 1}
+                </td>
+                <td className="px-2 py-2 border-r-2">
+                  {tuition?.subject}
+                </td>
+                <td className="px-2 py-2 border-r-2">
+                  {tuition?.class_name}
+                </td>
+                <td className="px-2 py-2 border-r-2">
+                  {tuition?.service_location}
+                </td>
+                <td className="px-2 py-2 border-r-2">
+                  {tuition?.salary}
+                </td>
+                <td className="px-2 py-2 border-r-2">
+                  {tuition?.available_days
+}
+                </td>
+              </tr>
+              ))
+            }
+
 
           </tbody>
         </table>
