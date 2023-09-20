@@ -57,7 +57,7 @@ const BookingForm = ({ tutorEmail }) => {
 		<>
 			{/* <h3 className="text-3xl text-white p-1 font-bold divide-x-2 divide-neutral-900 mb-4  bg-gradient-to-r from-[#29A2AA] to-[#c0332e]  ">Contact with This tutor</h3> */}
 			<header>
-				<h1 className="mb-6 md:mb-12 text-5xl text-teal-700 font-bold text-center mt-16 lg:mt-32">
+				<h1 className="mb-6 md:mb-12 text-5xl text-teal-700 font-bold text-center mt-12 lg:mt-20">
 					<span>Contact Me</span>
 				</h1>
 			</header>
