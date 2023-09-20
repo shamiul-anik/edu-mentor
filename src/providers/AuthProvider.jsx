@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
 			};
 			fetchUserData()
 		}
-	}, [user, userRole]);
+	}, [user, user?.email, userRole]);
 
 	const createUser = (email, password) => {
 		setLoading(true);

@@ -28,7 +28,7 @@ const Header = () => {
       await logOut();
       Cookies.set('token', '')
       toast.dismiss(toastId);
-      toast.success("Successfully logout Cookie!");
+      toast.success("Successfully logout!");
     } catch (error) {
       console.log(error.message);
       toast.error("Error!");
