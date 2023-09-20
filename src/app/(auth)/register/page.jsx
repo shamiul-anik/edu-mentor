@@ -11,6 +11,7 @@ import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from "@/utils/saveUser"
 import getUser from '../../../utils/getUser';
+import setJWT from '../../../utils/setJWT';
 
 
 const Registration = () => {
@@ -61,7 +62,8 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
-				// console.log(userInfo);
+				useJWT();
+				console.log(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
@@ -81,6 +83,10 @@ const Registration = () => {
 		logOut()
 			.then(() => {
 				console.log("Successfully logged out!");
+				const tokenData = {
+					email : null
+				}
+				setJWT(tokenData)
 				router.push('/login')
 			})
 			.catch((error) => {
@@ -112,14 +118,18 @@ const Registration = () => {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					gender: userData?.gender || "N/A",
-					location: userData?.location || "N/A",
-					mobileNumber: userData?.mobileNumber || "N/A",
-					qualification: userData?.qualification || "N/A",
+					gender: userData?.gender || "",
+					location: userData?.location || "",
+					mobileNumber: userData?.mobileNumber || "",
+					qualification: userData?.qualification || "",
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
-				// console.log(userInfo);
+				const tokenData = {
+					email : userInfo?.email
+				}
+				setJWT(tokenData);
+				console.log(userInfo);
 				toast.success("Successfully registered!");
 				router.push('/')
 			})
