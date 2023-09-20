@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
 			};
 			fetchUserData()
 		}
-	}, [user, user?.email, userRole]);
+	}, [user, userRole]);
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -68,7 +68,6 @@ const AuthProvider = ({ children }) => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
-			
 			setLoading(false);
 		});
 		const tokenData = {
@@ -79,6 +78,7 @@ const AuthProvider = ({ children }) => {
 		return () => {
 			unSubscribe();
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const authInfo = {
