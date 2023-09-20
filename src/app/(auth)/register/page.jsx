@@ -118,10 +118,10 @@ const Registration = () => {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					gender: userData?.gender || "N/A",
-					location: userData?.location || "N/A",
-					mobileNumber: userData?.mobileNumber || "N/A",
-					qualification: userData?.qualification || "N/A",
+					gender: userData?.gender || "",
+					location: userData?.location || "",
+					mobileNumber: userData?.mobileNumber || "",
+					qualification: userData?.qualification || "",
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
