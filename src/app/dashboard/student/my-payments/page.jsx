@@ -28,7 +28,14 @@ const MyPayments = () => {
 	//   console.log(studentPaymentBooking);
 
 	return (
-		<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
+		<>
+			<header>
+				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
+					{/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
+					<span>My Payments</span>
+				</h1>
+			</header>
+			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
 			{/* <div>
 				<h1 className="text-3xl font-bold text-center mb-6">Total Enrolled Classes: {myEnrolledClasses?.length}</h1>
@@ -125,7 +132,8 @@ const MyPayments = () => {
 				</table>
 			</div>
 
-		</section>
+			</section>
+		</>
 	);
 };
 
