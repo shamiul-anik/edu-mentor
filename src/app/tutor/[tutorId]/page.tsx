@@ -21,7 +21,6 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 
 	const allTuitions = await getTuitions(email);
 
-	// console.log("single Page Tuitions",allTuitions)
 	return (
 		<>
 			<div className="bg-teal-50">
@@ -80,7 +79,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 
 			<section className="max-w-7xl mx-auto mt-12 lg:mt-20 p-4 md:px-0">
 				{
-					allTuitions &&
+					allTuitions.length > 0 &&
 					<header>
 						<h1 className="mb-6 md:mb-12 text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
 							<span>Tuitions Details</span>
