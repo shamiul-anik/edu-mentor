@@ -1,17 +1,32 @@
 "use client"
+import useAuth from '@/hooks/useAuth';
 import React, { useEffect, useState } from 'react';
 import { GrValidate } from 'react-icons/gr';
 import { LuShieldClose } from 'react-icons/lu';
 
 const BookedTutors = () => {
-	// const [bookingData, setBookingData] = useState([])
-	// useEffect(()=>{
-	// 	const getBookingData = async () =>{
-	// 		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
-	// 		const data = res.json();
-	// 		console.log(data);
-	// 	}
-	// }, [])
+	const { user } = useAuth();
+	const [studentBooking, setStudentBooking] = useState([]);
+	useEffect(() => {
+		const fetchStudentBooking = async () => {
+		  try {
+			const res = await fetch(
+			  `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-booking?student_email=${user?.email}`,
+			  {
+				cache: "no-store",
+			  }
+			);
+			const data = await res.json();
+			console.log(data);
+			setStudentBooking(data);
+		  } catch (error) {
+			console.error("Error fetchStudentBooking data:", error);
+		  }
+		};
+	
+		fetchStudentBooking();
+	  }, [user?.email]);
+	//   console.log(studentBooking)
 	return (
 		<>
 			<header>
@@ -63,39 +78,47 @@ const BookedTutors = () => {
 							</tr>
 						</thead>
 						<tbody>
-							<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-								<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-									1
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									Abu Haidar
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									haidar@gmail.com
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									01712345678
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									English
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									Ten
-								</td>
-								<td className="px-2 py-2 border-r-2">
-									Gulshan-1
-								</td>
-								<td className="px-2 py-2 text-center border-r-2">
-									5000
-								</td>
-								<td className="px-2 py-2 text-center border-r-2">
-									Available days are Monday, Wednesday and Friday.
-								</td>
-								<td className="px-2 py-2 text-center border-r-2">
-									Pending 
-									{/* If isAccepted == null, then the status is pending. If isAccepted == false, then the status is Rejected. If isAccepted == true, then Accepted. */}
-								</td>
-							</tr>
+							{
+								studentBooking?.map((booking, index)=>(
+									<tr
+									key={booking?._id}
+									className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+									<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
+										1
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.tutor_name}
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.tutor_email}
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.mobile}
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.subject}
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.class_name}
+									</td>
+									<td className="px-2 py-2 border-r-2">
+										{booking?.service_location}
+									</td>
+									<td className="px-2 py-2 text-center border-r-2">
+										{booking?.salary}
+									</td>
+									<td className="px-2 py-2 text-center border-r-2">
+										{booking?.available_days}
+									</td>
+									<td className="px-2 py-2 text-center border-r-2">
+										 
+										{  (booking?.isAccepted) == null ? "pending" : booking?.isAccepted == false ? "Rejected" : booking?.isAccepted == true ? "Accepted" : ""
+										
+										}
+									</td>
+								</tr>
+								))
+							}
 
 						</tbody>
 					</table>
