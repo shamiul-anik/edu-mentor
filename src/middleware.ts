@@ -12,9 +12,10 @@ export function middleware(request: NextRequest) {
 
 	if (isPublicPath && token) {
 		return NextResponse.redirect(new URL('/', request.nextUrl))
-	} else if (isProtectedPath || path.startsWith('/tutor/') && !token) {
-		return NextResponse.redirect(new URL('/login', request.nextUrl))
-	}
+	} 
+	// else if (isProtectedPath || path.startsWith('/tutor/') && !token) {
+	// 	return NextResponse.redirect(new URL('/login', request.nextUrl))
+	// }
 }
 
 // See "Matching Paths" below to learn more
