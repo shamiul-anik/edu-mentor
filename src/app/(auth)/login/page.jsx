@@ -34,11 +34,7 @@ const Login = () => {
 		// Add more props as needed
 	  };
 
-
-
-
-
-	// // Show Loader when Page is Loading
+	// Show Loader when Page is Loading
 	if (loading) {
 		return <Loader></Loader>;
 	}
