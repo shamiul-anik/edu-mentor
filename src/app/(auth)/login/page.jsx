@@ -9,16 +9,10 @@ import useAuth from "@/hooks/useAuth.js"
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
 import getUser from '../../../utils/getUser';
+import Profile from '../profile/page'
+import setJWT from "../../../utils/setJWT.js"
 
 
-
-// meta data for title
-// export const metadata = {
-// 	title: 'EduMentor Authentication',
-// 	openGraph: {
-// 		title: 'Edu Mentor Authentication',
-// 	  },
-//   }
 
 const Login = () => {
 	const { loading, setLoading, logIn, signInWithGoogle, setUser, user } = useAuth();
@@ -35,17 +29,18 @@ const Login = () => {
 		return userData
 	};
 
+	const componentProps = {
+		user: user,
+		// Add more props as needed
+	  };
 
-
-
-
-	// // Show Loader when Page is Loading
+	// Show Loader when Page is Loading
 	if (loading) {
 		return <Loader></Loader>;
 	}
 
 	const onSubmit = (userInformation) => {
-		console.log(userInformation);
+		// console.log(userInformation);
 		setLoading(true);
 		setError("");
 
@@ -53,7 +48,11 @@ const Login = () => {
 			.then(result => {
 				const loggedUser = result.user;
 				console.log(loggedUser);
-				setUser(loggedUser)
+				setUser(loggedUser);
+				const tokenData = {
+					email : loggedUser?.email
+				}
+				setJWT(tokenData);
 				toast.success("Successfully logged in!");
 				router.push('/profile')
 			})
@@ -76,13 +75,17 @@ const Login = () => {
 					email: currentUser.email,
 					displayName: currentUser.displayName,
 					photoURL: currentUser.photoURL,
-					gender: userData?.gender || "N/A",
-					location: userData?.location || "N/A",
-					mobileNumber: userData?.mobileNumber || "N/A",
-					qualification: userData?.qualification || "N/A",
+					gender: userData?.gender || "",
+					location: userData?.location || "",
+					mobileNumber: userData?.mobileNumber || "",
+					qualification: userData?.qualification || "",
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
+				const tokenData = {
+					email : userInfo?.email
+				}
+				setJWT(tokenData)
 
 
 				toast.success("Successfully logged in!");
@@ -177,6 +180,7 @@ const Login = () => {
 
 			</div>
 		</section>
+				
 	);
 };
 

@@ -1,6 +1,32 @@
-import React from 'react';
+"use client"
+import useAuth from '@/hooks/useAuth';
+import React, { useEffect, useState } from 'react';
 
 const HiredTutors = () => {
+
+	const { user } = useAuth();
+	const [studentHiredBooking, setStudentHiredBooking] = useState([]);
+	useEffect(() => {
+		const fetchHiredBooking = async () => {
+		  try {
+			const res = await fetch(
+			  `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-booking?student_email=${user?.email}&is_accepted=true`,
+			  {
+				cache: "no-store",
+			  }
+			);
+			const data = await res.json();
+			console.log(data);
+			setStudentHiredBooking(data);
+		  } catch (error) {
+			console.error("Error fetchHiredBooking data:", error);
+		  }
+		};
+	
+		fetchHiredBooking();
+	  }, [user?.email]);
+	//   console.log(studentHiredBooking);  
+
 	return (
 		<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
@@ -42,35 +68,41 @@ const HiredTutors = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-							<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-								1
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Abu Haidar
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								haidar@gmail.com
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								01712345678
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								English
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Ten
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								Gulshan-1
-							</td>
-							<td className="px-2 py-2 text-center border-r-2">
-								5000
-							</td>
-							<td className="px-2 py-2 text-center border-r-2">
-								Available days are Monday, Wednesday and Friday.
-							</td>
-						</tr>
+						{
+							studentHiredBooking?.map((hire, index) => (
+								<tr
+								key={hire?._id}
+								className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+								<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
+									{index + 1}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.tutor_name}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.tutor_email}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.mobile}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.subject}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.class_name}
+								</td>
+								<td className="px-2 py-2 border-r-2">
+								{hire?.service_location}
+								</td>
+								<td className="px-2 py-2 text-center border-r-2">
+								{hire?.salary}
+								</td>
+								<td className="px-2 py-2 text-center border-r-2">
+								{hire?.available_days}
+								</td>
+							</tr>
+							))
+						}
 					</tbody>
 				</table>
 			</div>

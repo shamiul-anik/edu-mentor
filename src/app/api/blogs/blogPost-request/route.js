@@ -19,11 +19,11 @@ export const POST = async (request) => {
  
     // Create a new user instance
     const newBlogPostRequest = new Blog_Post({ postImgUrl, postDescription,postDate,userName,userRole});
-    console.log('newBlogPost',newBlogPostRequest);
+    // console.log('newBlogPost',newBlogPostRequest);
 
     // Save the new user to the database
     const savedBlogPostRequest = await newBlogPostRequest.save();
-    console.log('SaveRequest',savedBlogPostRequest);
+    // console.log('SaveRequest',savedBlogPostRequest);
 
     return NextResponse.json({ message: "Users stored successfully!",
                                success: true,

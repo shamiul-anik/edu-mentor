@@ -2,7 +2,7 @@
 import { toast } from "react-hot-toast";
 
 const tutorRequestSave = async (TutorInfo) => {
- console.log('api Call',TutorInfo)
+//  console.log('api Call',TutorInfo)
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request/post-request`, {
             method: "POST",
@@ -13,7 +13,7 @@ const tutorRequestSave = async (TutorInfo) => {
         });
 
         if (response.ok) {
-            console.log(response);
+            // console.log(response);
             toast.success("User data stored successfully");
         } else if (response.status === 400) {
             toast.error("User already exists!")

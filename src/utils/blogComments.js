@@ -22,7 +22,7 @@ const blogCommentGet = async (postData) => {
     
         fetchCommentData();
       }, []);
-      console.log(comments);
+      // console.log(comments);
     // toast.success('Thank Your Blogs')
 };
 
