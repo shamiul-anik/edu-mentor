@@ -48,7 +48,7 @@
     "src/app/dashboard/admin/manage-tutor-request/page.jsx",
     "src/app/dashboard/admin/manage-tuitions/page.jsx",
     "src/app/dashboard/tutor/add-a-tuition/page.jsx"
-, "src/app/tutors/TuitionsCard.jsx", "src/app/dashboard/student/my-messages/page.jsx", "src/app/api/jwt/route.js"  ],
+, "src/app/tutors/TuitionsCard.jsx", "src/app/dashboard/student/my-messages/page.jsx", "src/app/api/jwt/route.js", "src/app/dashboard/student/booked-tutors/page.jsx", "src/app/dashboard/student/my-payments/page.jsx", "src/app/dashboard/student/hired-tutors/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

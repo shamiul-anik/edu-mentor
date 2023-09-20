@@ -32,7 +32,7 @@ const MyMessages = () => {
 
     fetchAllTuitions();
   }, [user?.email]);
-  console.log(messages);
+  // console.log(messages);
   return (
     <>
       <header>
@@ -121,19 +121,19 @@ const MyMessages = () => {
                   <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
                     {index + 1}
                   </td>
-                  <td className="px-2 py-2 border-r-2">Abu Haidar</td>
-                  <td className="px-2 py-2 border-r-2">haidar@gmail.com</td>
+                  <td className="px-2 py-2 border-r-2">{message?.student_name}</td>
+                  <td className="px-2 py-2 border-r-2">{message?.student_email}</td>
                   <td className="px-2 py-2 text-center border-r-2">
-                    01712345678
+                  {message?.student_mobile_no}
                   </td>
-                  <td className="px-2 py-2 text-center border-r-2">Male</td>
+                  <td className="px-2 py-2 text-center border-r-2">{message?.student_gender}</td>
                   <td className="px-2 py-2 text-center uppercase border-r-2">
-                    Dhaka
+                  {message?.student_location}
                   </td>
-                  <td className="px-2 py-2 border-r-2">English</td>
-                  <td className="px-2 py-2 border-r-2">Class</td>
+                  <td className="px-2 py-2 border-r-2">{message?.student_name}</td>
+                  <td className="px-2 py-2 border-r-2">{message?.subject_name}</td>
                   <td className="px-2 py-2 border-r-2">
-                    Dynamic Details&apos;s Information
+                  {message?.details}
                   </td>
                   <td className="px-2 py-2 border-r-2">
                     Dynamic Feedback from Tutor
