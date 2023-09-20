@@ -9,16 +9,10 @@ import useAuth from "@/hooks/useAuth.js"
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
 import getUser from '../../../utils/getUser';
+import Profile from '../profile/page'
+import setJWT from "../../../utils/setJWT.js"
 
 
-
-// meta data for title
-// export const metadata = {
-// 	title: 'EduMentor Authentication',
-// 	openGraph: {
-// 		title: 'Edu Mentor Authentication',
-// 	  },
-//   }
 
 const Login = () => {
 	const { loading, setLoading, logIn, signInWithGoogle, setUser, user } = useAuth();
@@ -34,6 +28,11 @@ const Login = () => {
 		const userData = await getUser(email);
 		return userData
 	};
+
+	const componentProps = {
+		user: user,
+		// Add more props as needed
+	  };
 
 
 
@@ -53,7 +52,11 @@ const Login = () => {
 			.then(result => {
 				const loggedUser = result.user;
 				console.log(loggedUser);
-				setUser(loggedUser)
+				setUser(loggedUser);
+				const tokenData = {
+					email : loggedUser?.email
+				}
+				setJWT(tokenData);
 				toast.success("Successfully logged in!");
 				router.push('/profile')
 			})
@@ -83,6 +86,10 @@ const Login = () => {
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
+				const tokenData = {
+					email : userInfo?.email
+				}
+				setJWT(tokenData)
 
 
 				toast.success("Successfully logged in!");
@@ -177,6 +184,7 @@ const Login = () => {
 
 			</div>
 		</section>
+				
 	);
 };
 

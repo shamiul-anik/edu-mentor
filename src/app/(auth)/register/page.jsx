@@ -11,6 +11,7 @@ import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 import { redirect, useRouter } from 'next/navigation';
 import saveUser from "@/utils/saveUser"
 import getUser from '../../../utils/getUser';
+import setJWT from '../../../utils/setJWT';
 
 
 const Registration = () => {
@@ -61,6 +62,7 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
+				useJWT();
 				console.log(userInfo);
 
 				setSuccess("Registration successful!");
@@ -81,6 +83,10 @@ const Registration = () => {
 		logOut()
 			.then(() => {
 				console.log("Successfully logged out!");
+				const tokenData = {
+					email : null
+				}
+				setJWT(tokenData)
 				router.push('/login')
 			})
 			.catch((error) => {
@@ -119,6 +125,10 @@ const Registration = () => {
 					role: userData?.role || "student"
 				}
 				saveUser(userInfo);
+				const tokenData = {
+					email : userInfo?.email
+				}
+				setJWT(tokenData);
 				console.log(userInfo);
 				toast.success("Successfully registered!");
 				router.push('/')
