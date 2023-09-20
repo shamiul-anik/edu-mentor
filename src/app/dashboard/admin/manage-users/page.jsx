@@ -12,14 +12,18 @@ import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition, } from "react";
 import useAuth from "@/hooks/useAuth";
 
 import adminBtn from "@/utils/dashboard/adminBtn"
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
   const { user, loading, userRole, setUserRole } = useAuth();
+  const [isPending, startTransition] = useTransition()
+  const router = useRouter();
 	
 	useEffect(() => {
 		const fetchAllUsers = async () => {
@@ -113,41 +117,45 @@ const ManageUsers = () => {
   // };
  
   const handleAdminBtn= (user, value) => {
-    adminBtn(user, value);
+    // adminBtn(user, value);
+    
+
   // console.log(user._id, value)
 
-  //   const fetchAdminBtn = async () => {
-	// 	  try {
-	// 		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin?id=${user?._id}&controlAdminBtn=${value}`, {
-  //       method: "PATCH",
-  //     },
-	// 		{
-	// 		  cache: 'no-store'
-	// 		});
-  //     if (res.status === 200) {
-  //       // Successful response, handle data accordingly
-  //       // setAllUsers(data);
-  //       Swal.fire({
-  //         position: 'top-end',
-  //         icon: 'success',
-  //         title: "User Action successfully",
-  //         showConfirmButton: false,
-  //         timer: 1500
-  //       })
-  //       console.log("User admin action successfully")
+    const fetchAdminBtn = async () => {
+		  try {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin?id=${user?._id}&controlAdminBtn=${value}`, {
+        method: "PATCH",
+      });
+      if (res.status === 200) {
+        // Successful response, handle data accordingly
+        // setAllUsers(data);
+        startTransition(()=>{
+          console.log({router})
+          router.refresh();
+        })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "User Action successfully",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log("User admin action successfully")
         
-  //     }
-	// 		const data = await res.json();
-  //     console.log(data)
+      }
+			const data = await res.json();
+
+      console.log(data)
 
 			
-	// 	  } catch (error) {
-	// 		console.error('Error fetching All userdata:', error);
+		  } catch (error) {
+			console.error('Error fetching adminAction btn:', error);
 		   
-	// 	  }
-	// 	};
+		  }
+		};
 	
-	// 	fetchAdminBtn();
+		fetchAdminBtn();
   }
   return (
     <>
