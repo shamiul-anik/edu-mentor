@@ -21,11 +21,11 @@ const adminBtn = (dataValue , value) => {
           showConfirmButton: false,
           timer: 1500
         })
-        console.log("User admin action successfully")
+        // console.log("User admin action successfully")
         
       }
 			const data = await res.json();
-      console.log(data)
+      // console.log(data)
 
 			
 		  } catch (error) {

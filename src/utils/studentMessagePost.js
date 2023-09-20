@@ -2,7 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 
 const studentMessagePost = async (data) => {
-    console.log("studentMessagePost",data)
+    // console.log("studentMessagePost",data)
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/student-message`, {
             method: 'POST',
@@ -12,7 +12,7 @@ const studentMessagePost = async (data) => {
             body: JSON.stringify(data)
         })
         if (res.ok) {
-            console.log(res);
+            // console.log(res);
             toast.success("studentMessage data stored successfully");
         } else if (res.status === 404) {
 

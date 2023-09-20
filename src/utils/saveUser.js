@@ -12,9 +12,9 @@ const saveUser = async (userData) => {
             body: JSON.stringify(userData),
         });
         
-        console.log(response);
+        // console.log(response);
         if (response.ok) {
-            console.log(response);
+            // console.log(response);
             toast.success("User data stored successfully");
         } else if (response.status === 500 || response.status === 400) {
             toast("User exists!")
