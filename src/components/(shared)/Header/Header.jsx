@@ -173,7 +173,7 @@ const Header = () => {
                 <li className="mt-1 text-center font-bold">
                   {currentUserName}
                 </li>
-                <p className="text-slate-600 text-sm mt-1 mb-2 font-normal text-center">
+                <p className="text-slate-600 text-sm mt-1 mb-2 font-normal text-center whitespace-nowrap">
                   {currentUserEmail}
                 </p>
                 {userRole && (
@@ -315,7 +315,7 @@ const Header = () => {
                 <li className="mt-1 text-center font-bold">
                   {currentUserName}
                 </li>
-                <p className="text-slate-600 text-sm mt-1 mb-2 font-normal text-center">
+                <p className="text-slate-600 text-sm mt-1 mb-2 font-normal text-center whitespace-nowrap">
                   {currentUserEmail}
                 </p>
                 {userRole && (

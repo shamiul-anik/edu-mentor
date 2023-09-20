@@ -23,22 +23,6 @@ const MyTuitions = () => {
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 #
               </th>
-              {/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Class <br /> Image
-              </th> */}
-              
-              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Student&apos;s <br /> Name
-              </th>
-              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Student&apos;s <br /> Email
-              </th>
-              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Mobile <br /> Number
-              </th>
-              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Location
-              </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
                 Subject <br /> Name
               </th>
@@ -46,10 +30,13 @@ const MyTuitions = () => {
                 Class <br /> Name
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Salary <br /> (Per Month)
+                Location
               </th>
               <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-                Payment <br /> Status
+                Salary Range<br /> (Per Month)
+              </th>
+              <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+                Available <br /> Days
               </th>
             </tr>
           </thead>
@@ -58,36 +45,20 @@ const MyTuitions = () => {
               <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
                 1
               </td>
-              {/* <td className="px-2 py-2 text-center border-r-2">
-                <div className="avatar flex items-center justify-center ">
-                  <div className="w-24 rounded-xl">
-                    <Image src={class_image} alt={`Image of ${class_name} class`} />
-                  </div>
-                </div>
-              </td> */}
-              <td className="px-2 py-2 border-r-2">
-                Abu Haidar
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                haidar@gmail.com
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                01712345678
-              </td>
-              <td className="px-2 py-2 border-r-2">
-                Gulshan-1
-              </td>
               <td className="px-2 py-2 border-r-2">
                 Math
               </td>
               <td className="px-2 py-2 border-r-2">
-                10
+                Ten
               </td>
-              <td className="px-2 py-2 text-center border-r-2">
-                5000
+              <td className="px-2 py-2 border-r-2">
+                Dhaka
               </td>
-              <td className="px-2 py-2 text-center uppercase border-r-2">
-                Paid
+              <td className="px-2 py-2 border-r-2">
+                5000-8000
+              </td>
+              <td className="px-2 py-2 border-r-2">
+                Monday, Wednesday, Friday
               </td>
             </tr>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HiredTutors = () => {
+const PaymentHistoryStudent = () => {
 	return (
 		<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
@@ -16,13 +16,10 @@ const HiredTutors = () => {
 								#
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Name
+								Tutor&apos;s <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Email
-							</th>
-							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Mobile Number
+								Tutor&apos;s <br /> Email
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Subject <br /> Name
@@ -31,13 +28,13 @@ const HiredTutors = () => {
 								Class <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Location
+								Month <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Salary <br /> (Per Month)
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Tuition <br /> Days
+								Payment <br /> Status
 							</th>
 						</tr>
 					</thead>
@@ -47,13 +44,10 @@ const HiredTutors = () => {
 								1
 							</td>
 							<td className="px-2 py-2 border-r-2">
-								Abu Haidar
+								James Patterson
 							</td>
 							<td className="px-2 py-2 border-r-2">
-								haidar@gmail.com
-							</td>
-							<td className="px-2 py-2 border-r-2">
-								01712345678
+								patterson@gmail.com
 							</td>
 							<td className="px-2 py-2 border-r-2">
 								English
@@ -61,14 +55,14 @@ const HiredTutors = () => {
 							<td className="px-2 py-2 border-r-2">
 								Ten
 							</td>
-							<td className="px-2 py-2 border-r-2">
-								Gulshan-1
+							<td className="px-2 py-2 text-center border-r-2">
+								August
 							</td>
 							<td className="px-2 py-2 text-center border-r-2">
 								5000
 							</td>
-							<td className="px-2 py-2 text-center border-r-2">
-								Available days are Monday, Wednesday and Friday.
+							<td className="px-2 py-2 text-center uppercase border-r-2">
+								Paid
 							</td>
 						</tr>
 					</tbody>
@@ -79,4 +73,4 @@ const HiredTutors = () => {
 	);
 };
 
-export default HiredTutors;
+export default PaymentHistoryStudent;
