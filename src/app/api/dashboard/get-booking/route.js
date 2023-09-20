@@ -1,4 +1,4 @@
-import connect from "@/utils/db.js";
+import connect from "../../../../utils/db";
 import { Bookings } from "../../../../models/Bookings";
 import { NextResponse } from "next/server";
 export const GET = async (request) => {
@@ -22,7 +22,8 @@ export const GET = async (request) => {
       query.isAccepted = true;
     }
     console.log(query);
-    if (query) {
+    const hasValidQuery = Object.keys(query).length > 0;
+    if (hasValidQuery) {
       const bookingData = await Bookings.find(query);
       return new NextResponse(JSON.stringify(bookingData), { status: 200 });
     }
@@ -32,6 +33,6 @@ export const GET = async (request) => {
 
   } catch (error) {
     console.error("Database Error:", error.message);
-    return NextResponse.error("Internal Server Error", { status: 500 });
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
