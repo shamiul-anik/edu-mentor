@@ -1,7 +1,15 @@
 // import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Testimonial from "@/components/Home/Testimonial" 
+import Testimonial from "@/components/Home/Testimonial"
+
+// Mock the @smastrom/react-rating library
+jest.mock("@smastrom/react-rating", () => {
+  const React = require("react");
+  return {
+    Rating: jest.fn().mockImplementation(() => <div data-testid="mock-rating" />),
+  };
+});
 
 describe('Testimonial', () => {
   it('should have figure with test id "testimonial-figure-element1"', () => {
