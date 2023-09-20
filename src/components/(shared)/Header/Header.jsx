@@ -9,6 +9,7 @@ import Logo from "@/assets/images/logo.png";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { useRouter} from "next/navigation";
+import Cookies from 'js-cookie'
 
 const Header = () => {
   const { replace} = useRouter();
@@ -25,8 +26,9 @@ const Header = () => {
     console.log("log out");
     try {
       await logOut();
+      Cookies.set('token', '')
       toast.dismiss(toastId);
-      toast.success("Successfully logout!");
+      toast.success("Successfully logout Cookie!");
     } catch (error) {
       console.log(error.message);
       toast.error("Error!");
