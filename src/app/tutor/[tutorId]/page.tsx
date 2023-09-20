@@ -79,13 +79,16 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 			</div>
 
 			<section className="max-w-7xl mx-auto mt-12 lg:mt-20 p-4 md:px-0">
-				<header>
-					<h1 className="mb-6 md:mb-12 text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
-						<span>Tuitions Details</span>
-					</h1>
-				</header>
+				{
+					allTuitions &&
+					<header>
+						<h1 className="mb-6 md:mb-12 text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
+							<span>Tuitions Details</span>
+						</h1>
+					</header>
+				}
 				<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8'>
-					{ allTuitions.map((tuition: Tuition) => <TuitionsCard key={tuition?._id} data={tuition} /> )}
+					{ allTuitions?.map((tuition: Tuition) => <TuitionsCard key={tuition?._id} data={tuition} /> )}
 				</div>
 
 				{/* Contact Form */}
