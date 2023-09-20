@@ -1,6 +1,6 @@
 import connect from "@/utils/db.js";
 import { NextResponse } from "next/server";
-import { Student_Message } from "@/models/Student_Message"
+import { Student_Message } from "../../../../models/Student_Message";
 
 export const GET = async (request) => {
 	try {
