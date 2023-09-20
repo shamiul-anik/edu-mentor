@@ -4,9 +4,9 @@ import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 import Lottie from 'lottie-react';
 import ContactUsLottie from '@/assets/lottie/contact-us.json';
 import { BsSend } from 'react-icons/bs';
+import useAuth from "@/hooks/useAuth";
 
 const Contact = () => {
-  const [emailAddress, setEmailAddress] = useState('');
   const [data, setData] = useState({
     name: '',
     subject: '',
@@ -14,17 +14,18 @@ const Contact = () => {
     message: '',
   });
 
+  const { user }: any = useAuth();
+  console.log("logged user", user);
+  const currentUserEmail = user?.email;
+
   const sendEmail = async () => {
     console.log('Name:', data.name);
-    console.log('subject:', data.subject);
-    console.log('Email:', data.email);
+    console.log('Subject:', data.subject);
+    console.log('Email:', currentUserEmail);
     console.log('Message:', data.message);
 
-
-    // You can proceed to send the email here.
     const emailData = {
-      to: data.email, 
-      from: process.env.NODEMAILER_EMAIL, 
+      to: currentUserEmail,
       subject: data.subject,
       message: data.message,
     };
@@ -46,8 +47,6 @@ const Contact = () => {
     } catch (error) {
       console.error("Error sending email:", error);
     }
-
-    
   };
 
   return (
@@ -56,7 +55,17 @@ const Contact = () => {
       <CommonBanner bannerHeading="Contact Us" />
 
       {/* Google Map */}
-      {/* ... (your Google Map code) ... */}
+      <div className="mt-12 md:mt-20">
+        <header>
+          <h2 className="content-title text-center">Find Us on Google Map</h2>
+        </header>
+        <p className="content-description text-center mb-8">
+          Check out the map for finding our location.
+        </p>
+      </div>
+      <div className="max-w-[1190px] w-100 px-4 mx-auto">
+        <iframe className="border-2 border-slate-200 w-full h-[300px] md:h-[500px] rounded-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3070.1811708823325!2d90.41576684428637!3d23.780119352475314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79ebfc24eab%3A0xea7dab563f12457a!2sGulshan%201%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1684626393720!5m2!1sen!2sbd" allowFullScreen referrerPolicy="no-referrer-when-downgrade"></iframe>
+      </div>
 
       <div className="mt-16 md:mt-24">
         <header>
@@ -111,7 +120,8 @@ const Contact = () => {
                   name="email"
                   placeholder="Enter your email address"
                   className="input input-bordered focus:outline-teal-500 focus:border-teal-200 focus:ring-teal-400 input-sm py-5 text-[14px]"
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  value={currentUserEmail}
+                  
                 />
               </div>
 

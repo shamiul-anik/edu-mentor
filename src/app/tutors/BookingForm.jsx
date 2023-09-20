@@ -5,14 +5,14 @@ import useAuth from "@/hooks/useAuth";
 // import createJWT from "@/utils/createJWT";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import bookingPost from "@/utils/bookingPost";
+import studentMessagePost from "@/utils/studentMessagePost";
 import { startTransition } from "react";
 import { useRouter } from "next/navigation";
 
 
 
-const BookingForm = (data) => {
-  const {id} = data
+const BookingForm = ({tutorEmail}) => {
+  
   const {
     register,
     handleSubmit,
@@ -21,29 +21,31 @@ const BookingForm = (data) => {
     setValue,
   } = useForm();
 
-  const { user } = useAuth();
+  const { user, userRole } = useAuth();
   const { refresh } = useRouter();
 
 
 
   const onSubmit = async (data, event) => {
-    const { name, email, phoneNumber, subject, location, salary, detailsInfo } = data;
+    const { name, email, className,  phoneNumber, gender, subject, location, detailsInfo } = data;
     const toastId = toast.loading("Loading...");
     try {
-      // Booking Data save mongodb start
-      const bookingData ={
-        tutorId: id,
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
-        subject:  subject,
-        location: location,
-        salary: salary,
-        detailsInfo:  detailsInfo,
+      // student_message collection save mongodb start
+      const studentMessage ={
+        tutor_email: tutorEmail,
+        student_name: name,
+        student_email: email,
+        student_mobile_no: phoneNumber,
+        subject_name:  subject,
+        student_location: location,
+        student_gender: gender,
+        class_name: className,
+        details:  detailsInfo,
       }
+      console.log("StudentMessage", studentMessage);
       
-      if(bookingData){
-        bookingPost(bookingData)
+      if(studentMessage){
+        studentMessagePost(studentMessage)
         startTransition(() => {
           refresh();
           toast.dismiss(toastId);
@@ -112,15 +114,19 @@ const BookingForm = (data) => {
         )}
       </div>
       <div className="form-control">
-        <label htmlFor="phone" className="label label-text">
-          Phone Number
+        <label htmlFor="gender" className="label label-text">
+          Gender
         </label>
-        <input
-        type="tel"
-        placeholder="Phone number" 
-        {...register("phoneNumber", {required: true, maxLength: 11})}
-        className="input input-bordered"
-        />
+        <select
+    {...register("gender", { required: true })}
+    className="input input-bordered"
+  >
+    <option value="" disabled selected>
+      Select gender
+    </option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
       </div>
     </div>
     <div className="w-full">
@@ -135,39 +141,50 @@ const BookingForm = (data) => {
           placeholder="Type subject"
           name= "subject"
           className="input input-bordered"
-          {...register("subject")}
+          {...register("subject", { required: true })}
+          />
+      </div>
+      <div className="form-control">
+          <label 
+          htmlFor="className"
+          className="label label-text"
+          >Class</label>
+          <input
+          type="text"
+          placeholder="Type Class name"
+          id="className"
+          name= "className"
+          className="input input-bordered"
+          {...register("className", { required: true })}
           />
       </div>
       <div className="form-control">
           <label 
           htmlFor="location"
           className="label label-text"
-          >Location</label>
+          >location</label>
           <input
           type="text"
-          placeholder="Type location"
           id="location"
+          placeholder="Type location name"
           name= "location"
           className="input input-bordered"
-          {...register("location")}
-          />
-      </div>
-      <div className="form-control">
-          <label 
-          htmlFor="salary"
-          className="label label-text"
-          >Salary</label>
-          <input
-          type="text"
-          id="salary"
-          placeholder="expected tuition fees"
-          name= "subject"
-          className="input input-bordered"
-          {...register("salary")}
+          {...register("location", { required: true })}
           />
       </div>
     </div>
     </div>
+    <div className="form-control">
+        <label htmlFor="phone" className="label label-text">
+          Phone Number
+        </label>
+        <input
+        type="tel"
+        placeholder="Phone number" 
+        {...register("phoneNumber", {required: true, maxLength: 11})}
+        className="input input-bordered"
+        />
+      </div>
       <div className="form-control">
         <label htmlFor="detailsInfo" className="label label-text">
         Details Information
@@ -182,8 +199,10 @@ const BookingForm = (data) => {
         )}
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary bg-gradient-to-r from-[#29A2AA] to-[#c0332e] hover:from-[#c0332e] hover:to-[#29A2AA]" type="submit">
-          Submit
+        <button className={`btn   type="submit text-gray-300 ${userRole === "tutor" || userRole === "admin" ? "bg-gray-600" : "bg-cyan-700 hover:bg-cyan-800 hover:text-white"}`}
+         disabled={(userRole === "tutor" || userRole === "admin") ? true : false}
+         >
+          {(userRole === "tutor" || userRole === "admin") ? "Disabled only student use" : "Send Message"}
         </button>
       </div>
     </form>

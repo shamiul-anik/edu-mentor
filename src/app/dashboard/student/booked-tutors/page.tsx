@@ -3,21 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { GrValidate } from 'react-icons/gr';
 import { LuShieldClose } from 'react-icons/lu';
 
-const MyBookings = () => {
-	const [bookingData, setBookingData] = useState([])
-	useEffect(()=>{
-		const getBookingData = async () =>{
-			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
-			const data = res.json();
-			console.log(data);
-		}
-	}, [])
+const BookedTutors = () => {
+	// const [bookingData, setBookingData] = useState([])
+	// useEffect(()=>{
+	// 	const getBookingData = async () =>{
+	// 		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/booking`)
+	// 		const data = res.json();
+	// 		console.log(data);
+	// 	}
+	// }, [])
 	return (
 		<>
 			<header>
 				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
 					{/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
-					<span>My Bookings</span>
+					<span>Booked Tutors</span>
 				</h1>
 			</header>
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
@@ -34,13 +34,13 @@ const MyBookings = () => {
 									#
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student&apos;s <br /> Name
+									Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student&apos;s <br /> Email
+									Email
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Phone <br /> Number
+									Mobile Number
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Subject <br /> Name
@@ -49,7 +49,7 @@ const MyBookings = () => {
 									Class <br /> Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Student&apos;s Location
+									Location
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Salary <br /> (Per Month)
@@ -59,9 +59,6 @@ const MyBookings = () => {
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Verification <br /> Status
-								</th>
-								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2">
-									Action
 								</th>
 							</tr>
 						</thead>
@@ -98,16 +95,6 @@ const MyBookings = () => {
 									Pending 
 									{/* If isAccepted == null, then the status is pending. If isAccepted == false, then the status is Rejected. If isAccepted == true, then Accepted. */}
 								</td>
-								<td className="px-2 py-2 text-center border-r-2">
-									<button type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
-										<GrValidate className='gr-icon w-4 h-4 mr-2' />
-										Approve
-									</button>
-									<button type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
-										<LuShieldClose className='gr-icon w-4 h-4 mr-2' />
-										Deny
-									</button>
-								</td>
 							</tr>
 
 						</tbody>
@@ -121,4 +108,4 @@ const MyBookings = () => {
 	);
 };
 
-export default MyBookings;
+export default BookedTutors;

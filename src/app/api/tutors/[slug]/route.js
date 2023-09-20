@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/db";
-import { Tutors } from "@/models/Tutors";
+import { Users } from "@/models/Users";
 import mongoose from 'mongoose'; // Import mongoose
 
 export const GET = async (request, { params }) => {
@@ -14,7 +14,7 @@ export const GET = async (request, { params }) => {
       // return {};
     }
     const tutorId = slug; // Replace with the actual _id value
-    const tutor = await Tutors.findOne({ _id: tutorId.toString() });
+    const tutor = await Users.findOne({ _id: tutorId.toString() });
     
 
 
