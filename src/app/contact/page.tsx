@@ -5,6 +5,7 @@ import Lottie from 'lottie-react';
 import ContactUsLottie from '@/assets/lottie/contact-us.json';
 import { BsSend } from 'react-icons/bs';
 import useAuth from "@/hooks/useAuth";
+import toast from 'react-hot-toast';
 
 const Contact = () => {
   const [data, setData] = useState({
@@ -41,8 +42,10 @@ const Contact = () => {
 
       if (response.ok) {
         console.log("Email sent successfully");
+        toast.success("Email sent successfully");
       } else {
         console.error("Email sending failed");
+        toast.error("Email sending failed");
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -118,7 +121,7 @@ const Contact = () => {
                   type="text"
                   id="email"
                   name="email"
-                  placeholder="Enter your email address"
+                  placeholder={currentUserEmail}
                   className="input input-bordered focus:outline-teal-500 focus:border-teal-200 focus:ring-teal-400 input-sm py-5 text-[14px]"
                   value={currentUserEmail}
                   
