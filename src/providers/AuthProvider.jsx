@@ -1,32 +1,32 @@
 "use client"
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-import {app} from '@/firebase/firebase.config.js';
+import { app } from '@/firebase/firebase.config.js';
 import { useState, useEffect } from 'react';
 import AuthContext from "@/contexts/AuthContext"
 import getUser from "@/utils/getUser";
-
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
+import setJWT from "@/utils/setJWT";
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+	const [user, setUser] = useState(null);
 	const [userData, setUserData] = useState([]);
-  const [userRole, setUserRole] = useState("");
-  const [loading, setLoading] = useState(true);
+	const [userRole, setUserRole] = useState("");
+	const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      const fetchUserData = async () => {
-        // console.log(user?.email);
-        const userData = await getUser(user?.email);
-        // console.log(userData); // This should show the updated value.
+	useEffect(() => {
+		if (user) {
+			const fetchUserData = async () => {
+				// console.log(user?.email);
+				const userData = await getUser(user?.email);
+				// console.log(userData); // This should show the updated value.
 				setUserData(userData);
-        setUserRole(userData?.role);
-        console.log(userRole); // This should show the updated value.
-      };
-      fetchUserData()
-    }
-  }, [user, userRole]);
+				setUserRole(userData?.role);
+				console.log(userRole); // This should show the updated value.
+			};
+			fetchUserData()
+		}
+	}, [user, user?.email, userRole]);
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -40,9 +40,13 @@ const AuthProvider = ({ children }) => {
 
 	const logOut = () => {
 		setLoading(true);
+		const tokenData = {
+			email : null
+		}
+		setJWT(tokenData)
 		return signOut(auth);
 	}
-	
+
 	const resetPassword = (email) => {
 		setLoading(true);
 		return sendPasswordResetEmail(auth, email);
@@ -53,20 +57,25 @@ const AuthProvider = ({ children }) => {
 		return signInWithPopup(auth, googleAuthProvider);
 	}
 
-    const updateUserProfile =  (updateUser) => {
+	const updateUserProfile = (updateUser) => {
 		console.log(updateUser);
-        setLoading(true);
-        updateProfile(auth.currentUser, updateUser);
-        setUser((preUser) => ({...preUser, ...updateUser}))
-    }
-	
+		setLoading(true);
+		updateProfile(auth.currentUser, updateUser);
+		setUser((preUser) => ({ ...preUser, ...updateUser }))
+	}
+
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
+			
 			setLoading(false);
 		});
-
+		const tokenData = {
+			email : user?.email 
+		}	
+		setJWT(tokenData)
+		
 		return () => {
 			unSubscribe();
 		}
@@ -76,7 +85,7 @@ const AuthProvider = ({ children }) => {
 		user,
 		userData,
 		setUser,
-		userRole, 
+		userRole,
 		setUserRole,
 		loading,
 		setLoading,
