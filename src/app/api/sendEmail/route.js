@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
-    const { to, subject, message, from } = await request.json();
+    const { name, to, subject, message, from } = await request.json();
 
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -63,19 +63,26 @@ export async function POST(request) {
         <body>
           <div class="container">
             <h1 class="text-3xl font-semibold text-gray-800">EduMentor - Contact Confirmation 😊</h1>
-            <p class="text-lg text-gray-700">A tutor will contact you very soon.</p>
+            <h2>Thank you so much for contacting us. We will get to you as soon as we can.</h2>
             <h2 class="text-2xl font-semibold text-gray-800">You sent the following email to EduMentor:</h2>
             <table>
               <tr>
-                <th>Title</th>
+                <th>Name</th>
+                <td>${name}</td>
+              </tr>
+              <tr>
+                <th>Subject</th>
                 <td>${subject}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>${to}</td>
               </tr>
               <tr>
                 <th>Message</th>
                 <td>${message}</td>
               </tr>
             </table>
-            <h1>Thank you so much for contacting us</h1>
           </div>
         </body>
         </html>
@@ -133,11 +140,19 @@ export async function POST(request) {
           <div class="container">
             <h1 class="text-3xl font-semibold text-gray-800">EduMentor - New Contact</h1>
             <p class="text-lg text-gray-700">You've received a new contact email from ${from}.</p>
-            <p class="text-lg text-gray-700">Please contact them soon.</p>
+            <p class="text-lg text-gray-700">Please contact him soon.</p>
             <table>
               <tr>
-                <th>Title</th>
+                <th>Name</th>
+                <td>${name}</td>
+              </tr>
+              <tr>
+                <th>Subject</th>
                 <td>${subject}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>${to}</td>
               </tr>
               <tr>
                 <th>Message</th>
