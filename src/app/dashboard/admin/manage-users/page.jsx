@@ -30,7 +30,7 @@ const ManageUsers = () => {
 		  try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user`,
 			{
-			  cache: 'no-cache'
+			  cache: 'no-store'
 			});
 			const data = await res.json();
 			setAllUsers(data);
@@ -126,6 +126,7 @@ const ManageUsers = () => {
 		  try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/admin?id=${user?._id}&controlAdminBtn=${value}`, {
         method: "PATCH",
+        cache: "no-store"
       });
       if (res.status === 200) {
         // Successful response, handle data accordingly

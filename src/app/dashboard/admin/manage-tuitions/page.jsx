@@ -29,7 +29,7 @@ const ManageTutors = () => {
 		  try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-tuitions`,
 			{
-			  cache: 'no-cache'
+			  cache: 'no-store'
 			});
 			const data = await res.json();
 			setAllTuitions(data);

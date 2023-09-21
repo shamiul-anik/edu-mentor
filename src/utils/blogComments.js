@@ -11,7 +11,7 @@ const blogCommentGet = async (postData) => {
         const fetchCommentData = async () => {
           try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs/blog-comments`, {
-              cache: 'no-cache'
+              cache: 'no-store'
             });
             const data = await res.json();
             setComments(data);

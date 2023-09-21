@@ -8,6 +8,7 @@ export const imageUpload = async (image) => {
   const response = await fetch(url, {
     method: 'POST',
     body: formData,
+    cache: "no-store"
   })
   const data = await response.json()
   return data
