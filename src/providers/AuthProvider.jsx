@@ -68,7 +68,6 @@ const AuthProvider = ({ children }) => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
-			
 			setLoading(false);
 		});
 		const tokenData = {
@@ -79,7 +78,8 @@ const AuthProvider = ({ children }) => {
 		return () => {
 			unSubscribe();
 		}
-	}, [user?.email])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const authInfo = {
 		user,
