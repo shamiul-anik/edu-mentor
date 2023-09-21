@@ -1,27 +1,21 @@
-import connect from "@/utils/db.js";
+import connect from "../../../../utils/db";
 import { NextResponse } from "next/server";
-import { Student_Message } from "../../../../models/Student_Message"
+import { Student_Message } from "../../../../models/Student_Message";
 
-export const  GET = async (request) => {
-    try {
-        await connect()
-        const {searchParams} = new URL(request.url);
-        const tutor_email = searchParams.get('tutor_email');
-        const student_email = searchParams.get('student_email');
+export const GET = async (request) => {
+	try {
+		await connect()
+		const { searchParams } = new URL(request.url);
+		const tutor_email = searchParams.get('tutor_email');
+		const student_email = searchParams.get('student_email');
 
-        const query = {
+		const query = {
 
-        }
-        
-        if(tutor_email){
-            query.tutor_email = tutor_email;
-        }
-        if(student_email){
-            query.student_email = student_email;
-        }
+		}
 
         console.log('get-messages route', query)
-        if(query ){
+        const hasValidQuery = Object.keys(query).length > 0;
+        if( hasValidQuery){
             console.log('get-messages route block', query)
             const messages = await Student_Message.find(query)
             return new NextResponse(JSON.stringify(messages), {status: 200})
@@ -32,6 +26,6 @@ export const  GET = async (request) => {
         
         
     } catch (error) {
-        return new NextResponse.json("Database Error", error, {status: 500});
+        return new NextResponse("Database Error",{status: 500});
     }
 }
