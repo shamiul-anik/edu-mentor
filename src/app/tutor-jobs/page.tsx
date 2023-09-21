@@ -92,11 +92,10 @@ const TutorRequest = () => {
 	};
 
 	return (
-		<div>
+		<>
 
 			<CommonBanner bannerHeading="Tutor Jobs" />
 			
-
 			<section className="max-w-7xl mx-auto mt-12 lg:mt-20 p-4 md:px-0">
 				
 				<SectionTitle heading="Unlock Exciting Tutoring Opportunities" subHeading="Choose Your Path as a Tutor and Shape Futures Your Way!"></SectionTitle>
@@ -179,7 +178,7 @@ const TutorRequest = () => {
 				}
 			</section>
 
-		</div>
+		</>
 	);
 };
 
