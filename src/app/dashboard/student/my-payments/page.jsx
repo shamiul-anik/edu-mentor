@@ -2,7 +2,7 @@
 import useAuth from '@/hooks/useAuth';
 import React, { useEffect, useState } from 'react';
 import { FaMoneyBill } from 'react-icons/fa';
-
+import {checkout} from '@/utils/checkout'
 const MyPayments = () => {
 	const { user } = useAuth();
 	const [studentPaymentBooking, setStudentPaymentBooking] = useState([]);
@@ -26,6 +26,39 @@ const MyPayments = () => {
 		fetchPaymentBooking();
 	  }, [user?.email]);
 	//   console.log(studentPaymentBooking);
+	const paymentsData = [
+		{
+		  "tutor_name": "John Doe",
+		  "tutor_email": "mamun.bbn.bd@gmail.com",
+		  "subject": "Math",
+		  "class_name": "Algebra 1",
+		  "salary": 2000,
+		  "payment_status": "Pending",
+		  "month_name": "September",
+		  "action": "Pay Now"
+		},
+		{
+		  "tutor_name": "Jane Doe",
+		  "tutor_email": "mamun.bbn.bd@gmail.com",
+		  "subject": "English",
+		  "class_name": "English 10",
+		  "salary": 1500,
+		  "payment_status": "Pending",
+		  "month_name": "October",
+		  "action": "Pay Now"
+		},
+		{
+		  "tutor_name": "Peter Parker",
+		  "tutor_email": "mamun.bbn.bd@gmail.com",
+		  "subject": "Science",
+		  "class_name": "Biology",
+		  "salary": 2500,
+		  "payment_status": "Pending",
+		  "month_name": "November",
+		  "action": "Pay Now"
+		},
+	  ]
+	  
 
 	return (
 		<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
@@ -69,7 +102,7 @@ const MyPayments = () => {
 					</thead>
 					<tbody>
 						{
-							studentPaymentBooking?.map((payment, index) => (
+							paymentsData?.map((payment, index) => (
 								<tr
 								key={payment?._id}
 								className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -112,7 +145,15 @@ const MyPayments = () => {
 									</select>
 								</td>
 								<td className="px-2 py-2 text-center border-r-2">
-									<button type="button" className="flex w-28 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
+									<button type="button" 
+									onClick={(()=>{
+										checkout(
+										  {
+											lineItems:[{price:"price_1NsdFNJeiBkN36n3ah91t7Uw",quantity:1}]
+										  }
+										)
+									   })}
+									className="flex w-28 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
 										<FaMoneyBill className='gr-icon w-4 h-4 mr-2' />
 										Pay Now
 									</button>
