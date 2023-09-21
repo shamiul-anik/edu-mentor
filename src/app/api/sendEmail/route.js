@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
-    const { to, subject, message } = await request.json();
+    const { to, subject, message, from } = await request.json();
 
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -75,7 +75,7 @@ export async function POST(request) {
                 <td>${message}</td>
               </tr>
             </table>
-            <h1>Thank you so much for contact</h1>
+            <h1>Thank you so much for contacting us</h1>
           </div>
         </body>
         </html>
@@ -149,7 +149,6 @@ export async function POST(request) {
         </html>
       `,
     };
-    
 
     // Send the email to the "to" address
     await transporter.sendMail(mailOptionTo);
