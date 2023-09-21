@@ -12,6 +12,12 @@ export const GET = async (request) => {
 		const query = {
 
 		}
+        if(tutor_email){
+            query.tutor_email = tutor_email;
+        }
+        if(student_email){
+            query.student_email = student_email;
+        }
 
         console.log('get-messages route', query)
         const hasValidQuery = Object.keys(query).length > 0;

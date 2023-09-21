@@ -46,10 +46,6 @@ const MyBookings = () => {
       if (res.status === 200) {
         // Successful response, handle data accordingly
         // setAllUsers(data);
-        startTransition(()=>{
-          console.log({router})
-          router.refresh();
-        })
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -60,6 +56,10 @@ const MyBookings = () => {
         console.log("User admin action successfully")
         
       }
+	  startTransition(()=>{
+		console.log({router})
+		router.refresh();
+	  })
 			const data = await res.json();
 
       // console.log(data)
