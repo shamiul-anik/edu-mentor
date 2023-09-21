@@ -42,6 +42,7 @@ const MyBookings = () => {
 		  try {
 			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
         method: "PATCH",
+		cache: "no-store"
       });
       if (res.status === 200) {
         // Successful response, handle data accordingly

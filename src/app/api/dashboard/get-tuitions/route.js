@@ -8,8 +8,14 @@ export const GET = async (request) => {
 
     const {searchParams} = new URL(request.url);
     const email = (searchParams.get('email'));
+    const isVerified = (searchParams.get('isVerified'));
     const query = {
-        tutor_email: email
+        tutor_email: email,
+        
+    }
+    //single page show data admin isVerified only.
+    if(isVerified === "true"){
+        query.isVerified = true;
     }
     console.log(query)
     if(query.tutor_email !== null){

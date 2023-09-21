@@ -26,7 +26,7 @@ const TutorRequest = () => {
     const fetchAllData = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request`, {
-          cache: 'no-cache'
+          cache: 'no-store'
         });
         const data: TutorData[] = await res.json();
         setAllData(data);

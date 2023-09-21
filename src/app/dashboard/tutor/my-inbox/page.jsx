@@ -36,7 +36,8 @@ const MyInbox = () => {
     try {
       
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/deleteMessage?id=${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        cache: "no-store"
       })
           if(res.status === 400){
       toast.error("error deleting message")

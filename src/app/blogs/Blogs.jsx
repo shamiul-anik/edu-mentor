@@ -36,7 +36,7 @@ const Blogs = () => {
         const fetchData = async () => {
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blogs`, {
-                    cache: "no-cache"
+                    cache: "no-store"
                 });
 
                 if (!res.ok) {

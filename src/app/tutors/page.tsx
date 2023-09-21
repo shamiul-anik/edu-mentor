@@ -29,9 +29,9 @@ const TutorsPage = () => {
 	useEffect(() => {
 		const fetchAllData = async () => {
 			try {
-				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?isVerified=${isVerified}&gender=${gender}`,
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?gender=${gender}`,
 					{
-						cache: 'no-cache'
+						cache: 'no-store'
 					});
 				const data = await res.json();
 				setAllData(data);
@@ -70,7 +70,7 @@ const TutorsPage = () => {
 					<div className="basis-1/3">
 						<h3 className="mx-4 text-2xl">Advance Filter</h3>
 						<hr className="mx-4 mt-4 border-1 border-slate-900" />
-						<div className="p-4">
+						{/* <div className="p-4">
 							<h3 className="pb-4">Tutor Type</h3>
 							<label>
 								<input
@@ -93,9 +93,9 @@ const TutorsPage = () => {
 
 								/> Verified
 							</label>
-						</div>
+						</div> */}
 						<div className="p-4">
-							<hr className="mt-4 border-1 border-slate-900" />
+							{/* <hr className="mt-4 border-1 border-slate-900" /> */}
 							<h3 className="pb-4 pt-4">Gender</h3>
 							<label>
 								<input

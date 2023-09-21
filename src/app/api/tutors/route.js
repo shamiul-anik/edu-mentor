@@ -8,7 +8,7 @@ export const GET = async (request) => {
     await connect();
     const {searchParams} = new URL(request.url);
     const gender = (searchParams.get("gender"))
-    const isVerified = (searchParams.get("isVerified"))
+    // const isVerified = (searchParams.get("isVerified"))
     // console.log(gender,premium)
 
     
@@ -21,19 +21,21 @@ export const GET = async (request) => {
 
     // Create a filter object based on the provided query parameters
     const filter = {
-      role: "tutor"
+      role: "tutor",
+      isVerified: true,
+
     };
 
     if (gender === 'male' || gender === "female") {
       filter.gender = gender;
     }
 
-    if (isVerified === "true") {
-      filter.isVerified = true;
-    }
-    console.log(filter)
+    // if (isVerified === "true") {
+    //   filter.isVerified = true;
+    // }
+    // console.log(filter)
     // Check if both gender and premium are not provided in the query parameters
-    if (!gender && !isVerified) {
+    if (!gender) {
       // If both are not provided, find all tutors without any filters
       const tutors = await Users.find(filter);
       return new NextResponse(JSON.stringify(tutors), { status: 200 });

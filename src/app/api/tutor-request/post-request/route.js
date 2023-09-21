@@ -21,7 +21,7 @@ export const POST = async (request) => {
       medium,
       classname,
       district,
-      area,
+      area
      } = await request.json();
     // console.log( name,
     //   phone,
