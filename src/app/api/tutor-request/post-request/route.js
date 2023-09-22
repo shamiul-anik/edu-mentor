@@ -22,10 +22,10 @@ export const POST = async (request) => {
 		} = await request.json();
 
 		// check existing users
-		const tutorRequest = await Tutor_request.findOne({ phone });
-		if (tutorRequest) {
-			return new NextResponse({ error: "Already exists!" }, { status: 400 });
-		}
+		// const tutorRequest = await Tutor_request.findOne({ phone });
+		// if (tutorRequest) {
+		// 	return new NextResponse({ error: "Already exists!" }, { status: 400 });
+		// }
 
 		// Create a new user instance
 		const newTutorRequest = new Tutor_request({
