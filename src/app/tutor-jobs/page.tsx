@@ -17,23 +17,21 @@ const TutorRequest = () => {
 	const [loading, setLoading] = useState(false);
 	const { user, userData, userRole }: any = useAuth();
 	
-
-	useEffect(() => {
-		const fetchAllData = async () => {
-			try {
-				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request`, {
-					cache: 'no-cache'
-				});
-				const data: TutorData[] = await res.json();
-				setAllData(data);
-				setFilteredData(data);
-			} catch (error) {
-				// console.error('Error fetching tuitions data:', error);
-				toast.error(`Error fetching tuitions data: ${error}`);
-			}
-		};
-		fetchAllData();
-	}, []);
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutor-request`, {
+          cache: 'no-store'
+        });
+        const data: TutorData[] = await res.json();
+        setAllData(data);
+        setFilteredData(data);
+      } catch (error) {
+        console.error('Error fetching tutor data:', error);
+      }
+    };
+    fetchAllData();
+  }, []);
 
 	useEffect(() => {
 		// Apply filters based on user selections
