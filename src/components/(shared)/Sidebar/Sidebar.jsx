@@ -14,7 +14,7 @@ import { AiOutlineBars } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
 import { MdArticle } from 'react-icons/md';
 
@@ -25,7 +25,8 @@ const Sidebar = () => {
   const { replace, refresh } = useRouter();
 
   // const userEmail = user?.email;
-  // console.log(userEmail);
+  const pathname = usePathname();
+  // const isActive = path
   // console.log(userRole);
 
 	const handleLogOut = () => {
@@ -141,7 +142,7 @@ const Sidebar = () => {
                     </Link> */}
                     <Link
                       href='/dashboard/student/hired-tutors'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/hired-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaMoneyCheck className='w-5 h-5' />
@@ -149,7 +150,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/student/booked-tutors'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/booked-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaCalendar className='w-5 h-5' />
@@ -157,7 +158,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/student/my-payments'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-payments" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaMoneyBill className='w-5 h-5' />
@@ -165,7 +166,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/student/payment-history-student'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/payment-history-student" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaHistory className='w-5 h-5' />
@@ -173,7 +174,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/student/my-messages'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-messages" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaInbox className='w-5 h-5' />
@@ -189,7 +190,7 @@ const Sidebar = () => {
                   <>
                     <Link
                       href='/dashboard/tutor/add-a-tuition'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/add-a-tuition" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaSave className='w-5 h-5' />
@@ -197,7 +198,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/tutor/my-tuitions'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaGraduationCap className='w-5 h-5' />
@@ -205,7 +206,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/tutor/my-students'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-students" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaBook className='w-5 h-5' />
@@ -213,7 +214,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/tutor/my-bookings'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-bookings" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaCalendar className='w-5 h-5' />
@@ -221,7 +222,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/tutor/payment-history-tutor'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/payment-history-tutor" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaHistory className='w-5 h-5' />
@@ -229,7 +230,7 @@ const Sidebar = () => {
                     </Link>
                     <Link
                       href='/dashboard/tutor/my-inbox'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-inbox" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaInbox className='w-5 h-5' />
@@ -245,23 +246,23 @@ const Sidebar = () => {
                   <>
                     <Link
                       href='/dashboard/admin/manage-tuitions'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookmarkCheckFill className='w-5 h-5' />
                       <span className='mx-4 font-medium'>Manage Tuitions</span>
                     </Link>
                     <Link
-                      href='/dashboard/admin/manage-tutor-request'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      href='/dashboard/admin/manage-tutor-requests'
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tutor-requests" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <BsBookFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Tutor Request</span>
+                      <span className='mx-4 font-medium'>Manage Tutor Requests</span>
                     </Link>
                     <Link
                       href='/dashboard/admin/manage-users'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-users" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
                       }
                     >
                       <FaUserCheck className='w-5 h-5' />
@@ -294,12 +295,12 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Tutors</span>
           </Link>
           <Link
-            href='/tutor-request'
+            href='/tutor-requests'
             className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
             }
           >
             <GiTeacher className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Tutor Request</span>
+            <span className='mx-4 font-medium'>Tutor Requests</span>
           </Link>
           <Link
             href='/tutor-jobs'
