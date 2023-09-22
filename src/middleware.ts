@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
 	const path = request.nextUrl.pathname;
-	console.log(path, 'path');
+	// console.log(path, 'path');
 
 	const token = request.cookies.get('token')?.value || '';
 	const isPublicPath = ['/login', '/register'].includes(path);
