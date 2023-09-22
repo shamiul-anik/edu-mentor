@@ -9,7 +9,7 @@ export const GET = async (request) => {
 	try {
 		await connect();
 		// Perform a query to fetch data from the "Tutor_request" collection
-		const tutorRequest = await Tutor_request.find({isVerified: true});
+		const tutorRequest = await Tutor_request.find();
 		// console.log(tutorRequest)
 		// Return the fetched data as a JSON response
 		return new NextResponse(JSON.stringify(tutorRequest), { status: 200 })

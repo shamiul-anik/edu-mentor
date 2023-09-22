@@ -63,7 +63,7 @@ const Registration = () => {
 
 				saveUser(userInfo);
 				useJWT();
-				console.log(userInfo);
+				// console.log(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
