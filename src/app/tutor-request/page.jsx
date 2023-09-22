@@ -124,6 +124,7 @@ const TutorRequest = () => {
 								onChange={(e) => setTuitionType(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
 							>
+								<option disabled value="">- Select Tuition Type -</option>
 								<option value="Home Tutoring">Home Tutoring</option>
 								<option value="Remote Tutoring">Remote Tutoring</option>
 							</select>
@@ -133,11 +134,11 @@ const TutorRequest = () => {
 								Medium
 							</label>
 							<select
-								defaultValue={"English"}
 								value={medium}
 								onChange={(e) => setMedium(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
 							>
+								<option disabled value="">- Select Medium -</option>
 								<option value="English">English</option>
 								<option value="Bangla">Bangla</option>
 							</select>
@@ -151,6 +152,7 @@ const TutorRequest = () => {
 								onChange={(e) => setClassname(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
 							>
+								<option disabled value="">- Select Class -</option>
 								<option value="1">1st</option>
 								<option value="2">2nd</option>
 								<option value="3">3rd</option>
@@ -174,6 +176,7 @@ const TutorRequest = () => {
 								onChange={(e) => setDistrict(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
 							>
+								<option disabled value="">- Select District -</option>
 								<option value="Bagerhat">Bagerhat</option>
 								<option value="Bandarban">Bandarban</option>
 								<option value="Barguna">Barguna</option>
