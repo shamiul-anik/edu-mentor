@@ -2,6 +2,7 @@
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, useTransition } from 'react';
+import toast from 'react-hot-toast';
 import { GrValidate } from 'react-icons/gr';
 import { LuShieldClose } from 'react-icons/lu';
 import Swal from 'sweetalert2';
@@ -47,14 +48,15 @@ const MyBookings = () => {
       if (res.status === 200) {
         // Successful response, handle data accordingly
         // setAllUsers(data);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: "User Action successfully",
-          showConfirmButton: false,
-          timer: 1500
-        })
-        console.log("User admin action successfully")
+        // Swal.fire({
+        //   position: 'center',
+        //   icon: 'success',
+        //   title: "User Action successfully",
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+        // console.log("User admin action successfully")
+		toast.success("User Action successfully")
         
       }
 	  startTransition(()=>{
