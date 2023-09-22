@@ -18,6 +18,8 @@ import useAuth from "@/hooks/useAuth";
 import adminBtn from "@/utils/dashboard/adminBtn"
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { Toast } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -131,23 +133,24 @@ const ManageUsers = () => {
       if (res.status === 200) {
         // Successful response, handle data accordingly
         // setAllUsers(data);
-        startTransition(()=>{
-          console.log({router})
-          router.refresh();
-        })
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: "User Action successfully",
-          showConfirmButton: false,
-          timer: 1500
-        })
-        console.log("User admin action successfully")
-        
+        // Swal.fire({
+        //   position: 'center',
+        //   icon: 'success',
+        //   title: "User Action successfully",
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+        // console.log("User admin action successfully")
+        toast.success("User Action successfully")
       }
-			const data = await res.json();
+      const data = await res.json();
+      startTransition(()=>{
+        console.log({router})
+        router.refresh();
+      })
 
-      console.log(data)
+
+      // console.log(data)
 
 			
 		  } catch (error) {
