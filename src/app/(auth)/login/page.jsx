@@ -88,8 +88,8 @@ const Login = () => {
 				setJWT(tokenData)
 
 
-				toast.success("Successfully logged in!");
 				router.push('/profile')
+				toast.success("Successfully logged in!");
 			})
 			.catch(error => {
 				setError(error.message);

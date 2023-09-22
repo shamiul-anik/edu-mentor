@@ -10,7 +10,7 @@ const MyBookings = () => {
 	const { user } = useAuth();
 	const [tutorBooking, setTutorBooking] = useState([]);
 	const [isPending, startTransition] = useTransition()
-  const router = useRouter();
+	const router = useRouter();
 	useEffect(() => {
 		const fetchTutorBooking = async () => {
 			try {
@@ -32,47 +32,41 @@ const MyBookings = () => {
 	}, [user?.email]);
 	console.log(tutorBooking)
 
-	const handleAdminBtn= (id, value) => {
-    // adminBtn(user, value);
-    
+	const handleAdminBtn = (id, value) => {
+		// adminBtn(user, value);
 
-  // console.log(user._id, value)
 
-    const fetchAdminBtn = async () => {
-		  try {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
-        method: "PATCH",
-      });
-      if (res.status === 200) {
-        // Successful response, handle data accordingly
-        // setAllUsers(data);
-        startTransition(()=>{
-          console.log({router})
-          router.refresh();
-        })
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: "User Action successfully",
-          showConfirmButton: false,
-          timer: 1500
-        })
-        console.log("User admin action successfully")
-        
-      }
-			const data = await res.json();
+		// console.log(user._id, value)
 
-      // console.log(data)
+		const fetchAdminBtn = async () => {
+			try {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
+					method: "PATCH",
+				});
+				await startTransition(() => {
+					Swal.fire({
+					  position: 'center',
+					  icon: 'success',
+					  title: "User Action successfully",
+					  showConfirmButton: false,
+					  timer: 1500
+					});
+					console.log("User admin action successfully");
+					router.reload(); // Reload the page to trigger a re-render
+				  });
+				const data = await res.json();
 
-			
-		  } catch (error) {
-			console.error('Error fetching adminAction btn:', error);
-		   
-		  }
+				// console.log(data)
+
+
+			} catch (error) {
+				console.error('Error fetching adminAction btn:', error);
+
+			}
 		};
-	
+
 		fetchAdminBtn();
-  }
+	}
 	return (
 		<>
 			<header>
@@ -130,50 +124,50 @@ const MyBookings = () => {
 							{
 								tutorBooking?.map((tbook, index) => (
 									<tr
-									key={tbook?._id}
-									className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-									<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
-										{index + 1}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-										{tbook?.student_name}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-									{tbook?.student_email}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-									{tbook?.student_mobile_number}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-									{tbook?.subject}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-									{tbook?.student_class}
-									</td>
-									<td className="px-2 py-2 border-r-2">
-									{tbook?.student_location}
-									</td>
-									<td className="px-2 py-2 text-center border-r-2">
-									{tbook?.salary}
-									</td>
-									<td className="px-2 py-2 text-center border-r-2">
-									{tbook?.available_days}
-									</td>
-									<td className="px-2 py-2 text-center border-r-2">
-										
-										{  tbook?.isAccepted == null ? "pending" :  tbook?.isAccepted == false ? "Rejected" : tbook?.isAccepted == true ? "Accepted" : ""}
-									</td>
-									<td className="px-2 py-2 text-center border-r-2">
-										<button onClick={()=>handleAdminBtn(tbook?._id, 'approve')} type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={tbook?.isAccepted} >
-											<GrValidate className='gr-icon w-4 h-4 mr-2' />
-											Approve
-										</button>
-										<button onClick={()=>handleAdminBtn(tbook?._id, 'deny')} type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700"  disabled={(tbook?.isAccepted) ? false : true} >
-											<LuShieldClose className='gr-icon w-4 h-4 mr-2' />
-											Deny
-										</button>
-									</td>
-								</tr>
+										key={tbook?._id}
+										className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+										<td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
+											{index + 1}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.student_name}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.student_email}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.student_mobile_number}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.subject}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.student_class}
+										</td>
+										<td className="px-2 py-2 border-r-2">
+											{tbook?.student_location}
+										</td>
+										<td className="px-2 py-2 text-center border-r-2">
+											{tbook?.salary}
+										</td>
+										<td className="px-2 py-2 text-center border-r-2">
+											{tbook?.available_days}
+										</td>
+										<td className="px-2 py-2 text-center border-r-2">
+
+											{tbook?.isAccepted == null ? "pending" : tbook?.isAccepted == false ? "Rejected" : tbook?.isAccepted == true ? "Accepted" : ""}
+										</td>
+										<td className="px-2 py-2 text-center border-r-2">
+											<button onClick={() => handleAdminBtn(tbook?._id, 'approve')} type="button" className="flex w-40 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={tbook?.isAccepted} >
+												<GrValidate className='gr-icon w-4 h-4 mr-2' />
+												Approve
+											</button>
+											<button onClick={() => handleAdminBtn(tbook?._id, 'deny')} type="button" className="flex w-40 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(tbook?.isAccepted) ? false : true} >
+												<LuShieldClose className='gr-icon w-4 h-4 mr-2' />
+												Deny
+											</button>
+										</td>
+									</tr>
 								))
 							}
 

@@ -6,7 +6,6 @@ import saveTuition from "@/utils/saveTuition"
 
 
 const AddATuition = () => {
-
   const { user, userData } = useAuth();
 
   const { register, reset, handleSubmit, formState: { errors } } = useForm();

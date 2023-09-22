@@ -62,14 +62,13 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
-				useJWT();
+			    setJWT();
 				console.log(userInfo);
 
 				setSuccess("Registration successful!");
 				toast.success("Registration successful!");
-				handleLogOut();
 				event.target.reset();
-				router.push('/login')
+				router.push('/')
 
 			})
 			.catch(error => {

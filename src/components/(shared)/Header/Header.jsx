@@ -12,7 +12,7 @@ import { useRouter} from "next/navigation";
 import Cookies from 'js-cookie'
 
 const Header = () => {
-  const { replace} = useRouter();
+  const router = useRouter();
 
 
   const { user, logOut, userRole } = useAuth();
@@ -28,6 +28,7 @@ const Header = () => {
       await logOut();
       Cookies.set('token', '')
       toast.dismiss(toastId);
+      router.push('/');
       toast.success("Successfully logout!");
     } catch (error) {
       console.log(error.message);
