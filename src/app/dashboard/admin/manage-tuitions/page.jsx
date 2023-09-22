@@ -10,6 +10,7 @@ import { useEffect, useState, useTransition } from "react";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 // import FeedbackModal from "./FeedbackModal";
 // import SingleClass from "./SingleClass";
@@ -62,19 +63,20 @@ const ManageTutors = () => {
     if (res.status === 200) {
       // Successful response, handle data accordingly
       // setAllUsers(data);
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: "User Action successfully",
-        showConfirmButton: false,
-        timer: 1500
-      })
-      startTransition(()=>{
-        router.refresh();
-      })
-      console.log("User admin action successfully")
+      // Swal.fire({
+      //   position: 'top-center',
+      //   icon: 'success',
+      //   title: "User Action successfully",
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
+      // console.log("User admin action successfully")
+      toast.success("User Action successfully");
       
     }
+    startTransition(()=>{
+      router.refresh();
+    })
     const data = await res.json();
     console.log(data)
 
