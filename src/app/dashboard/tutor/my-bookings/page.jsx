@@ -36,7 +36,29 @@ const MyBookings = () => {
 		// adminBtn(user, value);
 
 
-		// console.log(user._id, value)
+    const fetchAdminBtn = async () => {
+		  try {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
+        method: "PATCH",
+      });
+      if (res.status === 200) {
+        // Successful response, handle data accordingly
+        // setAllUsers(data);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "User Action successfully",
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log("User admin action successfully")
+        
+      }
+	  startTransition(()=>{
+		console.log({router})
+		router.refresh();
+	  })
+			const data = await res.json();
 
 		const fetchAdminBtn = async () => {
 			try {

@@ -5,8 +5,12 @@ import Lottie from 'lottie-react';
 import ContactUsLottie from '@/assets/lottie/contact-us.json';
 import { BsSend } from 'react-icons/bs';
 import useAuth from "@/hooks/useAuth";
+import toast from 'react-hot-toast';
 
 const Contact = () => {
+
+  const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState({
     name: '',
     subject: '',
@@ -15,17 +19,21 @@ const Contact = () => {
   });
 
   const { user }: any = useAuth();
-  console.log("logged user", user);
-  const currentUserEmail = user?.email;
+  // console.log("logged user", user);
+  // const currentUserEmail = user?.email;
 
   const sendEmail = async () => {
-    console.log('Name:', data.name);
-    console.log('Subject:', data.subject);
-    console.log('Email:', currentUserEmail);
-    console.log('Message:', data.message);
+
+    setLoading(true);
+
+    // console.log('Name:', data.name);
+    // console.log('Subject:', data.subject);
+    // console.log('Email:', data.email);
+    // console.log('Message:', data.message);
 
     const emailData = {
-      to: currentUserEmail,
+      name: data.name,
+      to: data.email,
       subject: data.subject,
       message: data.message,
     };
@@ -40,9 +48,13 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        console.log("Email sent successfully");
+        // console.log("Email sent successfully");
+        setLoading(false);
+        toast.success("Email sent successfully");
       } else {
-        console.error("Email sending failed");
+        // console.error("Email sending failed");
+        setLoading(false);
+        toast.error("Email sending failed");
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -120,8 +132,7 @@ const Contact = () => {
                   name="email"
                   placeholder="Enter your email address"
                   className="input input-bordered focus:outline-teal-500 focus:border-teal-200 focus:ring-teal-400 input-sm py-5 text-[14px]"
-                  value={currentUserEmail}
-                  
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
               </div>
 
@@ -140,13 +151,20 @@ const Contact = () => {
               </div>
 
               <div className="form-control mt-3">
-                <button
-                  className="relative flex w-100 items-center justify-center p-0.5 overflow-hidden text-lg font-semibold text-teal-700 rounded-lg group bg-gradient-to-br from-teal-600 to-teal-500 group-hover:from-teal-600 group-hover:to-teal-500 hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800"
-                  onClick={sendEmail}
-                >
-                  <span className="flex items-center justify-center w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                    <BsSend className="mr-2 self-center" /> Send Message
-                  </span>
+
+                <button type="button" onClick={sendEmail} disabled={loading} className="relative flex w-100 items-center justify-center p-0.5 overflow-hidden text-lg font-semibold text-teal-700 rounded-lg group bg-gradient-to-br from-teal-600 to-teal-500 group-hover:from-teal-600 group-hover:to-teal-500 hover:text-white dark:text-white focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800">
+                  {!loading &&
+                    <span className="flex items-center justify-center w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                      <BsSend className="mr-2 self-center" />
+                      Send Message
+                    </span>
+                  }
+                  {loading &&
+                    <span className="flex items-center justify-center w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                      <span className="loading loading-bars loading-md mr-2 self-center"></span>
+                      <span className="animate-pulse">Sending Message...</span>
+                    </span>
+                  }
                 </button>
               </div>
             </div>

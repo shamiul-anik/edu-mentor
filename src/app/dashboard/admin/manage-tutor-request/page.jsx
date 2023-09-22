@@ -6,9 +6,10 @@ import Image from "next/image";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 // import FeedbackModal from "./FeedbackModal";
 // import SingleClass from "./SingleClass";
 // import { useQuery } from "@tanstack/react-query";
@@ -20,6 +21,8 @@ const ManageStudents = () => {
 
   const [allRequest, setAllRequest] = useState([]);
   const { user, loading, userRole } = useAuth();
+  const [isPending, startTransition] = useTransition()
+  const router = useRouter();
 	
 	useEffect(() => {
 		const fetchAllTutorRequest = async () => {
@@ -63,6 +66,9 @@ const ManageStudents = () => {
           title: "User Action successfully",
           showConfirmButton: false,
           timer: 1500
+        })
+        startTransition(()=>{
+          router.refresh();
         })
         console.log("User admin action successfully")
         
