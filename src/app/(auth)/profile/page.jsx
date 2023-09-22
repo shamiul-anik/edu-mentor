@@ -62,7 +62,7 @@ const Profile = () => {
       // Save the user information and provide feedback
       saveUser(userInfo);
       // console.log(userInfo);
-      console.log("Profile updated!");
+      // console.log("Profile updated!");
       setSuccess("Profile updated!");
       toast.success("Profile updated!");
       setLoading(false);

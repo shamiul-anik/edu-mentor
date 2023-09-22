@@ -54,7 +54,7 @@
 		"src/app/dashboard/student/booked-tutors/page.jsx",
 		"src/app/dashboard/student/my-payments/page.jsx",
 		"src/app/dashboard/student/hired-tutors/page.jsx"
-	],
+, "src/app/dashboard/tutor/my-bookings/page.jsx", "src/app/dashboard/tutor/my-students/page.jsx", "src/app/dashboard/tutor/my-tuitions/page.jsx", "src/app/dashboard/tutor/my-inbox/page.jsx"	],
 	"exclude": [
 		"node_modules"
 	]
