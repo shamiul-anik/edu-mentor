@@ -36,6 +36,9 @@ const tutorRequestSchema = new mongoose.Schema({
   area: {
     type: String,
   },
+  admin_feedback: {
+    type: String,
+  },
   isVerified: {
     type: Boolean,
     default: false, // Set the default value to false

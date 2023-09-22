@@ -233,7 +233,7 @@ const ManageStudents = () => {
 											{(request?.isVerified == true) ? <span className="text-green-700">true</span> : <span className="text-red-700"> false</span>}
 										</td>
 										<td className="px-2 py-2 border-r-2">
-											continue work
+											{request?.admin_feedback}
 										</td>
 										<td className="px-2 py-2 text-center">
 											<button onClick={() => handleAdminBtn(request, 'approve')} type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(request?.isVerified == true) ? true : false} >
