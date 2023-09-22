@@ -41,7 +41,7 @@
 		"src/app/blog/Blogs.jsx",
 		"src/app/blogs/Blogs.jsx",
 		"src/app/blogs/BlogCard.jsx",
-		"src/app/tutor-request/page.jsx",
+		"src/app/tutor-requests/page.jsx",
 		"src/app/blogs/post-blog/page.jsx",
 		"src/app/dashboard/tutor/add-a-tuition/page.jsx",
 		"src/app/dashboard/admin/manage-users/page.jsx",
