@@ -24,7 +24,7 @@ const ManageStudents = () => {
 	const { user, loading, userRole } = useAuth();
 	const [isPending, startTransition] = useTransition()
 	const router = useRouter();
-	
+
 	useEffect(() => {
 		const fetchAllTutorRequest = async () => {
 			try {
@@ -32,6 +32,10 @@ const ManageStudents = () => {
 					{
 						cache: 'no-store'
 					});
+
+				if (!res.ok) {
+					throw new Error('Network response was not ok');
+				}
 				const data = await res.json();
 				setAllRequest(data);
 			}
@@ -48,47 +52,50 @@ const ManageStudents = () => {
 	const admin_feedback = "";
 	// const isVerified = false;
 
-  const  handleAdminBtn = (request, value) =>{
-    console.log(request?._id, value);
-    const fetchAdminBtn = async () => {
-      try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${request?._id}&controlAdminBtn=${value}`, {
-        method: "PATCH",
-      },
-      {
-        cache: 'no-store'
-      });
-      if (res.status === 200) {
-        // Successful response, handle data accordingly
-        // setAllUsers(data);
-        // Swal.fire({
-        //   position: 'top-center',
-        //   icon: 'success',
-        //   title: "User Action successfully",
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // })
-        toast.success("User Action successfully")
+	const handleAdminBtn = (request, value) => {
+		console.log(request?._id, value);
+		const fetchAdminBtn = async () => {
+			try {
+				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${request?._id}&controlAdminBtn=${value}`, {
+					method: "PATCH",
+				},
+					{
+						cache: 'no-store'
+					});
+				if (res.status === 200) {
+					// Successful response, handle data accordingly
+					// setAllUsers(data);
+					// Swal.fire({
+					//   position: 'top-center',
+					//   icon: 'success',
+					//   title: "User Action successfully",
+					//   showConfirmButton: false,
+					//   timer: 1500
+					// })
+					toast.success("User Action successfully")
 
-        // console.log("User admin action successfully")
-        
-      }
-      startTransition(()=>{
-        router.refresh();
-      })
-      // const data = await res.json();
-      // console.log(data)
-  
-      
-      } catch (error) {
-      console.error('Error fetching All manageRequest:', error);
-       
-      }
-    };
-  
-    fetchAdminBtn();
-      
-   }
+					// console.log("User admin action successfully")
+
+				}else {
+					// Handle unsuccessful response
+					console.error('Error fetching All manageRequest:', res.statusText);
+				  }
+				startTransition(() => {
+					router.refresh();
+				})
+				// const data = await res.json();
+				// console.log(data)
+
+
+			} catch (error) {
+				console.error('Error fetching All manageRequest:', error);
+
+			}
+		};
+
+		fetchAdminBtn();
+
+	}
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
@@ -98,17 +105,17 @@ const ManageStudents = () => {
 
 	// Opening Feedback Modal
 	const openModal = () => {
-	  setIsOpen(true);
+		setIsOpen(true);
 	};
 
 	// Closing Feedback Modal
 	const closeModal = () => {
-	  setIsOpen(false);
+		setIsOpen(false);
 	};
 
 	const handleFeedback = (tutorRequestID) => {
-	  openModal();
-	  // console.log("Feedback ID: ", tutorRequestID);
+		openModal();
+		// console.log("Feedback ID: ", tutorRequestID);
 		setFeedbackID(tutorRequestID);
 	};
 
