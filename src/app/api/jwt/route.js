@@ -12,6 +12,7 @@ export const POST = async (request) => {
         message: "Logged out",
         success: true,
       });
+      console.log('token removed');
       response.cookies.set('token', "", { httpOnly: true, expires: new Date(0) });
       return response;
     }

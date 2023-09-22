@@ -69,17 +69,17 @@ const AuthProvider = ({ children }) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
 			setLoading(false);
+			const tokenData = {
+				email : user?.email 
+			}	
+			setJWT(tokenData)
 		});
-		const tokenData = {
-			email : user?.email 
-		}	
-		setJWT(tokenData)
 		
 		return () => {
 			unSubscribe();
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [user])
 
 	const authInfo = {
 		user,

@@ -35,60 +35,32 @@ const MyBookings = () => {
 	const handleAdminBtn = (id, value) => {
 		// adminBtn(user, value);
 
-
-    const fetchAdminBtn = async () => {
-		  try {
-			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
-        method: "PATCH",
-      });
-      if (res.status === 200) {
-        // Successful response, handle data accordingly
-        // setAllUsers(data);
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: "User Action successfully",
-          showConfirmButton: false,
-          timer: 1500
-        })
-        console.log("User admin action successfully")
-        
-      }
-	  startTransition(()=>{
-		console.log({router})
-		router.refresh();
-	  })
-			const data = await res.json();
-
-		const fetchAdminBtn = async () => {
-			try {
+		try {
+			const fetchAdminBtn = async () => {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
 					method: "PATCH",
 				});
 				await startTransition(() => {
 					Swal.fire({
-					  position: 'center',
-					  icon: 'success',
-					  title: "User Action successfully",
-					  showConfirmButton: false,
-					  timer: 1500
+						position: 'center',
+						icon: 'success',
+						title: "User Action successfully",
+						showConfirmButton: false,
+						timer: 1500
 					});
 					console.log("User admin action successfully");
 					router.reload(); // Reload the page to trigger a re-render
-				  });
+				});
 				const data = await res.json();
-
-				// console.log(data)
-
-
-			} catch (error) {
-				console.error('Error fetching adminAction btn:', error);
-
 			}
-		};
+			fetchAdminBtn();
+		} catch (error) {
+			console.error('Error fetching adminAction btn:', error);
+		}
+	};
 
-		fetchAdminBtn();
-	}
+
+
 	return (
 		<>
 			<header>
@@ -192,8 +164,6 @@ const MyBookings = () => {
 									</tr>
 								))
 							}
-
-
 						</tbody>
 					</table>
 				</div>
