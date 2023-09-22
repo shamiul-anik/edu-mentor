@@ -30,7 +30,6 @@ const TutorRequest = () => {
 			classname,
 			district,
 			area,
-			
 		};
 		// console.log(tutorInfo);
 		tutorRequestSave(tutorInfo);
@@ -49,7 +48,7 @@ const TutorRequest = () => {
 					<div className='grid md:grid-cols-2 gap-4 md:gap-6'>
 						<div>
 							<label htmlFor="name" className="block text-teal-600 text-lg">
-								Student Name
+								Student&apos;s Name
 							</label>
 							<input
 								required
@@ -69,7 +68,7 @@ const TutorRequest = () => {
 								required
 								type="text"
 								id="email"
-								placeholder="Enter your email"
+								placeholder="Enter your email address"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
@@ -83,7 +82,7 @@ const TutorRequest = () => {
 								required
 								type="text"
 								id="title"
-								placeholder="Enter the Title"
+								placeholder="Enter the tuition title"
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
@@ -91,13 +90,13 @@ const TutorRequest = () => {
 						</div>
 						<div>
 							<label htmlFor="phone" className="block text-teal-600 text-lg">
-								Phone
+								Mobile Number
 							</label>
 							<input
 								required
 								type="tel"
 								id="phone"
-								placeholder="Enter your phone number"
+								placeholder="Enter your mobile number"
 								value={phone}
 								onChange={(e) => setPhone(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
@@ -108,9 +107,8 @@ const TutorRequest = () => {
 								Salary
 							</label>
 							<input
-								type="number"
+								type="text"
 								id="salary"
-								defaultValue="5000Tk"
 								placeholder="Enter your asking salary"
 								value={salary}
 								onChange={(e) => setSalary(e.target.value)}
@@ -142,7 +140,6 @@ const TutorRequest = () => {
 							>
 								<option value="English">English</option>
 								<option value="Bangla">Bangla</option>
-								<option value="Hindi">Hindi</option>
 							</select>
 						</div>
 						<div>
@@ -159,6 +156,13 @@ const TutorRequest = () => {
 								<option value="3">3rd</option>
 								<option value="4">4th</option>
 								<option value="5">5th</option>
+								<option value="6">6th</option>
+								<option value="7">7th</option>
+								<option value="8">8th</option>
+								<option value="9">9th</option>
+								<option value="10">10th</option>
+								<option value="11">11th</option>
+								<option value="12">12th</option>
 							</select>
 						</div>
 						<div>
@@ -170,35 +174,91 @@ const TutorRequest = () => {
 								onChange={(e) => setDistrict(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
 							>
-								<option value="Dhaka">Dhaka</option>
-								<option value="Chittagong">Chittagong</option>
-								<option value="Khulna">Khulna</option>
-								<option value="Rajshahi">Rajshahi</option>
+								<option value="Bagerhat">Bagerhat</option>
+								<option value="Bandarban">Bandarban</option>
+								<option value="Barguna">Barguna</option>
 								<option value="Barisal">Barisal</option>
+								<option value="Bhola">Bhola</option>
+								<option value="Bogra">Bogra</option>
+								<option value="Brahmanbaria">Brahmanbaria</option>
+								<option value="Chandpur">Chandpur</option>
+								<option value="Chapainawabganj">Chapainawabganj</option>
+								<option value="Chittagong">Chittagong</option>
+								<option value="Chuadanga">Chuadanga</option>
+								<option value="Comilla">Comilla</option>
+								<option value="Cox&apos;s Bazar">Cox&apos;s Bazar</option>
+								<option value="Dhaka">Dhaka</option>
+								<option value="Dinajpur">Dinajpur</option>
+								<option value="Faridpur">Faridpur</option>
+								<option value="Feni">Feni</option>
+								<option value="Gaibandha">Gaibandha</option>
+								<option value="Gazipur">Gazipur</option>
+								<option value="Gopalganj">Gopalganj</option>
+								<option value="Habiganj">Habiganj</option>
+								<option value="Jamalpur">Jamalpur</option>
+								<option value="Jessore">Jessore</option>
+								<option value="Jhalokati">Jhalokati</option>
+								<option value="Jhenaidah">Jhenaidah</option>
+								<option value="Joypurhat">Joypurhat</option>
+								<option value="Khagrachari">Khagrachari</option>
+								<option value="Khulna">Khulna</option>
+								<option value="Kishoreganj">Kishoreganj</option>
+								<option value="Kurigram">Kurigram</option>
+								<option value="Kushtia">Kushtia</option>
+								<option value="Lakshmipur">Lakshmipur</option>
+								<option value="Lalmonirhat">Lalmonirhat</option>
+								<option value="Madaripur">Madaripur</option>
+								<option value="Magura">Magura</option>
+								<option value="Manikganj">Manikganj</option>
+								<option value="Meherpur">Meherpur</option>
+								<option value="Moulvibazar">Moulvibazar</option>
+								<option value="Munshiganj">Munshiganj</option>
+								<option value="Mymensingh">Mymensingh</option>
+								<option value="Naogaon">Naogaon</option>
+								<option value="Narail">Narail</option>
+								<option value="Narayanganj">Narayanganj</option>
+								<option value="Narsingdi">Narsingdi</option>
+								<option value="Natore">Natore</option>
+								<option value="Nawabganj">Nawabganj</option>
+								<option value="Netrokona">Netrokona</option>
+								<option value="Nilphamari">Nilphamari</option>
+								<option value="Noakhali">Noakhali</option>
+								<option value="Pabna">Pabna</option>
+								<option value="Panchagarh">Panchagarh</option>
+								<option value="Patuakhali">Patuakhali</option>
+								<option value="Pirojpur">Pirojpur</option>
+								<option value="Rajbari">Rajbari</option>
+								<option value="Rajshahi">Rajshahi</option>
+								<option value="Rangamati">Rangamati</option>
+								<option value="Rangpur">Rangpur</option>
+								<option value="Satkhira">Satkhira</option>
+								<option value="Shariatpur">Shariatpur</option>
+								<option value="Sherpur">Sherpur</option>
+								<option value="Sirajganj">Sirajganj</option>
+								<option value="Sunamganj">Sunamganj</option>
+								<option value="Sylhet">Sylhet</option>
+								<option value="Tangail">Tangail</option>
+								<option value="Thakurgaon">Thakurgaon</option>
 							</select>
 						</div>
 						<div>
 							<label htmlFor="area" className="block text-teal-600 text-lg">
 								Area
 							</label>
-							<select
+							<input
+								type="text"
+								id="salary"
+								placeholder="Enter your asking salary"
 								value={area}
 								onChange={(e) => setArea(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
-							>
-								<option value="Gulshan">Gulshan</option>
-								<option value="Banani">Banani</option>
-								<option value="Dhanmondi">Dhanmondi</option>
-								<option value="Mirpur">Mirpur</option>
-								<option value="Uttara">Uttara</option>
-							</select>
+							/>
 						</div>
 					</div>
 					<button type="submit" className="w-full mt-4 md:mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-12 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400">
 						Submit
 					</button>
 				</form>
-
 			
 			</section>
 		</>

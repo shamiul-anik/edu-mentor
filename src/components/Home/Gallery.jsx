@@ -13,7 +13,7 @@ const Gallery = () => {
 
       <SectionTitle heading="Photo Gallery" subHeading="Empowering Minds through Education: Nurturing Growth with Mentorship"></SectionTitle>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-4 md:gap-6">
         <div>
           <Image className="h-auto max-w-full rounded-lg object-cover object-center" width={624} height={624} src={CustomImage1} alt="Gallery Image 1" />
         </div>
