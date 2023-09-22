@@ -8,11 +8,12 @@ import Image from "next/image";
 import Logo from "@/assets/images/logo.png";
 import useAuth from "@/hooks/useAuth";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Cookies from 'js-cookie'
 
 const Header = () => {
 	const { replace } = useRouter();
+	const pathname = usePathname();
 
 	const { user, logOut, userRole } = useAuth();
 	// console.log("logged user", user);
@@ -68,25 +69,25 @@ const Header = () => {
 							className="menu menu-compact dropdown-content mt-3 p-2 shadow-lg bg-base-100 rounded-box w-52 z-10"
 						>
 							<li>
-								<Link href="/">Home</Link>
+								<Link className={`${pathname === "/" ? "bg-teal-200" : ""}`} href="/">Home</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/tutors">Tutors</Link>
+								<Link className={`${pathname === "/tutors" ? "bg-teal-200" : ""}`} href="/tutors">Tutors</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/tutor-request">Tutor Request</Link>
+								<Link className={`${pathname === "/tutor-requests" ? "bg-teal-200" : ""}`} href="/tutor-requests">Tutor Requests</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/tutor-jobs">Tutor Jobs</Link>
+								<Link className={`${pathname === "/tutor-jobs" ? "bg-teal-200" : ""}`} href="/tutor-jobs">Tutor Jobs</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/contact">Contact</Link>
+								<Link className={`${pathname === "/contact" ? "bg-teal-200" : ""}`} href="/contact">Contact</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/about">About</Link>
+								<Link className={`${pathname === "/about" ? "bg-teal-200" : ""}`} href="/about">About</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link href="/blogs">Blogs</Link>
+								<Link className={`${pathname === "/blogs" ? "bg-teal-200" : ""}`} href="/blogs">Blogs</Link>
 							</li>
 							{!user && (
 								<>
@@ -207,25 +208,25 @@ const Header = () => {
 				<div className="navbar-center mx-auto hidden lg:flex">
 					<ul className="flex gap-6 text-xl font-semibold menu-horizontal px-1 z-10">
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/">Home</Link>
+							<Link className={`${pathname === "/" ? "active" : ""}`} href="/">Home</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/tutors">Tutors</Link>
+							<Link className={`${pathname === "/tutors" ? "active" : ""}`} href="/tutors">Tutors</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/tutor-request">Tutor Request</Link>
+							<Link className={`${pathname === "/tutor-requests" ? "active" : ""}`} href="/tutor-requests">Tutor Requests</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/tutor-jobs">Tutor Jobs</Link>
+							<Link className={`${pathname === "/tutor-jobs" ? "active" : ""}`} href="/tutor-jobs">Tutor Jobs</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/contact">Contact</Link>
+							<Link className={`${pathname === "/contact" ? "active" : ""}`} href="/contact">Contact</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/about">About</Link>
+							<Link className={`${pathname === "/about" ? "active" : ""}`} href="/about">About</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link href="/blogs">Blogs</Link>
+							<Link className={`${pathname === "/blogs" ? "active" : ""}`} href="/blogs">Blogs</Link>
 						</li>
 					</ul>
 				</div>
