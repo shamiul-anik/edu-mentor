@@ -1,17 +1,24 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useTransition } from 'react'
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BsSendCheckFill } from 'react-icons/bs';
 import { FaTimesCircle } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { useRouter } from "next/navigation";
+
 
 const FeedbackModal = ({ isOpen, closeModal, feedbackID, refetch }) => {
+
+  const [isPending, startTransition] = useTransition()
+	const router = useRouter();
+
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = (feedback) => { 
+    const feed = feedback.admin_feedback;
     console.log("Feedback ID: ", feedbackID);
-    console.log("Feedback: ", feedback);
+    console.log("Feedback: ", feedback.admin_feedback);
     // if (feedbackID && feedback) {
     //   axiosSecure.patch(`/admin/send-feedback/${feedbackID}`, feedback)
     //     .then((data) => {
@@ -30,6 +37,45 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, refetch }) => {
     //       }
     //     });
     // }
+    const fetchAdminBtn = async () => {
+      try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${feedbackID}&feedback=${feed}`, {
+        method: "PATCH",
+      },
+      {
+        cache: 'no-store'
+      });
+      if (res.status === 200) {
+        // Successful response, handle data accordingly
+        // setAllUsers(data);
+        // Swal.fire({
+        //   position: 'top-center',
+        //   icon: 'success',
+        //   title: "User Action successfully",
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+        reset()
+        closeModal()
+        toast.success("success feedback")
+        console.log("User admin action successfully")
+        startTransition(()=>{
+          router.refresh();
+        })
+      }
+
+      // const data = await res.json();
+      // console.log(data)
+  
+      
+      } catch (error) {
+      console.error('Error fetching All manageRequest:', error);
+       
+      }
+    };
+  
+    fetchAdminBtn();
+      
   };
 
   return (
