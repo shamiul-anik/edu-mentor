@@ -9,7 +9,7 @@ import { useEffect, useState, useTransition } from "react";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-// import FeedbackModal from "./FeedbackModal";
+import FeedbackModal from "./FeedbackModal";
 
 const ManageStudents = () => {
 
@@ -38,7 +38,7 @@ const ManageStudents = () => {
 	// console.log(allRequest);
 
 	// Sample Data
-	const admin_feedback = "Good work!"
+	const admin_feedback = "";
 	// const isVerified = false;
 
 	const handleAdminBtn = (request, value) => {
@@ -74,27 +74,27 @@ const ManageStudents = () => {
 		fetchAdminBtn();
 	}
 
-	// // Feedback Modal Open/Close State
-	// const [isOpen, setIsOpen] = useState(false);
+	// Feedback Modal Open/Close State
+	const [isOpen, setIsOpen] = useState(false);
 
-	// // Setting Class ID for Feedback
-	// const [feedbackID, setFeedbackID] = useState("");
+	// Setting Class ID for Feedback
+	const [feedbackID, setFeedbackID] = useState("");
 
-	// // Opening Feedback Modal
-	// const openModal = () => {
-	//   setIsOpen(true);
-	// };
+	// Opening Feedback Modal
+	const openModal = () => {
+	  setIsOpen(true);
+	};
 
-	// // Closing Feedback Modal
-	// const closeModal = () => {
-	//   setIsOpen(false);
-	// };
+	// Closing Feedback Modal
+	const closeModal = () => {
+	  setIsOpen(false);
+	};
 
-	// const handleFeedback = (classData) => {
-	//   openModal();
-	//   // console.log("Feedback ID: ", classData._id);
-	//   setFeedbackID(classData._id);
-	// };
+	const handleFeedback = (tutorRequestID) => {
+	  openModal();
+	  // console.log("Feedback ID: ", tutorRequestID);
+		setFeedbackID(tutorRequestID);
+	};
 
 	return (
 		<>
@@ -230,12 +230,12 @@ const ManageStudents = () => {
 											</button>
 											{
 												admin_feedback ?
-													<button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+													<button onClick={() => handleFeedback(request?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Update Feedback
 													</button>
 													:
-													<button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-blue-500 to-blue-600 transition-all hover:duration-300 hover:from-blue-600 hover:to-blue-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+													<button onClick={() => handleFeedback(request?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-blue-500 to-blue-600 transition-all hover:duration-300 hover:from-blue-600 hover:to-blue-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Send Feedback
 													</button>
@@ -252,7 +252,7 @@ const ManageStudents = () => {
 			</section>
 
 			{/* FeedbackModal */}
-			{/* <FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID}></FeedbackModal> */}
+			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID}></FeedbackModal>
 		</>
 	);
 };
