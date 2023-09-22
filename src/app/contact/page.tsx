@@ -50,14 +50,14 @@ const Contact = () => {
       if (response.ok) {
         // console.log("Email sent successfully");
         setLoading(false);
-        toast.success("Email sent successfully");
+        toast.success("Email sent successfully!");
       } else {
         // console.error("Email sending failed");
         setLoading(false);
-        toast.error("Email sending failed");
+        toast.error("Email sending failed!");
       }
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending email: ", error);
     }
   };
 

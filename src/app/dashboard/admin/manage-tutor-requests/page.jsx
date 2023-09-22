@@ -10,12 +10,6 @@ import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-// import FeedbackModal from "./FeedbackModal";
-// import SingleClass from "./SingleClass";
-// import { useQuery } from "@tanstack/react-query";
-// import Swal from "sweetalert2";
-// import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-// import useAuth from "../../../../hooks/useAuth";
 import FeedbackModal from "./FeedbackModal";
 
 const ManageStudents = () => {
@@ -116,7 +110,7 @@ const ManageStudents = () => {
 		<>
 			<header>
 				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
-					<Fade duration={200} triggerOnce={true} cascade>Manage Tutor Request</Fade>
+					<Fade duration={200} triggerOnce={true} cascade>Manage Tutor Requests</Fade>
 				</h1>
 			</header>
 

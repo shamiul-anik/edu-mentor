@@ -75,7 +75,7 @@ const Header = () => {
 								<Link className={`${pathname === "/tutors" ? "bg-teal-200" : ""}`} href="/tutors">Tutors</Link>
 							</li>
 							<li className="hover:cursor-pointer">
-								<Link className={`${pathname === "/tutor-requests" ? "bg-teal-200" : ""}`} href="/tutor-requests">Tutor Requests</Link>
+								<Link className={`${pathname === "/tutor-request" ? "bg-teal-200" : ""}`} href="/tutor-request">Tutor Requests</Link>
 							</li>
 							<li className="hover:cursor-pointer">
 								<Link className={`${pathname === "/tutor-jobs" ? "bg-teal-200" : ""}`} href="/tutor-jobs">Tutor Jobs</Link>
@@ -214,7 +214,7 @@ const Header = () => {
 							<Link className={`${pathname === "/tutors" ? "active" : ""}`} href="/tutors">Tutors</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
-							<Link className={`${pathname === "/tutor-requests" ? "active" : ""}`} href="/tutor-requests">Tutor Requests</Link>
+							<Link className={`${pathname === "/tutor-request" ? "active" : ""}`} href="/tutor-request">Tutor Requests</Link>
 						</li>
 						<li className="nav-item hover:cursor-pointer">
 							<Link className={`${pathname === "/tutor-jobs" ? "active" : ""}`} href="/tutor-jobs">Tutor Jobs</Link>

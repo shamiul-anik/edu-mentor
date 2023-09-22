@@ -295,12 +295,12 @@ const Sidebar = () => {
             <span className='mx-4 font-medium'>Tutors</span>
           </Link>
           <Link
-            href='/tutor-requests'
+            href='/tutor-request'
             className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
             }
           >
             <GiTeacher className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Tutor Requests</span>
+            <span className='mx-4 font-medium'>Tutor Request</span>
           </Link>
           <Link
             href='/tutor-jobs'
