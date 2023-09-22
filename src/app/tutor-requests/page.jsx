@@ -250,8 +250,8 @@ const TutorRequest = () => {
 							</label>
 							<input
 								type="text"
-								id="salary"
-								placeholder="Enter your asking salary"
+								id="area"
+								placeholder="Enter your area name"
 								value={area}
 								onChange={(e) => setArea(e.target.value)}
 								className="w-full border border-teal-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
