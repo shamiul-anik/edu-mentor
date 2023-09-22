@@ -48,7 +48,7 @@ export const POST = async (request) => {
 
 		return NextResponse.json(
 			{
-				message: "Users stored successfully!",
+				message: "Data stored successfully!",
 				success: true,
 				savedTutorRequest,
 			},
