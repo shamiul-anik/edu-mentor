@@ -27,7 +27,7 @@ const TutorRequest = () => {
         setAllData(data);
         setFilteredData(data);
       } catch (error) {
-        console.error('Error fetching mentor data:', error);
+        console.error('Error fetching tutor data:', error);
       }
     };
     fetchAllData();

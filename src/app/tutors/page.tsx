@@ -1,43 +1,41 @@
-'use client'
+"use client";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
-import { User } from '@/typeScript/userType';
-import TutorCard from './TutorCard';
+import { User } from "@/typeScript/userType";
+import TutorCard from "./TutorCard";
 import CommonBanner from "@/components/(shared)/CommonHeader/CommonBanner";
 import { useEffect, useState } from "react";
+
 type tutors = {
 	_id: string; // Replace with the actual type of _id
 	gender: string; // Replace with the actual type of gender
 	isVerified: string;
-}
+};
 
 const TutorsPage = () => {
-
 	const [allData, setAllData] = useState<User[]>([]);
 	const [searchCriteria, setSearchCriteria] = useState<{
 		isVerified: string;
 		gender: string;
 	}>({
-		isVerified: '',
-		gender: '',
+		isVerified: "",
+		gender: "",
 	}); // Initialize with an empty string.
-	// const {all, premium, allGender, male, female } = searchCriteria
-	// console.log(all, premium, allGender, male , female);
-	// console.log(searchCriteria)
 
-	const { isVerified , gender } = searchCriteria;
-	console.log(isVerified, gender)
+	const { isVerified, gender } = searchCriteria;
+	console.log(isVerified, gender);
 	useEffect(() => {
 		const fetchAllData = async () => {
 			try {
-				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?gender=${gender}`,
+				const res = await fetch(
+					`${process.env.NEXT_PUBLIC_API_URL}/api/tutors?gender=${gender}`,
 					{
-						cache: 'no-store'
-					});
+						cache: "no-store",
+					}
+				);
 				const data = await res.json();
 				setAllData(data);
-			} 
-			catch (error) {
-				console.error('Error fetching mentor data:', error);
+			} catch (error) {
+				console.error("Error fetching mentor data:", error);
 			}
 		};
 
@@ -62,9 +60,11 @@ const TutorsPage = () => {
 			<CommonBanner bannerHeading="Tutors"></CommonBanner>
 
 			<section className="max-w-7xl mx-auto mt-12 lg:mt-32 p-4 md:px-0">
-				
-				<SectionTitle heading="All Tutors" subHeading="Discover Our Trusted and All Tutors!"></SectionTitle>
-				
+				<SectionTitle
+					heading="All Tutors"
+					subHeading="Discover Our Trusted and All Tutors!"
+				></SectionTitle>
+
 				<div className="flex flex-col md:flex-row gap-4">
 					{/* Add checkbox for sorting options */}
 					<div className="basis-1/3">
@@ -102,9 +102,10 @@ const TutorsPage = () => {
 									type="checkbox"
 									name="gender"
 									value="allGender"
-									checked={searchCriteria.gender === 'allGender'}
+									checked={searchCriteria.gender === "allGender"}
 									onChange={handleInputChange}
-								/> All
+								/>{" "}
+								All
 							</label>
 							<br />
 							<label>
@@ -112,11 +113,11 @@ const TutorsPage = () => {
 									type="checkbox"
 									name="gender"
 									value="male"
-									checked={searchCriteria.gender === 'male'}
+									checked={searchCriteria.gender === "male"}
 									onChange={handleInputChange}
 									className="focus:outline-none"
-
-								/> Male
+								/>{" "}
+								Male
 							</label>
 							<br />
 							<label>
@@ -124,21 +125,21 @@ const TutorsPage = () => {
 									type="checkbox"
 									name="gender"
 									value="female"
-									checked={searchCriteria.gender === 'female'}
+									checked={searchCriteria.gender === "female"}
 									onChange={handleInputChange}
 									className="focus:outline-none"
-								/> Female
+								/>{" "}
+								Female
 							</label>
 						</div>
 					</div>
 
-					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8'>
-						{
-							allData?.map((tutorData: User) => (<TutorCard key={tutorData._id} tutorData={tutorData}></TutorCard>))
-						}
+					<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+						{allData?.map((tutorData: User) => (
+							<TutorCard key={tutorData._id} tutorData={tutorData}></TutorCard>
+						))}
 					</div>
 				</div>
-
 			</section>
 		</>
 	);
