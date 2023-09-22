@@ -5,6 +5,7 @@ import React, { useEffect, useState, useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { FiDelete } from 'react-icons/fi';
 import { VscFeedback } from 'react-icons/vsc';
+import FeedbackModal from "./FeedbackModal";
 
 const MyInbox = () => {
 	const { user } = useAuth();
@@ -53,7 +54,29 @@ const MyInbox = () => {
 		}
 	}
 
-	const tutor_feedback = "Good work!" // TODO: Make it dynamic
+	const tutor_feedback = "" // TODO: Make it dynamic
+
+	// Feedback Modal Open/Close State
+	const [isOpen, setIsOpen] = useState(false);
+
+	// Setting Class ID for Feedback
+	const [feedbackID, setFeedbackID] = useState("");
+
+	// Opening Feedback Modal
+	const openModal = () => {
+		setIsOpen(true);
+	};
+
+	// Closing Feedback Modal
+	const closeModal = () => {
+		setIsOpen(false);
+	};
+
+	const handleFeedback = (messageID) => {
+		openModal();
+		console.log("Feedback ID: ", messageID);
+		setFeedbackID(messageID);
+	};
 
 	return (
 		<>
@@ -151,12 +174,12 @@ const MyInbox = () => {
 											</button>
 											{
 												tutor_feedback ?
-													<button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+													<button onClick={() => handleFeedback(message?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Update Feedback
 													</button>
 													:
-													<button type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-blue-500 to-blue-600 transition-all hover:duration-300 hover:from-blue-600 hover:to-blue-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
+													<button onClick={() => handleFeedback(message?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-blue-500 to-blue-600 transition-all hover:duration-300 hover:from-blue-600 hover:to-blue-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Send Feedback
 													</button>
