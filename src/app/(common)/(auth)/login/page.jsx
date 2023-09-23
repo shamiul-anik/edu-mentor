@@ -1,16 +1,16 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
 import { useForm } from 'react-hook-form';
 import Loader from '@/components/(shared)/Loader/Loader';
 import Link from 'next/link';
 import useAuth from "@/hooks/useAuth.js"
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import saveUser from '@/utils/saveUser';
-import getUser from '../../../utils/getUser';
-import Profile from '../profile/page'
-import setJWT from "../../../utils/setJWT.js"
+import getUser from '@/utils/getUser';
+// import Profile from '../profile/page'
+import setJWT from "@/utils/setJWT.js"
 
 
 const Login = () => {
@@ -18,10 +18,8 @@ const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const router = useRouter();
 
-
 	const [error, setError] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-
 
 	const fetchUserData = async (email) => {
 		const userData = await getUser(email);
@@ -31,7 +29,7 @@ const Login = () => {
 	const componentProps = {
 		user: user,
 		// Add more props as needed
-	  };
+	};
 
 	// Show Loader when Page is Loading
 	if (loading) {

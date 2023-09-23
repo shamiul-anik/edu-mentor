@@ -1,8 +1,6 @@
 "use client"
 import { Fade } from "react-awesome-reveal";
-
 import Image from "next/image";
-// import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
@@ -11,13 +9,6 @@ import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-
-// import FeedbackModal from "./FeedbackModal";
-// import SingleClass from "./SingleClass";
-// import { useQuery } from "@tanstack/react-query";
-// import Swal from "sweetalert2";
-// import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-// import useAuth from "../../../../hooks/useAuth";
 import FeedbackModal from "./FeedbackModal";
 
 const ManageTutors = () => {

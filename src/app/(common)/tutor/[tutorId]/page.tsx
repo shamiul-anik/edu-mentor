@@ -1,9 +1,9 @@
 import React from 'react';
 import { Tuition } from '@/typeScript/tuitionsType';
 import Image from "next/image";
-import BookingForm from "@/app/tutors/BookingForm"
+import BookingForm from "@/app/(common)/tutors/BookingForm"
 import getTuitions from "@/utils/getTuitions"
-import TuitionsCard from '@/app/tutors/TuitionsCard';
+import TuitionsCard from '@/app/(common)/tutors/TuitionsCard';
 
 const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: { tutorId } }) => {
 

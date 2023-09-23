@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
-import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
+import { BsBookFill, BsBookmarkCheckFill } from 'react-icons/bs'
 import { BiDetail, BiHome, BiLogOut } from 'react-icons/bi';
 import { GiTeacher } from 'react-icons/gi';
 import { LuContact } from 'react-icons/lu';

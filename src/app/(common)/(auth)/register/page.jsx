@@ -1,17 +1,16 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaGoogle, FaRegEyeSlash, FaRegEye } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { updateProfile } from 'firebase/auth';
-import Terms from '@/app/(auth)/register/Terms';
+import Terms from '@/app/(common)/(auth)/register/Terms';
 import useAuth from "@/hooks/useAuth.js"
 import Link from 'next/link';
-import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import saveUser from "@/utils/saveUser"
-import getUser from '../../../utils/getUser';
-import setJWT from '../../../utils/setJWT';
+import getUser from '@/utils/getUser';
+import setJWT from '@/utils/setJWT';
 
 const Registration = () => {
 
@@ -56,7 +55,7 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
-				useJWT();
+				// useJWT();
 				// console.log(userInfo);
 
 				setSuccess("Registration successful!");
