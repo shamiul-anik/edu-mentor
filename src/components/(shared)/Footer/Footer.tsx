@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ const Footer = () => {
 	const [allowedPath, setAllowedPath] = useState(true);
 	const pathname = usePathname();
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		pathname.includes('/dashboard') ? setAllowedPath(false) : setAllowedPath(true);
 	}, [pathname]);
 

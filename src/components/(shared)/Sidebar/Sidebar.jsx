@@ -1,7 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react'
-// import Aos from 'aos';
-// import { Fade } from "react-awesome-reveal";
+import { useState } from 'react'
 import Logo from '../../../assets/images/logo.png';
 import UserImage from '../../../assets/images/user.png'
 import { BsBookFill, BsBookmarkCheckFill, BsPerson } from 'react-icons/bs'
@@ -10,11 +8,10 @@ import { GiTeacher } from 'react-icons/gi';
 import { LuContact } from 'react-icons/lu';
 import { FaBook, FaCalendar, FaChalkboardTeacher, FaGraduationCap, FaHistory, FaInbox, FaMoneyBill, FaMoneyCheck, FaSave, FaUserCheck, FaWallet } from 'react-icons/fa';
 import { AiOutlineBars } from 'react-icons/ai';
-// import useAuth from '@/hooks/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
-import { redirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
 import { MdArticle } from 'react-icons/md';
 

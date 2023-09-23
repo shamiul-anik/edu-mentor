@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import Link from "next/link";
 import { MdDashboard, MdLogin, MdLogout } from "react-icons/md";
@@ -16,7 +16,7 @@ const Header = () => {
 	const pathname = usePathname();
 	const [allowedPath, setAllowedPath] = useState(true);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 	  pathname.includes('/dashboard') ? setAllowedPath(false) : setAllowedPath(true);
 	}, [pathname]);
 
