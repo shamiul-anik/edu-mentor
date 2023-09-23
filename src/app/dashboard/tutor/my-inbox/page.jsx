@@ -44,7 +44,7 @@ const MyInbox = () => {
 				toast.error("Error deleting message!")
 			}
 			if (res.status === 200) {
-				toast.success("Successfully deleted!")
+				toast.success("Deletion successful!")
 				startTransition(() => {
 					router.refresh();
 				})

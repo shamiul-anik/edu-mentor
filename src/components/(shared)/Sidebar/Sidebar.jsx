@@ -14,7 +14,7 @@ import { AiOutlineBars } from 'react-icons/ai';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
-import { usePathname, useRouter } from 'next/navigation';
+import { redirect, usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
 import { MdArticle } from 'react-icons/md';
 
@@ -26,18 +26,22 @@ const Sidebar = () => {
 
   // const userEmail = user?.email;
   const pathname = usePathname();
-  // const isActive = path
-  // console.log(userRole);
+  const router = useRouter();
+  
 
-	const handleLogOut = () => {
-		logOut()
-			.then(() => {
-				console.log("Successfully logged out!");
-			})
-			.catch((error) => {
-				console.log(error.message);
-			})
-	};
+  const handleLogOut = async () => {
+    const toastId = toast.loading("Logging out...");
+    try {
+      await logOut();
+      // Cookies.set('token', '')
+      toast.dismiss(toastId);
+      toast.success("Logout successful!");
+      router.push('/login');
+    } catch (error) {
+      toast.error(`Error: ${error.message}`);
+      toast.dismiss(toastId);
+    }
+  };
 
   // Sidebar Responsive Handler
   const handleToggle = () => {

@@ -13,14 +13,11 @@ import saveUser from "@/utils/saveUser"
 import getUser from '../../../utils/getUser';
 import setJWT from '../../../utils/setJWT';
 
-
 const Registration = () => {
-
 
 	const { createUser, logOut, signInWithGoogle } = useAuth();
 	const { register, getValues, handleSubmit, formState: { errors } } = useForm();
 	const router = useRouter();
-
 
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -28,17 +25,14 @@ const Registration = () => {
 	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 	const [acceptTerms, setAcceptTerms] = useState(false);
 
-
 	const fetchUserData = async (email) => {
 		const userData = await getUser(email);
 		return userData;
 	};
 
-
 	const onSubmit = (userInformation, event) => {
 		delete userInformation.confirmPassword;
 		delete userInformation.passwordConfirmation;
-
 
 		createUser(userInformation.email, userInformation.password)
 			.then(result => {
@@ -82,7 +76,7 @@ const Registration = () => {
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {
-				console.log("Successfully logged out!");
+				console.log("Logout successful!");
 				const tokenData = {
 					email : null
 				}
@@ -130,7 +124,7 @@ const Registration = () => {
 				}
 				setJWT(tokenData);
 				console.log(userInfo);
-				toast.success("Successfully registered!");
+				toast.success("Registration successful!");
 				router.push('/')
 			})
 			.catch(error => {

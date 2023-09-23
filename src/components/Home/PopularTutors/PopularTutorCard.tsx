@@ -19,7 +19,7 @@ const PopularTutorCard: React.FC<PopularCardProps> = ({ data }) => {
 	return (
 		<div className="flex card card-compact w-full bg-base-100 custom-box-shadow group p-4">
 			<figure className='rounded-xl'>
-				<Image height={288} width={373} priority={true} className='overflow-hidden h-72 w-full object-cover object-center rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt={`Image of ${displayName}`} />
+				<Image height={288} width={373} priority={true} className='overflow-hidden h-auto w-auto object-cover object-center rounded-t-xl transition duration-300 group-hover:scale-110' src={photoURL} alt={`Image of ${displayName}`} />
 			</figure>
 			<div className='border-t border-slate-300 mt-4 mb-1'></div>
 			<div className="flex-1 p-4 pt-4 pb-4">
@@ -32,7 +32,7 @@ const PopularTutorCard: React.FC<PopularCardProps> = ({ data }) => {
 			<div className='border-t border-slate-300 mb-4'></div>
 			<div className=" w-full">
 				<Link href={`/tutor/${_id}`}>
-					<button onClick={() => TestForButton(_id)} className="btn w-full text-gray-300 bg-cyan-700 hover:bg-cyan-800 hover:text-white  button-">Details</button>
+					<button onClick={() => TestForButton(_id)} className="btn w-full text-gray-100 bg-teal-700 hover:bg-teal-800 hover:text-white">Details</button>
 				</Link>
 			</div>
 		</div>

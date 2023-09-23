@@ -13,7 +13,6 @@ import Profile from '../profile/page'
 import setJWT from "../../../utils/setJWT.js"
 
 
-
 const Login = () => {
 	const { loading, setLoading, logIn, signInWithGoogle, setUser, user } = useAuth();
 	const { register, handleSubmit, formState: { errors } } = useForm();
@@ -53,7 +52,7 @@ const Login = () => {
 					email : loggedUser?.email
 				}
 				setJWT(tokenData);
-				toast.success("Successfully logged in!");
+				toast.success("Login successful!");
 				router.push('/profile')
 			})
 			.catch(error => {
@@ -88,7 +87,7 @@ const Login = () => {
 				setJWT(tokenData)
 
 
-				toast.success("Successfully logged in!");
+				toast.success("Login successful!");
 				router.push('/profile')
 			})
 			.catch(error => {
