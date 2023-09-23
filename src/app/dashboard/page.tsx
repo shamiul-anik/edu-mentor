@@ -1,4 +1,3 @@
-"use client"
 import DashboardContent from "@/components/DashboardContent/DashboardContent";
 
 const Dashboard = () => {

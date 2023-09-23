@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
-			// setLoading(false);
+			setLoading(false);
 		});
 		const tokenData = {
 			email : user?.email 

@@ -28,7 +28,6 @@ const ManageTutors = () => {
 				setAllTuitions(data);
 			} catch (error) {
 				console.error('Error fetching mentor data:', error);
-
 			}
 		};
 
@@ -62,7 +61,7 @@ const ManageTutors = () => {
 	};
 
 	const handleAdminBtn = (tuition, value) => {
-		console.log(tuition?._id, value);
+		// console.log(tuition?._id, value);
 		const fetchAdminBtn = async () => {
 			try {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/tuitionStatus?id=${tuition?._id}&controlAdminBtn=${value}`, {
@@ -77,22 +76,21 @@ const ManageTutors = () => {
 					Swal.fire({
 						position: 'top-center',
 						icon: 'success',
-						title: "User Action successfully",
+						title: "Action successful!",
 						showConfirmButton: false,
 						timer: 1500
 					})
 					startTransition(() => {
 						router.refresh();
 					})
-					console.log("User admin action successfully")
+					console.log("Tuition verification successful!")
 
 				}
 				const data = await res.json();
-				console.log(data)
-
+				// console.log(data)
 
 			} catch (error) {
-				console.error('Error fetching all User Data: ', error);
+				console.error('Error in tuition verification! ', error);
 			}
 		};
 

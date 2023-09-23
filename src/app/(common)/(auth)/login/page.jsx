@@ -32,9 +32,9 @@ const Login = () => {
 	};
 
 	// Show Loader when Page is Loading
-	if (loading) {
-		return <Loader></Loader>;
-	}
+	// if (loading) {
+	// 	return <Loader></Loader>;
+	// }
 
 	const onSubmit = (userInformation) => {
 		// console.log(userInformation);
@@ -51,6 +51,7 @@ const Login = () => {
 				}
 				setJWT(tokenData);
 				toast.success("Login successful!");
+				setLoading(false);
 				router.push('/profile')
 			})
 			.catch(error => {
@@ -84,8 +85,8 @@ const Login = () => {
 				}
 				setJWT(tokenData)
 
-
 				toast.success("Login successful!");
+				setLoading(false);
 				router.push('/profile')
 			})
 			.catch(error => {
