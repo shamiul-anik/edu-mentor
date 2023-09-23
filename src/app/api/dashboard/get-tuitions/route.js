@@ -18,7 +18,6 @@ export const GET = async (request) => {
 		}
 		// console.log(query)
 		if (query.tutor_email !== null) {
-			console.log("16query block")
 			const tuitions = await Tuitions.find(query);
 			return new NextResponse(JSON.stringify(tuitions), { status: 200 })
 		}
