@@ -17,7 +17,7 @@ import { MdArticle } from 'react-icons/md';
 
 const Sidebar = () => {
   const { user, loading, setLoading, logOut, userRole } = useAuth();
-  console.log(user);
+  // console.log(user);
   const [isActive, setActive] = useState(false);
   const { replace, refresh } = useRouter();
 

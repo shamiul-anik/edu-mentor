@@ -15,11 +15,13 @@ const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		setLoading(true);
 		if (user) {
 			const fetchUserData = async () => {
 				const userData = await getUser(user?.email);
 				setUserData(userData);
 				setUserRole(userData?.role);
+				setLoading(false);
 				// console.log(userRole); // This should show the updated value.
 			};
 			fetchUserData()
