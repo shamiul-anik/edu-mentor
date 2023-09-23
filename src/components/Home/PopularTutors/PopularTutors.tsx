@@ -24,7 +24,6 @@ const PopularTutors = () => {
 		fetchMentorData();
 	}, []);
 
-	console.log(mentorData)
 
 
 	return (

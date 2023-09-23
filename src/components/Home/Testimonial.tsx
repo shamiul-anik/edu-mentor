@@ -2,6 +2,7 @@
 import { Rating } from "@smastrom/react-rating";
 import SectionTitle from "@/components/(shared)/SectionTitle/SectionTitle";
 import Image from "next/image";
+import '@smastrom/react-rating/style.css';
 
 const Testimonial = () => {
 	return (
