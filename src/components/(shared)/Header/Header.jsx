@@ -22,7 +22,7 @@ const Header = () => {
 	//   pathname.includes('/dashboard') ? setAllowedPath(false) : setAllowedPath(true);
 	// }, [pathname]);
 
-	const { user, logOut, userRole } = useAuth();
+	const { user, logOut, userRole, setLoading } = useAuth();
 	// console.log("logged user", user);
 	const currentUserName = user?.displayName;
 	const currentUserEmail = user?.email;
@@ -36,11 +36,13 @@ const Header = () => {
 			Cookies.set('token', '')
 			toast.dismiss(toastId);
 			toast.success("Logout successful!");
+			setLoading(false);
 			router.push('/login');
 		} catch (error) {
 			// console.log(error.message);
 			toast.error(`Error: ${error.message}`);
 			toast.dismiss(toastId);
+			setLoading(false);
 		}
 	};
 

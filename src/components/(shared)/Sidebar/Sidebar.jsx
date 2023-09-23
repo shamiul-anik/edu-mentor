@@ -33,10 +33,12 @@ const Sidebar = () => {
       // Cookies.set('token', '')
       toast.dismiss(toastId);
       toast.success("Logout successful!");
+      setLoading(false);
       router.push('/login');
     } catch (error) {
       toast.error(`Error: ${error.message}`);
       toast.dismiss(toastId);
+      setLoading(false);
     }
   };
 
@@ -116,164 +118,160 @@ const Sidebar = () => {
                   {user?.email}
                 </p>
               </Link>
-              {
-                userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl">{userRole}</p>
-                // userRole && <p className="uppercase mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl" data-aos="zoom-out">{userRole}</p>
-              }
+              <p className="uppercase min-h-[24px] mt-3 px-5 py-0.5 text-sm bg-teal-300 w-fit mx-auto rounded-xl">
+                {loading ? <span className="flex text-center justify-center items-center loading loading-md loading-dots"></span> : userRole }
+              </p>
             </div>
           </div>
           <div className="divider mt-4 mb-2"></div>
           {/* Nav Items */}
           <div className='flex flex-col justify-start flex-1'>
-            <nav>
-              <>
+            { loading ? (
+              <div className="flex items-center justify-center px-4 py-2 transition-colors duration-300 transform text-teal-600">
+                <span className="loading loading-md loading-bars"></span>
+                <span className='mx-4 font-medium'>Loading menus...</span>
+              </div>) :
+              (<nav>
+                <>
 
-                {/* Student */}
-                {
-                  userRole === "student" &&
-                  <>
-                    {/* <Link
-                      href='/dashboard/my-selected-classes'
-                      className={({ isActive }) =>
-                        `flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${isActive ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaCheckDouble className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Selected Classes</span>
-                    </Link> */}
-                    <Link
-                      href='/dashboard/student/hired-tutors'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/hired-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaMoneyCheck className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Hired Tutors</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/student/booked-tutors'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/booked-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaCalendar className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Booked Tutors</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/student/my-payments'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-payments" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaMoneyBill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Payments</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/student/payment-history-student'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/payment-history-student" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaHistory className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Payment History</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/student/my-messages'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-messages" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaInbox className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Messages</span>
-                    </Link>
-                  </>
-                }
+                  {/* Student */}
+                  {
+                    userRole === "student" &&
+                    <>
+                      <Link
+                        href='/dashboard/student/hired-tutors'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/hired-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaMoneyCheck className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Hired Tutors</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/student/booked-tutors'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/booked-tutors" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaCalendar className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Booked Tutors</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/student/my-payments'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-payments" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaMoneyBill className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Payments</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/student/payment-history-student'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/payment-history-student" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaHistory className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Payment History</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/student/my-messages'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/student/my-messages" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaInbox className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Messages</span>
+                      </Link>
+                    </>
+                  }
 
 
-                {/* Tutor */}
-                {
-                  userRole === "tutor" &&
-                  <>
-                    <Link
-                      href='/dashboard/tutor/add-a-tuition'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/add-a-tuition" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaSave className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Add a Tuition</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/tutor/my-tuitions'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaGraduationCap className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Tuitions</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/tutor/my-students'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-students" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaBook className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Students</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/tutor/my-bookings'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-bookings" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaCalendar className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Bookings</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/tutor/payment-history-tutor'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/payment-history-tutor" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaHistory className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Payment History</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/tutor/my-inbox'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-inbox" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaInbox className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>My Inbox</span>
-                    </Link>
-                  </>
-                }
+                  {/* Tutor */}
+                  {
+                    userRole === "tutor" &&
+                    <>
+                      <Link
+                        href='/dashboard/tutor/add-a-tuition'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/add-a-tuition" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaSave className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Add a Tuition</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/tutor/my-tuitions'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaGraduationCap className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Tuitions</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/tutor/my-students'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-students" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaBook className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Students</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/tutor/my-bookings'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-bookings" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaCalendar className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Bookings</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/tutor/payment-history-tutor'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/payment-history-tutor" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaHistory className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Payment History</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/tutor/my-inbox'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/tutor/my-inbox" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaInbox className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>My Inbox</span>
+                      </Link>
+                    </>
+                  }
 
 
-                {/* Admin */}
-                {
-                  userRole === "admin" &&
-                  <>
-                    <Link
-                      href='/dashboard/admin/manage-tuitions'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <BsBookmarkCheckFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Tuitions</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/admin/manage-tutor-requests'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tutor-requests" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <BsBookFill className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Tutor Requests</span>
-                    </Link>
-                    <Link
-                      href='/dashboard/admin/manage-users'
-                      className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-users" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
-                      }
-                    >
-                      <FaUserCheck className='w-5 h-5' />
-                      <span className='mx-4 font-medium'>Manage Users</span>
-                    </Link>
-                  </>
-                }
+                  {/* Admin */}
+                  {
+                    userRole === "admin" &&
+                    <>
+                      <Link
+                        href='/dashboard/admin/manage-tuitions'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tuitions" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <BsBookmarkCheckFill className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Manage Tuitions</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/admin/manage-tutor-requests'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-tutor-requests" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <BsBookFill className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Manage Tutor Requests</span>
+                      </Link>
+                      <Link
+                        href='/dashboard/admin/manage-users'
+                        className={`flex items-center px-4 py-2 transition-colors duration-300 transform hover:bg-teal-200 hover:text-teal-700 ${pathname === "/dashboard/admin/manage-users" ? 'bg-teal-200 text-teal-700' : 'text-teal-600'}`
+                        }
+                      >
+                        <FaUserCheck className='w-5 h-5' />
+                        <span className='mx-4 font-medium'>Manage Users</span>
+                      </Link>
+                    </>
+                  }
 
-              </>
-            </nav>
+                </>
+              </nav>)
+            }
           </div>
         </div>
 

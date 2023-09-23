@@ -21,10 +21,10 @@ const AuthProvider = ({ children }) => {
 				const userData = await getUser(user?.email);
 				setUserData(userData);
 				setUserRole(userData?.role);
-				setLoading(false);
 				// console.log(userRole); // This should show the updated value.
 			};
 			fetchUserData()
+			setLoading(false);
 		}
 	}, [user, userRole]);
 
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			// console.log('Auth Change Observer', currentUser)
 			setUser(currentUser);
-			setLoading(false);
+			// setLoading(false);
 		});
 		const tokenData = {
 			email : user?.email 
