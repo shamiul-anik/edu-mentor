@@ -1,13 +1,11 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import UserImage from '@/assets/images/user.png'
 import { toast } from 'react-hot-toast';
 import useAuth from "@/hooks/useAuth.js"
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import saveUser from '@/utils/saveUser';
-import getUser from '@/utils/getUser';
-
 
 const Profile = () => {
   const { user, userData, userRole, setLoading, updateUserProfile } = useAuth();

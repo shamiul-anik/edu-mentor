@@ -1,5 +1,5 @@
 import React from 'react';
-import Blogs from "@/app/blogs/Blogs"
+import Blogs from "@/app/(common)/blogs/Blogs"
 import CommonBanner from '@/components/(shared)/CommonHeader/CommonBanner';
 // import SectionTitle from '@/components/(shared)/SectionTitle/SectionTitle';
 

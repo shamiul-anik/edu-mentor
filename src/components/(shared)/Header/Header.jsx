@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Header.css";
 import Link from "next/link";
 import { MdDashboard, MdLogin, MdLogout } from "react-icons/md";
@@ -12,13 +12,15 @@ import { usePathname, useRouter } from "next/navigation";
 import Cookies from 'js-cookie'
 
 const Header = () => {
-	const { replace } = useRouter();
+	// const { replace } = useRouter();
+	const router = useRouter();
 	const pathname = usePathname();
-	const [allowedPath, setAllowedPath] = useState(true);
+	// const [allowedPath, setAllowedPath] = useState(true);
+	const allowedPath = true;
 
-	useEffect(() => {
-	  pathname.includes('/dashboard') ? setAllowedPath(false) : setAllowedPath(true);
-	}, [pathname]);
+	// useEffect(() => {
+	//   pathname.includes('/dashboard') ? setAllowedPath(false) : setAllowedPath(true);
+	// }, [pathname]);
 
 	const { user, logOut, userRole } = useAuth();
 	// console.log("logged user", user);
@@ -34,6 +36,7 @@ const Header = () => {
 			Cookies.set('token', '')
 			toast.dismiss(toastId);
 			toast.success("Logout successful!");
+			router.push('/login');
 		} catch (error) {
 			// console.log(error.message);
 			toast.error(`Error: ${error.message}`);
@@ -99,14 +102,9 @@ const Header = () => {
 										<>
 											<div className="divider my-0"></div>
 											<li>
-												<Link className="p-0 flex" href="/login">
-													<button
-														type="button"
-														className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-teal-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
-													>
-														<MdLogin className="text-xl"></MdLogin>
-														Login
-													</button>
+												<Link aria-label="Login Button" href="/login" className="p-0 flex flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-teal-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
+													<MdLogin className="text-xl"></MdLogin>
+													Login
 												</Link>
 											</li>
 										</>

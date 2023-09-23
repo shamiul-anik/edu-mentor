@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import Sidebar from '@/components/(shared)/Sidebar/Sidebar';
-import Chart from '@/app/admin-dashboard/Chart';
+import Chart from '@/app/(common)/admin-dashboard/Chart';
 import Link from 'next/link';
 
 
