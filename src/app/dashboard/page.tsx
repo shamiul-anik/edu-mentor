@@ -2,11 +2,11 @@
 import DashboardContent from "@/components/DashboardContent/DashboardContent";
 
 const Dashboard = () => {
-  return (
-    <>
-      <DashboardContent />
-    </>
-  );
+	return (
+		<>
+			<DashboardContent />
+		</>
+	);
 };
 
 export default Dashboard;
