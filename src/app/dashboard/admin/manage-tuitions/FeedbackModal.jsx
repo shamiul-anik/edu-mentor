@@ -26,7 +26,7 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessi
 					cache: "no-store"
 				});
 
-				console.log("Response Check: ", res);
+				// console.log("Response Check: ", res);
 
 				if (res.ok) {
 					reset();

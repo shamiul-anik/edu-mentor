@@ -164,7 +164,7 @@ const TutorRequest = () => {
 									disabled={(userRole === "student" || userRole === "admin" || !user) ? true : false}
 								>
 									{/* {(userRole === "student" || userRole === "admin") ? "Only for Tutors" : "Send Message"} */}
-									{!user ? "You Must Login to Send Message" : (userRole === "student" || userRole === "admin") ? "Only for Tutors" : "Send Message"}
+									{!user ? "You Must Login to Send Message" : (userRole === "student" || userRole === "admin") ? "Only for Tutors" : "Send Email Confirmation"}
 								</button>
 							</div>
 						</div>
