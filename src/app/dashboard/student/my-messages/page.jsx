@@ -5,7 +5,7 @@ import useAuth from "@/hooks/useAuth";
 const MyMessages = () => {
   const { user } = useAuth();
   // console.log(user)
-  console.log(user?.email);
+  // console.log(user?.email);
 
   const [messages, setMessages] = useState([]);
 
@@ -19,10 +19,10 @@ const MyMessages = () => {
           }
         );
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setMessages(data);
       } catch (error) {
-        console.error("Error fetching mentor data:", error);
+        console.error("Error fetching mentor data: ", error);
       }
     };
 
@@ -56,7 +56,7 @@ const MyMessages = () => {
                   scope="col"
                   className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2"
                 >
-                  Name
+                  Tutor&apos;s Name
                 </th>
                 <th
                   scope="col"
@@ -86,13 +86,19 @@ const MyMessages = () => {
                   scope="col"
                   className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2"
                 >
-                  Subject
+                  Qualification
                 </th>
                 <th
                   scope="col"
                   className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2"
                 >
-                  Class
+                  Subject Name
+                </th>
+                <th
+                  scope="col"
+                  className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2"
+                >
+                  Class Name
                 </th>
                 <th
                   scope="col"
@@ -117,22 +123,25 @@ const MyMessages = () => {
                   <td className="px-2 py-2 whitespace-nowrap text-center border-r-2">
                     {index + 1}
                   </td>
-                  <td className="px-2 py-2 border-r-2">{message?.student_name}</td>
-                  <td className="px-2 py-2 border-r-2">{message?.student_email}</td>
+                  <td className="px-2 py-2 border-r-2">{message?.tutor_name}</td>
+                  <td className="px-2 py-2 border-r-2">{message?.tutor_email}</td>
                   <td className="px-2 py-2 text-center border-r-2">
-                  {message?.student_mobile_no}
+                    {message?.tutor_mobile_number}
                   </td>
-                  <td className="px-2 py-2 text-center border-r-2">{message?.student_gender}</td>
+                  <td className="px-2 py-2 text-center border-r-2">{message?.tutor_gender}</td>
                   <td className="px-2 py-2 text-center uppercase border-r-2">
-                  {message?.student_location}
+                    {message?.tutor_location}
                   </td>
-                  <td className="px-2 py-2 border-r-2">{message?.student_name}</td>
+                  <td className="px-2 py-2 text-center uppercase border-r-2">
+                    {message?.tutor_qualification}
+                  </td>
                   <td className="px-2 py-2 border-r-2">{message?.subject_name}</td>
+                  <td className="px-2 py-2 border-r-2">{message?.class_name}</td>
                   <td className="px-2 py-2 border-r-2">
                   {message?.details}
                   </td>
                   <td className="px-2 py-2 border-r-2">
-                    Dynamic Feedback from Tutor
+                    {message?.tutor_feedback}
                   </td>
                 </tr>
               ))}

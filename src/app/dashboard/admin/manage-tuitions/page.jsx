@@ -35,7 +35,7 @@ const ManageTutors = () => {
 	}, []);
 
 	// Sample Data
-	const admin_feedback = ""
+	// const admin_feedback = ""
 	// const isVerified = false;
 
 	// Feedback Modal Open/Close State
@@ -210,7 +210,7 @@ const ManageTutors = () => {
 												Deny
 											</button>
 											{
-												admin_feedback ?
+												tuition?.admin_feedback ?
 													<button onClick={() => handleFeedback(tuition?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Update Feedback

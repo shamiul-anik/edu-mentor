@@ -91,7 +91,7 @@ const singlePage: React.FC<{ params: { tutorId: string } }> = async ({ params: {
 				</div>
 
 				{/* Contact Form */}
-				<BookingForm tutorEmail={email} />
+				<BookingForm tutorEmail={email} tutorName={displayName} tutorMobileNumber={mobileNumber} tutorLocation={location} tutorGender={gender} tutorQualification={qualification} />
 			</section>
 		</>
 	);

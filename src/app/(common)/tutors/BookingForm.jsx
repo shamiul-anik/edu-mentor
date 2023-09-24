@@ -6,7 +6,7 @@ import studentMessagePost from "@/utils/studentMessagePost";
 import { startTransition } from "react";
 import { useRouter } from "next/navigation";
 
-const BookingForm = ({ tutorEmail }) => {
+const BookingForm = ({ tutorEmail, tutorName, tutorMobileNumber, tutorLocation, tutorGender, tutorQualification }) => {
 
 	const {
 		register,
@@ -21,11 +21,16 @@ const BookingForm = ({ tutorEmail }) => {
 
 	const onSubmit = async (data) => {
 		const { name, email, className, phoneNumber, gender, subject, location, detailsInfo } = data;
-		const toastId = toast.loading("Loading...");
+		// const toastId = toast.loading("Loading...");
 		try {
 			// student_message collection save mongodb start
 			const studentMessage = {
 				tutor_email: tutorEmail,
+				tutor_name: tutorName, 
+				tutor_mobile_number: tutorMobileNumber,
+				tutor_location: tutorLocation,
+				tutor_gender: tutorGender,
+				tutor_qualification: tutorQualification,
 				student_name: name,
 				student_email: email,
 				student_mobile_no: phoneNumber,
@@ -34,18 +39,18 @@ const BookingForm = ({ tutorEmail }) => {
 				student_gender: gender,
 				class_name: className,
 				details: detailsInfo,
+				tutor_feedback: ""
 			}
-			console.log("Student Message", studentMessage);
+			// console.log("Student Message", studentMessage);
 
 			if (studentMessage) {
-				studentMessagePost(studentMessage)
+				studentMessagePost(studentMessage);
 				startTransition(() => {
 					refresh();
-					toast.dismiss(toastId);
-					toast.success("Message sent successfully!");
+					// toast.dismiss(toastId);
+					// toast.success("Message sent successfully!");
 				});
 			}
-			// Booking Data save mongodb start
 
 		} catch (error) {
 			toast.dismiss(toastId);
@@ -122,11 +127,11 @@ const BookingForm = ({ tutorEmail }) => {
 						{errors.location && (<span className="text-red-500 text-base mt-2">Please enter your location.</span>)}
 					</div>
 					<div className="form-control">
-						<label htmlFor="detailsInfo" className="label label-text">Available Days</label>
-						<input id="detailsInfo" name="detailsInfo" type="text" placeholder="Enter your available days (eg. Saturday, Sunday...)"
+						<label htmlFor="detailsInfo" className="label label-text">Details Information</label>
+						<input id="detailsInfo" name="detailsInfo" type="text" placeholder="Enter details information"
 							{...register("detailsInfo", { required: true })} className="input input-accent focus:outline-green-500 focus:border-green-500"
 						/>
-						{errors.detailsInfo && (<span className="text-red-500 text-base mt-1">Please enter your available days</span>)}
+						{errors.detailsInfo && (<span className="text-red-500 text-base mt-1">Please enter details information.</span>)}
 					</div>
 				</div>
 				
@@ -134,7 +139,8 @@ const BookingForm = ({ tutorEmail }) => {
 					<button className={`btn text-gray-300 ${userRole === "tutor" || userRole === "admin" ? "bg-gray-600" : "bg-cyan-700 hover:bg-cyan-800 hover:text-white"}`}
 						disabled={(userRole === "tutor" || userRole === "admin") ? true : false}
 					>
-						{(userRole === "tutor" || userRole === "admin") ? "Only for Students" : "Send Message"}
+						{/* {(userRole === "tutor" || userRole === "admin") ? "Only for Students" : "Send Message"} */}
+						{!user ? "You Must Login to Send Message" : (userRole === "tutor" || userRole === "admin") ? "Only for Students" : "Send Message"}
 					</button>
 				</div>
 			</form>
