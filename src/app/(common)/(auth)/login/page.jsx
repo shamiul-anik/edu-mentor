@@ -32,9 +32,9 @@ const Login = () => {
 	};
 
 	// Show Loader when Page is Loading
-	// if (loading) {
-	// 	return <Loader></Loader>;
-	// }
+	if (loading) {
+		return <Loader></Loader>;
+	}
 
 	const onSubmit = (userInformation) => {
 		// console.log(userInformation);

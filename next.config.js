@@ -6,10 +6,10 @@ const nextConfig = {}
 
 module.exports = {
 	// nextConfig,
-	webpack: (config) => {
-		config.resolve.alias["@"] = path.join(__dirname, "src"); // Adjust 'src' to your actual source directory
-		return config;
-	},
+	// webpack: (config) => {
+	// 	config.resolve.alias["@"] = path.join(__dirname, "src"); // Adjust 'src' to your actual source directory
+	// 	return config;
+	// },
 	images: {
 		domains: [
 			"flowbite.s3.amazonaws.com",

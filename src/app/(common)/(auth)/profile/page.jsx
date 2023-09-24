@@ -26,23 +26,24 @@ const Profile = () => {
   const [success, setSuccess] = useState("");
 
   const onSubmit = async (userInformation, event) => {
+
     event.preventDefault();
 
     // Perform form validation here if necessary
-    if (!userInformation.name || !currentUserEmail) {
-      setError("Invalid data. Please fill in all required fields.");
+    if (!currentUserName || !currentUserEmail) {
+      setError("Invalid data! Please fill in all required fields.");
       return;
     }
 
     // get information
     const userInfo = {
-      displayName: userInformation.name,
+      displayName: currentUserName,
       email: currentUserEmail,
-      photoURL: userInformation.photoURL,
-      gender: userInformation.gender,
-      mobileNumber: userInformation.mobileNumber,
-      qualification: userInformation.qualification,
-      location: userInformation.location,
+      photoURL: userInformation?.photoURL,
+      gender: userInformation?.gender,
+      mobileNumber: userInformation?.mobileNumber,
+      qualification: userInformation?.qualification,
+      location: userInformation?.location,
       role: role,
     };
 
