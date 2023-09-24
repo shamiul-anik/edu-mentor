@@ -54,7 +54,7 @@ const Sidebar = () => {
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
             <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-              <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
+              <Image className="max-h-[40px] max-w-[40px] rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="EduMentor Logo" />
               <span className='animate-pulse flex items-center text-xl md:text-3xl'>
                 {/* <Fade duration={300} triggerOnce={true} cascade>EduMentor</Fade> */}
                 EduMentor
@@ -80,7 +80,7 @@ const Sidebar = () => {
           <div>
             <div className='w-full hidden md:flex py-4 justify-center items-center bg-teal-100 mx-auto'>
               <Link href="/" className="flex gap-3 md:gap-3 items-center btn px-0 btn-ghost normal-case font-extrabold text-2xl lg:text-3xl text-teal-600 hover:bg-inherit">
-                <Image className="h-10 w-10 rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="Logo" />
+                <Image className="max-h-[40px] max-w-[40px] rounded-full ring-2 ring-offset-2 ring-teal-700" width={40} height={40} src={Logo} alt="EduMentor Logo" />
                 <span className='flex items-center text-lg md:text-xl'>
                   {/* <Fade duration={300} triggerOnce={true} cascade>Language School</Fade> */}
                   EduMentor
@@ -92,19 +92,21 @@ const Sidebar = () => {
                 {
                   user?.photoURL ?
                     <Image
-                      className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
+                      className='max-h-[120px] max-w-[120px] object-cover object-center mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={user?.photoURL}
-                      alt='avatar'
-                      width={192}
-                      height={192}
+                      width={484}
+                      height={484}
+                      alt={`Image of ${user?.displayName}`}
+                      priority={true}
                     />
                     :
                     <Image
-                      className='object-cover w-24 h-24 mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
+                      className='max-h-[120px] max-w-[120px] object-cover object-center mx-2 rounded-full border border-teal-400 ring-2 ring-offset-1 ring-teal-500'
                       src={UserImage}
-                      alt='avatar'
-                      width={192}
-                      height={192}
+                      width={484}
+                      height={484}
+                      alt="User Image"
+                      priority={true}
                     />
                 }
               </Link>

@@ -1,7 +1,6 @@
 "use client"
 import { Fade } from "react-awesome-reveal";
 import Image from "next/image";
-// import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
@@ -16,7 +15,7 @@ const ManageStudents = () => {
 
 	const [allRequest, setAllRequest] = useState([]);
 	const { user, loading, userRole } = useAuth();
-	const [isPending, startTransition] = useTransition()
+	const [isPending, startTransition] = useTransition();
 	const router = useRouter();
 
 	useEffect(() => {
@@ -28,13 +27,13 @@ const ManageStudents = () => {
 					});
 
 				if (!res.ok) {
-					throw new Error('Network response was not ok');
+					throw new Error('Something went wrong!');
 				}
 				const data = await res.json();
 				setAllRequest(data);
 			}
 			catch (error) {
-				console.error('Error fetching mentor data:', error);
+				console.error('Error fetching tutor data: ', error);
 			}
 		};
 
@@ -66,14 +65,15 @@ const ManageStudents = () => {
 					//   showConfirmButton: false,
 					//   timer: 1500
 					// })
-					toast.success("User Action successfully")
+					toast.success("Action successful!")
 
 					// console.log("User admin action successfully")
 
-				}else {
+				}
+				else {
 					// Handle unsuccessful response
-					console.error('Error fetching All manageRequest:', res.statusText);
-				  }
+					console.error('Error fetching all manage request:', res.statusText);
+				}
 				startTransition(() => {
 					router.refresh();
 				})
@@ -82,7 +82,7 @@ const ManageStudents = () => {
 
 
 			} catch (error) {
-				console.error('Error fetching All manageRequest:', error);
+				console.error('Error fetching all manage request:', error);
 
 			}
 		};
@@ -93,6 +93,9 @@ const ManageStudents = () => {
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
+	
+	// Feedback Loading/Processing State
+	const [processing, setProcessing] = useState(false);
 
 	// Setting Class ID for Feedback
 	const [feedbackID, setFeedbackID] = useState("");
@@ -269,7 +272,7 @@ const ManageStudents = () => {
 			</section>
 
 			{/* FeedbackModal */}
-			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID}></FeedbackModal>
+			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID} processing={processing} setProcessing={setProcessing}></FeedbackModal>
 		</>
 	);
 };
