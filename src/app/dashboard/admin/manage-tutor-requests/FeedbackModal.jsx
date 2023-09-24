@@ -19,24 +19,22 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessi
 		// console.log("Feedback ID: ", feedbackID);
 		// console.log("Feedback: ", admin_feedback);
 		
-		const fetchAdminBtn = async () => {
+		const fetchFeedback = async () => {
 			setProcessing(true);
 			try {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${feedbackID}&feedback=${admin_feedback}`, {
 					method: "PATCH",
-				},
-				{
-					cache: 'no-store'
+					cache: "no-store"
 				});
 
 				if (res.ok) {
 					reset();
 					closeModal();
-					setProcessing(false);
 					toast.success("Feedback added successfully!")
 					startTransition(()=>{
 						router.refresh();
 					})
+					setProcessing(false);
 				}
 			} 
 			catch (error) {
@@ -45,7 +43,7 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessi
 			}
 		};
 	
-		fetchAdminBtn();
+		fetchFeedback();
 			
 	};
 

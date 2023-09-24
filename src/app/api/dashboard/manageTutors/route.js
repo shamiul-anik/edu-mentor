@@ -17,6 +17,7 @@ export const PATCH = async (request) => {
 			feedback_query.admin_feedback = feedback;
 		}
 
+		// Add or Update Feedback
 		const hasValidQuery = Object.keys(feedback_query).length > 0;
 		if (hasValidQuery) {
 			const tutorRequest = await Tutor_request.findByIdAndUpdate(id, feedback_query);

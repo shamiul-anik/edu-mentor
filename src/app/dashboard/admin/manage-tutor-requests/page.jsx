@@ -6,7 +6,6 @@ import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
 import { useEffect, useState, useTransition } from "react";
 import useAuth from "@/hooks/useAuth";
-import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import FeedbackModal from "./FeedbackModal";
@@ -52,27 +51,15 @@ const ManageStudents = () => {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${request?._id}&controlAdminBtn=${value}`, {
 					method: "PATCH",
 				},
-					{
-						cache: 'no-store'
-					});
-				if (res.status === 200) {
-					// Successful response, handle data accordingly
-					// setAllUsers(data);
-					// Swal.fire({
-					//   position: 'top-center',
-					//   icon: 'success',
-					//   title: "User Action successfully",
-					//   showConfirmButton: false,
-					//   timer: 1500
-					// })
+				{
+					cache: 'no-store'
+				});
+				if (res.ok) {
 					toast.success("Action successful!")
-
-					// console.log("User admin action successfully")
-
 				}
 				else {
 					// Handle unsuccessful response
-					console.error('Error fetching all manage request:', res.statusText);
+					console.error('Error fetching all manage request: ', res.statusText);
 				}
 				startTransition(() => {
 					router.refresh();
@@ -80,15 +67,11 @@ const ManageStudents = () => {
 				// const data = await res.json();
 				// console.log(data)
 
-
 			} catch (error) {
-				console.error('Error fetching all manage request:', error);
-
+				console.error('Error fetching all manage request: ', error);
 			}
 		};
-
 		fetchAdminBtn();
-
 	}
 
 	// Feedback Modal Open/Close State

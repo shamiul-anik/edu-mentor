@@ -26,7 +26,8 @@ const AddATuition = () => {
       tutor_location: tuitionInformation?.location,
       qualification: tuitionInformation?.qualification,
       available_days: tuitionInformation?.available_days,
-      service_location: tuitionInformation?.service_location
+      service_location: tuitionInformation?.service_location,
+      admin_feedback: ""
     };
     saveTuition(tuitionData)
   };

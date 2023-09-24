@@ -51,5 +51,3 @@ const tutorRequestSchema = new mongoose.Schema({
 const Tutor_request = mongoose.models.Tutor_request || mongoose.model('Tutor_request', tutorRequestSchema);
 
 export default Tutor_request;
-
-  
