@@ -20,18 +20,18 @@ export const PATCH = async (request) => {
 		// Add or Update Feedback
 		const hasValidQuery = Object.keys(feedback_query).length > 0;
 		if (hasValidQuery) {
-			const tutorRequest = await Tutor_request.findByIdAndUpdate(id, feedback_query);
-			return NextResponse.json({ tutorRequest }, { status: 200 });
+			const adminFeedback = await Tutor_request.findByIdAndUpdate(id, feedback_query);
+			return NextResponse.json({ adminFeedback }, { status: 200 });
 		}
 
 		if (controlAdminBtn == "approve") {
-			const tutorRequest = await Tutor_request.findByIdAndUpdate(id, { isVerified: true });
-			return NextResponse.json({ tutorRequest }, { status: 200 });
+			const adminVerification = await Tutor_request.findByIdAndUpdate(id, { isVerified: true });
+			return NextResponse.json({ adminVerification }, { status: 200 });
 		} 
 
 		else if (controlAdminBtn == "deny") {
-			const tutorRequest = await Tutor_request.findByIdAndUpdate(id, { isVerified: false });
-			return NextResponse.json({ tutorRequest }, { status: 200 });
+			const adminVerification = await Tutor_request.findByIdAndUpdate(id, { isVerified: false });
+			return NextResponse.json({ adminVerification }, { status: 200 });
 		}
 
 	} 

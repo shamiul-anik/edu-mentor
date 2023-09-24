@@ -14,7 +14,7 @@ export const GET = async (request) => {
 		// Return the fetched data as a JSON response
 		return new NextResponse(JSON.stringify(tutorRequest), { status: 200 })
 	} catch (error) {
-		console.error("Database Error:", error.message);
+		console.error("Database Error: ", error.message);
 		// Return an error response if something goes wrong
 		return NextResponse("Internal Server Error", { status: 500 });
 	}
