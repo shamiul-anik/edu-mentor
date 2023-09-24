@@ -26,7 +26,8 @@ const ManageTutors = () => {
 					});
 				const data = await res.json();
 				setAllTuitions(data);
-			} catch (error) {
+			} 
+			catch (error) {
 				console.error('Error fetching mentor data:', error);
 			}
 		};
