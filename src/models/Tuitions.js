@@ -36,6 +36,9 @@ const tuitionSchema = new Schema({
 	service_location: {
 		type: String,
 	},
+	admin_feedback: {
+		type: String,
+	},
 	isVerified: {
 		type: Boolean,
 		default: false, // Set the default value to false

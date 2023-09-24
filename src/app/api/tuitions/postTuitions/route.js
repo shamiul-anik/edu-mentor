@@ -23,6 +23,7 @@ export const POST = async (request) => {
       location,
       available_days,
       service_location,
+      admin_feedback
     } = await request.json();
 
     // Create a new tuition instance
@@ -38,6 +39,7 @@ export const POST = async (request) => {
       location,
       available_days,
       service_location,
+      admin_feedback
     });
 
     // Save the new tuition to the database
@@ -45,7 +47,7 @@ export const POST = async (request) => {
 
     return new NextResponse(
       {
-        message: "Tuition stored successfully!",
+        message: "Tuition data stored successfully!",
         success: true,
         savedTuition,
       },
