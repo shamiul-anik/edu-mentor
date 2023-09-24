@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessing }) => {
 
 	const [isPending, startTransition] = useTransition()
-	const router = useRouter();
+	const { refresh } = useRouter();
 
 	const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -32,7 +32,7 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessi
 					closeModal();
 					toast.success("Feedback added successfully!")
 					startTransition(()=>{
-						router.refresh();
+						refresh();
 					})
 					setProcessing(false);
 				}

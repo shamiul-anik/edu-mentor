@@ -1,6 +1,5 @@
 "use client"
 import { Fade } from "react-awesome-reveal";
-import Image from "next/image";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
@@ -15,7 +14,7 @@ const ManageStudents = () => {
 	const [allRequest, setAllRequest] = useState([]);
 	const { user, loading, userRole } = useAuth();
 	const [isPending, startTransition] = useTransition();
-	const router = useRouter();
+	const { refresh } = useRouter();
 
 	useEffect(() => {
 		const fetchAllTutorRequest = async () => {
@@ -45,29 +44,27 @@ const ManageStudents = () => {
 	// const isVerified = false;
 
 	const handleAdminBtn = (request, value) => {
-		console.log(request?._id, value);
+		// console.log(request?._id, value);
 		const fetchAdminBtn = async () => {
 			try {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageTutors?id=${request?._id}&controlAdminBtn=${value}`, {
 					method: "PATCH",
-				},
-				{
 					cache: 'no-store'
 				});
 				if (res.ok) {
 					toast.success("Action successful!")
+					startTransition(() => {
+						refresh();
+					})
 				}
 				else {
 					// Handle unsuccessful response
 					console.error('Error fetching all manage request: ', res.statusText);
 				}
-				startTransition(() => {
-					router.refresh();
-				})
 				// const data = await res.json();
 				// console.log(data)
-
-			} catch (error) {
+			} 
+			catch (error) {
 				console.error('Error fetching all manage request: ', error);
 			}
 		};

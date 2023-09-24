@@ -14,8 +14,8 @@ const FeedbackModal = ({ isOpen, closeModal, feedbackID, processing, setProcessi
 	const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 	const onSubmit = (feedback) => { 
-		console.log("Feedback ID: ", feedbackID);
-		console.log("Feedback Message: ", feedback.admin_feedback);
+		// console.log("Feedback ID: ", feedbackID);
+		// console.log("Feedback Message: ", feedback.admin_feedback);
 		const admin_feedback = feedback.admin_feedback;
 		
 		const fetchFeedback = async () => {
