@@ -28,6 +28,7 @@ const Profile = () => {
   const onSubmit = async (userInformation, event) => {
 
     event.preventDefault();
+    // console.log(event.target.location.value);
 
     // Perform form validation here if necessary
     if (!currentUserName || !currentUserEmail) {
@@ -39,11 +40,11 @@ const Profile = () => {
     const userInfo = {
       displayName: currentUserName,
       email: currentUserEmail,
-      photoURL: userInformation?.photoURL,
-      gender: userInformation?.gender,
-      mobileNumber: userInformation?.mobileNumber,
-      qualification: userInformation?.qualification,
-      location: userInformation?.location,
+      photoURL: event.target.photoURL.value,
+      gender: event.target.gender.value,
+      mobileNumber: event.target.mobileNumber.value,
+      qualification: event.target.qualification.value,
+      location: event.target.location.value,
       role: role,
     };
 
