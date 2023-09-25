@@ -2,30 +2,98 @@
 import useAuth from '@/hooks/useAuth';
 import React, { useEffect, useState } from 'react';
 import { FaMoneyBill } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const MyPayments = () => {
 	const { user } = useAuth();
+	
 	const [studentPaymentBooking, setStudentPaymentBooking] = useState([]);
+	const [month, setMonth] = useState("");
+
 	useEffect(() => {
 		const fetchPaymentBooking = async () => {
 		  try {
-			const res = await fetch(
-			  `${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-booking?student_email=${user?.email}&is_accepted=true`,
-			  {
-				cache: "no-store",
-			  }
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/get-booking?student_email=${user?.email}&is_accepted=true`,
+			  { cache: "no-store" }
 			);
 			const data = await res.json();
-			console.log(data);
+			// console.log(data);
 			setStudentPaymentBooking(data);
-		  } catch (error) {
-			console.error("Error fetchHiredBooking data:", error);
+		  } 
+			catch (error) {
+			console.error("Error fetching data: ", error);
 		  }
 		};
 	
 		fetchPaymentBooking();
 	  }, [user?.email]);
 	//   console.log(studentPaymentBooking);
+
+	const handlePayment = async(payment) => {
+		
+		// console.log("Payment Information: ", payment);
+
+		// console.log(object);
+
+		const paymentInformation = {
+			tuitionId: payment.tuitionId,
+			tutor_name: payment.tutor_name,
+			tutor_email: payment.tutor_email,
+			subject_name: payment.subject,
+			class_name: payment.class_name,
+			student_name: payment.student_name,
+			student_email: payment.student_email,
+			payment_amount: payment.salary,
+			student_mobile_number: payment.student_mobile_number,
+			student_location: payment.student_location,
+			payment_status: false,
+			payment_month: month
+		}
+
+		// console.log("Payment Information: ", paymentInformation);
+
+		Swal.fire({
+			title: 'Are you sure?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, pay now!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const paymentProcess = async () => {
+					try {
+						const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ssl-payment`, {
+							method: "POST",
+							headers: {
+								"content-type": "application/json"
+							},
+							body: JSON.stringify(paymentInformation)
+						});
+						// console.log("Response: ", res);
+						if (res.status === 200) {
+							const result = await res.json();
+							// console.log("Confirmation Data: ", result);
+							// window.location.replace(result.url);
+							toast.success("Authentication successful!")
+							window.open(result.url, '_blank');
+						}
+						else {
+							toast.error("Authentication failed!")
+						}
+						
+					} 
+					catch (error) {
+						toast.error("Error fetching: ", error.message);
+					}
+				}
+
+				paymentProcess();
+			}
+		})
+
+	}
 
 	return (
 		<>
@@ -63,9 +131,9 @@ const MyPayments = () => {
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Salary <br /> (Per Month)
 							</th>
-							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
+							{/* <th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Payment <br /> Status
-							</th>
+							</th> */}
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Month <br /> Name
 							</th>
@@ -98,12 +166,12 @@ const MyPayments = () => {
 								<td className="px-2 py-2 text-center border-r-2">
 								{payment?.salary}
 								</td>
-								<td className="px-2 py-2 text-center uppercase border-r-2">
+								{/* <td className="px-2 py-2 text-center uppercase border-r-2">
 								Unpaid
-								</td>
+								</td> */}
 								<td className="px-2 py-2 text-center border-r-2">
 									<select className="select select-sm !h-9 py-0 leading-none select-accent w-full min-w-[192px] max-w-[280px]"
-									defaultValue="" 
+										onInput={(e) => setMonth(e.target.value)}
 									>
 										<option value="">Select Month</option>
 										<option value="January">January</option>
@@ -121,7 +189,7 @@ const MyPayments = () => {
 									</select>
 								</td>
 								<td className="px-2 py-2 text-center border-r-2">
-									<button type="button" className="flex w-28 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
+										<button onClick={() => handlePayment(payment)} type="button" className="flex w-28 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false} >
 										<FaMoneyBill className='gr-icon w-4 h-4 mr-2' />
 										Pay Now
 									</button>
