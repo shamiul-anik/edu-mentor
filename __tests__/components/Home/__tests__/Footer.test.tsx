@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe('Footer', ()=>{
   it('renders the logo', () => {
     render(<Footer />);
-    expect(screen.getByAltText('Logo')).toBeInTheDocument();
+    expect(screen.getByAltText('EduMentor Logo')).toBeInTheDocument();
   });
   it('displays the company name', () => {
     render(<Footer />);

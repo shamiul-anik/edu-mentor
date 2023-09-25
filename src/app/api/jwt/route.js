@@ -4,10 +4,10 @@ import jwt from "jsonwebtoken";
 export const POST = async (request) => {
   try {
     const { email } = await request.json();
-    console.log(email);
+    // console.log(email);
 
     if (!email) {
-      console.log('in block');
+      // console.log('in block');
       const response = NextResponse.json({
         message: "Logged out",
         success: true,
@@ -21,14 +21,14 @@ export const POST = async (request) => {
 
     // Create token
     const token = await jwt.sign(tokenPayload, process.env.NEXT_PUBLIC_JWT_SECRET, { expiresIn: 60 * 60 * 60 });
-    console.log(token);
+    // console.log(token);
 
     // Create a JSON response with your data
     const response = NextResponse.json({
       message: "Token created",
       success: true,
     });
-    console.log(response, token);
+    // console.log(response, token);
 
     // Set the token as a cookie
     response.cookies.set("token", token, { httpOnly: true });

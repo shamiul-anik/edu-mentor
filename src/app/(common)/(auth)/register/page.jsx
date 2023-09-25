@@ -55,7 +55,7 @@ const Registration = () => {
 				// console.log(userInfo);
 
 				saveUser(userInfo);
-				// useJWT();
+				setJWT();
 				// console.log(userInfo);
 
 				setSuccess("Registration successful!");
