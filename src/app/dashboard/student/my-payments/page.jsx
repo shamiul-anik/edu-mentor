@@ -75,9 +75,9 @@ const MyPayments = () => {
 						if (res.status === 200) {
 							const result = await res.json();
 							// console.log("Confirmation Data: ", result);
-							// window.location.replace(result.url);
 							toast.success("Authentication successful!")
-							window.open(result.url, '_blank');
+							window.location.replace(result.url);
+							// window.open(result.url, '_blank');
 						}
 						else {
 							toast.error("Authentication failed!")
