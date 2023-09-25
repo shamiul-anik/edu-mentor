@@ -69,6 +69,7 @@
     "@types/aos": "^3.0.4",
     "@types/js-cookie": "^3.0.4",
     "@types/jsonwebtoken": "^9.0.3",
+    "@types/nodemailer": "^6.4.10",
     "@types/react": "18.2.20",
     "@types/react-router-dom": "^5.3.3",
     "@types/stripe": "^8.0.417",

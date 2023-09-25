@@ -17,7 +17,7 @@ const tutorRequestSave = async (TutorInfo) => {
 			toast.success("Tutor request sent successfully!");
 		} 
 		else if (response.status === 400) {
-			toast.error("Tutor request already exists!")
+			toast.error("Tutor request sending failed!")
 		}
 		else {
 			toast.error("Fetch error!")

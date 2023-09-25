@@ -1,10 +1,11 @@
-"use client";
-import useAuth from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState, useTransition } from "react";
-import { GrValidate } from "react-icons/gr";
-import { LuShieldClose } from "react-icons/lu";
-import Swal from "sweetalert2";
+"use client"
+import useAuth from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState, useTransition } from 'react';
+import toast from 'react-hot-toast';
+import { GrValidate } from 'react-icons/gr';
+import { LuShieldClose } from 'react-icons/lu';
+import Swal from 'sweetalert2';
 
 const MyBookings = () => {
 	const { user } = useAuth();
@@ -32,37 +33,45 @@ const MyBookings = () => {
 	}, [user?.email]);
 	// console.log(tutorBooking);
 
-	const handleAdminBtn = (id, value) => {
-		const fetchAdminBtn = async () => {
-			try {
-				const res = await fetch(
-					`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`,
-					{
-						method: "PATCH",
-						cache: "no-store",
-					}
-				);
-				if (res.status === 200) {
-					// Successful response, handle data accordingly
-					// setAllUsers(data);
-					Swal.fire({
-						position: "center",
-						icon: "success",
-						title: "User Action successfully",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-					console.log("User admin action successfully");
-				}
-				startTransition(() => {
-					console.log({ router });
-					router.refresh();
-				});
-				const data = await res.json();
-				// console.log(data)
-			} catch (error) {
-				console.error("Error fetching adminAction btn:", error);
-			}
+	const handleAdminBtn= (id, value) => {
+    // adminBtn(user, value);
+    
+
+  // console.log(user._id, value)
+
+    const fetchAdminBtn = async () => {
+		  try {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/manageBooking?id=${id}&controlAdminBtn=${value}`, {
+        method: "PATCH",
+		cache: "no-store"
+      });
+      if (res.status === 200) {
+        // Successful response, handle data accordingly
+        // setAllUsers(data);
+        // Swal.fire({
+        //   position: 'center',
+        //   icon: 'success',
+        //   title: "User Action successfully",
+        //   showConfirmButton: false,
+        //   timer: 1500
+        // })
+        // console.log("User admin action successfully")
+		toast.success("User Action successfully")
+        
+      }
+	  startTransition(()=>{
+		console.log({router})
+		router.refresh();
+	  })
+			const data = await res.json();
+
+      // console.log(data)
+
+			
+		  } catch (error) {
+			console.error('Error fetching adminAction btn:', error);
+		   
+		  }
 		};
 		fetchAdminBtn();
 	};

@@ -4,7 +4,7 @@ const getUser = async (email) => {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/get-user?email=${email}`, { cache: "no-store" });
 
 		if (!response.ok) {
-			throw new Error('Network response was not ok');
+			throw new Error('There were some errors while fetching!');
 		}
 		const data = await response.json();
 		// console.log("data", data);

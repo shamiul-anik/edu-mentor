@@ -12,6 +12,8 @@ import useAuth from "@/hooks/useAuth";
 import adminBtn from "@/utils/dashboard/adminBtn"
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { Toast } from "flowbite-react";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
 	const [allUsers, setAllUsers] = useState([]);
@@ -28,9 +30,9 @@ const ManageUsers = () => {
 					});
 				const data = await res.json();
 				setAllUsers(data);
-			} catch (error) {
-				console.error('Error fetching All userdata:', error);
-
+			} 
+			catch (error) {
+				console.error('Error fetching user data: ', error);
 			}
 		};
 
@@ -39,7 +41,7 @@ const ManageUsers = () => {
 	// console.log(allUsers);
 
 	const role = { userRole };
-	const isVerified = false;
+	// const isVerified = false;
 
 	const handleAdminBtn = (user, value) => {
 
@@ -59,16 +61,16 @@ const ManageUsers = () => {
 					Swal.fire({
 						position: 'center',
 						icon: 'success',
-						title: "User Action successfully",
+						title: "Action successful!",
 						showConfirmButton: false,
 						timer: 1500
 					})
-					console.log("User admin action successfully")
+					// console.log("User admin action successfully")
 				}
 				const data = await res.json();
-				console.log(data)
+				// console.log(data)
 			} catch (error) {
-				console.error('Error fetching adminAction btn:', error);
+				console.error('Error fetching: ', error);
 			}
 		};
 

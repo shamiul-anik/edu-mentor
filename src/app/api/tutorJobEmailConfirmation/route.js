@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
 	try {
-		const { name, to, subject, message, from } = await request.json();
+		const { name, to, subject, message } = await request.json();
 
 		const transporter = nodemailer.createTransport({
 			service: 'Gmail',
@@ -14,15 +14,16 @@ export async function POST(request) {
 		});
 
 		const mailOptionTo = {
-			to,
-			subject,
-			html: `
+      to,
+      from: '"EduMentor" <mamun.bbn.bd@gmail.com>', // sender information
+      subject,
+      html: `
 				<!DOCTYPE html>
 				<html lang="en">
 				<head>
 					<meta charset="UTF-8">
 					<meta name="viewport" content="width=device-width, initial-scale=1.0">
-					<title>EduMentor - Tutor Job Email Confirmation</title>
+					<title>EduMentor - Confirmation for Tutor Request</title>
 					<style>
 						/* Add your CSS styles here */
 						body {
@@ -62,7 +63,7 @@ export async function POST(request) {
 				</head>
 				<body>
 					<div class="container">
-						<h1 class="text-3xl font-semibold text-gray-800">EduMentor - Tutor Request Confirmation!</h1>
+						<h1 class="text-3xl font-semibold text-gray-800">EduMentor - Confirmation for Tutor Request!</h1>
 						<h3>Hello! My name is ${name}.</h3>
 						<h3>${message}</h3>
 						<h3>I will be waiting to hear from you soon.</h3>
@@ -71,7 +72,7 @@ export async function POST(request) {
 				</body>
 				</html>
 			`,
-		};
+    };
 
 		// Send the email to the "to" address
 		await transporter.sendMail(mailOptionTo);

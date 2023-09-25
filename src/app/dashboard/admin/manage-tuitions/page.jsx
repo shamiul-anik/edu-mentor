@@ -1,8 +1,6 @@
 "use client"
 import { Fade } from "react-awesome-reveal";
-
 import Image from "next/image";
-// import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
 import { LuShieldClose } from "react-icons/lu";
 import { VscFeedback } from "react-icons/vsc";
@@ -10,6 +8,7 @@ import { useEffect, useState, useTransition } from "react";
 import useAuth from "@/hooks/useAuth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import FeedbackModal from "./FeedbackModal";
 
 const ManageTutors = () => {
@@ -27,9 +26,9 @@ const ManageTutors = () => {
 					});
 				const data = await res.json();
 				setAllTuitions(data);
-			} catch (error) {
+			} 
+			catch (error) {
 				console.error('Error fetching mentor data:', error);
-
 			}
 		};
 
@@ -37,11 +36,14 @@ const ManageTutors = () => {
 	}, []);
 
 	// Sample Data
-	const admin_feedback = ""
+	// const admin_feedback = ""
 	// const isVerified = false;
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
+
+	// Feedback Loading/Processing State
+	const [processing, setProcessing] = useState(false);
 
 	// Setting Class ID for Feedback
 	const [feedbackID, setFeedbackID] = useState("");
@@ -56,14 +58,13 @@ const ManageTutors = () => {
 		setIsOpen(false);
 	};
 
-	const handleFeedback = (tutionID) => {
+	const handleFeedback = (tuitionID) => {
 		openModal();
-		console.log("Feedback ID: ", tutionID);
-		setFeedbackID(tutionID);
+		setFeedbackID(tuitionID);
 	};
 
 	const handleAdminBtn = (tuition, value) => {
-		console.log(tuition?._id, value);
+		// console.log(tuition?._id, value);
 		const fetchAdminBtn = async () => {
 			try {
 				const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/tuitionStatus?id=${tuition?._id}&controlAdminBtn=${value}`, {
@@ -78,22 +79,21 @@ const ManageTutors = () => {
 					Swal.fire({
 						position: 'top-center',
 						icon: 'success',
-						title: "User Action successfully",
+						title: "Action successful!",
 						showConfirmButton: false,
 						timer: 1500
 					})
 					startTransition(() => {
 						router.refresh();
 					})
-					console.log("User admin action successfully")
+					console.log("Tuition verification successful!")
 
 				}
 				const data = await res.json();
-				console.log(data)
-
+				// console.log(data)
 
 			} catch (error) {
-				console.error('Error fetching all User Data: ', error);
+				console.error('Error in tuition verification! ', error);
 			}
 		};
 
@@ -199,7 +199,7 @@ const ManageTutors = () => {
 											{(tuition?.isVerified == true) ? <span className="text-green-700">true</span> : <span className="text-red-700"> false</span>}
 										</td>
 										<td className="px-2 py-2 border-r-2">
-											Update running
+											{tuition?.admin_feedback}
 										</td>
 										<td className="px-2 py-2 text-center">
 											<button onClick={() => handleAdminBtn(tuition, 'approve')} type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-green-500 to-green-600 transition-all hover:duration-300 hover:from-green-600 hover:to-green-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={(tuition?.isVerified == true) ? true : false} >
@@ -211,7 +211,7 @@ const ManageTutors = () => {
 												Deny
 											</button>
 											{
-												admin_feedback ?
+												tuition?.admin_feedback ?
 													<button onClick={() => handleFeedback(tuition?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Update Feedback
@@ -234,7 +234,7 @@ const ManageTutors = () => {
 			</section>
 
 			{/* FeedbackModal */}
-			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID}></FeedbackModal>
+			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID} processing={processing} setProcessing={setProcessing}></FeedbackModal>
 		</>
 	);
 };

@@ -15,16 +15,16 @@ const AuthProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		setLoading(true);
 		if (user) {
 			const fetchUserData = async () => {
-				// console.log(user?.email);
 				const userData = await getUser(user?.email);
-				// console.log(userData); // This should show the updated value.
 				setUserData(userData);
 				setUserRole(userData?.role);
-				console.log(userRole); // This should show the updated value.
+				// console.log(userRole); // This should show the updated value.
 			};
 			fetchUserData()
+			setLoading(false);
 		}
 	}, [user, userRole]);
 
@@ -78,8 +78,7 @@ const AuthProvider = ({ children }) => {
 		return () => {
 			unSubscribe();
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user])
+	}, [user?.email])
 
 	const authInfo = {
 		user,

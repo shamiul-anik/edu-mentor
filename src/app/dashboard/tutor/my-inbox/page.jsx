@@ -6,12 +6,14 @@ import toast from 'react-hot-toast';
 import { FiDelete } from 'react-icons/fi';
 import { VscFeedback } from 'react-icons/vsc';
 import FeedbackModal from "./FeedbackModal";
+import Swal from 'sweetalert2';
 
 const MyInbox = () => {
 	const { user } = useAuth();
 	const [tutorMessages, setTutorMessages] = useState([]);
 	const [isPending, startTransition] = useTransition()
 	const router = useRouter();
+
 	useEffect(() => {
 		const fetchTutorMessages = async () => {
 			try {
@@ -31,33 +33,52 @@ const MyInbox = () => {
 
 		fetchTutorMessages();
 	}, [user?.email]);
-	console.log(tutorMessages)
+	// console.log(tutorMessages)
 
 	const handleDelete = async (id) => {
-		try {
 
-			const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/deleteMessage?id=${id}`, {
-				method: "DELETE",
-				cache: "no-store"
-			})
-			if (res.status === 400) {
-				toast.error("Error deleting message!")
+		Swal.fire({
+			title: 'Are you sure?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const deleteMessage = async () => {
+					try {
+						const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/deleteMessage?id=${id}`, {
+							method: "DELETE",
+							cache: "no-store"
+						})
+						if (res.status === 400) {
+							toast.error("Error deleting message!")
+						}
+						if (res.status === 200) {
+							toast.success("Deletion successful!")
+							startTransition(() => {
+								router.refresh();
+							})
+						}
+					} catch (error) {
+						console.error("Error deleting message:", error.message);
+					}
+				}
+
+				deleteMessage();
 			}
-			if (res.status === 200) {
-				toast.success("Successfully deleted!")
-				startTransition(() => {
-					router.refresh();
-				})
-			}
-		} catch (error) {
-			console.error("Error deleting message:", error.message);
-		}
+		})
+
 	}
 
-	const tutor_feedback = "" // TODO: Make it dynamic
+	// const tutor_feedback = "" // TODO: Make it dynamic
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
+
+	// Feedback Loading/Processing State
+	const [processing, setProcessing] = useState(false);
 
 	// Setting Class ID for Feedback
 	const [feedbackID, setFeedbackID] = useState("");
@@ -100,7 +121,7 @@ const MyInbox = () => {
 									#
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Name
+									Student&apos;s Name
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Email
@@ -152,7 +173,7 @@ const MyInbox = () => {
 										<td className="px-2 py-2 text-center border-r-2">
 											{message?.student_gender}
 										</td>
-										<td className="px-2 py-2 text-center uppercase border-r-2">
+										<td className="px-2 py-2 text-center border-r-2">
 											{message?.student_location}
 										</td>
 										<td className="px-2 py-2 border-r-2">
@@ -165,7 +186,7 @@ const MyInbox = () => {
 											{message?.details}
 										</td>
 										<td className="px-2 py-2 border-r-2">
-											Dynamic Feedback
+											{message?.tutor_feedback}
 										</td>
 										<td className="px-2 py-2 border-r-2">
 											<button onClick={() => handleDelete(message?._id)} type="button" className="flex w-44 mx-auto justify-center items-center text-white bg-gradient-to-br from-red-500 to-red-600 transition-all hover:duration-300 hover:from-red-600 hover:to-red-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700" disabled={false}>
@@ -173,7 +194,7 @@ const MyInbox = () => {
 												Delete
 											</button>
 											{
-												tutor_feedback ?
+												message?.tutor_feedback ?
 													<button onClick={() => handleFeedback(message?._id)} type="button" className="flex w-44 mx-auto mt-2 justify-center items-center text-white bg-gradient-to-br from-teal-500 to-teal-600 transition-all hover:duration-300 hover:from-teal-600 hover:to-teal-700 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-200 dark:focus:ring-teal-800 font-normal rounded-md text-md px-3 py-2 text-center disabled:from-slate-600 disabled:to-slate-700">
 														<VscFeedback className='gr-icon w-4 h-4 mr-2' />
 														Update Feedback
@@ -194,6 +215,9 @@ const MyInbox = () => {
 				</div>
 
 			</section>
+
+			{/* FeedbackModal */}
+			<FeedbackModal isOpen={isOpen} openModal={openModal} closeModal={closeModal} feedbackID={feedbackID} processing={processing} setProcessing={setProcessing}></FeedbackModal>
 		</>
 	);
 };
