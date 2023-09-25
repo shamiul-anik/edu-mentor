@@ -24,7 +24,7 @@ const MyInbox = () => {
 					}
 				);
 				const data = await res.json();
-				console.log(data);
+				// console.log(data);
 				setTutorMessages(data);
 			} catch (error) {
 				console.error("Error fetchStudentBooking data:", error);

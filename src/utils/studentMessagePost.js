@@ -4,9 +4,9 @@ const studentMessagePost = async (data) => {
 	// console.log("studentMessagePost",data)
 	try {
 		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tutors/student-message`, {
-			method: 'POST',
+			method: "POST",
 			headers: {
-				'content-type': 'application.json',
+				"content-type": "application/json"
 			},
 			body: JSON.stringify(data)
 		})
