@@ -7,6 +7,7 @@ import { FiDelete } from 'react-icons/fi';
 import { VscFeedback } from 'react-icons/vsc';
 import FeedbackModal from "./FeedbackModal";
 import Swal from 'sweetalert2';
+import { Fade } from 'react-awesome-reveal';
 
 const MyInbox = () => {
 	const { user } = useAuth();
@@ -27,7 +28,7 @@ const MyInbox = () => {
 				// console.log(data);
 				setTutorMessages(data);
 			} catch (error) {
-				console.error("Error fetchStudentBooking data:", error);
+				toast.error("Error fetching data: ", error);
 			}
 		};
 
@@ -62,7 +63,7 @@ const MyInbox = () => {
 							})
 						}
 					} catch (error) {
-						console.error("Error deleting message:", error.message);
+						toast.error("Error deleting message!");
 					}
 				}
 
@@ -71,8 +72,6 @@ const MyInbox = () => {
 		})
 
 	}
-
-	// const tutor_feedback = "" // TODO: Make it dynamic
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
@@ -95,7 +94,7 @@ const MyInbox = () => {
 
 	const handleFeedback = (messageID) => {
 		openModal();
-		console.log("Feedback ID: ", messageID);
+		// console.log("Feedback ID: ", messageID);
 		setFeedbackID(messageID);
 	};
 
@@ -103,15 +102,14 @@ const MyInbox = () => {
 		<>
 			<header>
 				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
-					{/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
-					<span>My Inbox</span>
+					<Fade duration={200} triggerOnce={true} cascade>My Inbox</Fade>
 				</h1>
 			</header>
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
-				{/* <div>
-				<h1 className="text-3xl font-bold text-center mb-6">Total Enrolled Classes: {myEnrolledClasses?.length}</h1>
-			</div> */}
+			<div>
+					<h1 className="text-3xl font-bold text-center mb-6">Total Messages: {tutorMessages?.length}</h1>
+			</div>
 
 				<div className="relative overflow-x-auto">
 					<table className="border-2 border-slate-200 w-full text-sm text-left text-gray-1000 dark:text-gray-400">
@@ -127,7 +125,7 @@ const MyInbox = () => {
 									Email
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-									Mobile No.
+									Mobile Number
 								</th>
 								<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 									Gender
