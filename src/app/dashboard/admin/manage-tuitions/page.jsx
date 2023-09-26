@@ -35,10 +35,7 @@ const ManageTutors = () => {
 		fetchAllTuitions();
 	}, []);
 
-	// Sample Data
-	// const admin_feedback = ""
-	// const isVerified = false;
-
+	
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -110,9 +107,9 @@ const ManageTutors = () => {
 			</header>
 			<section className="max-w-full mx-auto mt-6 lg:mt-12 p-4 md:px-0">
 
-				{/* <div>
-          <h1 className="text-3xl font-bold text-center mb-6">Total Classes: {allClassData?.length}</h1>
-        </div> */}
+				<div>
+					<h1 className="text-3xl font-bold text-center mb-6">Total Tuitions: {allTuitions?.length}</h1>
+        </div>
 
 				<div className="relative overflow-x-auto">
 					<table className="border-2 border-slate-200 w-full text-sm text-left text-gray-1000 dark:text-gray-400">

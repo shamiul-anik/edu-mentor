@@ -11,7 +11,7 @@ import FeedbackModal from "./FeedbackModal";
 
 const ManageStudents = () => {
 
-	const [allRequest, setAllRequest] = useState([]);
+	const [allRequests, setAllRequests] = useState([]);
 	const { user, loading, userRole } = useAuth();
 	const [isPending, startTransition] = useTransition();
 	const { refresh } = useRouter();
@@ -28,7 +28,7 @@ const ManageStudents = () => {
 					throw new Error('Something went wrong!');
 				}
 				const data = await res.json();
-				setAllRequest(data);
+				setAllRequests(data);
 			}
 			catch (error) {
 				console.error('Error fetching tutor data: ', error);
@@ -37,11 +37,8 @@ const ManageStudents = () => {
 
 		fetchAllTutorRequest();
 	}, []);
-	// console.log(allRequest);
+	// console.log(allRequests);
 
-	// Sample Data
-	// const admin_feedback = "";
-	// const isVerified = false;
 
 	const handleAdminBtn = (request, value) => {
 		// console.log(request?._id, value);
@@ -61,9 +58,8 @@ const ManageStudents = () => {
 					// Handle unsuccessful response
 					console.error('Error fetching all manage request: ', res.statusText);
 				}
-				// const data = await res.json();
-				// console.log(data)
-			} 
+
+			}
 			catch (error) {
 				console.error('Error fetching all manage request: ', error);
 			}
@@ -73,7 +69,7 @@ const ManageStudents = () => {
 
 	// Feedback Modal Open/Close State
 	const [isOpen, setIsOpen] = useState(false);
-	
+
 	// Feedback Loading/Processing State
 	const [processing, setProcessing] = useState(false);
 
@@ -106,9 +102,9 @@ const ManageStudents = () => {
 
 			<section className="max-w-full mx-auto mt-6 lg:mt-12 p-4 md:px-0">
 
-				{/* <div>
-          <h1 className="text-3xl font-bold text-center mb-6">Total Classes: {allClassData?.length}</h1>
-        </div> */}
+				<div>
+					<h1 className="text-3xl font-bold text-center mb-6">Total Tutor Requests: {allRequests?.length}</h1>
+				</div>
 
 				<div className="relative overflow-x-auto">
 					<table className="border-2 border-slate-200 w-full text-sm text-left text-gray-1000 dark:text-gray-400">
@@ -166,7 +162,7 @@ const ManageStudents = () => {
 						</thead>
 						<tbody>
 							{
-								allRequest?.map((request, index) => (
+								allRequests?.map((request, index) => (
 									<tr
 										key={request._id}
 										className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

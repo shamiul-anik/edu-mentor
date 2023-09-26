@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FaMoneyBill } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
+import { Fade } from 'react-awesome-reveal';
 
 const MyPayments = () => {
 	const { user } = useAuth();
@@ -31,10 +32,6 @@ const MyPayments = () => {
 	//   console.log(studentPaymentBooking);
 
 	const handlePayment = async (payment) => {
-
-		// console.log("Payment Information: ", payment);
-
-		// console.log(object);
 
 		const paymentInformation = {
 			tuitionId: payment.tuitionId,
@@ -99,15 +96,14 @@ const MyPayments = () => {
 		<>
 			<header>
 				<h1 className="text-5xl text-teal-700 font-bold text-center mt-4 lg:mt-8">
-					{/* <Fade duration={200} triggerOnce={true} cascade>Add a Tuition</Fade> */}
-					<span>My Payments</span>
+					<Fade duration={200} triggerOnce={true} cascade>My Payments</Fade>
 				</h1>
 			</header>
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
-			<div>
-					<h1 className="text-3xl font-bold text-center mb-6">Total Enrolled Tuitions: {studentPaymentBooking?.length}</h1>
-			</div>
+				<div>
+					<h1 className="text-3xl font-bold text-center mb-6">Total Number of Payments: {studentPaymentBooking?.length}</h1>
+				</div>
 
 				<div className="relative overflow-x-auto">
 					<table className="border-2 border-slate-200 w-full text-sm text-left text-gray-1000 dark:text-gray-400">
