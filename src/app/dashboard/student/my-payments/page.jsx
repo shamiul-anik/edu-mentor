@@ -106,7 +106,7 @@ const MyPayments = () => {
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
 			<div>
-				<h1 className="text-3xl font-bold text-center mb-6">Total Enrolled Tuitions: {fetchPaymentBooking?.length}</h1>
+					<h1 className="text-3xl font-bold text-center mb-6">Total Enrolled Tuitions: {studentPaymentBooking?.length}</h1>
 			</div>
 
 				<div className="relative overflow-x-auto">
