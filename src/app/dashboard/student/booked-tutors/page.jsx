@@ -110,7 +110,7 @@ const BookedTutors = () => {
 										{booking?.available_days}
 									</td>
 									<td className="px-2 py-2 text-center border-r-2">
-										{  (booking?.isAccepted) == null ? "Pending" : booking?.isAccepted == false ? "Rejected" : "Accepted"}
+										{ (booking?.isAccepted) == null ? "Pending" : booking?.isAccepted == false ? "Rejected" : "Accepted" }
 									</td>
 								</tr>
 								))
