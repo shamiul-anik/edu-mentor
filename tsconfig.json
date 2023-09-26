@@ -58,7 +58,8 @@
 		"src/app/dashboard/tutor/my-students/page.jsx",
 		"src/app/dashboard/tutor/my-tuitions/page.jsx",
 		"src/app/dashboard/tutor/my-inbox/page.jsx",
-		"src/app/dashboard/student/payment-history-student/page.jsx"
+		"src/app/dashboard/student/payment-history-student/page.jsx",
+		"src/app/dashboard/tutor/payment-history-tutor/page.jsx"
 	],
 	"exclude": [
 		"node_modules"

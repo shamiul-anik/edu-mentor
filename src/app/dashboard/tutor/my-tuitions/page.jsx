@@ -79,7 +79,7 @@ const MyTuitions = () => {
 										<td className="px-2 py-2 border-r-2">
 											{tuition?.subject}
 										</td>
-										<td className="px-2 py-2 border-r-2 text-center">
+										<td className="px-2 py-2 border-r-2">
 											{tuition?.class_name}
 										</td>
 										<td className="px-2 py-2 border-r-2">

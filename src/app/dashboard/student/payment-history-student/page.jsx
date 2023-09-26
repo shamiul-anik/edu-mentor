@@ -37,7 +37,7 @@ const PaymentHistoryStudent = () => {
 			<section className="max-w-7xl mx-auto mt-4 lg:mt-8 p-4 md:px-0">
 
 			<div>
-				<h1 className="text-3xl font-bold text-center mb-6">Total Payments: {payments?.length}</h1>
+				<h1 className="text-3xl font-bold text-center mb-6">Total Number of Payments: {payments?.length}</h1>
 			</div>
 
 			<div className="relative overflow-x-auto">
@@ -63,7 +63,7 @@ const PaymentHistoryStudent = () => {
 								Month <br /> Name
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
-								Salary <br /> (Per Month)
+								Paid <br /> Amount
 							</th>
 							<th scope="col" className="text-center bg-gray-100 px-3 py-4 border-b-2 border-r-2">
 								Payment <br /> Status
@@ -98,7 +98,8 @@ const PaymentHistoryStudent = () => {
 										<td className="px-2 py-2 text-center uppercase border-r-2">
 											{payment?.payment_status === true && "Paid"}
 										</td>
-									</tr>))
+									</tr>)
+								)
 							}
 					</tbody>
 				</table>
