@@ -22,7 +22,7 @@ export const GET = async (request) => {
 			query.student_email = student_email;
 			query.payment_status = payment_status;
 		}
-		console.log(query);
+		// console.log("Query Check for Payments: ", query);
 
 		const hasValidQuery = Object.keys(query).length > 0;
 		
@@ -30,13 +30,14 @@ export const GET = async (request) => {
 			const paymentsData = await Payments.find(query);
 			return new NextResponse(JSON.stringify(paymentsData), { status: 200 });
 		}
-
-		const paymentsData = await Payments.find();
-		return new NextResponse(JSON.stringify(paymentsData), { status: 200 })
+		else {
+			const paymentsData = await Payments.find();
+      return new NextResponse(JSON.stringify(paymentsData), { status: 200 });
+		}
 
 	} 
 	catch (error) {
-		console.error("Database Error:", error.message);
-		return new NextResponse("Internal Server Error", { status: 500 });
+		console.error("Database Error: ", error.message);
+		return new NextResponse("Internal Server Error!", { status: 500 });
 	}
 };
