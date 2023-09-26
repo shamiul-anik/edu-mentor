@@ -104,7 +104,7 @@ const Header = () => {
 										<>
 											<div className="divider my-0"></div>
 											<li>
-												<Link aria-label="Login Button" href="/login" className="p-0 flex flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-teal-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center">
+												<Link aria-label="Login Button" href="/login" className="p-0 flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 ring-2 ring-teal-400 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white focus:!text-white">
 													<MdLogin className="text-xl"></MdLogin>
 													Login
 												</Link>
@@ -175,30 +175,21 @@ const Header = () => {
 										)}
 										<div className="divider mt-1 mb-2"></div>
 										<li>
-											<Link className="flex p-0 mb-2" href="/profile">
-												<button
-													type="button"
-													className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-600 to-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
-												>
-													<ImProfile className="text-xl"></ImProfile>
+											<Link href="/profile" className="flex p-0 mb-2 gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-600 to-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white focus:!text-white">
+												<ImProfile className="text-xl"></ImProfile>
 													Profile
-												</button>
 											</Link>
 										</li>
 										<li>
-											<Link className="flex p-0 mb-2" href="/dashboard">
-												<button
-													type="button"
-													className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
-												>
-													<MdDashboard className="text-xl text-white"></MdDashboard>
-													Dashboard
-												</button>
+											<Link href="/dashboard" className="flex p-0 mb-2 gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white focus:!text-white">
+												<MdDashboard className="text-xl text-white"></MdDashboard>
+												Dashboard
 											</Link>
 										</li>
 
-										<li className="flex p-0" onClick={handleLogOut}>
+										<li className="flex p-0">
 											<button
+												onClick={handleLogOut}
 												type="button"
 												className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-red-600 to-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
 											>
@@ -241,14 +232,9 @@ const Header = () => {
 							<ul className="flex items-center gap-10 text-xl font-semibold menu-horizontal px-1">
 								{!user && (
 									<li>
-										<Link href="/login">
-											<button
-												type="button"
-												className="flex gap-2 mx-auto md:mx-0 items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 hover:bg-gradient-to-bl ring-2 ring-teal-400 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-lg px-8 py-2 text-center"
-											>
-												<MdLogin className="text-2xl"></MdLogin>
-												Login
-											</button>
+										<Link aria-label="Login Button" href="/login" className="flex gap-2 mx-auto md:mx-0 items-center justify-center text-white bg-gradient-to-br from-teal-500 to-teal-700 hover:bg-gradient-to-bl ring-2 ring-teal-400 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-teal-800 font-semibold rounded-lg text-lg px-8 py-2 text-center hover:!text-white focus:!text-white">
+											<MdLogin className="text-2xl"></MdLogin>
+											Login
 										</Link>
 									</li>
 								)}
@@ -303,29 +289,20 @@ const Header = () => {
 										)}
 										<div className="divider mt-1 mb-2"></div>
 										<li>
-											<Link className="flex p-0 mb-2" href="/profile">
-												<button
-													type="button"
-													className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-400 to-teal-600 ring-2 ring-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
-												>
-													<ImProfile className="text-xl"></ImProfile>
-													Profile
-												</button>
+										<Link href="/profile" className="flex p-0 mb-2 gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-teal-400 to-teal-600 ring-2 ring-teal-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white focus:!text-white">
+											<ImProfile className="text-xl"></ImProfile>
+											Profile
+										</Link>
+										</li>
+										<li>
+										<Link href="/dashboard" className="flex p-0 mb-2 gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-400 to-blue-600 ring-2 ring-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white focus:!text-white">
+											<MdDashboard className="text-xl text-white"></MdDashboard>
+												Dashboard
 											</Link>
 										</li>
 										<li>
-											<Link className="flex p-0 mb-2" href="/dashboard">
-												<button
-													type="button"
-													className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center text-white bg-gradient-to-br from-blue-400 to-blue-600 ring-2 ring-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-semibold rounded-lg text-sm px-8 py-2 text-center"
-												>
-													<MdDashboard className="text-xl text-white"></MdDashboard>
-													Dashboard
-												</button>
-											</Link>
-										</li>
-										<li onClick={handleLogOut}>
 											<button
+												onClick={handleLogOut}
 												type="button"
 												className="flex gap-2 mx-auto md:mx-0 w-full items-center justify-center !text-white bg-gradient-to-br from-red-600 to-orange-500 ring-2 ring-orange-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-semibold rounded-lg text-sm px-8 py-2 text-center hover:!text-white"
 											>
