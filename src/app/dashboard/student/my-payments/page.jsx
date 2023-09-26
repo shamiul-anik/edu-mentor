@@ -5,9 +5,12 @@ import { FaMoneyBill } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import { Fade } from 'react-awesome-reveal';
+import sendPaymentNotificationEmail from '@/utils/sslPaymentEmailNotification/sendPaymentNotificationEmail'
+import Loader from '@/components/(shared)/Loader/Loader';
 
 const MyPayments = () => {
 	const { user } = useAuth();
+	const [loading, setLoading] = useState(false);
 
 	const [studentPaymentBooking, setStudentPaymentBooking] = useState([]);
 	const [month, setMonth] = useState("");
@@ -59,6 +62,7 @@ const MyPayments = () => {
 			confirmButtonText: 'Yes, pay now!'
 		}).then((result) => {
 			if (result.isConfirmed) {
+				setLoading(true);
 				const paymentProcess = async () => {
 					try {
 						const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ssl-payment`, {
@@ -71,10 +75,16 @@ const MyPayments = () => {
 						// console.log("Response: ", res);
 						if (res.status === 200) {
 							const result = await res.json();
-							// console.log("Confirmation Data: ", result);
-							toast.success("Authentication successful!")
-							window.location.replace(result.url);
-							// window.open(result.url, '_blank');
+							const emailConfirmation = await sendPaymentNotificationEmail(result.payment);
+							// result.savedPaymentInformation
+							// console.log("Confirmation Email: ", emailConfirmation);
+							// console.log("Confirmation Data: ", result.payment);
+							if (emailConfirmation) {
+								toast.success("Authentication successful!")
+								setLoading(false);
+								// window.location.replace(result.url);
+								window.open(result.url, '_blank');
+							}
 						}
 						else {
 							toast.error("Authentication failed!")
@@ -90,6 +100,11 @@ const MyPayments = () => {
 			}
 		})
 
+	}
+
+	// Show Loader when Page is Loading
+	if (loading) {
+		return <Loader></Loader>;
 	}
 
 	return (
