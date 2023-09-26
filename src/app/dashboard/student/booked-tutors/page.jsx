@@ -111,7 +111,7 @@ const BookedTutors = () => {
 									</td>
 									<td className="px-2 py-2 text-center border-r-2">
 										 
-										{  (booking?.isAccepted) == null ? "pending" : booking?.isAccepted == false ? "Rejected" : booking?.isAccepted == true ? "Accepted" : ""
+										{  (booking?.isAccepted) == null ? "Pending" : booking?.isAccepted == false ? "Rejected" : booking?.isAccepted == true ? "Accepted" : ""
 										
 										}
 									</td>
