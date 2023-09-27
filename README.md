@@ -6,6 +6,8 @@
 <div><strong>Sector:</strong> This project can be used in the education sector as a platform for connecting students or parents seeking home tutors with qualified tutors in their local area. It serves as an online hub for hiring home tutors, making it beneficial for the education and tutoring industry.</div>
 <div><strong>Team Leader:</strong> A. K. M. Shamiul Islam</div>
 
+<strong>Live Server Link:</strong> https://github.com/shamiul-anik/edu-mentor-server
+
 </br>
 <div><strong>All Members:</strong></div>
 <!-- <ol>
@@ -25,6 +27,7 @@
 | Shamim Ahmed Asadullah  | mhshamim850@gmail.com | asadullah0107 |
 | Md Saidur Rahman  | saiduronway@gmail.com | saidur004 |
 | Rezwan Mahmud  | mahmudrayhan029@gmail.com | rezwan_mahmud029 |
+
 
 <div><strong>Project Description</strong></div>
 1. <strong>Introduction:</strong>
